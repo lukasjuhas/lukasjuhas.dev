@@ -1,0 +1,34 @@
+{
+  "name": "itsluk.as",
+  "version": "0.0.1",
+  "description": "My piece of internet.",
+  "main": "index.js",
+  "repository": "https://github.com/lukasjuhas/itsluk.as",
+  "author": "Lukas Juhas",
+  "license": "MIT",
+  "scripts": {
+    "cp:dev": "shx cp node_modules/vue/dist/vue.js scripts/vue.js",
+    "cp:prod": "shx cp node_modules/vue/dist/vue.min.js scripts/vue.js",
+    "serve": "cross-env VUE_ENV=server nodemon --watch . --ext js,html src/server.js",
+    "webpack": "cross-env NODE_ENV=development webpack --progress --hide-modules",
+    "dev": "cross-env cp:dev serve NODE_ENV=development webpack --watch --progress --hide-modules",
+    "hmr": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
+    "production": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "devDependencies": {
+    "cross-env": "^3.1.4",
+    "laravel-mix": "^0.3.0",
+    "nodemon": "^1.11.0",
+    "shx": "^0.2.2"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "express": "^4.14.0",
+    "fs": "^0.0.1-security",
+    "lodash": "^4.17.4",
+    "path": "^0.12.7",
+    "vue": "^2.1.8",
+    "vue-router": "^2.1.1",
+    "vue-server-renderer": "^2.1.8"
+  }
+}
