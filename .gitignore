@@ -1,5 +1,6 @@
-.DS_Store
 node_modules/
-dist/
+.sass-cache/
 npm-debug.log
-test/unit/coverage
+.DS_Store
+.tmp
+public

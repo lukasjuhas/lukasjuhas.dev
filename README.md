@@ -1,24 +1,30 @@
-# itsluk.as
+# Web Starter
+Starter kit for web sites and web apps using. (gulp-rollup-vuejs)
 
-> My little piece of internet
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
+## Tasks
+#### Default / Development
+```js
+gulp
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+#### Dev (Watch)
+Runs Default / Development task along with watch & browserSync.
+
+```js
+gulp dev
+```
+
+#### Build
+By default build task will bump **patch** version in package.json
+```js
+gulp build
+```
+
+In order to bump **major** or **minor** version use following flags:
+```js
+gulp build --major
+```
+or
+```js
+gulp build --minor
+```

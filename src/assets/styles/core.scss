@@ -1,0 +1,9 @@
+@import './config/variables';
+@import './config/mixins';
+
+@import './core/reset';
+@import './core/core';
+
+html {
+  background: $col-brand;
+}
