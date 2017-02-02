@@ -34,7 +34,7 @@ const config = {
   public: './public',
 };
 
-const tasks = ['images','scripts', 'styles', 'html', 'move'];
+const tasks = ['images', 'scripts', 'styles', 'html', 'move'];
 
 gulp.task('scripts', ['clean-scripts'], () => {
   rollup({
@@ -43,9 +43,12 @@ gulp.task('scripts', ['clean-scripts'], () => {
       multiEntry(),
       vue({
         css(content, styles) {
-          styles.forEach(({ id }) => {
+          if (!fs.existsSync(config.tmp)){
+            fs.mkdirSync(config.tmp);
+          }
+          styles.forEach(({ id, code }) => {
             const filename = path.basename(id).replace(/\.vue$/, '.scss');
-            fs.writeFileSync(`${config.tmp}/${changeCase.lower(filename)}`, content);
+            fs.writeFileSync(`${config.tmp}/${changeCase.lower(filename)}`, code);
           });
         },
       }),
@@ -104,13 +107,13 @@ gulp.task('browser-sync', () => {
   });
 });
 
-gulp.task('watch', ['styles', 'scripts', 'images'], () => {
-  gulp.watch(`${config.src}/styles/**/*.scss`, ['styles', reload]);
+gulp.task('watch', tasks, () => {
+  gulp.watch([`${config.src}/styles/**/*.scss`, `${config.tmp}/*.scss`], ['styles', reload]);
   gulp.watch(`${config.src}/scripts/**/*.{js,vue}`, ['scripts', reload]);
   gulp.watch(`${config.src}/images/**/*.*`, ['images', reload]);
 });
 
-gulp.task('styles', ['scripts'], () => (
+gulp.task('styles', () => (
   gulp.src([`${config.src}/styles/*.scss`, `${config.tmp}/*.scss`])
     .pipe(gulpif(!production, sourcemaps.init()))
     .pipe(sass({

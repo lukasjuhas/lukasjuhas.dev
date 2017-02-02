@@ -1,9 +1,11 @@
 <template>
-    <div class="navigation">
-        <ul>
+    <div class="page">
+        <nav class="navigation">
+          <ul>
             <li><router-link to="/despatches">Despatches</router-link></li>
             <li><router-link to="/records">Records</router-link></li>
-        </ul>
+          </ul>
+        </nav>
         <router-view></router-view>
     </div>
 </template>
@@ -21,6 +23,10 @@ export default {
 
 <style lang="scss">
 .navigation {
-  background-color: red;
+  background-color: yellow;
+
+  ul {
+    margin: 0;
+  }
 }
 </style>

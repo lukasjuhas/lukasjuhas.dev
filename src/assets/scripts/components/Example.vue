@@ -17,6 +17,6 @@ export default {
 
 <style lang="scss">
 .example {
-  background-color: red;
+  background-color: blue;
 }
 </style>
