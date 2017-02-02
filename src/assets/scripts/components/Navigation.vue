@@ -2,11 +2,11 @@
     <div class="page">
         <nav class="navigation">
           <ul>
+            <li><router-link to="/photos">Photos</router-link></li>
             <li><router-link to="/despatches">Despatches</router-link></li>
             <li><router-link to="/records">Records</router-link></li>
           </ul>
         </nav>
-        <router-view></router-view>
     </div>
 </template>
 
