@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
-    <navigation></navigation>
-    <!-- <img src="./images/logo.svg"> -->
-    <router-view></router-view>
-  </div>
+    <div id="app">
+        <navigation></navigation>
+        <!-- <img src="./images/logo.svg"> -->
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>

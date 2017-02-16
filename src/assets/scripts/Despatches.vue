@@ -5,13 +5,13 @@
 </template>
 
 <script>
-export default {
-  name: 'despatches',
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      // possible injection of the stylesheet??
-      console.log(vm);
-    })
-  },
-};
+  export default {
+    name: 'despatches',
+    beforeRouteEnter(to, from, next) {
+      next(vm => {
+        // possible injection of the stylesheet??
+        console.log(vm);
+      })
+    },
+  };
 </script>

@@ -1,3 +1,4 @@
+/* global window */
 /* eslint-disable no-new */
 import axios from 'axios';
 import Vue from 'vue';
