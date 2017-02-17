@@ -1,6 +1,11 @@
 @import './config/variables';
 @import './config/mixins';
 
-// @import '../../../.tmp/navigation';
+@import 'node_modules/simple-flexbox-grid/src/grid';
+
 /* inject:imports */
 /* endinject */
+
+.content {
+  padding: ($base-spacing-unit * 5) 0;
+}

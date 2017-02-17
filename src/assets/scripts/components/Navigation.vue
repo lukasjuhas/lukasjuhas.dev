@@ -18,14 +18,22 @@
                         <router-link to="/records">Records</router-link>
                     </li>
                 </ul>
+
+                <links></links>
             </nav>
         </transition>
     </div>
 </template>
 
 <script>
+  import Links from '../components/Links.vue';
+
   export default {
     name: 'navigation',
+
+    components: {
+      Links,
+    },
 
     data() {
       return {
@@ -39,7 +47,7 @@
   .hamburger {
     position: fixed;
     top: $base-spacing-unit;
-    right: $base-spacing-unit;
+    right: $base-spacing-unit * 1.5;
     z-index: 1000;
 
     .line {
@@ -87,6 +95,17 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, .85);
     text-align: center;
+
+    .links {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      .link__icon {
+        fill: $col-text-light;
+      }
+    }
   }
 
   .list--nav {

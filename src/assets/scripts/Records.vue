@@ -7,5 +7,10 @@
 <script>
   export default {
     name: 'records',
+
+    mounted() {
+      // enable dark mode on this page
+      document.documentElement.className = 'dark';
+    },
   };
 </script>

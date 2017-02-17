@@ -24,7 +24,7 @@
 
     mounted() {
       // enable dark mode on this page
-      document.body.className = 'dark';
+      document.documentElement.className = 'dark';
     },
 
     methods: {

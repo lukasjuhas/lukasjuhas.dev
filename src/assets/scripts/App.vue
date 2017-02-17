@@ -1,11 +1,13 @@
 <template>
-    <div id="app">
+    <div id="app" class="main">
         <navigation ref="navigation"></navigation>
         <router-link to="/">
             <svg class="logo"><use xlink:href="#logo"></use></svg>
         </router-link>
         <transition name="fade">
-            <router-view></router-view>
+            <div class="content">
+                <router-view></router-view>
+            </div>
         </transition>
     </div>
 </template>
@@ -23,7 +25,7 @@ export default {
   watch: {
     '$route' () {
       // remove dark mode
-      document.body.classList.remove('dark');
+      document.documentElement.classList.remove('dark');
 
       // close nav
       this.$refs['navigation'].open = false;
@@ -36,8 +38,8 @@ export default {
   @import '../src/assets/styles/config/variables';
 
   .logo {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     position: absolute;
     top: $base-spacing-unit;
     left: $base-spacing-unit;

@@ -12,11 +12,11 @@ $col-notification: #00C385;
 /**
  * Typography
  */
-$sans-serif-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$sans-serif-font-family: 'Gotham A', 'Gotham B', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $serif-font-family: Georgia, "Times New Roman", Times, serif;
 $base-font-family: $sans-serif-font-family;
-$base-font-size: 14;
-$base-line-height: 1.5;
+$base-font-size: 16;
+$base-line-height: 1.6;
 $base-spacing-unit: ($base-font-size * $base-line-height) * 1px;
 
 /**

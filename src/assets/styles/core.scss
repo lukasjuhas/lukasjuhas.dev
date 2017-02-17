@@ -3,7 +3,12 @@
 @import './core/reset';
 
 html {
+  background-color: $col-brand;
+  transition: background-color $animation-speed $animation;
 
+  &.dark {
+    background-color: $col-background-dark;
+  }
 }
 
 body {
@@ -11,12 +16,9 @@ body {
   flex-direction: column;
   height: 100%;
   min-height: 100vh;
-  background-color: $col-brand;
-  transition: background-color $animation-speed $animation;
-
-  &.dark {
-    background-color: $col-background-dark;
-  }
+  font-family: $sans-serif-font-family;
+  font-size: $base-font-size + px;
+  line-height: $base-line-height;
 }
 
 main {
@@ -29,6 +31,6 @@ a {
 
   &:hover,
   &:visited {
-    text-decoration: underline; 
+    text-decoration: underline;
   }
 }
