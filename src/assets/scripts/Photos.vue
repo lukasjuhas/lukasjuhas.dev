@@ -22,6 +22,10 @@
       this.fetchData();
     },
 
+    mounted() {
+      document.body.className = 'dark';
+    },
+
     methods: {
       fetchData: function() {
         axios.get('https://api.itsluk.dev/photos').then((response) => {

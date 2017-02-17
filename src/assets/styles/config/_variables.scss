@@ -4,7 +4,8 @@
 $col-brand: #cccccc;
 $col-text: #2c2c2c;
 $col-text-light: #FFF;
-$col-background-light: #FFF;
+$col-background: #FFF;
+$col-background-dark: #000;
 $col-danger: #D9534F;
 $col-notification: #00C385;
 
@@ -38,3 +39,9 @@ $animate: 0.3s;
  * Components
  */
 $border-radius: 3px;
+
+/**
+ * Animations
+ */
+$animation: linear;
+$animation-speed: 300ms;

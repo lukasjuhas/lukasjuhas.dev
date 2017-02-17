@@ -4,5 +4,22 @@
 @import './core/core';
 
 html {
-  background: $col-brand;
+
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+  background-color: $col-brand;
+  transition: background-color $animation-speed $animation;
+
+  &.dark {
+    background-color: $col-background-dark;
+  }
+}
+
+main {
+  flex: 1 0 auto;
 }
