@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <navigation></navigation>
+        <navigation ref="navigation"></navigation>
         <router-link to="/">
             <svg class="logo"><use xlink:href="#logo"></use></svg>
         </router-link>
@@ -22,14 +22,31 @@ export default {
 
   watch: {
     '$route' () {
+      // remove dark mode
       document.body.classList.remove('dark');
+
+      // close nav
+      this.$refs['navigation'].open = false;
     }
-  }
+  },
 };
 </script>
 
 <style lang="scss">
   @import '../src/assets/styles/config/variables';
+
+  .logo {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: $base-spacing-unit;
+    left: $base-spacing-unit;
+    transition: all $animation-speed $animation;
+
+    .dark & {
+      fill: $col-text-light;
+    }
+  }
 
   .fade-enter-active, .fade-leave-active {
     transition: opacity $animation-speed;

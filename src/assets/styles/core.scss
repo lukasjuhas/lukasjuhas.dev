@@ -1,7 +1,6 @@
 @import './config/variables';
 @import './config/mixins';
 @import './core/reset';
-@import './core/core';
 
 html {
 
@@ -22,4 +21,14 @@ body {
 
 main {
   flex: 1 0 auto;
+}
+
+a {
+  color: $col-text;
+  text-decoration: none;
+
+  &:hover,
+  &:visited {
+    text-decoration: underline; 
+  }
 }
