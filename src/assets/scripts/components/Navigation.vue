@@ -1,12 +1,12 @@
 <template>
     <div class="navigation-wrapper">
-        <div class="hamburger" @click="open = !open"  v-bind:class="{ active: open }">
+        <div class="hamburger" @click="open = !open"  v-bind:class="{ open: open }">
             <span class="line"></span>
             <span class="line"></span>
             <span class="line"></span>
         </div>
         <transition name="fade">
-            <nav class="navigation" v-if="open">
+            <nav class="navigation" v-if="open" v-on:keyup.esc="open = false">
                 <ul class="list list--nav">
                     <li class="list-item">
                         <router-link to="/photos">Photos</router-link>
@@ -67,7 +67,7 @@
       cursor: pointer;
     }
 
-    &.active {
+    &.open {
       .line {
         background-color: $col-background;
 

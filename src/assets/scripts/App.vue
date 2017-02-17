@@ -1,15 +1,17 @@
 <template>
-    <div id="app" class="main">
-        <navigation ref="navigation"></navigation>
-        <router-link to="/">
-            <svg class="logo"><use xlink:href="#logo"></use></svg>
-        </router-link>
-        <transition name="fade">
-            <div class="content">
-                <router-view></router-view>
-            </div>
-        </transition>
-    </div>
+    <transition name="fade">
+        <div id="app" class="main" v-if="show">
+            <navigation ref="navigation"></navigation>
+            <router-link to="/">
+                <svg class="logo"><use xlink:href="#logo"></use></svg>
+            </router-link>
+            <transition name="fade">
+                <div class="content">
+                    <router-view></router-view>
+                </div>
+            </transition>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -17,6 +19,16 @@ import Navigation from './components/Navigation.vue';
 
 export default {
   name: 'app',
+
+  data() {
+    return {
+      show: false,
+    }
+  },
+
+  mounted() {
+    this.show = true;
+  },
 
   components: {
     Navigation,
