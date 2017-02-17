@@ -80,7 +80,7 @@ gulp.task('scripts', ['clean-scripts'], () => {
   }).then((bundle) => {
     bundle.write({
       format: 'iife',
-      moduleName: 'WebStarterBundle',
+      moduleName: 'ItsLukasBundle',
       sourceMap: !production,
       dest: `${config.public}/scripts/app.min.js`,
     });

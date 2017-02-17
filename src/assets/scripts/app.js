@@ -1,6 +1,6 @@
 /* global window */
 /* eslint-disable no-new */
-import axios from 'axios';
+import axios from 'axios/dist/axios';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './App.vue';

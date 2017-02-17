@@ -15,7 +15,7 @@
     data: function() {
       return {
         items: null,
-      },
+      }
     },
 
     created: function() {
