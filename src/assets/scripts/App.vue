@@ -1,11 +1,9 @@
 <template>
     <div id="app">
         <navigation></navigation>
-        <!-- <router-link to="/">
-            <div class="logo">
-                <img src="./images/logo.svg">
-            </div>
-        </router-link> -->
+        <router-link to="/">
+            <svg class="logo"><use xlink:href="#logo"></use></svg>
+        </router-link>
         <transition name="fade">
             <router-view></router-view>
         </transition>
