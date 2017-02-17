@@ -122,6 +122,11 @@
         display: block;
         color: $col-text-light;
         padding: $base-spacing-unit / 2;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

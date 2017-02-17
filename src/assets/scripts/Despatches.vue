@@ -1,6 +1,9 @@
 <template>
-    <div>
-        <h3>Despatches</h3>
+    <div class="page">
+        <div class="container">
+            <h1 class="page__title">Despatches</h1>
+            <p>There are currently no despatches.</p>
+        </div>
     </div>
 </template>
 

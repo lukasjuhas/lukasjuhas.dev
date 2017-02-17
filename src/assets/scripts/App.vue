@@ -40,7 +40,7 @@ export default {
   .logo {
     width: 50px;
     height: 50px;
-    position: absolute;
+    position: fixed;
     top: $base-spacing-unit;
     left: $base-spacing-unit;
     transition: all $animation-speed $animation;

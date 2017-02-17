@@ -9,3 +9,13 @@
 .content {
   padding: ($base-spacing-unit * 5) 0;
 }
+
+.page {
+  //
+}
+
+.page__title {
+  margin-bottom: $base-spacing-unit;
+  font-size: 28px;
+  font-weight: 700;
+}

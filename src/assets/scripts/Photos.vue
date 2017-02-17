@@ -1,9 +1,11 @@
 <template>
-    <div>
-        <h1>Photos</h1>
-        <div v-if="items" class="photo-feed">
-            <div v-for="item in items">
-                <img v-bind:src="item.photo_url" v-bind:alt="item.photo_title" />
+    <div class="page">
+        <div class="container">
+            <h1 class="page__title">Photos</h1>
+            <div v-if="items" class="photo-feed">
+                <div v-for="item in items">
+                    <img v-bind:src="item.photo_url" v-bind:alt="item.photo_title" />
+                </div>
             </div>
         </div>
     </div>
