@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-expressions, no-console */
+import config from './config';
 
 const store = {
-  debug: true,
+  debug: config.debug,
   state: {
-    loading: true,
+    loading: false,
   },
   setLoadingAction(newValue) {
     this.debug && console.log('setLoadingAction triggered with', newValue);

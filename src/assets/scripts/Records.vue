@@ -2,7 +2,6 @@
     <div class="page">
         <div class="container">
             <h1 class="page__title">Records</h1>
-            <preloader></preloader>
             <transition name="fade">
                 <div v-if="items" class="record-feed">
                     <div class="row">
@@ -21,18 +20,13 @@
 
 <script>
   import store from './store';
-  import Preloader from './components/Preloader.vue';
 
   export default {
     name: 'records',
 
-    components: {
-      Preloader,
-    },
-
     data: function() {
       return {
-        sharedState: store.state,
+        sharedState: store,
         items: null,
         loading: false,
       }
@@ -49,7 +43,7 @@
 
     methods: {
       fetchData: function() {
-        this.sharedState.loading = true;
+        this.sharedState.setLoadingAction(true);
 
         const config = {
           onDownloadProgress: function (e) {
@@ -59,7 +53,7 @@
 
         axios.get('https://api.itsluk.dev/records', config).then((response) => {
           this.items = response.data.data;
-          this.sharedState.loading = false;
+          this.sharedState.setLoadingAction(false);
         })
         .catch((error) => {
           console.log(error);

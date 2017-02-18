@@ -1,10 +1,12 @@
 <template>
-    <div class="preloader" v-if="sharedState.loading">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+    <transition name="fade">
+        <div class="preloader" v-if="sharedState.loading">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -23,11 +25,19 @@
 
 <style lang="scss">
   .preloader {
+    position: absolute;
+    left: 96px;
+    top: 38px;
+
     span {
       display: inline-block;
       width: 3px;
       height: 10px;
-      background-color: #FFF;
+      background-color: $col-background-dark;
+
+      .dark & {
+        background-color: $col-background;
+      }
 
       &:nth-child(1) {
         animation: grow 1s ease-in-out infinite;

@@ -12,6 +12,9 @@
                         <router-link to="/photos">Photos</router-link>
                     </li>
                     <li class="list-item">
+                        <router-link to="/holidays">Every Month's Holiday</router-link>
+                    </li>
+                    <li class="list-item">
                         <router-link to="/despatches">Despatches</router-link>
                     </li>
                     <li class="list-item">

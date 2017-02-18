@@ -5,6 +5,7 @@
             <router-link to="/">
                 <svg class="logo"><use xlink:href="#logo"></use></svg>
             </router-link>
+            <preloader></preloader>
             <transition name="fade">
                 <div class="content">
                     <router-view></router-view>
@@ -15,35 +16,39 @@
 </template>
 
 <script>
-import Navigation from './components/Navigation.vue';
+  import store from './store';
+  import Navigation from './components/Navigation.vue';
+  import Preloader from './components/Preloader.vue';
 
-export default {
-  name: 'app',
+  export default {
+    name: 'app',
 
-  data() {
-    return {
-      show: false,
-    }
-  },
+    data() {
+      return {
+        sharedState: store,
+        show: false,
+      }
+    },
 
-  mounted() {
-    this.show = true;
-  },
+    mounted() {
+      this.show = true;
+    },
 
-  components: {
-    Navigation,
-  },
+    components: {
+      Navigation,
+      Preloader,
+    },
 
-  watch: {
-    '$route' () {
-      // remove dark mode
-      document.documentElement.classList.remove('dark');
+    watch: {
+      '$route' () {
+        // remove dark mode
+        document.documentElement.classList.remove('dark');
 
-      // close nav
-      this.$refs['navigation'].open = false;
-    }
-  },
-};
+        // close nav
+        this.$refs['navigation'].open = false;
+      }
+    },
+  };
 </script>
 
 <style lang="scss">
