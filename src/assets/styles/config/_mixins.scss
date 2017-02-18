@@ -37,6 +37,19 @@
 }
 
 /**
+ * Circle
+ */
+@mixin circle($size) {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  width: $size;
+  height: $size;
+  left: calc(50% - #{$size/2});
+  top: calc(50% - #{$size/2});
+}
+
+/**
  * Clearfix
  */
 @mixin clearfix {

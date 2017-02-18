@@ -2,16 +2,20 @@
     <div class="page">
         <div class="container">
             <h1 class="page__title">Records</h1>
-            <div v-if="items" class="record-feed">
-                <div class="row">
-                    <div v-for="item in items" class="col col--xs-12 col--sm-6 col--md-4 col--lg-3">
-                        <div class="record">
-                            <div class="record__artwork"></div>
-                            <h3 class="record__title">{{ item.artist }} - {{ item.title }}</h3>
+            <div class="loading" v-if="loading">loading..</div>
+
+            <transition name="fade">
+                <div v-if="items" class="record-feed">
+                    <div class="row">
+                        <div v-for="item in items" class="col col--xs-12 col--sm-6 col--md-4 col--lg-3">
+                            <div class="record">
+                                <div class="record__artwork"></div>
+                                <h3 class="record__title">{{ item.artist }} - {{ item.title }}</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -22,6 +26,7 @@
     data: function() {
       return {
         items: null,
+        loading: false,
       }
     },
 
@@ -36,8 +41,17 @@
 
     methods: {
       fetchData: function() {
-        axios.get('https://api.itsluk.dev/records').then((response) => {
+        this.loading = true;
+
+        const config = {
+          onDownloadProgress: function (e) {
+            console.log("This just in... ", e);
+          }
+        }
+
+        axios.get('https://api.itsluk.dev/records', config).then((response) => {
           this.items = response.data.data;
+          this.loading = false;
         })
         .catch((error) => {
           console.log(error);
@@ -82,5 +96,14 @@
       background-color: $col-background-dark;
       transform: translate(-50%, -50%);
     }
+  }
+
+  .loading {
+    //
+  }
+
+  @keyframes clockwise
+  {
+    to {transform: rotate(360deg) translatez(0);}
   }
 </style>
