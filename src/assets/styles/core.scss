@@ -3,7 +3,7 @@
 @import './core/reset';
 
 html {
-  background-color: $col-brand;
+  background-color: $col-background;
   transition: background-color $animation-speed $animation;
 
   &.dark {
@@ -37,4 +37,51 @@ a {
   &:visited {
     color: $col-text;
   }
+
+  .dark & {
+    color: $col-text-light;
+
+    &:hover,
+    &:visited {
+      color: $col-text-light;
+    }
+  }
+}
+
+p {
+  margin-bottom: $base-spacing-unit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: $base-spacing-unit;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 21px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 26px;
+}
+
+h6 {
+  font-size: 24px;
 }

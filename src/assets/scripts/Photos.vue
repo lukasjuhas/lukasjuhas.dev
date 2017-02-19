@@ -38,6 +38,7 @@
           this.items = response.data.data;
         })
         .catch((error) => {
+          this.sharedState.setLoadingAction(false);
           console.log(error);
         });
       },

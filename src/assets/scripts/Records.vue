@@ -28,7 +28,6 @@
       return {
         sharedState: store,
         items: null,
-        loading: false,
       }
     },
 
@@ -56,6 +55,7 @@
           this.sharedState.setLoadingAction(false);
         })
         .catch((error) => {
+          this.sharedState.setLoadingAction(false);
           console.log(error);
         });
       },
