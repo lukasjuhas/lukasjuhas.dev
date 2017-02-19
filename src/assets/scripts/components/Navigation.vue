@@ -8,17 +8,8 @@
         <transition name="fade">
             <nav class="navigation" v-if="open" v-on:keyup.esc="open = false">
                 <ul class="list list--nav">
-                    <li class="list-item">
-                        <router-link to="/photos">Photos</router-link>
-                    </li>
-                    <li class="list-item">
-                        <router-link to="/holidays">Every Month's Holiday</router-link>
-                    </li>
-                    <li class="list-item">
-                        <router-link to="/despatches">Despatches</router-link>
-                    </li>
-                    <li class="list-item">
-                        <router-link to="/records">Records</router-link>
+                    <li v-for="route in routes" v-if="route.nav" class="list-item">
+                        <router-link v-bind:to="route.path">{{ route.label }}</router-link>
                     </li>
                 </ul>
 
@@ -30,6 +21,7 @@
 
 <script>
   import Links from '../components/Links.vue';
+  import routes from '../routes';
 
   export default {
     name: 'navigation',
@@ -41,6 +33,7 @@
     data() {
       return {
         open: false,
+        routes,
       };
     },
   };
