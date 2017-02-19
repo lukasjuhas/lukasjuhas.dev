@@ -150,11 +150,11 @@ gulp.task('styles', () => (
   gulp.src([`${config.src}/styles/app.scss`, `${config.tmp}/*.scss`])
   .pipe(gulpif(!production, sourcemaps.init()))
   .pipe(inject(gulp.src([`${config.tmp}/*.scss`], {read: false}), {
-      starttag: '/* inject:imports */',
-      endtag: '/* endinject */',
-      transform: function (filepath) {
-        return '@import "../../../' + filepath + '";';
-      }
+    starttag: '/* inject:imports */',
+    endtag: '/* endinject */',
+    transform: function (filepath) {
+      return '@import "../../../' + filepath + '";';
+    }
   }))
   .pipe(sass({
     outputStyle: production ? 'compressed' : 'nested',
