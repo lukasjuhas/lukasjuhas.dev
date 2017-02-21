@@ -1,5 +1,5 @@
 import Home from './Home.vue';
-import Photos from './Photos.vue';
+import Code from './Code.vue';
 import Holidays from './Holidays.vue';
 import Despatches from './Despatches.vue';
 import Records from './Records.vue';
@@ -12,9 +12,9 @@ export default [
     nav: false,
   },
   {
-    path: '/photos',
-    component: Photos,
-    label: 'Photos',
+    path: '/code',
+    component: Code,
+    label: 'Code',
     nav: true,
   },
   {
