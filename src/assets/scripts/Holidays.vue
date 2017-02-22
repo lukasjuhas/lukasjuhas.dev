@@ -12,14 +12,9 @@
         </section>
         <section v-if="items">
             <div class="holidays">
-                <transition-group
-                  name="staggered-fade"
-                  v-bind:css="false"
-                  v-on:enter="enter"
-                  v-on:leave="leave">
-                    <router-link :key="index" v-for="(item, index) in items" v-bind:data-index="index"
- class="holiday" v-bind:to="'/holidays/' + item.slug"><h1>{{ item.title }}</h1></router-link>
-                </transition-group>
+                <staggered-fade>
+                    <router-link v-for="(item, index) in items" :key="index" v-bind:data-index="index" class="holiday" v-bind:to="'/holidays/' + item.slug"><h1>{{ item.title }}</h1></router-link>
+                </staggered-fade>
             </div>
         </section>
         <transition name="fade">
@@ -34,9 +29,14 @@
   import store from './store';
   import throttle from 'lodash/throttle';
   import each from 'lodash/each';
+  import StaggeredFade from './transitions/StaggeredFade.vue';
 
   export default {
     name: 'holidays',
+
+    components: {
+      StaggeredFade,
+    },
 
     data() {
       return {
@@ -94,20 +94,6 @@
           console.log(error);
         });
       },
-      enter(el, done) {
-        const delay = el.dataset.index * 100;
-        setTimeout(() => {
-          el.classList.add('visible');
-        }, delay);
-      },
-      leave: function (el, done) {
-        const delay = el.dataset.index * 100;
-        setTimeout(() => {
-          setTimeout(() => {
-            el.classList.remove('visible');
-          }, delay);
-        }, delay)
-      }
     },
   };
 </script>
@@ -123,11 +109,6 @@
     padding: ($base-spacing-unit * 2) 0;
     text-decoration: none;
     transition: all $animation-speed $animation;
-    opacity: 0;
-
-    &.visible {
-      opacity: 1;
-    }
 
     &:hover {
       padding: ($base-spacing-unit * 2.5) 0;

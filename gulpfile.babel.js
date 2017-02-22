@@ -171,7 +171,7 @@ gulp.task('styles', () => (
 
 gulp.task('images', () => {
   // hadle all images that are not svg
-  gulp.src([`${config.src}/images/**/*.*`, `!${config.src}/images/**/*.svg`])
+  gulp.src([`${config.src}/images/**/*.*`, `!${config.src}/images/sprite/*.svg`])
     .pipe(imagemin({
       progressive: true,
     }))
@@ -188,7 +188,7 @@ gulp.task('images', () => {
     .pipe(gulp.dest(`${config.tmp}/svgs`));
 
   // create a sprite
-  gulp.src(`${config.src}/images/*.svg`)
+  gulp.src(`${config.src}/images/sprite/*.svg`)
     .pipe(svgSprite({
       svg: {
         xmlDeclaration: false,

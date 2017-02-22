@@ -1,0 +1,44 @@
+<template>
+    <transition-group name="staggered-fade" v-bind:css="false" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave">
+        <slot></slot>
+    </transition-group>
+</template>
+
+<script>
+  export default {
+    name: 'staggered-fade',
+
+    methods: {
+      beforeEnter(el) {
+        el.classList.add('staggered-fade-item');
+      },
+
+      enter(el, done) {
+        const delay = el.dataset.index * 100;
+        
+        setTimeout(() => {
+          el.classList.add('staggered-fade-item--visible');
+        }, delay);
+      },
+
+      leave(el, done) {
+        const delay = el.dataset.index * 100;
+
+        setTimeout(() => {
+          el.classList.remove('staggered-fade-item--visible');
+        }, delay);
+      }
+    }
+  };
+</script>
+
+<style lang="scss">
+  .staggered-fade-item {
+    opacity: 0;
+    transition: opacity $animation-speed $animation;
+  }
+
+  .staggered-fade-item--visible {
+    opacity: 1;
+  }
+</style>
