@@ -27,6 +27,7 @@ export default [
   {
     path: '/holidays/:slug',
     component: Holiday,
+    props: true,
     nav: false,
   },
   {
