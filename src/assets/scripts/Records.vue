@@ -50,7 +50,7 @@
           }
         }
 
-        axios.get('https://api.itsluk.dev/records', config).then((response) => {
+        axios.get('records', config).then((response) => {
           this.items = response.data.data;
           this.sharedState.setLoadingAction(false);
         })

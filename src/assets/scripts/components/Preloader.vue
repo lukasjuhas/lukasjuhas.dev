@@ -25,7 +25,7 @@
 
 <style lang="scss">
   .preloader {
-    position: absolute;
+    position: fixed;
     left: 96px;
     top: 38px;
 

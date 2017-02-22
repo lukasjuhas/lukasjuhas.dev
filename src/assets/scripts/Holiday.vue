@@ -21,14 +21,14 @@
       }
     },
 
-    data: function() {
+    data() {
       return {
         sharedState: store,
         item: null,
       }
     },
 
-    created: function() {
+    created() {
       this.fetchData();
     },
 
@@ -36,7 +36,7 @@
       fetchData: function() {
         this.sharedState.setLoadingAction(true);
 
-        axios.get(`https://api.itsluk.dev/trips/${this.slug}`).then((response) => {
+        axios.get(`trips/${this.slug}`).then((response) => {
           this.item = response.data.data;
           this.sharedState.setLoadingAction(false);
         })

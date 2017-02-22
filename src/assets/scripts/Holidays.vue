@@ -12,27 +12,56 @@
         </section>
         <section v-if="items">
             <div class="holidays">
-                <router-link v-for="item in items" class="holiday" v-bind:to="'/holidays/' + item.slug"><h1>{{ item.title }}</h1></router-link>
+                <transition-group
+                  name="staggered-fade"
+                  v-bind:css="false"
+                  v-on:enter="enter"
+                  v-on:leave="leave">
+                    <router-link :key="index" v-for="(item, index) in items" v-bind:data-index="index"
+ class="holiday" v-bind:to="'/holidays/' + item.slug"><h1>{{ item.title }}</h1></router-link>
+                </transition-group>
             </div>
         </section>
+        <transition name="fade">
+            <section v-if="showAllLoaded" class="container">
+                <p><em>That's it!</em></p>
+            </section>
+        </transition>
     </div>
 </template>
 
 <script>
   import store from './store';
+  import throttle from 'lodash/throttle';
+  import each from 'lodash/each';
 
   export default {
     name: 'holidays',
 
-    data: function() {
+    data() {
       return {
         sharedState: store,
-        items: null,
+        items: [],
+        nextPage: null,
+        prevPage: null,
+        showAllLoaded: false,
       }
     },
 
-    created: function() {
+    created() {
       this.fetchData();
+
+      window.onscroll = throttle((ev) => {
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+          if(this.nextPage !== null) {
+            this.fetchData(this.nextPage);
+          } else {
+            setTimeout(() => {
+              this.showAllLoaded = true;
+            }, 1000);
+          }
+        }
+      }, 300);
     },
 
     mounted() {
@@ -41,24 +70,44 @@
     },
 
     methods: {
-      fetchData: function() {
+      fetchData(path = 'trips') {
         this.sharedState.setLoadingAction(true);
 
-        const config = {
-          onDownloadProgress: function (e) {
-            console.log("This just in... ", e);
+        axios.get(path).then((response) => {
+          if(response.data.data !== null) {
+            each(response.data.data, (item) => {
+              this.items.push(item);
+            });
           }
-        }
 
-        axios.get('https://api.itsluk.dev/trips', config).then((response) => {
-          this.items = response.data.data;
+          // set next and prev page
+          this.nextPage = response.data.paginator.next_page;
+          this.prevPage = response.data.paginator.prev_page;
+
           this.sharedState.setLoadingAction(false);
         })
         .catch((error) => {
+          this.nextPage = null;
+          this.prevPage = null;
+
           this.sharedState.setLoadingAction(false);
           console.log(error);
         });
       },
+      enter(el, done) {
+        const delay = el.dataset.index * 100;
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, delay);
+      },
+      leave: function (el, done) {
+        const delay = el.dataset.index * 100;
+        setTimeout(() => {
+          setTimeout(() => {
+            el.classList.remove('visible');
+          }, delay);
+        }, delay)
+      }
     },
   };
 </script>
@@ -74,6 +123,11 @@
     padding: ($base-spacing-unit * 2) 0;
     text-decoration: none;
     transition: all $animation-speed $animation;
+    opacity: 0;
+
+    &.visible {
+      opacity: 1;
+    }
 
     &:hover {
       padding: ($base-spacing-unit * 2.5) 0;
