@@ -1,6 +1,7 @@
 import Home from './Home.vue';
 import Code from './Code.vue';
 import Holidays from './Holidays.vue';
+import Holiday from './Holiday.vue';
 import Despatches from './Despatches.vue';
 import Records from './Records.vue';
 
@@ -22,6 +23,11 @@ export default [
     component: Holidays,
     label: 'Every Month\'s Holidays',
     nav: true,
+  },
+  {
+    path: '/holidays/:slug',
+    component: Holiday,
+    nav: false,
   },
   {
     path: '/despatches',
