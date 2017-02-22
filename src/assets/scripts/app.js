@@ -14,7 +14,7 @@ window.axios.defaults.timeout = config.timeout;
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  // mode: 'history',
+  mode: config.debug ? 'hash' : 'history',
   routes,
 });
 
