@@ -13,7 +13,9 @@
         <section v-if="items">
             <div class="holidays">
                 <staggered-fade>
-                    <router-link v-for="(item, index) in items" :key="index" v-bind:data-index="index" class="holiday" v-bind:to="'/holidays/' + item.slug"><h1>{{ item.title }}</h1></router-link>
+                    <router-link v-for="(item, index) in items" :key="index" v-bind:data-index="index" class="holiday" v-bind:to="'/holidays/' + item.slug">
+                        <h1>{{ item.title }}</h1>
+                    </router-link>
                 </staggered-fade>
             </div>
         </section>

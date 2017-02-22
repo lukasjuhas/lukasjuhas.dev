@@ -1,5 +1,5 @@
 <template>
-    <transition-group name="staggered-fade" v-bind:css="false" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave">
+    <transition-group tag="div" v-bind:class="classes" name="staggered-fade" v-bind:css="false" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave">
         <slot></slot>
     </transition-group>
 </template>
@@ -8,6 +8,8 @@
   export default {
     name: 'staggered-fade',
 
+    props: ['classes'],
+
     methods: {
       beforeEnter(el) {
         el.classList.add('staggered-fade-item');
@@ -15,7 +17,7 @@
 
       enter(el, done) {
         const delay = el.dataset.index * 100;
-        
+
         setTimeout(() => {
           el.classList.add('staggered-fade-item--visible');
         }, delay);

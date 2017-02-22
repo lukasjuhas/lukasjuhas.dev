@@ -4,15 +4,20 @@
             <h1 class="page__title">Records</h1>
             <transition name="fade">
                 <div v-if="items" class="record-feed">
-                    <div class="row">
-                        <div v-for="item in items" class="col col--xs-12 col--sm-6 col--md-4 col--lg-3">
+                    <staggered-fade classes="row">
+                        <div v-for="(item, index) in items" :key="index" v-bind:data-index="index" class="record-wrapper col col--xs-12 col--sm-6 col--md-4 col--lg-3">
                             <div class="record">
                                 <div class="record__artwork"></div>
                                 <h3 class="record__title">{{ item.artist }} - {{ item.title }}</h3>
                             </div>
                         </div>
-                    </div>
+                    </staggered-fade>
                 </div>
+            </transition>
+            <transition name="fade">
+                <section v-if="showAllLoaded" class="container">
+                    <p><em>That's it!</em></p>
+                </section>
             </transition>
         </div>
     </div>
@@ -20,19 +25,41 @@
 
 <script>
   import store from './store';
+  import throttle from 'lodash/throttle';
+  import each from 'lodash/each';
+  import StaggeredFade from './transitions/StaggeredFade.vue';
 
   export default {
     name: 'records',
 
-    data: function() {
+    components: {
+      StaggeredFade,
+    },
+
+    data() {
       return {
         sharedState: store,
-        items: null,
+        items: [],
+        nextPage: null,
+        prevPage: null,
+        showAllLoaded: false,
       }
     },
 
-    created: function() {
+    created() {
       this.fetchData();
+
+      window.onscroll = throttle((ev) => {
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+          if(this.nextPage !== null) {
+            this.fetchData(this.nextPage);
+          } else {
+            setTimeout(() => {
+              this.showAllLoaded = true;
+            }, 1000);
+          }
+        }
+      }, 300);
     },
 
     mounted() {
@@ -41,20 +68,26 @@
     },
 
     methods: {
-      fetchData: function() {
+      fetchData(path = 'records') {
         this.sharedState.setLoadingAction(true);
 
-        const config = {
-          onDownloadProgress: function (e) {
-            console.log("This just in... ", e);
+        axios.get(path).then((response) => {
+          if(response.data.data !== null) {
+            each(response.data.data, (item) => {
+              this.items.push(item);
+            });
           }
-        }
 
-        axios.get('records', config).then((response) => {
-          this.items = response.data.data;
+          // set next and prev page
+          this.nextPage = response.data.paginator.next_page;
+          this.prevPage = response.data.paginator.prev_page;
+
           this.sharedState.setLoadingAction(false);
         })
         .catch((error) => {
+          this.nextPage = null;
+          this.prevPage = null;
+
           this.sharedState.setLoadingAction(false);
           console.log(error);
         });

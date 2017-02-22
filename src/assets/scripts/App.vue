@@ -58,6 +58,7 @@
     width: 50px;
     height: 50px;
     position: fixed;
+    z-index: 1000;
     top: $base-spacing-unit;
     left: $base-spacing-unit;
     transition: all $animation-speed $animation;
