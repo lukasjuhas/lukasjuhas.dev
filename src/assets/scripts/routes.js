@@ -4,6 +4,7 @@ import Holidays from './Holidays.vue';
 import Holiday from './Holiday.vue';
 import Despatches from './Despatches.vue';
 import Records from './Records.vue';
+import NotFound from './404.vue';
 
 export default [
   {
@@ -42,4 +43,11 @@ export default [
     label: 'Records',
     nav: true,
   },
+  {
+    path: '/404',
+    component: NotFound,
+    label: '404',
+    nav: false,
+  },
+  { path: '*', redirect: '/404' },
 ];
