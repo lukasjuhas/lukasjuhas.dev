@@ -1,2 +1,3 @@
 gulpfile.babel.js
 public/*.js
+src/sw.js

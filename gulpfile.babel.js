@@ -107,6 +107,7 @@ gulp.task('clean-static', () => {
   const staticFiles = [
     `${config.public}/*.html`,
     `${config.public}/manifest.json`,
+    `${config.public}/sw.js`,
   ];
 
   return gulp.src(staticFiles, {
@@ -227,6 +228,7 @@ gulp.task('move', ['clean-static'], () => {
   const staticFiles = [
     `${config.srcBase}/*.html`,
     `${config.srcBase}/manifest.json`,
+    `${config.srcBase}/sw.js`,
   ];
 
   gulp.src(staticFiles)
