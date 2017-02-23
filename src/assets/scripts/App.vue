@@ -17,6 +17,7 @@
 
 <script>
   import store from './store';
+  import updateTitle from './helpers';
   import Navigation from './components/Navigation.vue';
   import Preloader from './components/Preloader.vue';
 
@@ -40,7 +41,9 @@
     },
 
     watch: {
-      '$route' () {
+      '$route' (to, from) {
+        updateTitle(to.name);
+
         // remove dark mode
         document.documentElement.classList.remove('dark');
 

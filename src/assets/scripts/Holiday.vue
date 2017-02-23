@@ -9,6 +9,7 @@
 
 <script>
   import store from './store';
+  import updateTitle from './helpers';
 
   export default {
     name: 'holiday',
@@ -39,6 +40,8 @@
         axios.get(`trips/${this.slug}`).then((response) => {
           this.item = response.data.data;
           this.sharedState.setLoadingAction(false);
+
+          updateTitle(this.item.title);
         })
         .catch((error) => {
           this.sharedState.setLoadingAction(false);

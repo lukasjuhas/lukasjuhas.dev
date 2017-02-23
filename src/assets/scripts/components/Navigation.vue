@@ -9,7 +9,7 @@
             <nav class="navigation" v-if="open" v-on:keyup.esc="open = false">
                 <ul class="list list--nav">
                     <li v-for="route in routes" v-if="route.nav" class="list-item">
-                        <router-link v-bind:to="route.path">{{ route.label }}</router-link>
+                        <router-link v-bind:to="route.path">{{ route.name }}</router-link>
                     </li>
                 </ul>
 
