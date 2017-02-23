@@ -10,7 +10,7 @@
                             <div class="code">
                                 <h3 class="code__title">{{ item.name }}</h3>
                                 <p>{{ item.description }}</p>
-                                <a v-if="item.github" v-bind:href="item.github" target="_blank">View Code</a>
+                                <a v-if="item.github" v-bind:href="item.github" target="_blank" rel="noopener">View Code</a>
                             </div>
                         </div>
                     </div>

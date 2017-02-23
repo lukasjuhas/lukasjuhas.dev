@@ -1,16 +1,16 @@
 <template>
     <ul class="links">
         <li class="link">
-          <a href="https://twitter.com/itslukasjuhas" target="_blank"><svg class="link__icon"><use xlink:href="#twitter"></use></svg></a>
+          <a href="https://twitter.com/itslukasjuhas" target="_blank" rel="noopener"><svg class="link__icon"><use xlink:href="#twitter"></use></svg></a>
         </li>
         <li class="link">
-            <a href="https://github.com/lukasjuhas" target="_blank"><svg class="link__icon"><use xlink:href="#github"></use></svg></a>
+            <a href="https://github.com/lukasjuhas" target="_blank" rel="noopener"><svg class="link__icon"><use xlink:href="#github"></use></svg></a>
         </li>
         <li class="link">
-            <a href="https://profiles.wordpress.org/lukasneptun/#content-plugins" target="_blank"><svg class="link__icon"><use xlink:href="#wordpress"></use></svg></a>
+            <a href="https://profiles.wordpress.org/lukasneptun/#content-plugins" target="_blank" rel="noopener"><svg class="link__icon"><use xlink:href="#wordpress"></use></svg></a>
         </li>
         <li class="link">
-            <a href="https://instagram.com/lukasjuhas" target="_blank"><svg class="link__icon"><use xlink:href="#instagram"></use></svg></a>
+            <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener"><svg class="link__icon"><use xlink:href="#instagram"></use></svg></a>
         </li>
     </ul>
 </template>

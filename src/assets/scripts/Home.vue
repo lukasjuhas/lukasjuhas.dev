@@ -5,11 +5,11 @@
                 <div class="row">
                     <div class="col col--xs-12 col--sm-12 col--md-7 col--lg-7">
                         <article class="large-content">
-                            <p>I'm Lukas Juhas and my main purpose on this planet is to enjoy life mainly by&nbsp;<router-link to="/code">writing code</router-link>,&nbsp;<router-link to="/holidays">traveling</router-link>, making music and taking <a href="https://instagram.com/lukasjuhas" target="_blank">photographs</a>. Currently living and working in London as Full-stack Web Developer at <a href="https://benchmark.co.uk/" target="_blank">Benchmark</a>.</p>
+                            <p>I'm Lukas Juhas and my main purpose on this planet is to enjoy life mainly by&nbsp;<router-link to="/code">writing code</router-link>,&nbsp;<router-link to="/holidays">traveling</router-link>, making music and taking <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener">photographs</a>. Currently living and working in London as Full-stack Web Developer at <a href="https://benchmark.co.uk/" target="_blank" rel="noopener">Benchmark</a>.</p>
 
                             <p>Say hello <a href="mailto:lukas@itsluk.as">lukas@itsluk.as</a>.</p>
 
-                            <p>If you are looking for Wordpress plugins I wrote you can visit <a href="https://plugins.itsluk.as/" target="_blank">dedicated site</a> for these.</p>
+                            <p>If you are looking for Wordpress plugins I wrote you can visit <a href="https://plugins.itsluk.as/" target="_blank" rel="noopener">dedicated site</a> for these.</p>
                         </article>
                     </div>
                 </div>

@@ -103,12 +103,17 @@ gulp.task('clean-scripts', () => (
   .pipe(clean())
 ));
 
-gulp.task('clean-html', () => (
-  gulp.src(`${config.public}/*.html`, {
+gulp.task('clean-static', () => {
+  const staticFiles = [
+    `${config.public}/*.html`,
+    `${config.public}/manifest.json`,
+  ];
+
+  return gulp.src(staticFiles, {
     read: false,
   })
-  .pipe(clean())
-));
+  .pipe(clean());
+});
 
 gulp.task('browser-sync', () => {
   browserSync.init(null, {
@@ -218,8 +223,13 @@ gulp.task('html', ['styles'], () => {
     .pipe(gulp.dest(config.public));
 });
 
-gulp.task('move', ['clean-html'], () => {
-  gulp.src([`${config.src}/*.html`])
+gulp.task('move', ['clean-static'], () => {
+  const staticFiles = [
+    `${config.srcBase}/*.html`,
+    `${config.srcBase}/manifest.json`,
+  ];
+
+  gulp.src(staticFiles)
     .pipe(gulp.dest(config.public));
 });
 
