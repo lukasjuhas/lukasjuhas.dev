@@ -2,7 +2,7 @@
     <div class="page page--404">
         <div class="container">
             <h1 class="page__title page__title--404">404</h1>
-            <h4>I think you got lost here.. but did you know?</h4>
+            <h4>Seems like you got lost here.. but did you know?</h4>
             <p><em>{{ chosen }}</em></p>
         </div>
     </div>
