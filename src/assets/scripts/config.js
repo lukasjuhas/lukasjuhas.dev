@@ -1,6 +1,7 @@
+
 export default {
   // Debug mode
-  debug: true,
+  debug: process.env.NODE_ENV === 'development',
 
   // API base url used by axios
   baseApiUrl: 'https://api.itsluk.dev',
