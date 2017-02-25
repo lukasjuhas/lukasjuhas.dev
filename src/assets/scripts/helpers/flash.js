@@ -10,4 +10,11 @@ export default class flash {
     document.documentElement.classList.add(store.state.flash.status);
     store.state.flash.show = true;
   }
+
+  static hideError() {
+    if (store.state.flash.show) {
+      document.documentElement.classList.remove(store.state.flash.status);
+      store.state.flash.show = false;
+    }
+  }
 }

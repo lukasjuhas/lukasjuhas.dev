@@ -19,6 +19,7 @@
 <script>
   import store from './store';
   import doc from './helpers/doc';
+  import flash from './helpers/flash';
   import Navigation from './components/Navigation.vue';
   import Preloader from './components/Preloader.vue';
   import Flash from './components/Flash.vue';
@@ -46,6 +47,7 @@
     watch: {
       '$route' (to, from) {
         doc.updateTitle(to.name);
+        flash.hideError();
 
         // remove dark mode
         document.documentElement.classList.remove('dark');
@@ -59,6 +61,20 @@
 
 <style lang="scss">
   @import '../src/assets/styles/config/variables';
+
+  .content {
+    padding: ($base-spacing-unit * 5) 0;
+  }
+
+  .page__title {
+    margin-bottom: $base-spacing-unit;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .section {
+    margin-bottom: $base-spacing-unit * 2;
+  }
 
   .logo {
     width: 50px;
@@ -82,5 +98,18 @@
 
   .fade-enter, .fade-leave-to {
     opacity: 0
+  }
+
+  .slide-fade-enter-active {
+    transition: all $animation-speed ease;
+  }
+
+  .slide-fade-leave-active {
+    transition: all $animation-speed cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateX($base-spacing-unit);
+    opacity: 0;
   }
 </style>

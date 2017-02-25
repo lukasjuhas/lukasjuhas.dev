@@ -1,5 +1,5 @@
 <template>
-    <transition name="slide-up">
+    <transition name="slide-fade">
         <div v-if="sharedState.state.flash.show" class="flash" v-bind:class="'flash--' + sharedState.state.flash.status">
             <div class="container">
                 {{ sharedState.state.flash.content }}
@@ -48,6 +48,7 @@
     z-index: 500;
     top: 26px;
     left: 75px;
+    font-weight: bold;
 
     > p,
     > ul {
@@ -80,6 +81,7 @@
       font-size: 32px;
       line-height: 23px;
       text-decoration: none;
+      font-weight: normal;
       margin: 10px 0 0 $base-spacing-unit;
 
       &:hover {

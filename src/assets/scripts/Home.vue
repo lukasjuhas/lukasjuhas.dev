@@ -41,6 +41,7 @@
 <script>
   import store from './store';
   import each from 'lodash/each';
+  import flash from './helpers/flash';
 
   export default {
     name: 'home',
@@ -82,7 +83,7 @@
           this.prevPage = null;
 
           this.sharedState.setLoadingAction(false);
-          console.log(error);
+          flash.showError('Sorry, there was problem loading latest journey.');
         });
       },
     }

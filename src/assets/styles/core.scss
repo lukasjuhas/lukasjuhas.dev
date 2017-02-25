@@ -4,7 +4,7 @@
 
 html {
   background: $col-background;
-  transition: background-color $animation-speed $animation;
+  transition: background $animation-speed $animation;
 
   &.error {
     background: $col-background;
