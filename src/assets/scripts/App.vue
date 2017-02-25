@@ -84,11 +84,9 @@
     top: $base-spacing-unit;
     left: $base-spacing-unit;
     transition: all $animation-speed $animation;
-    mix-blend-mode: inherit;
 
     .dark & {
       fill: $col-text-light;
-      mix-blend-mode: difference;
     }
   }
 
