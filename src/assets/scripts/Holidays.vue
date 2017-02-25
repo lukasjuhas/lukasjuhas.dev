@@ -6,18 +6,21 @@
                 <div class="col col--xs-12 col--sm-12 col--md-7 col--lg-7">
                     <p>It all started on my birthday in October 2014 when as a present I got weekend trip to Paris. Since then we travelled almost every month at least once.</p>
                     <p>Although lately it's not as regular as before, we still would like to carry on with this and even catch up on missed months.</p>
-                    <p>Check out our trips below.</p>
+                    <p>Check out some of our trips below.</p>
                 </div>
             </div>
         </section>
         <section v-if="items">
-            <div class="holidays">
+            <ul class="holidays">
                 <staggered-fade>
-                    <router-link v-for="(item, index) in items" :key="index" v-bind:data-index="index" class="holiday" v-bind:to="'/holidays/' + item.slug">
-                        <h1>{{ item.title }}</h1>
-                    </router-link>
+                    <li v-for="(item, index) in items" :key="index" v-bind:data-index="index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
+                        <router-link v-bind:to="'/holidays/' + item.slug" v-if="item.content">
+                            <h1 class="holiday__title">{{ item.title }}</h1>
+                        </router-link>
+                        <h2 v-else class="holiday__title">{{ item.title }}</h2>
+                    </li>
                 </staggered-fade>
-            </div>
+            </ul>
         </section>
         <transition name="fade">
             <section v-if="showAllLoaded" class="container">
@@ -108,12 +111,22 @@
   .holiday {
     width: 100%;
     display: block;
-    padding: ($base-spacing-unit * 2) 0;
-    text-decoration: none;
     transition: all $animation-speed $animation;
+    background-color: $col-background-dark;
+    border-bottom: 1px solid lighten($col-background-dark, 10%);
 
-    &:hover {
+    a {
       padding: ($base-spacing-unit * 2.5) 0;
+      text-decoration: none;
+      display: block;
     }
+  }
+
+  .holiday--small {
+    padding: ($base-spacing-unit / 2) 0;
+  }
+
+  .holiday__title {
+    margin: 0;
   }
 </style>

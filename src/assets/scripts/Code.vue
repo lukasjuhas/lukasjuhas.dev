@@ -73,11 +73,23 @@
         ],
       }
     },
+
+    mounted() {
+      document.documentElement.classList.add('gradient');
+    }
   };
 </script>
 
 <style lang="scss">
+  .code-feed {
+    .col {
+      margin-bottom: $base-spacing-unit;
+    }
+  }
+
   .code {
-    margin-bottom: $base-spacing-unit;
+    height: 100%;
+    background-color: $col-background;
+    padding: ($base-spacing-unit / 2) $base-spacing-unit;
   }
 </style>

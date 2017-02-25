@@ -29,12 +29,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col col--xs-12 col--sm-6 col--md-6 col--lg-6">
-                        <h2>Latest Travel</h2>
+                        <h2>Latest Trip</h2>
                         <section v-if="item">
                             <div class="holidays">
-                                <router-link class="holiday" v-bind:to="'/holidays/' + item.slug">
-                                    <h1>{{ item.title }}</h1>
-                                </router-link>
+                                <div class="holiday">
+                                    <router-link v-bind:to="'/holidays/' + item.slug">
+                                        <h2 class="holiday__title">{{ item.title }}</h2>
+                                    </router-link>
+                                </div>
                             </div>
                         </section>
                     </div>
@@ -65,7 +67,8 @@
     },
 
     mounted() {
-      document.documentElement.className = 'dark';
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add('gradient');
     },
 
     created() {
@@ -73,7 +76,7 @@
     },
 
     methods: {
-      fetchData(path = 'trips?limit=1') {
+      fetchData(path = 'trips?limit=1&content=true') {
         this.sharedState.setLoadingAction(true);
 
         axios.get(path).then((response) => {
@@ -123,5 +126,6 @@
   .avatar-caption {
     font-style: italic;
     font-size: 12px;
+    text-align: center;
   }
 </style>

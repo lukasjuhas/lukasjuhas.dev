@@ -52,6 +52,9 @@
         // remove dark mode
         document.documentElement.classList.remove('dark');
 
+        // remove gradient
+        document.documentElement.classList.remove('gradient');
+
         // close nav
         this.$refs['navigation'].open = false;
       }
