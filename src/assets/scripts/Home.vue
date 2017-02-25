@@ -3,7 +3,17 @@
         <section class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col col--xs-12 col--sm-12 col--md-7 col--lg-7">
+                    <div class="col col--xs-12 col--sm-2 col--md-2 col--lg-2">
+                        <div class="avatar" v-on:mouseover="showCaption = true" v-on:mouseleave="showCaption = false">
+                            <img src="/images/avatar.jpg" alt="Lukas Juhas">
+                        </div>
+                        <transition name="slide-fade">
+                            <div v-if="showCaption" class="avatar-caption">
+                                <p>That's me in Venice</p>
+                            </div>
+                        </transition>
+                    </div>
+                    <div class="col col--xs-12 col--sm-10 col--md-7 col--lg-7">
                         <article class="large-content">
                             <p>I'm Lukas Juhas and my main purpose on this planet is to enjoy life by&nbsp;<router-link to="/code">writing code</router-link>,&nbsp;<router-link to="/holidays">traveling</router-link>, making music and taking <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener">photographs</a>. Currently living and working in London as Full-stack Web Developer at <a href="https://benchmark.co.uk/" target="_blank" rel="noopener">Benchmark</a>.</p>
 
@@ -50,6 +60,7 @@
       return {
         sharedState: store,
         item: null,
+        showCaption: false,
       }
     },
 
@@ -93,5 +104,24 @@
 <style lang="scss">
   .large-content {
     font-size: 18px;
+  }
+
+  .avatar {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: $base-spacing-unit;
+
+    img {
+      width: 100%;
+      height: auto;
+      vertical-align: top;
+    }
+  }
+
+  .avatar-caption {
+    font-style: italic;
+    font-size: 12px;
   }
 </style>
