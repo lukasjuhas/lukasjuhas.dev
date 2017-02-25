@@ -5,6 +5,12 @@ const store = {
   debug: config.debug,
   state: {
     loading: false,
+    flash: {
+      show: false,
+      status: 'error',
+      content: 'Sorry, there was a problem!',
+      autohide: false,
+    },
   },
   setLoadingAction(newValue) {
     this.debug && console.log('setLoadingAction triggered with', newValue);

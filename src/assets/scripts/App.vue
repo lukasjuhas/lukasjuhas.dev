@@ -6,6 +6,7 @@
                 <svg class="logo"><use xlink:href="#logo"></use></svg>
             </router-link>
             <preloader></preloader>
+            <flash></flash>
             <transition name="fade">
                 <div class="content">
                     <router-view></router-view>
@@ -17,9 +18,10 @@
 
 <script>
   import store from './store';
-  import updateTitle from './helpers';
+  import doc from './helpers/doc';
   import Navigation from './components/Navigation.vue';
   import Preloader from './components/Preloader.vue';
+  import Flash from './components/Flash.vue';
 
   export default {
     name: 'app',
@@ -38,11 +40,12 @@
     components: {
       Navigation,
       Preloader,
+      Flash,
     },
 
     watch: {
       '$route' (to, from) {
-        updateTitle(to.name);
+        doc.updateTitle(to.name);
 
         // remove dark mode
         document.documentElement.classList.remove('dark');

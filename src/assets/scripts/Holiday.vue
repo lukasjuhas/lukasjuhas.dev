@@ -9,7 +9,7 @@
 
 <script>
   import store from './store';
-  import updateTitle from './helpers';
+  import doc from './helpers/doc';
 
   export default {
     name: 'holiday',
@@ -41,7 +41,7 @@
           this.item = response.data.data;
           this.sharedState.setLoadingAction(false);
 
-          updateTitle(this.item.title);
+          doc.updateTitle(this.item.title);
         })
         .catch((error) => {
           this.sharedState.setLoadingAction(false);

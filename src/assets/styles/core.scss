@@ -3,11 +3,41 @@
 @import './core/reset';
 
 html {
-  background-color: $col-background;
+  background: $col-background;
   transition: background-color $animation-speed $animation;
 
+  &.error {
+    background: $col-background;
+    background: linear-gradient(135deg, $col-danger 0%, $col-background 100%);
+  }
+
+  &.warning {
+    background: $col-background;
+    background: linear-gradient(135deg, $col-warning 0%, $col-background 100%);
+  }
+
+  &.success {
+    background: $col-background;
+    background: linear-gradient(135deg, $col-success 0%, $col-background 100%);
+  }
+
   &.dark {
-    background-color: $col-background-dark;
+    background: $col-background-dark;
+
+    &.error {
+      background: $col-background-dark;
+      background: linear-gradient(135deg, $col-danger 0%, $col-background-dark 100%);
+    }
+
+    &.warning {
+      background: $col-background-dark;
+      background: linear-gradient(135deg, $col-warning 0%, $col-background-dark 100%);
+    }
+
+    &.success {
+      background: $col-background-dark;
+      background: linear-gradient(135deg, $col-success 0%, $col-background-dark 100%);
+    }
   }
 }
 
