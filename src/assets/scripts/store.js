@@ -1,3 +1,4 @@
+
 /* eslint-disable no-unused-expressions, no-console */
 import config from './config';
 
@@ -5,6 +6,7 @@ const store = {
   debug: config.debug,
   state: {
     loading: false,
+    router: null,
     flash: {
       show: false,
       status: 'error',

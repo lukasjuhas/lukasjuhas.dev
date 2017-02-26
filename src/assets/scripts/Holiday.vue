@@ -43,9 +43,11 @@
 
           doc.updateTitle(this.item.title);
         })
-        .catch((error) => {
+        .catch((error, status) => {
           this.sharedState.setLoadingAction(false);
-          console.log(error);
+          if(error.response.status === 404) {  
+            this.sharedState.state.router.replace('/404');
+          }
         });
       },
     },
