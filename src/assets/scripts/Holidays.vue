@@ -115,10 +115,18 @@
     background-color: $col-background-dark;
     border-bottom: 1px solid lighten($col-background-dark, 10%);
 
+    .holiday__title {
+      color: lighten($col-background-dark, 10%);
+    }
+
     a {
       padding: ($base-spacing-unit * 2.5) 0;
       text-decoration: none;
       display: block;
+
+      .holiday__title {
+        color: $col-text-light;
+      }
     }
   }
 
