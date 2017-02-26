@@ -33,7 +33,7 @@ export default [
     path: '/despatches',
     component: Despatches,
     name: 'Despatches',
-    nav: true,
+    nav: false,
   },
   {
     path: '/records',

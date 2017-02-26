@@ -28,7 +28,7 @@
         <section class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col col--xs-12 col--sm-6 col--md-6 col--lg-6">
+                    <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
                         <h2>Latest Trip</h2>
                         <section v-if="item">
                             <div class="holidays">
@@ -39,10 +39,6 @@
                                 </div>
                             </div>
                         </section>
-                    </div>
-                    <div class="col col--xs-12 col--sm-6 col--md-6 col--lg-6">
-                        <h2>Latest Despatch</h2>
-                        <p>No despatches yet.</p>
                     </div>
                 </div>
             </div>
