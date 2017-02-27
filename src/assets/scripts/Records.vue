@@ -3,7 +3,7 @@
         <div class="container">
             <h1 class="page__title">Records</h1>
             <transition name="fade">
-                <div v-if="items" class="record-feed">
+                <div v-if="items.length" class="record-feed">
                     <staggered-fade classes="row">
                         <div v-for="(item, index) in items" :key="index" v-bind:data-index="index" class="record-wrapper col col--xs-12 col--sm-6 col--md-4 col--lg-3">
                             <div class="record">
@@ -15,7 +15,7 @@
                 </div>
             </transition>
             <transition name="fade">
-                <section v-if="showAllLoaded" class="container">
+                <section v-if="items.length && showAllLoaded" class="container">
                     <p><em>That's it!</em></p>
                 </section>
             </transition>

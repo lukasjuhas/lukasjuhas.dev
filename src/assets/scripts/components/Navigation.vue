@@ -45,6 +45,8 @@
     top: $base-spacing-unit;
     right: $base-spacing-unit * 1.5;
     z-index: 1000;
+    opacity: 1;
+    transition: all $animation-speed ease-in-out;
 
     .line {
       width: 35px;
@@ -79,6 +81,12 @@
           transform: translateY(-11px) rotate(-45deg);
         }
       }
+    }
+
+    .error &,
+    .warning &,
+    .success & {
+      opacity: 0;
     }
   }
 
@@ -124,6 +132,10 @@
           text-decoration: underline;
         }
       }
+    }
+
+    @include resp-max($breakpoint-sm) {
+      font-size: 21px;
     }
   }
 </style>

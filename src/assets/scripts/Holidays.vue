@@ -10,7 +10,7 @@
                 </div>
             </div>
         </section>
-        <section v-if="items">
+        <section v-if="items.length">
             <ul class="holidays">
                 <staggered-fade>
                     <li v-for="(item, index) in items" :key="index" v-bind:data-index="index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
@@ -23,7 +23,7 @@
             </ul>
         </section>
         <transition name="fade">
-            <section v-if="showAllLoaded" class="container">
+            <section v-if="items.length && showAllLoaded" class="container align-text-center all-loaded">
                 <p><em>That's it!</em></p>
             </section>
         </transition>
@@ -137,5 +137,9 @@
 
   .holiday__title {
     margin: 0;
+  }
+
+  .all-loaded {
+    margin-top: $base-spacing-unit * 2;
   }
 </style>

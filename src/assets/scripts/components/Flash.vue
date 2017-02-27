@@ -1,7 +1,7 @@
 <template>
     <transition name="slide-fade">
         <div v-if="sharedState.state.flash.show" class="flash" v-bind:class="'flash--' + sharedState.state.flash.status">
-            <div class="container">
+            <div class="flash__content">
                 {{ sharedState.state.flash.content }}
                 <button v-if="!sharedState.state.flash.autohide" @click="hideFlash" class="flash__dismiss button--link">&times;</button>
             </div>
@@ -42,13 +42,14 @@
 
 <style lang="scss">
   .flash {
-    line-height: 50px;
+    line-height: 1.35em;
     position: absolute;
     width: auto;
     z-index: 500;
-    top: 26px;
-    left: 75px;
+    top: $base-spacing-unit;
+    left: 0;
     font-weight: bold;
+    padding: ($base-spacing-unit / 2) $base-spacing-unit 0;
 
     > p,
     > ul {
@@ -59,30 +60,22 @@
       margin-top: $base-spacing-unit;
     }
 
-    // &.flash--success {
-    //   color: $col-text;
-    // }
-    //
-    // &.flash--info {
-    //   color: $col-text;
-    // }
-    //
-    // &.flash--warning {
-    //   color: $col-text;
-    // }
-    //
-    // &.flash--error {
-    //   color: $col-text;
-    // }
+    .flash__content {
+      position: relative;
+      display: inline-block;
+      padding-right: $base-spacing-unit * 2;
+    }
 
     .flash__dismiss {
-      float: right;
       color: $col-text;
       font-size: 32px;
-      line-height: 23px;
       text-decoration: none;
       font-weight: normal;
-      margin: 10px 0 0 $base-spacing-unit;
+      position: absolute;
+      right: 0;
+      top: 0;
+      vertical-align: top;
+      line-height: .5;
 
       &:hover {
         text-decoration: none;

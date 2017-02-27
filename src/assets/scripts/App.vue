@@ -87,9 +87,16 @@
     top: $base-spacing-unit;
     left: $base-spacing-unit;
     transition: all $animation-speed $animation;
+    opacity: 1;
 
     .dark & {
       fill: $col-text-light;
+    }
+
+    .error &,
+    .warning &,
+    .success & {
+      opacity: 0;
     }
   }
 
