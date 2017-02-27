@@ -35,6 +35,7 @@
   import throttle from 'lodash/throttle';
   import each from 'lodash/each';
   import StaggeredFade from './transitions/StaggeredFade.vue';
+  import flash from './helpers/flash';
 
   export default {
     name: 'holidays',
@@ -96,7 +97,7 @@
           this.prevPage = null;
 
           this.sharedState.setLoadingAction(false);
-          console.log(error);
+          flash.showError('Sorry, there was problem loading trips. 😳');
         });
       },
     },
