@@ -5,6 +5,9 @@ import Holiday from './Holiday.vue';
 import Despatches from './Despatches.vue';
 import Records from './Records.vue';
 import NotFound from './404.vue';
+import Manage from './Manage.vue';
+import ManageHoliday from './manage/Holiday.vue';
+import ManageHolidayNew from './manage/NewHoliday.vue';
 
 export default [
   {
@@ -33,13 +36,27 @@ export default [
     path: '/despatches',
     component: Despatches,
     name: 'Despatches',
-    nav: false,
   },
   {
     path: '/records',
     component: Records,
     name: 'Records',
     nav: true,
+  },
+  {
+    path: '/manage',
+    component: Manage,
+    name: 'Manage',
+  },
+  {
+    path: '/manage/holiday/new',
+    component: ManageHolidayNew,
+    name: 'New Holiday',
+  },
+  {
+    path: '/manage/holiday/:id',
+    component: ManageHoliday,
+    name: 'Edit Holiday',
   },
   {
     path: '/404',
