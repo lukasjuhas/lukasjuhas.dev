@@ -1,0 +1,110 @@
+button {
+  border: 0 none;
+}
+
+.button {
+  border-radius: $border-radius;
+  border: 0;
+  background-color: $col-neutral;
+  font-size: 16px;
+  display: inline-block;
+  color: $col-brand;
+  padding: ($base-spacing-unit / 2) ($base-spacing-unit);
+  line-height: 1;
+  cursor: pointer;
+  transition: all $animate $animation;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  &.button--disabled,
+  &:disabled {
+    opacity: .75;
+
+    &.button--loading {
+      opacity: 1;
+    }
+  }
+
+  &:disabled:hover {
+    cursor: not-allowed;
+    box-shadow: 0;
+  }
+
+  &.button--active,
+  &:active,
+  &:hover {
+    color: $col-brand-darkest;
+    text-decoration: none;
+    background-color: $col-neutral-lighten;
+  }
+
+  &.button--focus,
+  &:focus {
+    background-color: $col-neutral-lightest;
+  }
+}
+
+.button--block {
+  display: block;
+  width: 100%;
+}
+
+.button--link {
+  background-color: transparent;
+  padding: 5px 0;
+
+  &.button--active,
+  &:active,
+  &:hover {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &.button--focus,
+  &:focus {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.button--primary {
+  background-color: $col-brand;
+  color: $col-text-light;
+
+  &.button--active,
+  &:active,
+  &:hover {
+    background-color: $col-brand-darken;
+    color: $col-text-light;
+  }
+
+  &.button--focus,
+  &:focus {
+    background-color: $col-brand-darken;
+    color: $col-text-light;
+  }
+
+}
+
+.button--inverted {
+  background-color: transparent;
+  border: 2px solid $col-brand;
+  color: $col-brand;
+  padding: (($base-spacing-unit / 2) - 2) (($base-spacing-unit) - 2);
+
+  &.button--active,
+  &:active,
+  &:hover {
+    background-color: $col-brand-lighten;
+    border: 2px solid $col-brand-lighten;
+    color: $col-text-light;
+  }
+
+  &.button--focus,
+  &:focus {
+    background-color: $col-brand-lightest;
+    border: 2px solid $col-brand-lightest;
+    color: $col-text-light;
+  }
+}

@@ -48,7 +48,7 @@
     z-index: 500;
     top: $base-spacing-unit;
     left: 0;
-    font-weight: bold;
+    font-weight: $font-weight-bold;
     padding: ($base-spacing-unit / 2) $base-spacing-unit 0;
 
     > p,

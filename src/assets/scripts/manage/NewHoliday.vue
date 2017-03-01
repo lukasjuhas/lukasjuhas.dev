@@ -1,15 +1,12 @@
 <template>
     <div class="container">
-        <div class="editable">
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna. Curabitur blandit tempus porttitor. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-
-            <p>Nullam id dolor id nibh ultricies vehicula ut id elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Maecenas faucibus mollis interdum.</p>
-
-            <p>Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+        <div class="editor">
+            <div class="editor__header">
+                <h1 class="editor__title editable"></h1>
+            </div>
+            <div class="editor__content editable"></div>
+            <button v-if="showSave" v-on:click="save" type="button" name="button" class="button button--primary">Save</button>
         </div>
-        <textarea class="editable medium-editor-textarea">&lt;p&gt;Textarea is now supported&lt;/p&gt;</textarea>
     </div>
 </template>
 
@@ -18,6 +15,14 @@
 
   export default {
     name: 'manage-new-holiday',
+
+    data() {
+      return {
+        editor: null,
+        title: null,
+        showSave: false,
+      }
+    },
 
     mounted() {
       this.initEditor();
@@ -61,7 +66,26 @@
             'add-media': new AddMediaExtension(),
           }
         });
-        const editor = new MediumEditor(elements);
+        this.editor = new MediumEditor(elements);
+
+        this.editor.subscribe('editableInput', (event) => {
+          this.sectionChange(event);
+        });
+      },
+
+      sectionChange(event) {
+        this.showSave = true;
+      },
+
+      save() {
+        const title = this.editor.elements[0].innerHTML;
+        const content = this.editor.elements[1].innerHTML;
+
+        if(!content || !title) {
+          return false;
+        }
+
+        // handle saving
       }
     }
   }
@@ -70,4 +94,12 @@
 <style lang="scss">
     @import '../../../node_modules/medium-editor/src/sass/medium-editor';
     @import '../../../node_modules/medium-editor/src/sass/themes/beagle';
+
+    .editable {
+      outline: 0 none;
+    }
+
+    .editor__content {
+      font-family: $serif-font-family;
+    }
 </style>

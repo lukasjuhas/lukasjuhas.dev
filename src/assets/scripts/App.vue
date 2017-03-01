@@ -72,7 +72,7 @@
   .page__title {
     margin-bottom: $base-spacing-unit;
     font-size: 28px;
-    font-weight: 700;
+    font-weight: $font-weight-bold;
   }
 
   .section {

@@ -10,6 +10,17 @@ $col-danger: #D9534F;
 $col-success: #2ab27b;
 $col-warning: #cbb956;
 
+$col-neutral: #cdcdcd;
+$col-neutral-lightest: lighten($col-neutral, 15%);
+$col-neutral-lighten: lighten($col-neutral, 10%);
+$col-neutral-darken: darken($col-neutral, 10%);
+$col-neutral-darkest: darken($col-neutral, 15%);
+
+$col-brand-lightest: lighten($col-brand, 15%);
+$col-brand-lighten: lighten($col-brand, 10%);
+$col-brand-darken: darken($col-brand, 10%);
+$col-brand-darkest: darken($col-brand, 15%);
+
 /**
  * Typography
  */
@@ -19,6 +30,7 @@ $base-font-family: $sans-serif-font-family;
 $base-font-size: 16;
 $base-line-height: 1.6;
 $base-spacing-unit: ($base-font-size * $base-line-height) * 1px;
+$font-weight-bold: 700;
 
 /**
  * Breakpoints
@@ -39,7 +51,7 @@ $animate: 0.3s;
 /**
  * Components
  */
-$border-radius: 3px;
+$border-radius: 999em;
 
 /**
  * Animations

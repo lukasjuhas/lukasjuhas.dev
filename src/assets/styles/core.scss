@@ -99,8 +99,9 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: $sans-serif-font-family;
   margin-bottom: $base-spacing-unit;
-  font-weight: 700;
+  font-weight: $font-weight-bold;
 }
 
 h1 {
@@ -127,6 +128,16 @@ h6 {
   font-size: 24px;
 }
 
+em {
+  font-style: italic;
+}
+
+strong,
+b {
+  font-weight: $font-weight-bold;
+}
+
+i,
 em {
   font-style: italic;
 }
