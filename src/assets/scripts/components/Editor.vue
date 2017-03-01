@@ -104,7 +104,12 @@
           return false;
         }
 
-        // handle saving
+        // if parent has save function, prioritise it
+        if (typeof this.$parent.save === 'function') {
+            this.$parent.save(title, content);
+        } else {
+          // TODO: handle saving
+        }
       },
 
       onKeypress(event) {

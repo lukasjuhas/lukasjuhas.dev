@@ -52,6 +52,18 @@
             this.sharedState.state.router.replace('/404');
           }
         });
+      },
+
+      save(title, content) {
+        axios.put(`trips/${this.slug}`, { title, content }).then((response) => {
+          console.log(response.data);
+        })
+        .catch((error, status) => {
+          this.sharedState.setLoadingAction(false);
+          if(error.status === 404) {
+            this.sharedState.state.router.replace('/404');
+          }
+        });
       }
     }
   }
