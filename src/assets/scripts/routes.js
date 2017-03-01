@@ -54,9 +54,10 @@ export default [
     name: 'New Holiday',
   },
   {
-    path: '/manage/holiday/:id',
+    path: '/manage/holiday/:slug',
     component: ManageHoliday,
     name: 'Edit Holiday',
+    props: true,
   },
   {
     path: '/404',
