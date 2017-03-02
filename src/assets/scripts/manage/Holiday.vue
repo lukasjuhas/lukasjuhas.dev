@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <editor></editor>
+        <transition name="fade">
+            <editor v-show="show"></editor>
+        </transition>
     </div>
 </template>
 
@@ -23,6 +25,7 @@
     data() {
       return {
         sharedState: store,
+        show: false,
         title: null,
         content: null,
       }
@@ -65,6 +68,8 @@
               contentEl[0].classList.remove('medium-editor-placeholder');
             }
           }
+
+          this.show = true;
 
           this.sharedState.setLoadingAction(false);
 
