@@ -89,7 +89,7 @@
           if(response.data.error) {
             flash.showError(response.data.error.message);
           } else {
-            flash.showSuccess(response.data.message);
+            flash.showSuccess(response.data.message, true);
           }
 
           this.sharedState.setLoadingAction(false);

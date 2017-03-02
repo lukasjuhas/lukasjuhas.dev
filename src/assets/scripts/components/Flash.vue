@@ -23,14 +23,6 @@
       }
     },
 
-    mounted() {
-      if(this.autohide) {
-        setTimeout(() => {
-          this.sharedState.state.flash.show = false;
-        }, 3000);
-      }
-    },
-
     methods: {
       hideFlash() {
         document.documentElement.classList.remove(this.sharedState.state.flash.status);

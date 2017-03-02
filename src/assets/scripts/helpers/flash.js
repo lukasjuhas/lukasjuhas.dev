@@ -3,16 +3,15 @@ import store from '../store';
 
 export default class flash {
   static showError(message, autohide = false) {
-    console.log('error', store.state.flash.status);
-    store.state.flash.status = 'error';
-    console.log('error', store.state.flash.status);
+    store.setFlashAction('status', 'error');
 
     if (message) {
-      store.state.flash.content = message;
+      store.setFlashAction('content', message);
     }
 
     if (autohide) {
-      store.state.flash.autohide = true;
+      store.setFlashAction('autohide', true);
+      this.autoHide();
     }
 
     document.documentElement.classList.add(store.state.flash.status);
@@ -20,16 +19,15 @@ export default class flash {
   }
 
   static showSuccess(message, autohide = false) {
-    console.log('success', store.state.flash.status);
-    store.state.flash.status = 'success';
-    console.log('success', store.state.flash.status);
+    store.setFlashAction('status', 'success');
 
     if (message) {
-      store.state.flash.content = message;
+      store.setFlashAction('content', message);
     }
 
     if (autohide) {
-      store.state.flash.autohide = true;
+      store.setFlashAction('autohide', true);
+      this.autoHide();
     }
 
     document.documentElement.classList.add(store.state.flash.status);
@@ -37,11 +35,17 @@ export default class flash {
   }
 
   static hide() {
-    store.state.flash.autohide = false;
+    store.setFlashAction('autohide', false);
 
     if (store.state.flash.show) {
       document.documentElement.classList.remove(store.state.flash.status);
-      store.state.flash.show = false;
+      store.setFlashAction('show', false);
     }
+  }
+
+  static autoHide() {
+    setTimeout(() => {
+      this.hide();
+    }, 3000);
   }
 }
