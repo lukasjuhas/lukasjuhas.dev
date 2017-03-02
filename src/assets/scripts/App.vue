@@ -47,7 +47,7 @@
     watch: {
       '$route' (to, from) {
         doc.updateTitle(to.name);
-        flash.hideError();
+        flash.hide();
 
         // remove dark mode
         document.documentElement.classList.remove('dark');

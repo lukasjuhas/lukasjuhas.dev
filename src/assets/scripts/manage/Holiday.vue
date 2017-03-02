@@ -7,6 +7,7 @@
 <script>
   import store from '../store';
   import Editor from '../components/Editor.vue';
+  import flash from '../helpers/flash';
 
   export default {
     name: 'manage-holiday',
@@ -36,6 +37,9 @@
     },
 
     methods: {
+      /**
+       * Fetch trip data
+       */
       fetchTrip() {
         this.sharedState.setLoadingAction(true);
 
@@ -74,15 +78,29 @@
         });
       },
 
+      /**
+       * Update trip on save
+       */
       save(title, content) {
+        flash.hide();
+        this.sharedState.setLoadingAction(true);
+
         axios.put(`trips/${this.slug}`, { title, content }).then((response) => {
-          console.log(response.data);
+          if(response.data.error) {
+            flash.showError(response.data.error.message);
+          } else {
+            flash.showSuccess(response.data.message);
+          }
+
+          this.sharedState.setLoadingAction(false);
         })
         .catch((error, status) => {
-          this.sharedState.setLoadingAction(false);
           if(error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
+
+          flash.showError('There was an unexpected problem. Please try again.');
+          this.sharedState.setLoadingAction(false);
         });
       }
     }
