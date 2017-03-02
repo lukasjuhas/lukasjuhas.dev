@@ -4,7 +4,9 @@
             <h1 class="editor__title editable"></h1>
         </div>
         <div class="editor__content editable"></div>
-        <button v-if="showAddMedia" type="button" name="media" class="media-button">+</button>
+        <transition name="fade">
+            <button v-if="showAddMedia" type="button" name="media" class="media-button"><svg class="media-button__icon"><use xlink:href="#add"></use></svg></button>
+        </transition>
         <button v-if="showSave" v-on:click="save" type="button" name="button" class="button button--primary">Save</button>
     </div>
 </template>
@@ -65,6 +67,10 @@
             'add-media': new AddMediaExtension(),
           }
         });
+
+        if(elements[1].innerHTML !== null) {
+          this.showAddMedia = false;
+        }
 
         this.editor = new MediumEditor(elements);
 
@@ -129,13 +135,15 @@
   .media-button {
     width: 26px;
     height: 26px;
-    border: 2px solid $col-text;
     border-radius: 50%;
-    line-height: 23px;
-    font-size: 24px;
-    text-align: center;
-    text-indent: 1px;
     position: absolute;
     left: -($base-spacing-unit + 26);
+    bottom: 67px;
+  }
+
+  .media-button__icon {
+    width: 26px;
+    height: 26px;
+    fill: $col-text;
   }
 </style>
