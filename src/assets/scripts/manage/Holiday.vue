@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <editor :title="title" :content="content"></editor>
+        <editor></editor>
     </div>
 </template>
 
@@ -42,18 +42,22 @@
         axios.get(`trips/${this.slug}`).then((response) => {
           if(response.data.data.title) {
             this.title = response.data.data.title;
+
             // remove placeholder
             const titleEl = document.getElementsByClassName('editor__title');
             if (titleEl[0]) {
+              titleEl[0].innerHTML = this.title;
               titleEl[0].classList.remove('medium-editor-placeholder');
             }
           }
 
           if(response.data.data.content) {
             this.content = response.data.data.content;
+
             // remove placeholder
             const contentEl = document.getElementsByClassName('editor__content');
             if (contentEl[0]) {
+              contentEl[0].innerHTML = this.content;
               contentEl[0].classList.remove('medium-editor-placeholder');
             }
           }

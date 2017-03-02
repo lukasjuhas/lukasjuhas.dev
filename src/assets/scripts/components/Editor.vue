@@ -1,9 +1,9 @@
 <template>
     <div class="editor">
         <div class="editor__header">
-            <h1 class="editor__title editable">{{ title }}</h1>
+            <h1 class="editor__title editable"></h1>
         </div>
-        <div class="editor__content editable">{{ content }}</div>
+        <div class="editor__content editable"></div>
         <button v-if="showAddMedia" type="button" name="media" class="media-button">+</button>
         <button v-if="showSave" v-on:click="save" type="button" name="button" class="button button--primary">Save</button>
     </div>
@@ -14,20 +14,6 @@
 
   export default {
     name: 'editor',
-
-    props: {
-      title: {
-        type: String,
-        required: false,
-        default: null,
-      },
-
-      content: {
-        type: String,
-        required: false,
-        default: null,
-      },
-    },
 
     data() {
       return {
