@@ -13,7 +13,7 @@
         <section v-if="items.length">
             <ul class="holidays">
                 <staggered-fade>
-                    <li v-for="(item, index) in items" :key="index" v-bind:data-index="index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
+                    <li v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
                         <router-link v-bind:to="'/holidays/' + item.slug" v-if="item.content">
                             <h1 class="holiday__title">{{ item.title }}</h1>
                         </router-link>
@@ -81,7 +81,8 @@
 
         axios.get(path).then((response) => {
           if(response.data.data !== null) {
-            each(response.data.data, (item) => {
+            each(response.data.data, (item, index) => {
+              item.index = index;
               this.items.push(item);
             });
           }

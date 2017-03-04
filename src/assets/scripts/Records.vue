@@ -5,7 +5,7 @@
             <transition name="fade">
                 <div v-if="items.length" class="record-feed">
                     <staggered-fade classes="row">
-                        <div v-for="(item, index) in items" :key="index" v-bind:data-index="index" class="record-wrapper col col--xs-12 col--sm-6 col--md-4 col--lg-3">
+                        <div v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="record-wrapper col col--xs-12 col--sm-6 col--md-4 col--lg-3">
                             <div class="record">
                                 <div class="record__artwork"></div>
                                 <h3 class="record__title">{{ item.artist }} - {{ item.title }}</h3>
@@ -74,7 +74,8 @@
 
         axios.get(path).then((response) => {
           if(response.data.data !== null) {
-            each(response.data.data, (item) => {
+            each(response.data.data, (item, index) => {
+              item.index = index;
               this.items.push(item);
             });
           }
