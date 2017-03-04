@@ -7,29 +7,11 @@
 </template>
 
 <script>
-  import throttle from 'lodash/throttle';
-  
   export default {
     data() {
       return {
         show: true,
       }
-    },
-
-    created() {
-      let lastScrollTop = 0;
-
-      window.onscroll = throttle((ev) => {
-        const st = window.pageYOffset || document.documentElement.scrollTop;
-
-        if ((st > 75) && st > lastScrollTop) {
-          this.show = false;
-        } else {
-          this.show = true;
-        }
-
-        lastScrollTop = st;
-      }, 300);
     },
   }
 </script>

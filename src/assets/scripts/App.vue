@@ -2,7 +2,7 @@
     <transition name="fade">
         <div id="app" class="main" v-if="show">
             <navigation ref="navigation"></navigation>
-            <logo></logo>
+            <logo ref="logo"></logo>
             <preloader></preloader>
             <flash></flash>
             <transition name="fade">
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+  import throttle from 'lodash/throttle';
   import store from './store';
   import doc from './helpers/doc';
   import flash from './helpers/flash';
@@ -35,6 +36,7 @@
 
     mounted() {
       this.show = true;
+      this.handleLogo();
     },
 
     components: {
@@ -57,8 +59,40 @@
 
         // close nav
         this.$refs['navigation'].open = false;
+
+        // handle logo and force show
+        this.handleLogo(true);
       }
     },
+
+    methods: {
+      handleLogo(forceShow = false) {
+        // This is important when changing routes to "force" show on logo so if
+        // the route is changed, logo appears instead of being hidden as it might
+        // have been before changing the route.
+        if(forceShow) {
+          this.$refs['logo'].show = true;
+        }
+
+        let lastScrollTop = 0;
+
+        // make sure this runs last
+        setTimeout(() => {
+          window.onscroll = throttle((ev) => {
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+
+            // offset 75px
+            if ((st > 75) && st > lastScrollTop) {
+              this.$refs['logo'].show = false;
+            } else {
+              this.$refs['logo'].show = true;
+            }
+
+            lastScrollTop = st;
+          }, 300);
+        }, 100);
+      }
+    }
   };
 </script>
 
