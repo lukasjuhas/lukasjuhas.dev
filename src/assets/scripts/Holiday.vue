@@ -2,7 +2,7 @@
     <div class="page">
         <div v-if="item" class="container">
             <h1 class="page__title">{{ item.title }}</h1>
-            <p>This is single holiday page.</p>
+            <div class="page__content" v-html="item.content"></div>
         </div>
     </div>
 </template>
@@ -45,7 +45,8 @@
         })
         .catch((error, status) => {
           this.sharedState.setLoadingAction(false);
-          if(error.response.status === 404) {  
+
+          if(error.response.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
         });
