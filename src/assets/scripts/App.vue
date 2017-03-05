@@ -78,7 +78,7 @@
 
         // make sure this runs last
         setTimeout(() => {
-          window.onscroll = throttle((ev) => {
+          window.addEventListener('scroll', throttle(() => {
             const st = window.pageYOffset || document.documentElement.scrollTop;
 
             // offset 75px
@@ -89,7 +89,7 @@
             }
 
             lastScrollTop = st;
-          }, 300);
+          }, 300));
         }, 100);
       }
     }

@@ -57,17 +57,13 @@
     created() {
       this.fetchData();
 
-      window.onscroll = throttle((ev) => {
-        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-          if(this.nextPage !== null) {
-            this.fetchData(this.nextPage);
-          } else {
-            setTimeout(() => {
-              this.showAllLoaded = true;
-            }, 1000);
-          }
-        }
-      }, 300);
+      window.addEventListener('scroll', throttle(() => {
+        this.handleScroll();
+      }, 300));
+    },
+
+    destroyed () {
+      window.removeEventListener('scroll', this.handleScroll());
     },
 
     mounted() {
@@ -101,6 +97,18 @@
           flash.showError('Sorry, there was problem loading trips. 😳');
         });
       },
+
+      handleScroll() {
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+          if(this.nextPage !== null) {
+            this.fetchData(this.nextPage);
+          } else {
+            setTimeout(() => {
+              this.showAllLoaded = true;
+            }, 1000);
+          }
+        }
+      }
     },
   };
 </script>
