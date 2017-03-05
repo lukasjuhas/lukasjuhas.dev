@@ -5,7 +5,7 @@
             <transition name="fade">
                 <div v-if="items.length" class="record-feed">
                     <staggered-fade classes="row">
-                        <div v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="record-wrapper col col--xs-12 col--sm-6 col--md-4 col--lg-3">
+                        <div v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="record-wrapper col col--xs-6 col--sm-4 col--md-3 col--lg-3">
                             <div class="record">
                                 <div class="record__artwork"></div>
                                 <h3 class="record__title">{{ item.artist }} - {{ item.title }}</h3>
@@ -56,7 +56,7 @@
     },
 
     destroyed () {
-      window.removeEventListener('scroll', this.handleScroll());
+      window.removeEventListener('scroll', this.handleScroll);
     },
 
     mounted() {
