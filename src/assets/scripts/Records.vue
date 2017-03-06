@@ -99,6 +99,7 @@
           } else {
             setTimeout(() => {
               this.showAllLoaded = true;
+              window.removeEventListener('scroll', this.handleScroll);
             }, 1000);
           }
         }
