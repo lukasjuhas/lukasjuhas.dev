@@ -5,17 +5,31 @@
         </div>
         <div class="editor__content editable"></div>
         <transition name="fade">
-            <button v-if="showAddMedia" type="button" name="media" class="media-button"><svg class="media-button__icon"><use xlink:href="#add"></use></svg></button>
+            <button v-if="showAddMedia" @click="modal('addMedia')" type="button" name="media" class="media-button"><svg class="media-button__icon"><use xlink:href="#add"></use></svg></button>
         </transition>
         <button v-if="showSave" v-on:click="save" type="button" name="button" class="button button--primary">Save</button>
+        <modal ref="addMedia" v-cloak>
+            <h3 slot="header">Add Image</h3>
+            <form slot="body" method="post" class="form" v-on:submit.prevent="uploadImage">
+                <div class="from__group">
+                    <input type="file" name="image" accept="image/*">
+                </div>
+                <button type="submit" name="upload" class="button button--primary">Upload & Insert</button>
+            </form>
+        </modal>
     </div>
 </template>
 
 <script>
   import MediumEditor from 'medium-editor';
+  import Modal from './Modal.vue';
 
   export default {
     name: 'editor',
+
+    components: {
+      Modal,
+    },
 
     data() {
       return {
@@ -111,6 +125,18 @@
             this.showAddMedia = true;
           }, 100);
         }
+      },
+
+      modal(ref) {
+        this.$refs[ref].toggle = true;
+      },
+
+      closeModal(ref) {
+        this.$refs[ref].toggle = false;
+      },
+
+      uploadImage() {
+        console.log('upload image');
       }
     }
   }

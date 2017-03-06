@@ -21,6 +21,8 @@ $col-brand-lighten: lighten($col-brand, 10%);
 $col-brand-darken: darken($col-brand, 10%);
 $col-brand-darkest: darken($col-brand, 15%);
 
+$col-overlay: rgba(0, 0, 0, .75);
+
 /**
  * Typography
  */
@@ -58,3 +60,4 @@ $border-radius: 999em;
  */
 $animation: linear;
 $animation-speed: 300ms;
+$animation-speed-fast: 100ms;
