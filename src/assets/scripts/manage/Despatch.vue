@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <transition name="fade">
-            <h1>{{ title }}</h1>
-            Gallery manager
+            <editor v-show="show"></editor>
         </transition>
     </div>
 </template>
 
 <script>
   import store from '../store';
+  import Editor from '../components/Editor.vue';
   import flash from '../helpers/flash';
 
   export default {
@@ -31,18 +31,22 @@
       }
     },
 
+    components: {
+      Editor,
+    },
+
     created() {
-      this.fetchTrip();
+      this.fetchDespatch();
     },
 
     methods: {
       /**
-       * Fetch trip data
+       * Fetch despatch data
        */
-      fetchTrip() {
+      fetchDespatch() {
         this.sharedState.setLoadingAction(true);
 
-        axios.get(`trips/${this.slug}`).then((response) => {
+        axios.get(`despatches/${this.slug}`).then((response) => {
           if(response.data.data.title) {
             this.title = response.data.data.title;
 
@@ -78,6 +82,32 @@
           }
         });
       },
+
+      /**
+       * Update despatch on save
+       */
+      save(title, content) {
+        flash.hide();
+        this.sharedState.setLoadingAction(true);
+
+        axios.put(`despatchs/${this.slug}`, { title, content }).then((response) => {
+          if(response.data.error) {
+            flash.showError(response.data.error.message);
+          } else {
+            flash.showSuccess(response.data.message, true);
+          }
+
+          this.sharedState.setLoadingAction(false);
+        })
+        .catch((error, status) => {
+          if(error.status === 404) {
+            this.sharedState.state.router.replace('/404');
+          }
+
+          flash.showError('There was an unexpected problem. Please try again.');
+          this.sharedState.setLoadingAction(false);
+        });
+      }
     }
   }
 </script>

@@ -36,7 +36,7 @@
     },
 
     methods: {
-      fetchData: function() {
+      fetchData() {
         this.sharedState.setLoadingAction(true);
 
         axios.get(`trips/${this.slug}`).then((response) => {

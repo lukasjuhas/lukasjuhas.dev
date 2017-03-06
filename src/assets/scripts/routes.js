@@ -6,6 +6,8 @@ import Despatches from './Despatches.vue';
 import Records from './Records.vue';
 import NotFound from './404.vue';
 import Manage from './Manage.vue';
+import ManageDespatch from './manage/Despatch.vue';
+import ManageDespatchNew from './manage/NewDespatch.vue';
 import ManageHoliday from './manage/Holiday.vue';
 import ManageHolidayNew from './manage/NewHoliday.vue';
 
@@ -47,6 +49,17 @@ export default [
     path: '/manage',
     component: Manage,
     name: 'Manage',
+  },
+  {
+    path: '/manage/despatch/new',
+    component: ManageDespatchNew,
+    name: 'New Despatch',
+  },
+  {
+    path: '/manage/despatch/:slug',
+    component: ManageDespatch,
+    name: 'Edit Despatch',
+    props: true,
   },
   {
     path: '/manage/holiday/new',

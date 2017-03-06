@@ -15,7 +15,7 @@
   export default {
     name: 'preloader',
 
-    data: function() {
+    data() {
       return {
         sharedState: store.state,
       }
