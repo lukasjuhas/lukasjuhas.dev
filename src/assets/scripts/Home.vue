@@ -30,15 +30,17 @@
                 <div class="row">
                     <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
                         <h2>Latest Trip</h2>
-                        <section v-if="item">
-                            <div class="holidays">
-                                <div class="holiday">
-                                    <router-link v-bind:to="'/holidays/' + item.slug">
-                                        <h2 class="holiday__title">{{ item.title }}</h2>
-                                    </router-link>
+                        <transition name="fade">
+                            <section v-if="item">
+                                <div class="holidays">
+                                    <div class="holiday">
+                                        <router-link v-bind:to="'/holidays/' + item.slug">
+                                            <h2 class="holiday__title">{{ item.title }}</h2>
+                                        </router-link>
+                                    </div>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
+                        </transition>
                     </div>
                 </div>
             </div>

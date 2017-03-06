@@ -10,18 +10,20 @@
                 </div>
             </div>
         </section>
-        <section v-if="items.length">
-            <ul class="holidays">
-                <staggered-fade>
-                    <li v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
-                        <router-link v-bind:to="'/holidays/' + item.slug" v-if="item.content">
-                            <h1 class="holiday__title">{{ item.title }}</h1>
-                        </router-link>
-                        <h2 v-else class="holiday__title">{{ item.title }}</h2>
-                    </li>
-                </staggered-fade>
-            </ul>
-        </section>
+        <transition name="fade">
+            <section v-if="items.length">
+                <ul class="holidays">
+                    <staggered-fade>
+                        <li v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
+                            <router-link v-bind:to="'/holidays/' + item.slug" v-if="item.content">
+                                <h1 class="holiday__title">{{ item.title }}</h1>
+                            </router-link>
+                            <h2 v-else class="holiday__title">{{ item.title }}</h2>
+                        </li>
+                    </staggered-fade>
+                </ul>
+            </section>
+        </transition>
         <transition name="fade">
             <section v-if="items.length && showAllLoaded" class="container align-text-center all-loaded">
                 <p><em>That's it!</em></p>

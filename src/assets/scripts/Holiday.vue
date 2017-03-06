@@ -1,9 +1,11 @@
 <template>
     <div class="page">
-        <div v-if="item" class="container">
-            <h1 class="page__title">{{ item.title }}</h1>
-            <div class="page__content" v-html="item.content"></div>
-        </div>
+        <transition name="fade">
+            <div v-if="item" class="container">
+                <h1 class="page__title">{{ item.title }}</h1>
+                <div class="page__content" v-html="item.content"></div>
+            </div>
+        </transition>
     </div>
 </template>
 
