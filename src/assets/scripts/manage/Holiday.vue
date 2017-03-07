@@ -104,23 +104,32 @@
       },
 
       upload(ele) {
+        this.closeModal('upload');
         this.sharedState.setLoadingAction(true);
 
         const formData = new FormData();
-
+        formData.append(`trip`, this.slug);
         each(this.files, (file, index) => {
           formData.append(`photo[${index}]`, file);
         });
 
         axios.post(`photos`, formData).then((response) => {
+          if(response.data.error) {
+            flash.showError(response.data.error.message);
+          } else {
+            flash.showSuccess(response.data.message, true);
+          }
 
           this.sharedState.setLoadingAction(false);
         })
         .catch((error, status) => {
           this.sharedState.setLoadingAction(false);
+          console.log(error, status);
           if(error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
+
+          flash.showError('There was an unexpected problem. Please try again.');
         });
       },
 

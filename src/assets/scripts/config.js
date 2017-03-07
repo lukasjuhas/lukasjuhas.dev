@@ -7,5 +7,5 @@ export default {
   baseApiUrl: 'https://api.itsluk.dev',
 
   // Timeout on requests (by axios)
-  timeout: 30000,
+  timeout: 300000, // 5mim
 };
