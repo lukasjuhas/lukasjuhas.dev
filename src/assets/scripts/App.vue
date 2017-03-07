@@ -91,7 +91,7 @@
             lastScrollTop = st;
           }, 300));
         }, 100);
-      }
+      },
     }
   };
 </script>
