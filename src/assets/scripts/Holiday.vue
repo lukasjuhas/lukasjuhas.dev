@@ -4,10 +4,12 @@
             <div v-if="item" class="container">
                 <h1 class="page__title">{{ item.title }}</h1>
                 <div class="page__content" v-html="item.content"></div>
-                <div class="photos">
-                    <div v-for="photo in item.photos" class="photo">
-                        <img :src="photo.url" :alt="photo.title" />
-                    </div>
+                <div v-if="item.photos.length" class="photos">
+                    <staggered-fade>
+                        <div v-for="(photo, index) in item.photos" class="photo" :key="index" v-bind:data-index="index">
+                            <img :src="photo.url" :alt="photo.title" />
+                        </div>
+                    </staggered-fade>
                 </div>
             </div>
         </transition>
@@ -17,9 +19,14 @@
 <script>
   import store from './store';
   import doc from './helpers/doc';
+  import StaggeredFade from './transitions/StaggeredFade.vue';
 
   export default {
     name: 'holiday',
+
+    components: {
+      StaggeredFade,
+    },
 
     props: {
       slug: {
