@@ -11,7 +11,10 @@
                         <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
                             <staggered-fade v-if="photos.length" classes="photos">
                                 <div v-for="(photo, index) in photos" class="photo" :class="'photo--' + photo.parity" :data-offset="photo.offset" :key="index" v-bind:data-index="index">
-                                    <img :src="photo.url" :alt="photo.title" :style="'transform: translateX(' + (photo.parity === 'even' ? '-' : '' ) + photo.offset + 'px)'" />
+                                    <img class="photo__image" :src="photo.url" :alt="photo.title" :style="'transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'" />
+                                    <div class="photo__caption">
+                                        <p>Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>
+                                    </div>
                                 </div>
                             </staggered-fade>
                         </div>
@@ -62,7 +65,8 @@
 
         axios.get(`trips/${this.slug}`).then((response) => {
           each(response.data.data.photos, (photo, index) => {
-            photo.offset = this.random(10, 70);
+            photo.offsetX = this.random(10, 75);
+            photo.offsetY = this.random(10, 50);
             photo.parity = ( index & 1 ) ? 'odd' : 'even';
 
             this.photos.push(photo);
@@ -92,11 +96,6 @@
 <style lang="scss">
   .photos {
     margin-top: $base-spacing-unit * 2;
-  }
-
-  .photo {
-    text-align: left;
-    margin-bottom: $base-spacing-unit;
 
     img {
       max-width: 100%;
@@ -104,7 +103,24 @@
     }
   }
 
+  .photo {
+    position: relative;
+  }
+
+  .photo__caption {
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+  }
+
   .photo--odd {
     text-align: right;
+
+    .photo__caption {
+      right: inherit;
+      left: 0;
+    }
   }
 </style>
