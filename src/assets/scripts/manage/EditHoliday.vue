@@ -3,8 +3,14 @@
         <transition name="fade">
             <div class="page">
                 <editor v-show="show" class="holiday-editor"></editor>
+
                 <h3>Gallery manager</h3>
-                <button class="button button--primary" type="button" @click="modal('upload')" name="button">Upload</button>
+                <div v-if="photos" class="photo-thumbs">
+                    <div v-for="photo in photos" class="photo-thumb">
+                        <img :src="photo.thumb" :alt="photo.title">
+                    </div>
+                </div>
+                <button class="button button--primary" type="button" @click="modal('upload')" name="button">Upload Photos</button>
             </div>
         </transition>
         <modal ref="upload" v-cloak>
@@ -49,6 +55,7 @@
         title: null,
         content: null,
         files: null,
+        photos: null,
       }
     },
 
@@ -77,6 +84,7 @@
 
           if(response.data.data.content) {
             this.content = response.data.data.content;
+            this.photos = response.data.data.photos;
 
             // remove placeholder
             const contentEl = document.getElementsByClassName('editor__content');
@@ -174,5 +182,18 @@
 <style lang="scss">
   .holiday-editor {
     margin-bottom: $base-spacing-unit * 2;
+  }
+
+  .photo-thumbs {
+    background-color: $col-neutral-lightest;
+    padding: 2px;
+    text-align: center;
+    margin-bottom: $base-spacing-unit;
+  }
+
+  .photo-thumb {
+    display: inline-block;
+    margin: 2px;
+    cursor: move;
   }
 </style>
