@@ -11,10 +11,10 @@
                     </div>
                 </div>
                 <button v-if="showUpdateOrder" type="button" name="button" class="button button--primary" @click="updateOrder">Update Order</button>
-                <button class="button button--primary" type="button" @click="modal('upload')" name="button">Upload Photos</button>
+                <button class="button button--primary" type="button" @click="modal('uploadModal')" name="uploadModal">Upload Photos</button>
             </div>
         </transition>
-        <modal ref="upload" v-cloak>
+        <modal ref="uploadModal" v-cloak>
             <h3 slot="header">Add Photos</h3>
             <form slot="body" method="post" class="form" v-on:submit.prevent="upload"  enctype="multipart/form-data">
                 <div class="from__group">
@@ -73,7 +73,7 @@
       fetchTrip() {
         this.sharedState.setLoadingAction(true);
 
-        axios.get(`trips/${this.slug}`).then((response) => {
+        axios.get(`trips/${this.slug}?all=1`).then((response) => {
           if(response.data.data.title) {
             this.title = response.data.data.title;
 
@@ -122,7 +122,7 @@
       },
 
       upload(ele) {
-        this.closeModal('upload');
+        this.closeModal('uploadModal');
         this.sharedState.setLoadingAction(true);
 
         const formData = new FormData();
@@ -136,6 +136,7 @@
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
+            this.fetchTrip();
           }
 
           this.sharedState.setLoadingAction(false);
@@ -166,6 +167,7 @@
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
+            this.showUpdateOrder = false;
           }
 
           this.sharedState.setLoadingAction(false);

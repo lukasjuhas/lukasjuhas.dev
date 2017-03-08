@@ -27,42 +27,9 @@
   export default {
     name: 'modal',
 
-    props: {
-      show: {
-        type: Boolean,
-        required: false,
-        twoWay: true,
-        default: false
-      },
-      noClose: {
-        type: Boolean,
-        required: false,
-        twoWay: true,
-        default: false
-      },
-      cancelButton: {
-        type: Boolean,
-        required: false,
-        twoWay: true,
-        default: false
-      },
-      medium: {
-        type: Boolean,
-        required: false,
-        twoWay: true,
-        default: false
-      },
-      large: {
-        type: Boolean,
-        required: false,
-        twoWay: true,
-        default: false
-      }
-    },
-
     data() {
       return {
-        toggle: JSON.parse(this.show),
+        toggle: false,
       }
     },
 
