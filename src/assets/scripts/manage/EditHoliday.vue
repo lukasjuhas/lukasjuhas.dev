@@ -5,11 +5,12 @@
                 <editor v-show="show" class="holiday-editor"></editor>
 
                 <h3>Gallery manager</h3>
-                <div v-if="photos" class="photo-thumbs">
-                    <div v-for="photo in photos" class="photo-thumb">
+                <div v-if="photos" class="photo-thumbs" id="dragula">
+                    <div v-for="photo in photos" class="photo-thumb" :data-id="photo.id">
                         <img :src="photo.thumb" :alt="photo.title">
                     </div>
                 </div>
+                <button v-if="showUpdateOrder" type="button" name="button" class="button button--primary" @click="updateOrder">Update Order</button>
                 <button class="button button--primary" type="button" @click="modal('upload')" name="button">Upload Photos</button>
             </div>
         </transition>
@@ -27,6 +28,7 @@
 
 <script>
   import each from 'lodash/each';
+  import dragula from 'dragula';
   import store from '../store';
   import flash from '../helpers/flash';
   import Modal from '../components/Modal.vue';
@@ -55,7 +57,8 @@
         title: null,
         content: null,
         files: null,
-        photos: null,
+        photos: [],
+        showUpdateOrder: false,
       }
     },
 
@@ -85,6 +88,12 @@
           if(response.data.data.content) {
             this.content = response.data.data.content;
             this.photos = response.data.data.photos;
+
+            if(this.photos) {
+              setTimeout(() => {
+                this.dragula();
+              }, 10);
+            }
 
             // remove placeholder
             const contentEl = document.getElementsByClassName('editor__content');
@@ -142,6 +151,35 @@
         });
       },
 
+      updateOrder() {
+        flash.hide();
+        this.sharedState.setLoadingAction(true);
+
+        const photos = [];
+        const photoThumbs = document.getElementsByClassName('photo-thumb');
+        each(photoThumbs, (photo, index) => {
+          photos[photo.dataset.id] = index + 1;
+        });
+
+        axios.put(`trips/${this.slug}/order`, { photos }).then((response) => {
+          if(response.data.error) {
+            flash.showError(response.data.error.message);
+          } else {
+            flash.showSuccess(response.data.message, true);
+          }
+
+          this.sharedState.setLoadingAction(false);
+        })
+        .catch((error, status) => {
+          if(error.status === 404) {
+            this.sharedState.state.router.replace('/404');
+          }
+
+          flash.showError('There was an unexpected problem. Please try again.');
+          this.sharedState.setLoadingAction(false);
+        });
+      },
+
       /**
        * Update despatch on save
        */
@@ -168,6 +206,28 @@
         });
       },
 
+      dragula() {
+        const els = [];
+
+        els.push(document.getElementById('dragula'));
+
+        // init drake
+        const drake = dragula(els, {
+          revertOnSpill: true,
+          // mirrorContainer: document.body,
+        });
+
+        // on card dropped in to board
+        drake.on('drop', (el, target, source, sibling) => {
+          this.showUpdateOrder = true;
+          // target.classList.remove('cards--empty');
+          // el.classList.add('saving');
+          // this.saveCard(target, el.dataset.hash, el);
+        });
+        // this.sharedState.drake = drake;
+        return drake;
+      },
+
       modal(ref) {
         this.$refs[ref].toggle = true;
       },
@@ -185,15 +245,35 @@
   }
 
   .photo-thumbs {
-    background-color: $col-neutral-lightest;
-    padding: 2px;
     text-align: center;
     margin-bottom: $base-spacing-unit;
   }
 
   .photo-thumb {
     display: inline-block;
-    margin: 2px;
+    padding: 2px;
     cursor: move;
+    background-color: $col-neutral-lightest;
+  }
+
+  .gu-mirror {
+    position: fixed;
+    margin: 0;
+    z-index: 9999;
+    opacity: 0.8;
+    filter: alpha(opacity = 80);
+  }
+
+  .gu-hide {
+    display: none;
+  }
+
+  .gu-unselectable {
+    user-select: none;
+  }
+
+  .gu-transit {
+    opacity: 0.2;
+    filter: alpha(opacity = 20);
   }
 </style>
