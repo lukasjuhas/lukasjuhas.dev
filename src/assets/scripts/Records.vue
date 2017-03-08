@@ -80,6 +80,10 @@
           this.nextPage = response.data.paginator.next_page;
           this.prevPage = response.data.paginator.prev_page;
 
+          // trigger handle scroll in case there is no scroll bar on the page
+          // due to short content
+          this.handleScroll();
+
           this.sharedState.setLoadingAction(false);
         })
         .catch((error) => {

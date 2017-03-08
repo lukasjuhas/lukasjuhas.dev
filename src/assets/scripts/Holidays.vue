@@ -25,7 +25,7 @@
             </section>
         </transition>
         <transition name="fade">
-            <section v-if="items.length && showAllLoaded" class="container align-text-center all-loaded">
+            <section v-if="showAllLoaded" class="container align-text-center all-loaded">
                 <p><em>That's it!</em></p>
             </section>
         </transition>
@@ -88,6 +88,10 @@
           // set next and prev page
           this.nextPage = response.data.paginator.next_page;
           this.prevPage = response.data.paginator.prev_page;
+
+          // trigger handle scroll in case there is no scroll bar on the page
+          // due to short content
+          this.handleScroll();
 
           this.sharedState.setLoadingAction(false);
         })
