@@ -7,12 +7,14 @@
                     <div class="row">
                         <div class="col col--xs-12 col--sm-12 col--md-7 col--lg-7" v-html="item.content"></div>
                     </div>
-                    <div v-if="photos.length" class="photos">
-                        <staggered-fade>
-                            <div v-for="(photo, index) in photos" :style="'transform: translateX(' + (photo.parity === 'even' ? '-' : '' ) + photo.offset + 'px)'" class="photo" :class="'photo--' + photo.parity" :data-offset="photo.offset" :key="index" v-bind:data-index="index">
-                                <img :src="photo.url" :alt="photo.title" />
-                            </div>
-                        </staggered-fade>
+                    <div class="row">
+                        <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
+                            <staggered-fade v-if="photos.length" classes="photos">
+                                <div v-for="(photo, index) in photos" class="photo" :class="'photo--' + photo.parity" :data-offset="photo.offset" :key="index" v-bind:data-index="index">
+                                    <img :src="photo.url" :alt="photo.title" :style="'transform: translateX(' + (photo.parity === 'even' ? '-' : '' ) + photo.offset + 'px)'" />
+                                </div>
+                            </staggered-fade>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,8 +67,6 @@
 
             this.photos.push(photo);
           });
-
-          console.log(response.data.data.photos);
 
           this.item = response.data.data;
           this.sharedState.setLoadingAction(false);
