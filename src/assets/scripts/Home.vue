@@ -35,7 +35,11 @@
                                 <div class="holidays">
                                     <div class="holiday">
                                         <router-link v-bind:to="'/holidays/' + item.slug">
+                                            <div class="holiday__image-wrapper">
+                                                <img v-if="item.feature" :src="item.feature" :alt="item.title">
+                                            </div>
                                             <h2 class="holiday__title">{{ item.title }}</h2>
+                                            <div class="holiday__overlay"></div>
                                         </router-link>
                                     </div>
                                 </div>

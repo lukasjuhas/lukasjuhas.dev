@@ -19,6 +19,11 @@
                             </staggered-fade>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12 align-text-center">
+                            <router-link to="/holidays" class="link link--all-holidays">All holidays</router-link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </transition>
@@ -122,5 +127,10 @@
       right: inherit;
       left: 0;
     }
+  }
+
+  .link--all-holidays {
+    margin-top: $base-spacing-unit * 3;
+    display: inline-block;
   }
 </style>

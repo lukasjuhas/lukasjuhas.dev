@@ -16,7 +16,11 @@
                     <staggered-fade>
                         <li v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
                             <router-link v-bind:to="'/holidays/' + item.slug" v-if="item.content">
+                                <div class="holiday__image-wrapper">
+                                    <img v-if="item.feature" :src="item.feature" :alt="item.title">
+                                </div>
                                 <h1 class="holiday__title">{{ item.title }}</h1>
+                                <div class="holiday__overlay"></div>
                             </router-link>
                             <h2 v-else class="holiday__title">{{ item.title }}</h2>
                         </li>
@@ -123,6 +127,7 @@
 <style lang="scss">
   .holidays {
     text-align: center;
+    overflow: hidden;
   }
 
   .holiday {
@@ -131,18 +136,70 @@
     transition: all $animation-speed $animation;
     background-color: $col-background-dark;
     border-bottom: 1px solid lighten($col-background-dark, 10%);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+
+    .holiday__overlay {
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      background-color: $col-background-dark;
+      opacity: .25;
+      transition: opacity $animation-speed ease-in-out;
+    }
 
     .holiday__title {
       color: lighten($col-background-dark, 10%);
+      opacity: 1;
+      transition: opacity $animation-speed ease-in-out;
     }
 
     a {
       padding: ($base-spacing-unit * 2.5) 0;
       text-decoration: none;
       display: block;
+      transition: transform $animation-speed ease-in-out;
+      position: relative;
+      overflow: hidden;
+
+      .holiday__image-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        overflow: hidden;
+      }
+
+      img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        transition: all $animation-speed linear;
+        z-index: 25;
+      }
 
       .holiday__title {
         color: $col-text-light;
+        position: relative;
+        z-index: 50;
+      }
+
+      &:hover {
+        transform: scale(1.02);
+
+        img {
+          transform: scale(1.1);
+          transition: all 8000ms linear;
+        }
+
+        .holiday__title,
+        .holiday__overlay {
+          opacity: 0;
+        }
       }
     }
   }
