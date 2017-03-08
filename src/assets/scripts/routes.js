@@ -6,9 +6,9 @@ import Despatches from './Despatches.vue';
 import Records from './Records.vue';
 import NotFound from './404.vue';
 import Manage from './Manage.vue';
-import ManageDespatch from './manage/Despatch.vue';
+import ManageDespatch from './manage/EditDespatch.vue';
 import ManageDespatchNew from './manage/NewDespatch.vue';
-import ManageHoliday from './manage/Holiday.vue';
+import ManageHoliday from './manage/EditHoliday.vue';
 import ManageHolidayNew from './manage/NewHoliday.vue';
 
 export default [

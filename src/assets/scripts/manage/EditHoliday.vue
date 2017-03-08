@@ -2,8 +2,8 @@
     <div class="container">
         <transition name="fade">
             <div class="page">
-                <h1>{{ title }}</h1>
-                <p>Gallery manager</p>
+                <editor v-show="show" class="holiday-editor"></editor>
+                <h3>Gallery manager</h3>
                 <button class="button button--primary" type="button" @click="modal('upload')" name="button">Upload</button>
             </div>
         </transition>
@@ -24,9 +24,10 @@
   import store from '../store';
   import flash from '../helpers/flash';
   import Modal from '../components/Modal.vue';
+  import Editor from '../components/Editor.vue';
 
   export default {
-    name: 'manage-despatch',
+    name: 'manage-holiday',
 
     props: {
       slug: {
@@ -37,6 +38,7 @@
     },
 
     components: {
+      Editor,
       Modal,
     },
 
@@ -100,7 +102,6 @@
 
       onPhotoChange(ele) {
         this.files = ele.target.files || ele.dataTransfer.files;
-        console.log(this.files)
       },
 
       upload(ele) {
@@ -133,6 +134,32 @@
         });
       },
 
+      /**
+       * Update despatch on save
+       */
+      save(title, content) {
+        flash.hide();
+        this.sharedState.setLoadingAction(true);
+
+        axios.put(`trips/${this.slug}`, { title, content }).then((response) => {
+          if(response.data.error) {
+            flash.showError(response.data.error.message);
+          } else {
+            flash.showSuccess(response.data.message, true);
+          }
+
+          this.sharedState.setLoadingAction(false);
+        })
+        .catch((error, status) => {
+          if(error.status === 404) {
+            this.sharedState.state.router.replace('/404');
+          }
+
+          flash.showError('There was an unexpected problem. Please try again.');
+          this.sharedState.setLoadingAction(false);
+        });
+      },
+
       modal(ref) {
         this.$refs[ref].toggle = true;
       },
@@ -143,3 +170,9 @@
     }
   }
 </script>
+
+<style lang="scss">
+  .holiday-editor {
+    margin-bottom: $base-spacing-unit * 2;
+  }
+</style>
