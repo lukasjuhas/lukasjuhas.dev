@@ -33,6 +33,7 @@
                     <editor saveMethod="saveEditPhotoEditor" notitle id="editor-photo-content"></editor>
                 </div>
                 <button type="button" name="removePhoto" class="button button--danger" @click="removePhoto">Remove Photo</button>
+                <button type="button" name="makeFeature" class="button button--secondary" @click="makeFeature">Make as Featured Image</button>
             </div>
         </modal>
     </div>
@@ -282,6 +283,30 @@
 
       removePhoto() {
         console.log('removePhoto');
+      },
+
+      makeFeature() {
+        this.closeModal('editPhoto');
+        this.sharedState.setLoadingAction(true);
+
+        axios.put(`trips/${this.slug}/update-feature`, { photo: this.editingPhoto.url }).then((response) => {
+          if(response.data.error) {
+            flash.showError(response.data.error.message);
+          } else {
+            flash.showSuccess(response.data.message, true);
+          }
+
+          this.sharedState.setLoadingAction(false);
+        })
+        .catch((error, status) => {
+          this.sharedState.setLoadingAction(false);
+          console.log(error, status);
+          if(error.status === 404) {
+            this.sharedState.state.router.replace('/404');
+          }
+
+          flash.showError('There was an unexpected problem. Please try again.');
+        });
       },
 
       modal(ref) {
