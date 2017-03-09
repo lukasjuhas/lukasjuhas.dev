@@ -86,7 +86,7 @@
       /**
        * Update despatch on save
        */
-      save(title, content) {
+      saveEditor(title, content) {
         flash.hide();
         this.sharedState.setLoadingAction(true);
 

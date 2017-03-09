@@ -100,7 +100,7 @@
 
 <style lang="scss">
   .photos {
-    margin-top: $base-spacing-unit * 2;
+    margin-top: $base-spacing-unit * 3;
 
     img {
       max-width: 100%;

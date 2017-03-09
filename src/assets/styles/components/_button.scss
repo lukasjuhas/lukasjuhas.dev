@@ -108,3 +108,18 @@ button {
     color: $col-text-light;
   }
 }
+
+.button--danger {
+  background-color: $col-danger;
+  color: $col-text-light;
+  border-color: $col-danger;
+  border: 2px solid $col-danger;
+
+  &.button--active,
+  &:active,
+  &:hover {
+    background-color: transparent;
+    border: 2px solid $col-danger;
+    color: $col-danger;
+  }
+}

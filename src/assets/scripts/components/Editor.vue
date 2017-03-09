@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <div class="editor__header">
+        <div v-if="showHeader" class="editor__header">
             <h1 class="editor__title editable"></h1>
         </div>
         <div class="editor__content editable"></div>
@@ -11,7 +11,7 @@
         <modal ref="addMedia" v-cloak>
             <h3 slot="header">Add Image</h3>
             <form slot="body" method="post" class="form" v-on:submit.prevent="uploadImage">
-                <div class="from__group">
+                <div class="form__group">
                     <input type="file" name="image" accept="image/*">
                 </div>
                 <button type="submit" name="upload" class="button button--primary">Upload & Insert</button>
@@ -23,9 +23,24 @@
 <script>
   import MediumEditor from 'medium-editor';
   import Modal from './Modal.vue';
+  import flash from '../helpers/flash';
 
   export default {
     name: 'editor',
+
+    props: {
+      notitle: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+
+      saveMethod: {
+        type: String,
+        required: false,
+        default: 'saveEditor',
+      }
+    },
 
     components: {
       Modal,
@@ -36,10 +51,14 @@
         editor: null,
         showSave: false,
         showAddMedia: true,
+        showHeader: true,
+        parentSaveMethod: false,
       }
     },
 
     mounted() {
+      this.showHeader = !this.notitle;
+      this.parentSaveMethod = this.saveMethod;
       this.initEditor();
     },
 
@@ -110,11 +129,17 @@
           return false;
         }
 
+        if(!this.parentSaveMethod) {
+          return false;
+        }
+
         // if parent has save function, prioritise it
-        if (typeof this.$parent.save === 'function') {
-            this.$parent.save(title, content);
+        if (typeof this.$parent[this.parentSaveMethod] === 'function') {
+          this.$parent[this.parentSaveMethod](title, content);
         } else {
-          // TODO: handle saving
+          const errorMessage = 'You probably forgot to define (default) "saveEditor" method on your component or forgot to reference custom method via "saveMethod" prop.';
+          console.log(errorMessage);
+          flash.showError(errorMessage);
         }
       },
 

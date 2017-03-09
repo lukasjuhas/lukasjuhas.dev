@@ -1,3 +1,10 @@
-.from__group {
+.form__group {
   margin-bottom: $base-spacing-unit;
+}
+
+input[type="text"],
+textarea {
+  border: 1px solid $col-neutral;
+  width: 100%;
+  max-width: 400px;
 }

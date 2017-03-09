@@ -5,8 +5,8 @@
                 <editor v-show="show" class="holiday-editor"></editor>
 
                 <h3>Gallery manager</h3>
-                <div v-if="photos" class="photo-thumbs" id="dragula">
-                    <div v-for="photo in photos" class="photo-thumb" :data-id="photo.id">
+                <div v-if="item && item.photos.length" class="photo-thumbs" id="dragula">
+                    <div v-for="photo in item.photos" class="photo-thumb" :data-id="photo.id" @click="handleClickPhoto">
                         <img :src="photo.thumb" :alt="photo.title">
                     </div>
                 </div>
@@ -17,11 +17,23 @@
         <modal ref="uploadModal" v-cloak>
             <h3 slot="header">Add Photos</h3>
             <form slot="body" method="post" class="form" v-on:submit.prevent="upload"  enctype="multipart/form-data">
-                <div class="from__group">
+                <div class="form__group">
                     <input v-on:change="onPhotoChange" v-model="photos" type="file" name="photo[]" accept="image/*" multiple>
                 </div>
                 <button type="submit" name="upload" class="button button--primary">Upload</button>
             </form>
+        </modal>
+        <modal ref="editPhoto" v-cloak>
+            <h3 slot="header">Edit Photo</h3>
+            <div v-if="editingPhoto" slot="body">
+                <div class="form__group">
+                    <img :src="editingPhoto.thumb" :alt="editingPhoto.title">
+                </div>
+                <div class="form__group">
+                    <editor saveMethod="saveEditPhotoEditor" notitle id="editor-photo-content"></editor>
+                </div>
+                <button type="button" name="removePhoto" class="button button--danger" @click="removePhoto">Remove Photo</button>
+            </div>
         </modal>
     </div>
 </template>
@@ -54,11 +66,11 @@
       return {
         sharedState: store,
         show: false,
-        title: null,
-        content: null,
         files: null,
-        photos: [],
         showUpdateOrder: false,
+        item: null,
+        photos: [],
+        editingPhoto: null,
       }
     },
 
@@ -74,33 +86,30 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get(`trips/${this.slug}?all=1`).then((response) => {
-          if(response.data.data.title) {
-            this.title = response.data.data.title;
+          this.item = response.data.data;
 
+          if(this.item.title) {
             // remove placeholder
             const titleEl = document.getElementsByClassName('editor__title');
             if (titleEl[0]) {
-              titleEl[0].innerHTML = this.title;
+              titleEl[0].innerHTML = this.item.title;
               titleEl[0].classList.remove('medium-editor-placeholder');
             }
           }
 
-          if(response.data.data.content) {
-            this.content = response.data.data.content;
-            this.photos = response.data.data.photos;
-
-            if(this.photos) {
-              setTimeout(() => {
-                this.dragula();
-              }, 10);
-            }
-
+          if(this.item.content) {
             // remove placeholder
             const contentEl = document.getElementsByClassName('editor__content');
             if (contentEl[0]) {
-              contentEl[0].innerHTML = this.content;
+              contentEl[0].innerHTML = this.item.content;
               contentEl[0].classList.remove('medium-editor-placeholder');
             }
+          }
+
+          if(this.item.photos) {
+            setTimeout(() => {
+              this.dragula();
+            }, 10);
           }
 
           this.show = true;
@@ -185,7 +194,7 @@
       /**
        * Update despatch on save
        */
-      save(title, content) {
+      saveEditor(title, content) {
         flash.hide();
         this.sharedState.setLoadingAction(true);
 
@@ -228,6 +237,51 @@
         });
         // this.sharedState.drake = drake;
         return drake;
+      },
+
+      handleClickPhoto(ev) {
+        if(ev.target.parentNode.dataset.id) {
+          this.fetchPhoto(ev.target.parentNode.dataset.id);
+        }
+      },
+
+      fetchPhoto(id) {
+        this.sharedState.setLoadingAction(true);
+
+        axios.get(`photos/${id}`).then((response) => {
+          this.editingPhoto = response.data.data;
+          this.modal('editPhoto');
+
+          setTimeout(() => {
+            if(this.editingPhoto.caption) {
+              const editorPhotoContent = document.getElementById('editor-photo-content');
+              if (editorPhotoContent && editorPhotoContent.firstElementChild) {
+                editorPhotoContent.firstElementChild.innerHTML = this.editingPhoto.caption;
+                editorPhotoContent.firstElementChild.classList.remove('medium-editor-placeholder');
+              }
+            }
+          }, 10);
+
+          this.sharedState.setLoadingAction(false);
+        })
+        .catch((error, status) => {
+          this.sharedState.setLoadingAction(false);
+          if(error.status === 404) {
+            this.sharedState.state.router.replace('/404');
+          }
+        });
+      },
+
+      saveEditPhotoEditor() {
+        console.log('saveEditPhotoEditor');
+      },
+
+      onEditPhotoSubmit() {
+        console.log('onEditPhotoSubmit');
+      },
+
+      removePhoto() {
+        console.log('removePhoto');
       },
 
       modal(ref) {
