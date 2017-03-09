@@ -11,7 +11,30 @@
                         <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
                             <staggered-fade v-if="photos.length" classes="photos">
                                 <div v-for="(photo, index) in photos" class="photo" :class="'photo--' + photo.parity" :data-offset="photo.offset" :key="index" v-bind:data-index="index">
-                                    <img class="photo__image" v-lazy="photo.url" :alt="photo.title" :style="'transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'" />
+                                    <div class="photo__image-container" :style="'z-index: ' + (300 - index) + '; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'">
+                                        <div class="photo__info">
+                                            <div class="photo__info__content">
+                                                <ul class="list list--photo-info">
+                                                    <li v-if="photo.data.Make && photo.data.Model" title="Camera">
+                                                        <svg class="photo__info__icon"><use xlink:href="#camera"></use></svg> {{ photo.data.Make }} {{ photo.data.Model }}
+                                                    </li>
+                                                    <li v-if="photo.data.ExposureTime" title="Exposure">
+                                                        <svg class="photo__info__icon"><use xlink:href="#exposure"></use></svg> {{ photo.data.ExposureTime }}
+                                                    </li>
+                                                    <li v-if="photo.data.FNumber" title="Apreture">
+                                                        <svg class="photo__info__icon"><use xlink:href="#fnumber"></use></svg> 𝑓/{{ photo.data.FNumber }}
+                                                    </li>
+                                                    <li v-if="photo.data.FocalLength" title="Focal Length">
+                                                        <svg class="photo__info__icon"><use xlink:href="#lens"></use></svg> {{ photo.data.FocalLength }}
+                                                    </li>
+                                                    <li v-if="photo.data.ISOSpeedRatings" title="ISO">
+                                                        <svg class="photo__info__icon"><use xlink:href="#iso"></use></svg> {{ photo.data.ISOSpeedRatings }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <img class="photo__image" v-lazy="photo.url" :alt="photo.title" />
+                                    </div>
                                     <div class="photo__caption">
                                         {{ photo.caption }}
                                         <p v-if="!photo.caption">Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>
@@ -78,6 +101,8 @@
             this.photos.push(photo);
           });
 
+          console.log(this.photos);
+
           this.item = response.data.data;
           this.sharedState.setLoadingAction(false);
 
@@ -120,6 +145,7 @@
     top: 50%;
     transform: translateY(-50%);
     right: 0;
+    z-index: 10;
   }
 
   .photo--odd {
@@ -128,6 +154,62 @@
     .photo__caption {
       right: inherit;
       left: 0;
+    }
+  }
+
+  .photo__image-container {
+    position: relative;
+    display: inline-block;
+    background: $col-background-dark;
+    background: linear-gradient(135deg, $col-background-dark 0%, $col-brand 100%);
+    z-index: 20;
+
+    &:hover {
+      .photo__info {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  .photo__info {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    right: 0;
+    left: 0;
+    height: 25%;
+    bottom: 0;
+    z-index: 25;
+    font-size: 14px;
+    color: $col-text-light;
+    background: linear-gradient(0deg, $col-brand 15%, transparent 100%);
+    transition: all $animation-speed linear;
+
+    .photo__info__content {
+      align-self: flex-end;
+      padding: ($base-spacing-unit / 2) 0;
+    }
+  }
+
+  .photo__info__icon {
+    fill: $col-text-light;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .list--photo-info {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      margin: 0 ($base-spacing-unit / 2);
+      line-height: 20px;
     }
   }
 
