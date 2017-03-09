@@ -138,7 +138,7 @@
   * Lazy loading
   */
   img{
-    transition: opacity $animation-speed $animation;
+    transition: all $animation-speed $animation;
 
     &[lazy=loading]{
       opacity: 0;

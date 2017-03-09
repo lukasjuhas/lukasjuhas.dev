@@ -11,7 +11,7 @@
                         <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
                             <staggered-fade v-if="photos.length" classes="photos">
                                 <div v-for="(photo, index) in photos" class="photo" :class="'photo--' + photo.parity" :data-offset="photo.offset" :key="index" v-bind:data-index="index">
-                                    <div class="photo__image-container" :style="'z-index: ' + (300 - index) + '; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'">
+                                    <div class="photo__image-container" :style="'width: ' + photo.width + 'px; height: ' + photo.height + 'px; z-index: ' + (300 - index) + '; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'">
                                         <div class="photo__info">
                                             <div class="photo__info__content">
                                                 <ul class="list list--photo-info">
