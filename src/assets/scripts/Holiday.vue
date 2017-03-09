@@ -11,9 +11,10 @@
                         <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
                             <staggered-fade v-if="photos.length" classes="photos">
                                 <div v-for="(photo, index) in photos" class="photo" :class="'photo--' + photo.parity" :data-offset="photo.offset" :key="index" v-bind:data-index="index">
-                                    <img class="photo__image" :src="photo.url" :alt="photo.title" :style="'transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'" />
+                                    <img class="photo__image" v-lazy="photo.url" :alt="photo.title" :style="'transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'" />
                                     <div class="photo__caption">
-                                        <p>Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>
+                                        {{ photo.caption }}
+                                        <p v-if="!photo.caption">Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>
                                     </div>
                                 </div>
                             </staggered-fade>
@@ -110,6 +111,7 @@
 
   .photo {
     position: relative;
+    min-height: 700px;
   }
 
   .photo__caption {

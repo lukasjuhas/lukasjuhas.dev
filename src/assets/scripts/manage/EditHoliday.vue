@@ -4,7 +4,7 @@
             <div class="page">
                 <editor v-show="show" class="holiday-editor"></editor>
 
-                <h3>Gallery manager</h3>
+                <h3>Photo manager</h3>
                 <div v-if="item && item.photos.length" class="photo-thumbs" id="dragula">
                     <div v-for="photo in item.photos" class="photo-thumb" :data-id="photo.id" @click="handleClickPhoto">
                         <img :src="photo.thumb" :alt="photo.title">
@@ -326,7 +326,7 @@
   }
 
   .photo-thumbs {
-    text-align: center;
+    text-align: left;
     margin-bottom: $base-spacing-unit;
   }
 

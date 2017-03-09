@@ -133,4 +133,21 @@
     transform: translateX($base-spacing-unit);
     opacity: 0;
   }
+
+  /*
+  * Lazy loading
+  */
+  img{
+    transition: opacity $animation-speed $animation;
+
+    &[lazy=loading]{
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &[lazy=loaded]{
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 </style>

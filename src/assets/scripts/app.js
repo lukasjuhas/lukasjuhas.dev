@@ -3,6 +3,7 @@
 import axios from 'axios/dist/axios';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueLazyload from 'vue-lazyload'
 import App from './App.vue';
 import routes from './routes';
 import config from './config';
@@ -13,6 +14,7 @@ window.axios.defaults.baseURL = config.baseApiUrl;
 window.axios.defaults.timeout = config.timeout;
 
 Vue.use(VueRouter);
+Vue.use(VueLazyload);
 
 store.state.router = new VueRouter({
   mode: config.debug ? 'hash' : 'history',
