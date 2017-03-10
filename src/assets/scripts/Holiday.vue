@@ -3,7 +3,7 @@
         <transition name="fade">
             <div v-if="item" class="container">
                 <h1 class="page__title">{{ item.title }}</h1>
-                <div class="page__content">
+                <div class="page__content page__content--serif">
                     <div class="row">
                         <div class="col col--xs-12 col--sm-12 col--md-7 col--lg-7" v-html="item.content"></div>
                     </div>
@@ -11,7 +11,7 @@
                         <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
                             <staggered-fade v-if="photos.length" classes="photos">
                                 <div v-for="(photo, index) in photos" class="photo" :class="'photo--' + photo.parity" :data-offset="photo.offset" :key="index" v-bind:data-index="index">
-                                    <div class="photo__image-container" :style="'width: ' + photo.width + 'px; height: ' + photo.height + 'px; z-index: ' + (300 - index) + '; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'">
+                                    <div class="photo__image-container" :style="'width: ' + photo.width + 'px; height: ' + photo.height + 'px; z-index: ' + (photos.length - index) + '; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'">
                                         <div class="photo__info">
                                             <div class="photo__info__content">
                                                 <ul class="list list--photo-info">
@@ -35,10 +35,7 @@
                                         </div>
                                         <img class="photo__image" v-lazy="photo.url" :alt="photo.title" />
                                     </div>
-                                    <div class="photo__caption">
-                                        {{ photo.caption }}
-                                        <p v-if="!photo.caption">Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>
-                                    </div>
+                                    <div class="photo__caption" v-html="photo.caption || '<p>Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>'"></div>
                                 </div>
                             </staggered-fade>
                         </div>
@@ -145,7 +142,9 @@
     top: 50%;
     transform: translateY(-50%);
     right: 0;
-    z-index: 10;
+    z-index: 250;
+    font-family: $serif-font-family;
+    font-weight: $serif-font-weight;
   }
 
   .photo--odd {

@@ -191,6 +191,7 @@
 
   .editor__content {
     font-family: $serif-font-family;
+    font-weight: $serif-font-weight;
   }
 
   .media-button {
