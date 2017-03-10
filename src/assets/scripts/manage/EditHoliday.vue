@@ -275,8 +275,32 @@
         });
       },
 
-      saveEditPhotoEditor() {
-        console.log('saveEditPhotoEditor');
+      saveEditPhotoEditor(title, content) {
+        flash.hide();
+
+        this.closeModal('editPhoto');
+
+        this.sharedState.setLoadingAction(true);
+
+        const id = this.editingPhoto.id;
+
+        axios.put(`photos/${id}`, { title, content }).then((response) => {
+          if(response.data.error) {
+            flash.showError(response.data.error.message);
+          } else {
+            flash.showSuccess(response.data.message, true);
+          }
+
+          this.sharedState.setLoadingAction(false);
+        })
+        .catch((error, status) => {
+          if(error.status === 404) {
+            this.sharedState.state.router.replace('/404');
+          }
+
+          flash.showError('There was an unexpected problem. Please try again.');
+          this.sharedState.setLoadingAction(false);
+        });
       },
 
       onEditPhotoSubmit() {
