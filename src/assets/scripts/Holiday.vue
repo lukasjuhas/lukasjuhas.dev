@@ -1,48 +1,50 @@
 <template>
     <div class="page">
         <transition name="fade">
-            <div v-if="item" class="container">
-                <h1 class="page__title">{{ item.title }}</h1>
-                <div class="page__content page__content--serif">
-                    <div class="row">
-                        <div class="col col--xs-12 col--sm-12 col--md-7 col--lg-7" v-html="item.content"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
-                            <staggered-fade v-if="photos.length" classes="photos">
-                                <div v-for="(photo, index) in photos" class="photo" :class="'photo--' + photo.parity" :data-offset="photo.offset" :key="index" v-bind:data-index="index">
-                                    <div class="photo__image-container" :style="'width: ' + photo.width + 'px; height: ' + photo.height + 'px; z-index: ' + (photos.length - index) + '; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'">
-                                        <div class="photo__info">
-                                            <div class="photo__info__content">
-                                                <ul class="list list--photo-info">
-                                                    <li v-if="photo.data.Make && photo.data.Model" title="Camera">
-                                                        <svg class="photo__info__icon"><use xlink:href="#camera"></use></svg> {{ photo.data.Make }} {{ photo.data.Model }}
-                                                    </li>
-                                                    <li v-if="photo.data.ExposureTime" title="Exposure">
-                                                        <svg class="photo__info__icon"><use xlink:href="#exposure"></use></svg> {{ photo.data.ExposureTime }}
-                                                    </li>
-                                                    <li v-if="photo.data.FNumber" title="Apreture">
-                                                        <svg class="photo__info__icon"><use xlink:href="#fnumber"></use></svg> 𝑓/{{ photo.data.FNumber }}
-                                                    </li>
-                                                    <li v-if="photo.data.FocalLength" title="Focal Length">
-                                                        <svg class="photo__info__icon"><use xlink:href="#lens"></use></svg> {{ photo.data.FocalLength }}
-                                                    </li>
-                                                    <li v-if="photo.data.ISOSpeedRatings" title="ISO">
-                                                        <svg class="photo__info__icon"><use xlink:href="#iso"></use></svg> {{ photo.data.ISOSpeedRatings }}
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <img class="photo__image" v-lazy="photo.url" :alt="photo.title" />
-                                    </div>
-                                    <div class="photo__caption" v-html="photo.caption || '<p>Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>'"></div>
-                                </div>
-                            </staggered-fade>
+            <div class="holiday-container">
+                <div v-if="item" class="container">
+                    <h1 class="page__title">{{ item.title }}</h1>
+                    <div class="page__content page__content--serif">
+                        <div class="row">
+                            <div class="col col--xs-12 col--sm-12 col--md-7 col--lg-7" v-html="item.content"></div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12 align-text-center">
-                            <router-link to="/holidays" class="link link--all-holidays">All holidays</router-link>
+                        <div class="row">
+                            <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
+                                <staggered-fade v-if="photos.length" classes="photos">
+                                    <div v-for="(photo, index) in photos" class="photo" :class="'photo--' + photo.parity + ' photo--' + photo.orientation" :data-offset="photo.offset" :key="index" v-bind:data-index="index">
+                                        <div class="photo__image-container" :style="'width: ' + photo.width + 'px; height: ' + photo.height + 'px; z-index: ' + (photos.length - index) + '; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'">
+                                            <div class="photo__info">
+                                                <div class="photo__info__content">
+                                                    <ul class="list list--photo-info">
+                                                        <li v-if="photo.data.Make && photo.data.Model" title="Camera">
+                                                            <svg class="photo__info__icon"><use xlink:href="#camera"></use></svg> {{ photo.data.Make }} {{ photo.data.Model }}
+                                                        </li>
+                                                        <li v-if="photo.data.ExposureTime" title="Exposure">
+                                                            <svg class="photo__info__icon"><use xlink:href="#exposure"></use></svg> {{ photo.data.ExposureTime }}
+                                                        </li>
+                                                        <li v-if="photo.data.FNumber" title="Apreture">
+                                                            <svg class="photo__info__icon"><use xlink:href="#fnumber"></use></svg> 𝑓/{{ photo.data.FNumber }}
+                                                        </li>
+                                                        <li v-if="photo.data.FocalLength" title="Focal Length">
+                                                            <svg class="photo__info__icon"><use xlink:href="#lens"></use></svg> {{ photo.data.FocalLength }}
+                                                        </li>
+                                                        <li v-if="photo.data.ISOSpeedRatings" title="ISO">
+                                                            <svg class="photo__info__icon"><use xlink:href="#iso"></use></svg> {{ photo.data.ISOSpeedRatings }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <img class="photo__image" v-lazy="photo.url" :alt="photo.title" />
+                                        </div>
+                                        <div class="photo__caption" v-html="photo.caption || '<p>Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>'"></div>
+                                    </div>
+                                </staggered-fade>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12 align-text-center">
+                                <router-link to="/holidays" class="link link--all-holidays">All holidays</router-link>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,6 +124,12 @@
 </script>
 
 <style lang="scss">
+  .holiday-container {
+    width: $grid-max-width + 150; // grid + offsetX range for photo
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
   .photos {
     margin-top: $base-spacing-unit * 3;
 
@@ -153,6 +161,12 @@
     .photo__caption {
       right: inherit;
       left: 0;
+    }
+  }
+
+  .photo--landscape {
+    .photo__caption {
+      width: 17%;
     }
   }
 
