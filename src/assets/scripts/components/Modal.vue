@@ -64,7 +64,7 @@
 
   .modal-container {
     position: relative;
-    width: 400px;
+    width: 500px;
     max-width: 80%;
     margin: 0 auto;
     padding: $base-spacing-unit;

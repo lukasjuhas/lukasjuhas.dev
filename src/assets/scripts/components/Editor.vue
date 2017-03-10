@@ -141,6 +141,8 @@
           console.log(errorMessage);
           flash.showError(errorMessage);
         }
+
+        this.showSave = false;
       },
 
       onKeypress(event) {

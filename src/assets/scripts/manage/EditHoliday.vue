@@ -41,6 +41,8 @@
 
 <script>
   import each from 'lodash/each';
+  import findKey from 'lodash/findKey';
+  import omit from 'lodash/omit';
   import dragula from 'dragula';
   import store from '../store';
   import flash from '../helpers/flash';
@@ -282,7 +284,34 @@
       },
 
       removePhoto() {
-        console.log('removePhoto');
+        this.closeModal('editPhoto');
+        this.sharedState.setLoadingAction(true);
+
+        const id = this.editingPhoto.id;
+
+        axios.delete(`photos/${id}`).then((response) => {
+          if(response.data.error) {
+            flash.showError(response.data.error.message);
+          } else {
+            flash.showSuccess(response.data.message, true);
+
+            // might need to look at this as it's omiting all of them
+            const photoKey = findKey(this.item.photos, { id });
+            this.item.photos = omit(this.item.photos, photoKey);
+            this.fetchTrip();
+          }
+
+          this.sharedState.setLoadingAction(false);
+        })
+        .catch((error, status) => {
+          this.sharedState.setLoadingAction(false);
+          console.log(error, status);
+          if(error.status === 404) {
+            this.sharedState.state.router.replace('/404');
+          }
+
+          flash.showError('There was an unexpected problem. Please try again.');
+        });
       },
 
       makeFeature() {
