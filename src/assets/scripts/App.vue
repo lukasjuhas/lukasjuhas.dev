@@ -10,6 +10,11 @@
                     <router-view></router-view>
                 </div>
             </transition>
+            <transition name="fade">
+                <footer class="footer">
+                    <div class="copy">&copy; 2009 - {{ year }} Lukas Juhas. All Rights Reserved.</div>
+                </footer>
+            </transition>
         </div>
     </transition>
 </template>
@@ -31,6 +36,7 @@
       return {
         sharedState: store,
         show: false,
+        year: new Date().getFullYear(),
       }
     },
 
@@ -99,8 +105,16 @@
 <style lang="scss">
   @import '../src/assets/styles/config/variables';
 
+  .main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100vh;
+  }
+
   .content {
     padding: ($base-spacing-unit * 5) 0;
+    flex: 1 0 auto;
   }
 
   .page__title {
@@ -122,6 +136,23 @@
     margin-bottom: $base-spacing-unit * 2;
   }
 
+  .footer {
+    padding: $base-spacing-unit;
+    font-size: 10px;
+
+    .gradient & {
+      color: $col-text-light;
+    }
+  }
+
+  .copy {
+    text-align: right;
+    opacity: .5;
+  }
+
+  /**
+   * Vue Animations
+   */
   .fade-enter-active, .fade-leave-active {
     transition: opacity $animation-speed;
   }
