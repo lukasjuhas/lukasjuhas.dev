@@ -15,7 +15,7 @@
                 </div>
             </transition>
             <transition name="fade">
-                <section v-if="items.length && showAllLoaded" class="container">
+                <section v-if="showAllLoaded" class="container align-text-center all-loaded">
                     <p><em>That's it!</em></p>
                 </section>
             </transition>

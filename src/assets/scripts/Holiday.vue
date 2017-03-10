@@ -34,7 +34,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <img class="photo__image" v-lazy="photo.url" :alt="photo.title" />
+                                            <img class="photo__image" :src="photo.url" :alt="photo.title" />
                                         </div>
                                         <div class="photo__caption" v-html="photo.caption || '<p>Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>'"></div>
                                     </div>
