@@ -125,7 +125,7 @@
         const title = this.editor.elements[0].innerHTML;
         const content = this.editor.elements[1].innerHTML;
 
-        if(!content || !title) {
+        if(!content && !title) {
           return false;
         }
 
@@ -133,9 +133,17 @@
           return false;
         }
 
+        // if parent is modal, go to grand parent
+        let parent;
+        if(this.$parent._name === '<Modal>') {
+          parent = this.$parent.$parent;
+        } else {
+          parent = this.$parent;
+        }
+
         // if parent has save function, prioritise it
-        if (typeof this.$parent[this.parentSaveMethod] === 'function') {
-          this.$parent[this.parentSaveMethod](title, content);
+        if (typeof parent[this.parentSaveMethod] === 'function') {
+          parent[this.parentSaveMethod](title, content);
         } else {
           const errorMessage = 'You probably forgot to define (default) "saveEditor" method on your component or forgot to reference custom method via "saveMethod" prop.';
           console.log(errorMessage);

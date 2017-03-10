@@ -30,7 +30,7 @@
                     <img :src="editingPhoto.thumb" :alt="editingPhoto.title">
                 </div>
                 <div class="form__group">
-                    <editor saveMethod="saveEditPhotoEditor" notitle id="editor-photo-content"></editor>
+                    <editor save-method="saveEditPhotoEditor" notitle id="editor-photo-content"></editor>
                 </div>
                 <button type="button" name="removePhoto" class="button button--danger" @click="removePhoto">Remove Photo</button>
                 <button type="button" name="makeFeature" class="button button--secondary" @click="makeFeature">Make as Featured Image</button>
