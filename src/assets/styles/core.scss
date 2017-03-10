@@ -72,20 +72,11 @@ main {
 }
 
 a {
-  color: $col-text;
+  color: inherit;
 
   &:hover,
   &:visited {
-    color: $col-text;
-  }
-
-  .dark & {
-    color: $col-text-light;
-
-    &:hover,
-    &:visited {
-      color: $col-text-light;
-    }
+    color: inherit;
   }
 }
 

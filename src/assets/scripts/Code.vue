@@ -9,14 +9,18 @@
                         <div v-for="item in items" class="col col--xs-12 col--sm-6 col--md-6 col--lg-6">
                             <div class="code">
                                 <h3 class="code__title">{{ item.name }}</h3>
-                                <p>{{ item.description }}</p>
-                                <a v-if="item.github" v-bind:href="item.github" target="_blank" rel="noopener">View Code</a>
+                                <div class="code__content">
+                                    <p>{{ item.description }}</p>
+                                </div>
+                                <div class="code__foter">
+                                    <a v-if="item.github" v-bind:href="item.github" target="_blank" rel="noopener">View Code</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </transition>
-            <p>Any many more secret projects in works... See more of my code on <a href="https://github.com/lukasjuhas/">Github</a>.</p>
+            <p>See more of my code on <a href="https://github.com/lukasjuhas/" target="_blank" rel="noopener">Github</a>.</p>
         </div>
     </div>
 </template>
@@ -68,14 +72,20 @@
             name: 'dotfiles',
             github: 'https://github.com/lukasjuhas/dotfiles',
             link: null,
-            description: 'Dotfiles & configs I use on a day-to-day basis.'
+            description: 'Dotfiles & configs I use on a day-to-day basis.',
+          },
+          {
+            name: 'Did You Know?',
+            github: 'https://github.com/lukasjuhas/did-you-know',
+            link: null,
+            description: 'List of interesting facts that mostly geeks will appreciate. (Used on this site for 404 page)',
           },
         ],
       }
     },
 
     mounted() {
-      document.documentElement.classList.add('gradient');
+      document.documentElement.classList.add('dark');
     }
   };
 </script>
@@ -88,8 +98,15 @@
   }
 
   .code {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     background-color: $col-background;
     padding: ($base-spacing-unit / 2) $base-spacing-unit;
+    color: $col-text;
+  }
+
+  .code__content {
+    flex: 1 0 auto;
   }
 </style>
