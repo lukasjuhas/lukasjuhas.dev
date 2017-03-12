@@ -4,6 +4,7 @@ import Holidays from './Holidays.vue';
 import Holiday from './Holiday.vue';
 import Despatches from './Despatches.vue';
 import Records from './Records.vue';
+import Login from './Login.vue';
 import NotFound from './404.vue';
 import Manage from './Manage.vue';
 import ManageDespatch from './manage/EditDespatch.vue';
@@ -49,28 +50,38 @@ export default [
     path: '/manage',
     component: Manage,
     name: 'Manage',
+    meta: { requiresAuth: true },
   },
   {
     path: '/manage/despatch/new',
     component: ManageDespatchNew,
     name: 'New Despatch',
+    meta: { requiresAuth: true },
   },
   {
     path: '/manage/despatch/:slug',
     component: ManageDespatch,
     name: 'Edit Despatch',
     props: true,
+    meta: { requiresAuth: true },
   },
   {
     path: '/manage/holiday/new',
     component: ManageHolidayNew,
     name: 'New Holiday',
+    meta: { requiresAuth: true },
   },
   {
     path: '/manage/holiday/:slug',
     component: ManageHoliday,
     name: 'Edit Holiday',
     props: true,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/login',
+    component: Login,
+    name: 'Login',
   },
   {
     path: '/404',

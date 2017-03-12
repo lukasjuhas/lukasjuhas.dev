@@ -7,6 +7,7 @@ const store = {
   state: {
     loading: false,
     router: null,
+    authToken: false,
     flash: {
       show: false,
       status: 'error',
