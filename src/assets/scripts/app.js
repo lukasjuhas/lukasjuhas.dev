@@ -1,5 +1,5 @@
 /* global window */
-/* eslint-disable no-new */
+/* eslint-disable no-new, no-param-reassign */
 import axios from 'axios/dist/axios';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
@@ -17,6 +17,37 @@ window.axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
 };
 
+window.axios.interceptors.request.use((axiosConfig) => {
+  if (store.state.auth) {
+    axiosConfig.headers.common.Authorization = `Bearer ${store.state.token}`;
+  }
+
+  return axiosConfig;
+}, (error) => {
+  // check if unauthorized error returned
+  if (error.response.status === 401) {
+    // go to login
+  }
+  return Promise.reject(error);
+});
+
+// Add a response interceptor
+axios.interceptors.response.use((response) => {
+  if (response.data.token) {
+    store.setAuthTokenAction(response.data.token);
+  }
+
+  if (response.status === 500) {
+    if (response.data.message === 'Token has expired, but is still valid.') {
+      console.log('RETRY', response);
+    } else {
+      alert('Whoops, an unknown error occured.');
+    }
+  }
+
+  return response;
+}, error => Promise.reject(error));
+
 window.Form = Form;
 
 Vue.use(VueRouter);
@@ -32,7 +63,7 @@ store.state.router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    if (!store.state.authToken) {
+    if (!store.state.auth) {
       next({
         path: '/login',
         query: { redirect: to.fullPath },

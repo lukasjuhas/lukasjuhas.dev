@@ -7,7 +7,8 @@ const store = {
   state: {
     loading: false,
     router: null,
-    authToken: false,
+    auth: false,
+    token: '',
     flash: {
       show: false,
       status: 'error',
@@ -22,6 +23,16 @@ const store = {
   clearLoadingAction() {
     this.debug && console.log('clearLoadingAction triggered');
     this.state.loading = false;
+  },
+  setAuthTokenAction(token) {
+    this.debug && console.log('setAuthTokenAction triggered');
+    if (token) {
+      this.state.auth = true;
+      this.state.token = token;
+    } else {
+      this.state.auth = false;
+      this.state.token = '';
+    }
   },
   setFlashAction(option, newValue) {
     this.debug && console.log(`setFlashAction ${option} triggered with`, newValue);
