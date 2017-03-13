@@ -30,10 +30,9 @@
     data() {
       return {
         form: new Form({
-            email: '',
-            password: '',
-        }),
-        errors: new Errors(),
+          email: '',
+          password: '',
+        })
       }
     },
 

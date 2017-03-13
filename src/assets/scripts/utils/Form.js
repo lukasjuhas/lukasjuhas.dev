@@ -1,5 +1,5 @@
 /* global axios */
-import each from 'lodash/each';
+// import each from 'lodash/each';
 import Errors from './Errors';
 
 export default class Form {
@@ -11,9 +11,9 @@ export default class Form {
   constructor(data) {
     this.originalData = data;
 
-    each(data, (field) => {
+    for (const field in data) {
       this[field] = data[field];
-    });
+    }
 
     this.errors = new Errors();
   }
@@ -25,9 +25,9 @@ export default class Form {
   data() {
     const data = {};
 
-    each(this.originalData, (property) => {
+    for (const property in this.originalData) {
       data[property] = this[property];
-    });
+    }
 
     return data;
   }
@@ -37,9 +37,9 @@ export default class Form {
   * Reset the form fields.
   */
   reset() {
-    each(this.originalData, (field) => {
+    for (const field in this.originalData) {
       this[field] = '';
-    });
+    }
 
     this.errors.clear();
   }
@@ -113,9 +113,7 @@ export default class Form {
   *
   * @param {object} data
   */
-  onSuccess(data) {
-    console.log(data.message); // temporary
-
+  onSuccess() {
     this.reset();
   }
 

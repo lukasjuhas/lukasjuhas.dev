@@ -9,14 +9,15 @@ import routes from './routes';
 import config from './config';
 import store from './store';
 import Form from './utils/Form';
-import Errors from './utils/Errors';
 
 window.axios = axios;
 window.axios.defaults.baseURL = config.baseApiUrl;
 window.axios.defaults.timeout = config.timeout;
+window.axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+};
 
 window.Form = Form;
-window.Errors = Errors;
 
 Vue.use(VueRouter);
 Vue.use(VueLazyload);
