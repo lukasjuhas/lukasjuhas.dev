@@ -103,7 +103,7 @@
 </script>
 
 <style lang="scss">
-  @import '../src/assets/styles/config/variables';
+  @import './../src/assets/styles/config/variables';
 
   .main {
     display: flex;
