@@ -24,11 +24,13 @@
 </template>
 
 <script>
+  import store from './store';
   export default {
     name: 'login',
 
     data() {
       return {
+        sharedState: store,
         form: new Form({
           email: '',
           password: '',
@@ -36,12 +38,18 @@
       }
     },
 
+    mounted() {
+      if(this.sharedState.state.token) {
+        this.sharedState.state.router.push('/');
+      }
+    },
+
     methods: {
       onSubmit() {
-        this.form.post('/login')
-            .then(response => {
-              console.log(response);
-            });
+        this.form.post('/login').then(response => {
+          // redirect to url originally wanted to visit
+          this.sharedState.state.router.go(window.history.back());
+        });
       }
     }
   };

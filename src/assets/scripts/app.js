@@ -18,7 +18,7 @@ window.axios.defaults.headers.common = {
 };
 
 window.axios.interceptors.request.use((axiosConfig) => {
-  if (store.state.auth) {
+  if (store.state.token) {
     axiosConfig.headers.common.Authorization = `Bearer ${store.state.token}`;
   }
 
@@ -41,7 +41,7 @@ axios.interceptors.response.use((response) => {
     if (response.data.message === 'Token has expired, but is still valid.') {
       console.log('RETRY', response);
     } else {
-      alert('Whoops, an unknown error occured.');
+      console.log('Whoops, an unknown error occured.');
     }
   }
 
@@ -61,15 +61,19 @@ store.state.router = new VueRouter({
 
 store.state.router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!store.state.auth) {
+    if (store.state.token) {
+      const tokenValid = true;
+      if (!tokenValid) {
+        next({
+          path: '/login',
+        });
+      } else {
+        next();
+      }
+    } else {
       next({
         path: '/login',
-        query: { redirect: to.fullPath },
       });
-    } else {
-      next();
     }
   } else {
     next();

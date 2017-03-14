@@ -1,4 +1,3 @@
-
 export default {
   // Debug mode
   debug: process.env.NODE_ENV === 'development',

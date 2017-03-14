@@ -1,4 +1,4 @@
-
+/* global window */
 /* eslint-disable no-unused-expressions, no-console */
 import config from './config';
 
@@ -8,7 +8,7 @@ const store = {
     loading: false,
     router: null,
     auth: false,
-    token: '',
+    token: window.localStorage.getItem('itslukas_token') || false,
     flash: {
       show: false,
       status: 'error',
@@ -26,12 +26,18 @@ const store = {
   },
   setAuthTokenAction(token) {
     this.debug && console.log('setAuthTokenAction triggered');
+
     if (token) {
       this.state.auth = true;
       this.state.token = token;
+
+      // save token to local storage
+      window.localStorage.setItem('itslukas_token', token);
     } else {
       this.state.auth = false;
       this.state.token = '';
+
+      window.localStorage.setItem('itslukas_token', ' ');
     }
   },
   setFlashAction(option, newValue) {
