@@ -12,6 +12,9 @@
         <li class="link">
             <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener"><svg class="link__icon"><use xlink:href="#instagram"></use></svg></a>
         </li>
+        <li class="link">
+            <a href="https://open.spotify.com/user/itslukasjuhas" target="_blank" rel="noopener"><svg class="link__icon"><use xlink:href="#spotify"></use></svg></a>
+        </li>
     </ul>
 </template>
 
@@ -29,8 +32,9 @@
 
   .link {
     display: inline-block;
-    margin-right: $base-spacing-unit / 2;
-    transition: all $animation-speed ease-in-out;
+    vertical-align: middle;
+    margin: 0 ($base-spacing-unit / 2);
+    transition: transform $animation-speed ease-in-out;
 
     &:hover {
       transform: translateY(-3px);

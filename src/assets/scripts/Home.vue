@@ -29,7 +29,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
-                        <h2>Latest Trip</h2>
+                        <h2>Check out latest trip:</h2>
                         <transition name="fade">
                             <section v-if="item">
                                 <div class="holidays">
