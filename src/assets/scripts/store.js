@@ -29,16 +29,19 @@ const store = {
 
     if (token) {
       this.state.auth = true;
-      this.state.token = token;
 
       // save token to local storage
       window.localStorage.setItem('itslukas_token', token);
     } else {
       this.state.auth = false;
-      this.state.token = '';
 
       window.localStorage.setItem('itslukas_token', ' ');
     }
+  },
+  clearAuthTokenAction() {
+    this.debug && console.log('clearAuthTokenAction triggered');
+    this.state.auth = false;
+    window.localStorage.setItem('itslukas_token', ' ');
   },
   setFlashAction(option, newValue) {
     this.debug && console.log(`setFlashAction ${option} triggered with`, newValue);

@@ -39,7 +39,7 @@
     },
 
     mounted() {
-      if(this.sharedState.state.token) {
+      if(this.sharedState.state.auth) {
         this.sharedState.state.router.push('/');
       }
     },

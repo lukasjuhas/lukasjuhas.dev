@@ -62,14 +62,28 @@ store.state.router = new VueRouter({
 store.state.router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.state.token) {
-      const tokenValid = true;
-      if (!tokenValid) {
+      axios.get('auth').then((response) => {
+        store.setLoadingAction(false);
+        if (response.data.error) {
+          next({
+            path: '/login',
+          });
+        } else {
+          next();
+        }
+      })
+      .catch((error) => {
+        store.setLoadingAction(false);
+        if (error.status === 404) {
+          store.state.router.replace('/404');
+        }
+
+        store.clearAuthTokenAction();
+
         next({
           path: '/login',
         });
-      } else {
-        next();
-      }
+      });
     } else {
       next({
         path: '/login',
