@@ -153,14 +153,21 @@
   /**
    * Vue Animations
    */
+  // opacity
   .fade-enter-active, .fade-leave-active {
     transition: opacity $animation-speed;
   }
 
-  .fade-enter, .fade-leave-to {
+  .fade-enter-active {
+    transition-delay: $animation-speed;
+  }
+
+  .fade-enter, .fade-leave-active {
     opacity: 0
   }
 
+
+  // sldie fade
   .slide-fade-enter-active {
     transition: all $animation-speed ease;
   }

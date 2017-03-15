@@ -31,7 +31,17 @@
 
     data() {
       return {
-        items: [
+        items: this.fetchItems(),
+      }
+    },
+
+    mounted() {
+      document.documentElement.classList.add('dark');
+    },
+
+    methods: {
+      fetchItems() {
+        return [
           {
             name: 'itsluk.as',
             github: 'https://github.com/lukasjuhas/itsluk.as',
@@ -80,12 +90,8 @@
             link: null,
             description: 'List of interesting facts that mostly geeks will appreciate. (Used on this site for 404 page)',
           },
-        ],
+        ];
       }
-    },
-
-    mounted() {
-      document.documentElement.classList.add('dark');
     }
   };
 </script>
