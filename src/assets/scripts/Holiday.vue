@@ -230,8 +230,10 @@
     }
   }
 
-  .link--all-holidays {
-    margin-top: $base-spacing-unit * 3;
-    display: inline-block;
+  .link {
+    &.link--all-holidays {
+      margin-top: $base-spacing-unit * 5;
+      display: inline-block;
+    }
   }
 </style>
