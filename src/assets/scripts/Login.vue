@@ -39,8 +39,13 @@
     },
 
     mounted() {
-      if(this.sharedState.state.auth) {
-        this.sharedState.state.router.push('/');
+      if(this.sharedState.state.token) {
+        let $to = '/';
+        if(this.sharedState.state.router.history.current.query.redirect) {
+          $to = decodeURIComponent(this.sharedState.state.router.history.current.query.redirect)
+        }
+
+        this.sharedState.state.router.push($to);
       }
     },
 
@@ -48,7 +53,12 @@
       onSubmit() {
         this.form.post('/login').then(response => {
           // redirect to url originally wanted to visit
-          this.sharedState.state.router.go(window.history.back());
+          let $to = '/';
+          if(this.sharedState.state.router.history.current.query.redirect) {
+            $to = decodeURIComponent(this.sharedState.state.router.history.current.query.redirect)
+          }
+
+          this.sharedState.state.router.go($to);
         });
       }
     }

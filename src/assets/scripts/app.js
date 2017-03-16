@@ -67,6 +67,7 @@ store.state.router.beforeEach((to, from, next) => {
         if (response.data.error) {
           next({
             path: '/login',
+            query: { redirect: to.fullPath },
           });
         } else {
           next();
@@ -82,11 +83,13 @@ store.state.router.beforeEach((to, from, next) => {
 
         next({
           path: '/login',
+          query: { redirect: to.fullPath },
         });
       });
     } else {
       next({
         path: '/login',
+        query: { redirect: to.fullPath },
       });
     }
   } else {

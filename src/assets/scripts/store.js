@@ -7,7 +7,6 @@ const store = {
   state: {
     loading: false,
     router: null,
-    auth: false,
     token: window.localStorage.getItem('itslukas_token') || false,
     flash: {
       show: false,
@@ -28,20 +27,15 @@ const store = {
     this.debug && console.log('setAuthTokenAction triggered');
 
     if (token) {
-      this.state.auth = true;
-
       // save token to local storage
       window.localStorage.setItem('itslukas_token', token);
     } else {
-      this.state.auth = false;
-
-      window.localStorage.setItem('itslukas_token', ' ');
+      window.localStorage.setItem('itslukas_token', false);
     }
   },
   clearAuthTokenAction() {
     this.debug && console.log('clearAuthTokenAction triggered');
-    this.state.auth = false;
-    window.localStorage.setItem('itslukas_token', ' ');
+    window.localStorage.setItem('itslukas_token', false);
   },
   setFlashAction(option, newValue) {
     this.debug && console.log(`setFlashAction ${option} triggered with`, newValue);
