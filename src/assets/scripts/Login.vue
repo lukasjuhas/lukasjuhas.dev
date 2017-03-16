@@ -6,7 +6,7 @@
                     <h1 class="page__title">Login</h1>
                     <form @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)" class="form">
                         <div class="form__group">
-                            <input v-model="form.email" type="email" name="email" value="" placeholder="Email">
+                            <input v-focus v-model="form.email" type="email" name="email" value="" placeholder="Email">
                             <span class="form__note form__note--error" v-if="form.errors.has('email')" v-text="form.errors.get('email')"></span>
                         </div>
                         <div class="form__group">

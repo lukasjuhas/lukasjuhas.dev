@@ -94,6 +94,10 @@ store.state.router.beforeEach((to, from, next) => {
   }
 });
 
+Vue.directive('focus', {
+  inserted: el => el.focus(),
+});
+
 new Vue({
   el: '#app',
   router: store.state.router,
