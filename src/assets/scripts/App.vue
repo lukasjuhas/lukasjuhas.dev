@@ -12,7 +12,14 @@
             </transition>
             <transition name="fade">
                 <footer class="footer">
-                    <div class="copy">&copy; 2009 - {{ year }} Lukas Juhas. All Rights Reserved.</div>
+                    <div class="row">
+                        <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6">
+                            <button v-if="authorised" type="button" name="button" class="button button--primary button--small" @click="logout">Logout</button>
+                        </div>
+                        <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6">
+                            <div class="copy">&copy; 2009 - {{ year }} Lukas Juhas. All Rights Reserved.</div>
+                        </div>
+                    </div>
                 </footer>
             </transition>
         </div>
@@ -45,6 +52,15 @@
       this.handleLogo();
     },
 
+    computed: {
+      /**
+       * check if user is authorised
+       */
+      authorised() {
+        return this.sharedState.state.token !== 'false' || '';
+      }
+    },
+
     components: {
       Logo,
       Navigation,
@@ -53,6 +69,9 @@
     },
 
     watch: {
+      /**
+       * watch route changes
+       */
       '$route' (to, from) {
         doc.updateTitle(to.name);
         flash.hide();
@@ -72,6 +91,10 @@
     },
 
     methods: {
+      /**
+       * handle logo on scroll
+       * @type boolean
+       */
       handleLogo(forceShow = false) {
         // This is important when changing routes to "force" show on logo so if
         // the route is changed, logo appears instead of being hidden as it might
@@ -98,6 +121,18 @@
           }, 300));
         }, 100);
       },
+
+      /**
+       * handle logout
+       */
+      logout() {
+        axios.post('logout', { token: this.sharedState.state.token }).then((response) => {
+          if (!response.data.error) {
+            this.sharedState.clearAuthTokenAction();
+            this.sharedState.state.router.go('/');
+          }
+        });
+      }
     }
   };
 </script>
@@ -142,6 +177,18 @@
 
     .gradient & {
       color: $col-text-light;
+    }
+
+    @include resp-max($breakpoint-sm) {
+      text-align: center;
+
+      .col:first-of-type {
+        margin-bottom: $base-spacing-unit;
+      }
+
+      .copy {
+        text-align: center;
+      }
     }
   }
 

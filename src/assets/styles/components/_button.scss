@@ -123,3 +123,8 @@ button {
     color: $col-danger;
   }
 }
+
+.button--small {
+  font-size: 12px;
+  padding: ($base-spacing-unit / 4) ($base-spacing-unit / 2);
+}

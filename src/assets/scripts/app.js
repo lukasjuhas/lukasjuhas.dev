@@ -65,6 +65,8 @@ store.state.router.beforeEach((to, from, next) => {
       axios.get('auth').then((response) => {
         store.setLoadingAction(false);
         if (response.data.error) {
+          store.clearAuthTokenAction();
+
           next({
             path: '/login',
             query: { redirect: to.fullPath },
@@ -75,11 +77,11 @@ store.state.router.beforeEach((to, from, next) => {
       })
       .catch((error) => {
         store.setLoadingAction(false);
+        store.clearAuthTokenAction();
+
         if (error.status === 404) {
           store.state.router.replace('/404');
         }
-
-        // store.clearAuthTokenAction();
 
         next({
           path: '/login',
