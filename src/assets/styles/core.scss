@@ -136,3 +136,11 @@ em {
 img {
   vertical-align: top;
 }
+
+blockquote {
+  font-style: italic;
+  line-height: 1.8;
+  margin-bottom: $base-spacing-unit;
+  padding: ($base-spacing-unit / 4) 0 ($base-spacing-unit / 4) $base-spacing-unit;
+  border-left: 3px solid $col-neutral;
+}
