@@ -37,13 +37,13 @@ axios.interceptors.response.use((response) => {
     store.setAuthTokenAction(response.data.token);
   }
 
-  if (response.status === 500) {
-    if (response.data.message === 'Token has expired, but is still valid.') {
-      console.log('RETRY', response);
-    } else {
-      console.log('Whoops, an unknown error occured.');
-    }
-  }
+  // if (response.status === 500) {
+  //   if (response.data.message === 'Token has expired, but is still valid.') {
+  //     console.log('RETRY', response);
+  //   } else {
+  //     console.log('Whoops, an unknown error occured.');
+  //   }
+  // }
 
   return response;
 }, error => Promise.reject(error));
@@ -78,7 +78,7 @@ store.state.router.beforeEach((to, from, next) => {
           store.state.router.replace('/404');
         }
 
-        store.clearAuthTokenAction();
+        // store.clearAuthTokenAction();
 
         next({
           path: '/login',

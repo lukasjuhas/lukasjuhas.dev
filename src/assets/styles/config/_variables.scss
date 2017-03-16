@@ -31,7 +31,7 @@ $serif-font-family: 'Merriweather', Palatino, Georgia, "Times New Roman", Times,
 $base-font-family: $sans-serif-font-family;
 $base-font-size: 16;
 $base-line-height: 1.6;
-$base-spacing-unit: ($base-font-size * $base-line-height) * 1px;
+$base-spacing-unit: round(($base-font-size * $base-line-height) * 1px);
 $font-weight-bold: 700;
 $serif-font-weight: 300;
 
