@@ -5,7 +5,11 @@
             <div class="row">
                 <div class="col col--xs-12 col--sm-12 col--md-7 col--lg-7">
                     <p>It all started on my birthday in October 2014 when as a present I got weekend trip to Paris. Since then we travelled almost every month at least once.</p>
-                    <p>Although lately it's not as regular as before, we still would like to carry on with this and even catch up on missed months.</p>
+
+                    <p>Although it's not as regular as before, we still would like to carry on with this and even catch up on missed months.</p>
+
+                    <p>You could label this as my travel diary. I tried all kind of ways to store and represent these trips but then, if you can't find the right thing, do it yourself.</p>
+
                     <p>Check out some of our trips below.</p>
                 </div>
             </div>

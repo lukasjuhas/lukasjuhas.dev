@@ -36,7 +36,7 @@
                                             </div>
                                             <img class="photo__image" :src="photo.url" :alt="photo.title" />
                                         </div>
-                                        <div class="photo__caption" :style="'transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + (photo.offsetX - baseSpacingUnit) + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + (photo.offsetY + baseSpacingUnit) + 'px)'" v-html="photo.caption || '<p>Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>'"></div>
+                                        <div class="photo__caption" :style="'max-width:' + photo.width + 'px; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + (photo.offsetX - baseSpacingUnit) + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + (photo.offsetY + baseSpacingUnit) + 'px)'" v-html="photo.caption || '<p>Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>'"></div>
                                     </div>
                                 </staggered-fade>
                             </div>
@@ -125,6 +125,25 @@
 </script>
 
 <style lang="scss">
+  @mixin responsive-photo {
+    display: block;
+    margin-bottom: $base-spacing-unit;
+    @include clearfix();
+
+    .photo__image-container {
+      // not the best, but sometimes we have to go easier route.
+      transform: translate(0, 0) !important;
+      height: auto !important;
+      margin-bottom: $base-spacing-unit;
+    }
+
+    .photo__caption {
+      // not the best, but sometimes we have to go easier route.
+      transform: translate(0, 0) !important;
+      display: inline-block;
+    }
+  }
+
   .holiday-container {
     width: $grid-max-width + 150; // grid + offsetX range for photo
     max-width: 100%;
@@ -142,7 +161,6 @@
 
   .photo {
     position: relative;
-    min-height: 700px;
     display: flex;
   }
 
@@ -163,14 +181,20 @@
   }
 
   .photo--landscape {
-    .photo__caption {
-      // width: 17%;
+    @include resp-max($breakpoint-lg) {
+      @include responsive-photo();
     }
   }
 
   .photo--square {
-    .photo__caption {
-      // width: 40%;
+    @include resp-max($breakpoint-md) {
+      @include responsive-photo();
+    }
+  }
+
+  .photo--portrait {
+    @include resp-max($breakpoint-sm) {
+      @include responsive-photo();
     }
   }
 
@@ -180,6 +204,7 @@
     background: $col-background-dark;
     background: linear-gradient(135deg, $col-background-dark 0%, $col-brand 100%);
     z-index: 20;
+    max-width: 100%;
 
     &:hover {
       .photo__info {
