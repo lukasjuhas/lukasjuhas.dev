@@ -205,10 +205,6 @@
     transition: opacity $animation-speed;
   }
 
-  .fade-enter-active {
-    transition-delay: $animation-speed;
-  }
-
   .fade-enter, .fade-leave-active {
     opacity: 0
   }
