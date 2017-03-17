@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col col--xs-12 col--sm-2 col--md-2 col--lg-2">
                         <div class="avatar" v-on:mouseover="showCaption = true" v-on:mouseleave="showCaption = false">
-                            <img src="/images/avatar.jpg" alt="Lukas Juhas">
+                            <img v-lazy="'images/avatar.jpg'" alt="Lukas Juhas">
                         </div>
                         <transition name="slide-fade">
                             <div v-if="showCaption" class="avatar-caption">
@@ -36,7 +36,7 @@
                                     <div class="holiday">
                                         <router-link v-bind:to="'/holidays/' + item.slug">
                                             <div class="holiday__image-wrapper">
-                                                <img v-if="item.feature" :src="item.feature" :alt="item.title">
+                                                <img v-if="item.feature" v-lazy="item.feature" :alt="item.title">
                                             </div>
                                             <h2 class="holiday__title">{{ item.title }}</h2>
                                             <div class="holiday__overlay"></div>
