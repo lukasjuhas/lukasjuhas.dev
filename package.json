@@ -19,7 +19,7 @@
     "medium-editor": "^5.22.2",
     "simple-flexbox-grid": "^0.3.0",
     "vue": "^2.2.2",
-    "vue-lazyload": "^1.0.0-rc12",
+    "vue-lazyload": "1.0.0-rc12",
     "vue-router": "^2.2.0"
   },
   "devDependencies": {

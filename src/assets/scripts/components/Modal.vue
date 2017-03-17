@@ -65,11 +65,13 @@
   .modal-container {
     position: relative;
     width: 500px;
+    max-width: 100%;
     max-width: 80%;
     margin: 0 auto;
     padding: $base-spacing-unit;
     background-color: $col-background;
     transition: all $animation-speed-fast $animation;
+    color: $col-text;
 
     &.modal-container--medium {
       width: 650px;

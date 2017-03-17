@@ -7,8 +7,8 @@
                     <staggered-fade classes="row">
                         <div v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="record-wrapper col col--xs-4 col--sm-3 col--md-2 col--lg-2">
                             <div class="record">
-                                <div class="record__artwork" :class="{ 'record__artwork--present' : item.thumb }">
-                                    <img v-if="item.thumb" :src="item.thumb" :alt="item.title">
+                                <div @click="fetchRelease(item.release_id)" class="record__artwork">
+                                    <img v-if="item.thumb" v-lazy="item.thumb" :alt="item.title">
                                 </div>
                                 <h3 class="record__title">{{ item.artist }} - {{ item.title }}</h3>
                             </div>
@@ -22,6 +22,27 @@
                 </section>
             </transition>
         </div>
+        <modal ref="release" v-cloak class="modal--release">
+            <h1 slot="header">{{ release ? release.title : 'Release' }}</h1>
+            <div v-if="release" slot="body">
+                <div class="record">
+                    <div class="row">
+                        <div class="col col--xs-12 col--sm-12 col--md-4 col--lg-4">
+                            <div class="record__artwork">
+                                <img v-if="release.image" v-lazy="release.image" :alt="release.title">
+                            </div>
+                        </div>
+                        <div class="col col--xs-12 col--sm-12 col--md-8 col--lg-8">
+                            <div class="container">
+                                <ol class="list">
+                                  <li v-for="track in release.tracklist">{{ track }}</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </modal>
     </div>
 </template>
 
@@ -31,12 +52,14 @@
   import each from 'lodash/each';
   import StaggeredFade from './transitions/StaggeredFade.vue';
   import flash from './helpers/flash';
+  import Modal from './components/Modal.vue';
 
   export default {
     name: 'records',
 
     components: {
       StaggeredFade,
+      Modal,
     },
 
     data() {
@@ -46,6 +69,7 @@
         nextPage: null,
         prevPage: null,
         showAllLoaded: false,
+        release: null,
       }
     },
 
@@ -68,6 +92,7 @@
 
     methods: {
       fetchData(path = 'records') {
+        flash.hide();
         this.sharedState.setLoadingAction(true);
 
         axios.get(path).then((response) => {
@@ -109,7 +134,38 @@
             }, 1000);
           }
         }
-      }
+      },
+
+      fetchRelease(releaseId) {
+        flash.hide();
+        this.sharedState.setLoadingAction(true);
+
+        axios.get(`records/${releaseId}`).then((response) => {
+          if(response.data.data !== null) {
+            this.release = response.data.data;
+            this.modal('release');
+          }
+
+          console.log(this.release);
+
+          this.sharedState.setLoadingAction(false);
+        })
+        .catch((error) => {
+
+          this.sharedState.setLoadingAction(false);
+
+          flash.showError('Sorry, there are no details about this record.', true);
+        });
+      },
+
+      modal(ref) {
+        this.$refs[ref].toggle = true;
+      },
+
+      closeModal(ref) {
+        this.release = null;
+        this.$refs[ref].toggle = false;
+      },
     },
   };
 </script>
@@ -120,11 +176,14 @@
   }
 
   .record__artwork {
+    cursor: pointer;
     width: 100%;
     padding-bottom: 100%;
     background: lighten($col-background-dark, 10%);
     margin-bottom: $base-spacing-unit / 4;
     position: relative;
+    max-width: 300px;
+    max-height: 300px;
 
     &:before {
       content: '';
@@ -163,5 +222,11 @@
 
   .record__title {
     font-size: 14px;
+  }
+
+  .modal--release {
+    .modal-container {
+      width: 70%;
+    }
   }
 </style>
