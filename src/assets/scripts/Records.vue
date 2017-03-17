@@ -5,9 +5,11 @@
             <transition name="fade">
                 <div v-if="items.length" class="record-feed">
                     <staggered-fade classes="row">
-                        <div v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="record-wrapper col col--xs-6 col--sm-4 col--md-3 col--lg-3">
+                        <div v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="record-wrapper col col--xs-4 col--sm-3 col--md-2 col--lg-2">
                             <div class="record">
-                                <div class="record__artwork"></div>
+                                <div class="record__artwork" :class="{ 'record__artwork--present' : item.thumb }">
+                                    <img v-if="item.thumb" :src="item.thumb" :alt="item.title">
+                                </div>
                                 <h3 class="record__title">{{ item.artist }} - {{ item.title }}</h3>
                             </div>
                         </div>
@@ -147,5 +149,19 @@
       background-color: $col-background-dark;
       transform: translate(-50%, -50%);
     }
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 100%;
+      height: auto;
+      z-index: 5;
+    }
+  }
+
+  .record__title {
+    font-size: 14px;
   }
 </style>
