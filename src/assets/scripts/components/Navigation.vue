@@ -43,7 +43,7 @@
   .hamburger {
     position: fixed;
     top: $base-spacing-unit;
-    right: $base-spacing-unit * 1.5;
+    right: $base-spacing-unit;
     z-index: 1000;
     opacity: 1;
     transition: all $animation-speed ease-in-out;
