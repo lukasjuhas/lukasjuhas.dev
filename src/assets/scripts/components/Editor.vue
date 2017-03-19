@@ -64,42 +64,8 @@
 
     methods: {
       initEditor() {
-        // TODO: Rewrite this to handle images
-        const AddMediaExtension = MediumEditor.Extension.extend({
-          name: 'add-media',
-
-          init: function () {
-            this.getEditorElements().forEach(function (element) {
-              this.on(element, 'contextmenu', this.handleContextmenu.bind(this));
-            }, this);
-
-            this.subscribe('editableKeydown', this.handleKeydown.bind(this));
-          },
-
-          handleContextmenu: function (event) {
-            if (!event.currentTarget.getAttribute('data-allow-context-menu')) {
-              event.preventDefault();
-            }
-          },
-
-          handleKeydown: function (event, editable) {
-            // If the user hits escape, toggle the data-allow-context-menu attribute
-            if (MediumEditor.util.isKey(event, MediumEditor.util.keyCode.ESCAPE)) {
-              if (editable.hasAttribute('data-allow-context-menu')) {
-                editable.removeAttribute('data-allow-context-menu');
-              } else {
-                editable.setAttribute('data-allow-context-menu', true);
-              }
-            }
-          }
-        });
-
         // init editor
-        const elements = document.querySelectorAll('.editable', {
-          extensions: {
-            'add-media': new AddMediaExtension(),
-          }
-        });
+        const elements = document.querySelectorAll('.editable');
 
         if(elements[1].innerHTML !== null) {
           this.showAddMedia = false;
@@ -136,6 +102,9 @@
         // if parent is modal, go to grand parent
         let parent;
         if(this.$parent._name === '<Modal>') {
+          // TODO: debug parent setting
+          // console.log('parent', this.$parent);
+          // console.log('parent of a parent', this.$parent.$parent);
           parent = this.$parent.$parent;
         } else {
           parent = this.$parent;
