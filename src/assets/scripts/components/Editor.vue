@@ -101,10 +101,7 @@
 
         // if parent is modal, go to grand parent
         let parent;
-        if(this.$parent._name === '<Modal>') {
-          // TODO: debug parent setting
-          // console.log('parent', this.$parent);
-          // console.log('parent of a parent', this.$parent.$parent);
+        if(this.$parent.$el.className === 'modal-mask') {
           parent = this.$parent.$parent;
         } else {
           parent = this.$parent;

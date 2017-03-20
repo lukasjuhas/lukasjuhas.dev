@@ -101,8 +101,6 @@
             this.photos.push(photo);
           });
 
-          console.log(this.photos);
-
           this.item = response.data.data;
           this.sharedState.setLoadingAction(false);
 
