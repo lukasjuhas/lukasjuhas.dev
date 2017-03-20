@@ -5,6 +5,7 @@ import Holiday from './Holiday.vue';
 import Despatches from './Despatches.vue';
 import Records from './Records.vue';
 import Login from './Login.vue';
+import ResetPassword from './ResetPassword.vue';
 import NotFound from './404.vue';
 import Manage from './Manage.vue';
 import ManageDespatch from './manage/EditDespatch.vue';
@@ -82,6 +83,11 @@ export default [
     path: '/login',
     component: Login,
     name: 'Login',
+  },
+  {
+    path: '/reset-password',
+    component: ResetPassword,
+    name: 'Reset Password',
   },
   {
     path: '/404',
