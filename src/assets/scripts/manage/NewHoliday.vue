@@ -6,6 +6,7 @@
 
 <script>
   import store from '../store';
+  import helpers from '../helpers/helpers';
   import flash from '../helpers/flash';
   import Editor from '../components/Editor.vue';
 
@@ -32,6 +33,10 @@
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
+            
+            setTimeout(() => {
+              window.location = helpers.url(`manage/holiday/${response.data.data.slug}`)
+            }, 1000);
           }
 
           this.sharedState.setLoadingAction(false);
