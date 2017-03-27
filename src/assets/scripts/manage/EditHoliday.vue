@@ -45,6 +45,7 @@
   import omit from 'lodash/omit';
   import dragula from 'dragula';
   import store from '../store';
+  import helpers from '../helpers/helpers';
   import flash from '../helpers/flash';
   import Modal from '../components/Modal.vue';
   import Editor from '../components/Editor.vue';
@@ -119,7 +120,7 @@
 
           this.sharedState.setLoadingAction(false);
 
-          doc.updateTitle(this.title);
+          helpers.updateTitle(this.title);
         })
         .catch((error, status) => {
           this.sharedState.setLoadingAction(false);

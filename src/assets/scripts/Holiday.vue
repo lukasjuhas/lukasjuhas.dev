@@ -56,7 +56,7 @@
 <script>
   import each from 'lodash/each';
   import store from './store';
-  import doc from './helpers/doc';
+  import helpers from './helpers/helpers';
   import StaggeredFade from './transitions/StaggeredFade.vue';
 
 
@@ -104,7 +104,7 @@
           this.item = response.data.data;
           this.sharedState.setLoadingAction(false);
 
-          doc.updateTitle(this.item.title);
+          helpers.updateTitle(this.item.title);
         })
         .catch((error, status) => {
           this.sharedState.setLoadingAction(false);

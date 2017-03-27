@@ -8,6 +8,7 @@
 
 <script>
   import store from '../store';
+  import helpers from '../helpers/helpers';
   import Editor from '../components/Editor.vue';
   import flash from '../helpers/flash';
 
@@ -73,7 +74,7 @@
 
           this.sharedState.setLoadingAction(false);
 
-          doc.updateTitle(this.title);
+          helpers.updateTitle(this.title);
         })
         .catch((error, status) => {
           this.sharedState.setLoadingAction(false);

@@ -29,7 +29,7 @@
 <script>
   import throttle from 'lodash/throttle';
   import store from './store';
-  import doc from './helpers/doc';
+  import helpers from './helpers/helpers';
   import flash from './helpers/flash';
   import Logo from './components/Logo.vue';
   import Navigation from './components/Navigation.vue';
@@ -73,7 +73,7 @@
        * watch route changes
        */
       '$route' (to, from) {
-        doc.updateTitle(to.name);
+        helpers.updateTitle(to.name);
         flash.hide();
 
         // remove dark mode
