@@ -33,7 +33,7 @@
                     <editor save-method="saveEditPhotoEditor" notitle id="editor-photo-content"></editor>
                 </div>
                 <button type="button" name="removePhoto" class="button button--danger" @click="removePhoto">Remove Photo</button>
-                <button type="button" name="makeFeature" class="button button--secondary" @click="makeFeature">Make as Featured Image</button>
+                <button type="button" name="setAsFeature" class="button button--secondary" @click="setAsFeature">Make as Featured Image</button>
             </div>
         </modal>
     </div>
@@ -130,10 +130,18 @@
         });
       },
 
+      /**
+       * on photo change check for files
+       * @param object ele
+       */
       onPhotoChange(ele) {
         this.files = ele.target.files || ele.dataTransfer.files;
       },
 
+      /**
+       * upload
+       * @param object ele
+       */
       upload(ele) {
         this.closeModal('uploadModal');
         this.sharedState.setLoadingAction(true);
@@ -165,6 +173,9 @@
         });
       },
 
+      /**
+       * update order of photos
+       */
       updateOrder() {
         flash.hide();
         this.sharedState.setLoadingAction(true);
@@ -221,6 +232,10 @@
         });
       },
 
+      /**
+       * dragula
+       * @return object
+       */
       dragula() {
         const els = [];
 
@@ -243,12 +258,20 @@
         return drake;
       },
 
+      /**
+       * handle click on photo
+       * @param mixed ev
+       */
       handleClickPhoto(ev) {
         if(ev.target.parentNode.dataset.id) {
           this.fetchPhoto(ev.target.parentNode.dataset.id);
         }
       },
 
+      /**
+       * fetch single photo
+       * @param int id
+       */
       fetchPhoto(id) {
         this.sharedState.setLoadingAction(true);
 
@@ -276,6 +299,11 @@
         });
       },
 
+      /**
+       * save photo content editor
+       * @param string title
+       * @param string content
+       */
       saveEditPhotoEditor(title, content) {
         flash.hide();
 
@@ -304,10 +332,9 @@
         });
       },
 
-      onEditPhotoSubmit() {
-        console.log('onEditPhotoSubmit');
-      },
-
+      /**
+       * remove single photo
+       */
       removePhoto() {
         this.closeModal('editPhoto');
         this.sharedState.setLoadingAction(true);
@@ -339,7 +366,11 @@
         });
       },
 
-      makeFeature() {
+      /**
+       * set photo as featured image for the trip
+       * @return [type]
+       */
+      setAsFeature() {
         this.closeModal('editPhoto');
         this.sharedState.setLoadingAction(true);
 
@@ -363,10 +394,18 @@
         });
       },
 
+      /**
+       * modal init
+       * @param string ref
+       */
       modal(ref) {
         this.$refs[ref].toggle = true;
       },
 
+      /**
+       * close modal
+       * @param string ref
+       */
       closeModal(ref) {
         this.$refs[ref].toggle = false;
       },

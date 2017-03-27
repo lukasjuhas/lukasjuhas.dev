@@ -24,6 +24,13 @@
     },
 
     methods: {
+      /**
+       * save editor
+       *
+       * Components/Editor.vue
+       * @param string title
+       * @param string content
+       */
       saveEditor(title, content) {
         flash.hide();
         this.sharedState.setLoadingAction(true);
@@ -33,7 +40,7 @@
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
-            
+
             setTimeout(() => {
               window.location = helpers.url(`manage/holiday/${response.data.data.slug}`)
             }, 1000);

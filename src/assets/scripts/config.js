@@ -9,5 +9,6 @@ export default {
   baseApiUrl: 'https://api.itsluk.dev',
 
   // Timeout on requests (by axios)
+  // TODO: set this just for upload
   timeout: 300000, // 5mim
 };
