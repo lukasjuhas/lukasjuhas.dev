@@ -15,10 +15,34 @@
             </div>
         </section>
         <transition name="fade">
-            <section v-if="items.length">
+            <section class="section section--holidays" v-if="items.length">
+                <div class="holiday__separator">
+                    <div class="container">
+                        <h4>Upcoming</h4>
+                    </div>
+                </div>
                 <ul class="holidays">
                     <staggered-fade>
-                        <li v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
+                        <li v-for="item in upcoming" :key="item.index" v-bind:data-index="item.index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
+                            <router-link v-bind:to="'/holidays/' + item.slug" v-if="item.content">
+                                <div class="holiday__image-wrapper">
+                                    <img v-if="item.feature" :src="item.feature" :alt="item.title">
+                                </div>
+                                <h1 class="holiday__title">{{ item.title }}</h1>
+                                <div class="holiday__overlay"></div>
+                            </router-link>
+                            <h2 v-else class="holiday__title">{{ item.title }}</h2>
+                        </li>
+                    </staggered-fade>
+                </ul>
+                <div class="holiday__separator">
+                    <div class="container">
+                        <h4>Past</h4>
+                    </div>
+                </div>
+                <ul class="holidays">
+                    <staggered-fade>
+                        <li v-for="item in past" :key="item.index" v-bind:data-index="item.index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
                             <router-link v-bind:to="'/holidays/' + item.slug" v-if="item.content">
                                 <div class="holiday__image-wrapper">
                                     <img v-if="item.feature" :src="item.feature" :alt="item.title">
@@ -41,6 +65,7 @@
 </template>
 
 <script>
+  import filter from 'lodash/filter';
   import store from './store';
   import throttle from 'lodash/throttle';
   import each from 'lodash/each';
@@ -81,7 +106,28 @@
       document.documentElement.className = 'dark';
     },
 
+    computed: {
+      /**
+       * Upcoming trips
+       */
+      upcoming() {
+        return filter(this.items, (o) => { return o.upcoming; });
+      },
+
+      /**
+       * Past trips
+       * @return [type]
+       */
+      past() {
+        return filter(this.items, (o) => { return !o.upcoming; });
+      },
+    },
+
     methods: {
+      /**
+       * Fetch Trips
+       * @param {String}
+       */
       fetchData(path = 'trips') {
         this.sharedState.setLoadingAction(true);
 
@@ -112,6 +158,9 @@
         });
       },
 
+      /**
+       * Handle scroll
+       */
       handleScroll() {
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
           if(this.nextPage !== null) {
@@ -129,9 +178,14 @@
 </script>
 
 <style lang="scss">
+  .section--holidays {
+    margin-top: $base-spacing-unit * 3;
+  }
+
   .holidays {
     text-align: center;
     overflow: hidden;
+    margin: $base-spacing-unit 0 ($base-spacing-unit * 3);
   }
 
   .holiday {
@@ -140,8 +194,6 @@
     transition: all $animation-speed $animation;
     background-color: $col-background-dark;
     border-bottom: 1px solid lighten($col-background-dark, 10%);
-    background-size: cover;
-    background-position: center;
     position: relative;
 
     .holiday__overlay {
@@ -151,7 +203,7 @@
       right: -5px;
       bottom: -5px;
       background-color: $col-background-dark;
-      opacity: .25;
+      opacity: .5;
       transition: opacity $animation-speed ease-in-out;
     }
 
@@ -180,10 +232,10 @@
 
       img {
         width: 100%;
-        max-width: 100%;
         height: auto;
         transition: all $animation-speed linear;
         z-index: 25;
+        filter: blur(5px);
       }
 
       .holiday__title {
@@ -197,7 +249,9 @@
 
         img {
           transform: scale(1.1);
-          transition: all 8000ms linear;
+          transition: transform 8000ms linear, width 100ms ease-in-out, filter 100ms ease-in-out;
+          width: 675px;
+          filter: blur(0);
         }
 
         .holiday__title,
@@ -205,6 +259,10 @@
           opacity: 0;
         }
       }
+    }
+
+    &:first-child {
+      border-top: 1px solid lighten($col-background-dark, 10%);
     }
   }
 
