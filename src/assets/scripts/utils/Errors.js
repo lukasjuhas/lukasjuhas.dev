@@ -57,6 +57,10 @@ export default class Error {
   * @param {string|null} field
   */
   clear(field) {
+    // remove general errors
+    delete this.errors.general;
+
+    // remove all the other errors;
     if (field) {
       delete this.errors[field];
 

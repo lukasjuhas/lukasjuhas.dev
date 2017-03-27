@@ -72,7 +72,7 @@
       }, 300));
     },
 
-    destroyed () {
+    destroyed() {
       window.removeEventListener('scroll', this.handleScroll);
     },
 

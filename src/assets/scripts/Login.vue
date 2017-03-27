@@ -5,6 +5,9 @@
                 <div class="col col--xs-12 col--sm-4 col--md-4 col--lg-4 col--xs-offset-0 col--sm-offset-4 col--md-offset-4 col--lg-offset-4">
                     <h1 class="page__title">Login</h1>
                     <form @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)" class="form">
+                        <div class="form__group" v-if="form.errors.has('general')">
+                            <span class="form__note form__note--error" v-text="form.errors.get('general')"></span>
+                        </div>
                         <div class="form__group">
                             <input v-focus v-model="form.email" type="email" name="email" value="" placeholder="Email">
                             <span class="form__note form__note--error" v-if="form.errors.has('email')" v-text="form.errors.get('email')"></span>
@@ -59,6 +62,11 @@
           }
 
           this.sharedState.state.router.go($to);
+        })
+        .catch((error, status) => {
+          // clear fields
+          this.form.email = '';
+          this.form.password = '';
         });
       }
     }
