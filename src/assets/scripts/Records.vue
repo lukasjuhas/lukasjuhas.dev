@@ -85,11 +85,6 @@
       window.removeEventListener('scroll', this.handleScroll);
     },
 
-    mounted() {
-      // enable dark mode on this page
-      document.documentElement.className = 'dark';
-    },
-
     methods: {
       fetchData(path = 'records') {
         flash.hide();

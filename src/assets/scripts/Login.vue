@@ -42,6 +42,8 @@
     },
 
     mounted() {
+      document.documentElement.classList.add('light');
+      
       if(this.sharedState.state.token) {
         let $to = '/';
         if(this.sharedState.state.router.history.current.query.redirect) {

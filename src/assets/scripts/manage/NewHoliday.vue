@@ -23,6 +23,10 @@
       }
     },
 
+    mounted() {
+      document.documentElement.classList.add('light');
+    },
+
     methods: {
       /**
        * save editor

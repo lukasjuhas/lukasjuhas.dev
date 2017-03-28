@@ -1,6 +1,7 @@
 <template>
     <transition name="fade">
         <div id="app" class="main" v-if="show">
+            <div class="overlay"></div>
             <navigation ref="navigation"></navigation>
             <logo ref="logo"></logo>
             <preloader></preloader>
@@ -76,8 +77,8 @@
         helpers.updateTitle(to.name);
         flash.hide();
 
-        // remove dark mode
-        document.documentElement.classList.remove('dark');
+        // remove light mode
+        document.documentElement.classList.remove('light');
 
         // remove gradient
         document.documentElement.classList.remove('gradient');
@@ -139,18 +140,6 @@
 
 <style lang="scss">
   @import './../src/assets/styles/config/variables';
-
-  .main {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 100vh;
-  }
-
-  .content {
-    padding: ($base-spacing-unit * 5) 0;
-    flex: 1 0 auto;
-  }
 
   .page__title {
     margin-bottom: $base-spacing-unit;

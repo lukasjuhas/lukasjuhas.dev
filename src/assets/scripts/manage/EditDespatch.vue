@@ -36,6 +36,10 @@
       Editor,
     },
 
+    mounted() {
+      document.documentElement.classList.add('light');
+    },
+
     created() {
       this.fetchDespatch();
     },

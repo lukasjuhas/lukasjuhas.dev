@@ -51,13 +51,13 @@
     .line {
       width: 35px;
       height: 3px;
-      background-color: $col-background-dark;
+      background-color: $col-background;
       display: block;
       margin: 8px auto;
       transition: all $animation-speed ease-in-out;
 
-      .dark & {
-        background-color: $col-background;
+      .light & {
+        background-color: $col-background-dark;
       }
     }
 

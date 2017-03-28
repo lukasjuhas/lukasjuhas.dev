@@ -26,9 +26,10 @@
     left: $base-spacing-unit;
     transition: all $animation-speed $animation;
     opacity: 1;
+    fill: $col-text-light;
 
-    .dark & {
-      fill: $col-text-light;
+    .light & {
+      fill: $col-text;
     }
 
     .error &,

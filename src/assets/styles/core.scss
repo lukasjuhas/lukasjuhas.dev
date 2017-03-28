@@ -4,51 +4,27 @@
 @import './core/helpers';
 
 html {
-  background: $col-background;
-  transition: background $animation-speed $animation;
+  background-color: $col-background-dark;
+  transition: background-color $animation-speed $animation;
+
+  &.light {
+    background-color: $col-background;
+  }
 
   &.error {
-    background: $col-background;
-    background: linear-gradient(135deg, $col-danger 0%, $col-background 100%);
+    background-color: $col-danger;
   }
 
   &.warning {
-    background: $col-background;
-    background: linear-gradient(135deg, $col-warning 0%, $col-background 100%);
+    background-color: $col-warning;
   }
 
   &.success {
-    background: $col-background;
-    background: linear-gradient(135deg, $col-success 0%, $col-background 100%);
+    background-color: $col-success;
   }
 
   &.gradient {
-    background: $col-background;
-    background: linear-gradient(135deg, $col-background 0%, #3C6464 100%);
-  }
-
-  &.dark {
-    background: $col-background-dark;
-
-    &.gradient {
-      background: $col-background-dark;
-      background: linear-gradient(135deg, $col-background-dark 0%, $col-brand 100%);
-    }
-
-    &.error {
-      background: $col-background-dark;
-      background: linear-gradient(135deg, $col-danger 0%, $col-background-dark 100%);
-    }
-
-    &.warning {
-      background: $col-background-dark;
-      background: linear-gradient(135deg, $col-warning 0%, $col-background-dark 100%);
-    }
-
-    &.success {
-      background: $col-background-dark;
-      background: linear-gradient(135deg, $col-success 0%, $col-background-dark 100%);
-    }
+    background-color: $col-brand;
   }
 }
 
@@ -60,10 +36,10 @@ body {
   font-family: $sans-serif-font-family;
   font-size: $base-font-size + px;
   line-height: $base-line-height;
-  color: $col-text;
+  color: $col-text-light;
 
-  .dark & {
-    color: $col-text-light;
+  .light & {
+    color: $col-text;
   }
 }
 
@@ -143,4 +119,36 @@ blockquote {
   margin-bottom: $base-spacing-unit;
   padding: ($base-spacing-unit / 4) 0 ($base-spacing-unit / 4) $base-spacing-unit;
   border-left: 3px solid $col-neutral;
+}
+
+.overlay {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: linear-gradient(280deg, rgba(0,0,0,.3) 0%, $col-background-dark 100%);
+  transition: opacity $animation-speed linear;
+
+  .gradient &,
+  .error &,
+  .warning &,
+  .success {
+    opacity: 1;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+.content {
+  padding: ($base-spacing-unit * 5) 0;
+  flex: 1 0 auto;
 }

@@ -62,6 +62,8 @@
     },
 
     mounted() {
+      document.documentElement.classList.add('light');
+      
       if(this.sharedState.state.router.history.current.query.token) {
         this.token = this.sharedState.state.router.history.current.query.token;
         this.validatePasswordToken();

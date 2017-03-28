@@ -25,25 +25,22 @@
                 </div>
             </div>
         </section>
-        <section class="section">
+        <section class="section section--latest-trip">
             <div class="container">
                 <div class="row">
                     <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
                         <h2>Check out latest trip:</h2>
                         <transition name="fade">
-                            <section v-if="item">
-                                <div class="holidays">
-                                    <div class="holiday">
-                                        <router-link v-bind:to="'/holidays/' + item.slug">
-                                            <div class="holiday__image-wrapper">
-                                                <img v-if="item.feature" v-lazy="item.feature" :alt="item.title">
-                                            </div>
-                                            <h2 class="holiday__title">{{ item.title }}</h2>
-                                            <div class="holiday__overlay"></div>
-                                        </router-link>
-                                    </div>
+                            <div v-if="item" class="holidays">
+                                <div class="holiday">
+                                    <router-link v-bind:to="'/holidays/' + item.slug">
+                                        <div v-if="item.feature" :style="'background-image: url(' + item.feature + ')'" class="holiday__image"></div>
+                                        <h1 class="holiday__title">{{ item.title }}</h1>
+                                        <h1 class="holiday__title--secondary">{{ item.location }}</h1>
+                                        <h3 class="holiday__date">{{ item.date }}</h3>
+                                    </router-link>
                                 </div>
-                            </section>
+                            </div>
                         </transition>
                     </div>
                 </div>
@@ -69,7 +66,6 @@
     },
 
     mounted() {
-      document.documentElement.classList.add('dark');
       document.documentElement.classList.add('gradient');
     },
 
@@ -129,5 +125,19 @@
     font-style: italic;
     font-size: 12px;
     text-align: center;
+  }
+
+  .section--latest-trip {
+    min-height: 291px;
+    padding: $base-spacing-unit 0;
+    background-color: $col-background-dark;
+
+    .holidays {
+      margin: 0;
+    }
+
+    .holiday {
+      border: 0 none;
+    }
   }
 </style>

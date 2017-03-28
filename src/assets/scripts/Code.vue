@@ -35,10 +35,6 @@
       }
     },
 
-    mounted() {
-      document.documentElement.classList.add('dark');
-    },
-
     methods: {
       fetchItems() {
         return [

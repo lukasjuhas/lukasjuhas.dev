@@ -23,6 +23,8 @@
     },
 
     mounted() {
+      document.documentElement.classList.add('light');
+
       this.setRandomFact();
     },
 
