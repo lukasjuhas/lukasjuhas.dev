@@ -46,6 +46,15 @@
                 </div>
             </div>
         </section>
+        <section v-if="photos" class="section section--photo-feed">
+            <staggered-fade class="photo-feed">
+                <div v-for="(photo, index) in photos" :key="index" v-bind:data-index="index" class="photo-feed__panel">
+                    <a :href="photo.link" class="photo-feed__panel-content" target="_blank" rel="noopener">
+                        <img v-lazy="photo.thumb" :alt="photo.caption" :title="photo.caption">
+                    </a>
+                </div>
+            </staggered-fade>
+        </section>
     </div>
 </template>
 
@@ -53,14 +62,20 @@
   import store from './store';
   import each from 'lodash/each';
   import flash from './helpers/flash';
+  import StaggeredFade from './transitions/StaggeredFade.vue';
 
   export default {
     name: 'home',
+
+    components: {
+      StaggeredFade,
+    },
 
     data() {
       return {
         sharedState: store,
         item: null,
+        photos: null,
         showCaption: false,
       }
     },
@@ -71,6 +86,7 @@
 
     created() {
       this.fetchData();
+      this.fetchPhotos();
     },
 
     methods: {
@@ -96,6 +112,24 @@
 
           this.sharedState.setLoadingAction(false);
           flash.showError('Sorry, there was problem loading latest journey.');
+        });
+      },
+
+      fetchPhotos() {
+        this.sharedState.setLoadingAction(true);
+
+        axios.get('instagram').then((response) => {
+          if(response.data !== null) {
+            each(response.data, (photo) => {
+              this.photos = photo;
+            });
+          }
+
+          this.sharedState.setLoadingAction(false);
+        })
+        .catch((error) => {
+          this.sharedState.setLoadingAction(false);
+          flash.showError('Sorry, there was problem loading instagram photos.');
         });
       },
     }
@@ -140,4 +174,21 @@
       border: 0 none;
     }
   }
+
+  .photo-feed {
+    column-count: 2;
+    column-gap: 0;
+    max-width: 1200 + $base-spacing-unit;
+    margin: 0 auto;
+  }
+
+  .photo-feed__panel {
+    break-inside: avoid;
+    padding: $base-spacing-unit / 2;
+  }
+
+  .photo-feed__panel-content {
+    padding: $base-spacing-unit / 2;
+  }
+
 </style>
