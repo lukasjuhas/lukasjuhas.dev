@@ -46,15 +46,17 @@
                 </div>
             </div>
         </section>
-        <section v-if="photos" class="section section--photo-feed">
-            <staggered-fade class="photo-feed">
-                <div v-for="(photo, index) in photos" :key="index" v-bind:data-index="index" class="photo-feed__panel">
-                    <a :href="photo.link" class="photo-feed__panel-content" target="_blank" rel="noopener">
-                        <img v-lazy="photo.thumb" :alt="photo.caption" :title="photo.caption">
-                    </a>
-                </div>
-            </staggered-fade>
-        </section>
+        <transition name="fade">
+            <section v-if="photos" class="section section--photo-feed">
+                <staggered-fade class="photo-feed">
+                    <div v-for="(photo, index) in photos" :key="index" v-bind:data-index="index" class="photo-feed__panel">
+                        <a :href="photo.link" class="photo-feed__panel-content" target="_blank" rel="noopener">
+                            <img v-lazy="photo.thumb" :alt="photo.caption" :title="photo.caption">
+                        </a>
+                    </div>
+                </staggered-fade>
+            </section>
+        </transition>
     </div>
 </template>
 
@@ -175,11 +177,20 @@
     }
   }
 
+  .section--photo-feed {
+    margin-top: ($base-spacing-unit * 3);
+  }
+
   .photo-feed {
     column-count: 2;
     column-gap: 0;
     max-width: 1200 + $base-spacing-unit;
+    padding: 0 ($base-spacing-unit / 2);
     margin: 0 auto;
+
+    @include resp-max($breakpoint-sm) {
+      column-count: 1;
+    }
   }
 
   .photo-feed__panel {
@@ -188,7 +199,7 @@
   }
 
   .photo-feed__panel-content {
-    padding: $base-spacing-unit / 2;
+    //
   }
 
 </style>
