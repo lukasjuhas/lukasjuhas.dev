@@ -4,7 +4,7 @@
             <h1 class="page__title">Records</h1>
             <transition name="fade">
                 <div v-if="items.length" class="record-feed">
-                    <staggered-fade classes="row">
+                    <staggered-fade class="row">
                         <div v-for="item in items" :key="item.index" v-bind:data-index="item.index" class="record-wrapper col col--xs-4 col--sm-3 col--md-2 col--lg-2">
                             <div class="record">
                                 <div @click="fetchRelease(item.release_id)" class="record__artwork">

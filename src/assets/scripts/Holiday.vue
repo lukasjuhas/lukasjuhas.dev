@@ -10,7 +10,7 @@
                         </div>
                         <div class="row">
                             <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
-                                <staggered-fade v-if="photos.length" classes="photos">
+                                <staggered-fade v-if="photos.length" class="photos">
                                     <div v-for="(photo, index) in photos" class="photo" :class="'photo--' + photo.parity + ' photo--' + photo.orientation" :data-offset="photo.offset" :key="index" v-bind:data-index="index">
                                         <div class="photo__image-container" :style="'flex: 0 0 ' + photo.width + 'px;width: ' + photo.width + 'px; height: ' + photo.height + 'px; z-index: ' + (photos.length - index) + '; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetX + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'">
                                             <div class="photo__info">
