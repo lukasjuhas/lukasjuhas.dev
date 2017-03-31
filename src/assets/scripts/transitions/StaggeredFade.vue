@@ -1,5 +1,5 @@
 <template>
-    <transition-group tag="div" name="staggered-fade" v-bind:css="false" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave">
+    <transition-group :tag="tag" name="staggered-fade" v-bind:css="false" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave">
         <slot></slot>
     </transition-group>
 </template>
@@ -7,6 +7,14 @@
 <script>
   export default {
     name: 'staggered-fade',
+
+    props: {
+      tag: {
+        type: String,
+        required: false,
+        default: 'div',
+      },
+    },
 
     methods: {
       beforeEnter(el) {
