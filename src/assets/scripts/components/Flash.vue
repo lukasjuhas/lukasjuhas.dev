@@ -59,7 +59,7 @@
     }
 
     .flash__dismiss {
-      color: $col-text;
+      color: $col-text-dark;
       font-size: 32px;
       text-decoration: none;
       font-weight: normal;
@@ -73,8 +73,8 @@
         text-decoration: none;
       }
 
-      .dark & {
-        color: $col-text-light;
+      .light & {
+        color: $col-text;
       }
     }
 

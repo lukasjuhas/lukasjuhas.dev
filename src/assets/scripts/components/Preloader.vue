@@ -34,10 +34,10 @@
       display: inline-block;
       width: 3px;
       height: 10px;
-      background-color: $col-background-dark;
+      background-color: $col-background;
 
-      .dark & {
-        background-color: $col-background;
+      .light & {
+        background-color: $col-background-dark;
       }
 
       &:nth-child(1) {
