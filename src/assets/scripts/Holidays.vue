@@ -20,35 +20,15 @@
                     <div class="holiday__separator">
                         <h4>Upcoming</h4>
                     </div>
-                    <ul class="holidays">
-                        <staggered-fade>
-                            <li v-for="item in upcoming" :key="item.index" v-bind:data-index="item.index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
-                                <router-link v-bind:to="'/holidays/' + item.slug" v-if="item.content">
-                                    <div v-if="item.feature" :style="'background-image: url(' + item.feature + ')'" class="holiday__image"></div>
-                                    <h1 class="holiday__title">{{ item.title }}</h1>
-                                    <h1 class="holiday__title--secondary">{{ item.location }}</h1>
-                                    <h3 class="holiday__date">{{ item.date }}</h3>
-                                </router-link>
-                                <h2 v-else class="holiday__title">{{ item.title }}</h2>
-                            </li>
-                        </staggered-fade>
-                    </ul>
+                    <staggered-fade class="holidays" tag="ul">
+                        <holiday-item v-for="item in upcoming" :item="item" :key="item.index" :data-index="item.index"></holiday-item>
+                    </staggered-fade>
                     <div class="holiday__separator">
                         <h4>Past</h4>
                     </div>
-                    <ul class="holidays">
-                        <staggered-fade>
-                            <li v-for="item in past" :key="item.index" v-bind:data-index="item.index" class="holiday" v-bind:class="{ 'holiday--small': !item.content }">
-                                <router-link v-bind:to="'/holidays/' + item.slug" v-if="item.content">
-                                    <div v-if="item.feature" :style="'background-image: url(' + item.feature + ')'" class="holiday__image"></div>
-                                    <h1 class="holiday__title">{{ item.title }}</h1>
-                                    <h1 class="holiday__title--secondary">{{ item.location }}</h1>
-                                    <h3 class="holiday__date">{{ item.date }}</h3>
-                                </router-link>
-                                <h2 v-else class="holiday__title">{{ item.title }}</h2>
-                            </li>
-                        </staggered-fade>
-                    </ul>
+                    <staggered-fade class="holidays" tag="ul">
+                        <holiday-item v-for="item in past" :item="item" :key="item.index" :data-index="item.index"></holiday-item>
+                    </staggered-fade>
                   </div>
             </section>
         </transition>
@@ -67,12 +47,14 @@
   import each from 'lodash/each';
   import StaggeredFade from './transitions/StaggeredFade.vue';
   import flash from './helpers/flash';
+  import HolidayItem from './components/HolidayItem.vue';
 
   export default {
     name: 'holidays',
 
     components: {
       StaggeredFade,
+      HolidayItem,
     },
 
     data() {

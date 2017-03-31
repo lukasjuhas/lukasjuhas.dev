@@ -32,14 +32,7 @@
                         <h2>Check out latest trip:</h2>
                         <transition name="fade">
                             <div v-if="item" class="holidays">
-                                <div class="holiday">
-                                    <router-link v-bind:to="'/holidays/' + item.slug">
-                                        <div v-if="item.feature" :style="'background-image: url(' + item.feature + ')'" class="holiday__image"></div>
-                                        <h1 class="holiday__title">{{ item.title }}</h1>
-                                        <h1 class="holiday__title--secondary">{{ item.location }}</h1>
-                                        <h3 class="holiday__date">{{ item.date }}</h3>
-                                    </router-link>
-                                </div>
+                                <holiday-item :item="item"></holiday-item>
                             </div>
                         </transition>
                     </div>
@@ -65,12 +58,14 @@
   import each from 'lodash/each';
   import flash from './helpers/flash';
   import StaggeredFade from './transitions/StaggeredFade.vue';
+  import HolidayItem from './components/HolidayItem.vue';
 
   export default {
     name: 'home',
 
     components: {
       StaggeredFade,
+      HolidayItem,
     },
 
     data() {
