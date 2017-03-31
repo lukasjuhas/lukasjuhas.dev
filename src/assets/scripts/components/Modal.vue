@@ -33,6 +33,16 @@
       }
     },
 
+    watch: {
+      toggle(open) {
+        if (open) {
+          document.body.classList.add('modal-open');
+        } else {
+          document.body.classList.remove('modal-open');
+        }
+      }
+    },
+
     methods: {
       handleClick(event) {
         if(event.target.className === 'modal-wrapper') {
@@ -45,25 +55,44 @@
 </script>
 
 <style lang="scss">
+  .modal-open {
+    overflow: hidden;
+  }
+
   .modal-mask {
     position: fixed;
     z-index: 1500;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     background-color: $col-overlay;
-    display: table;
     transition: opacity $animation-speed-fast $animation;
   }
 
   .modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: auto;
+
+    &:before {
+      content: ' ';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
   }
 
   .modal-container {
+    display: inline-block;
+    vertical-align: middle;
     position: relative;
+    text-align: left;
+    white-space: normal;
     width: 500px;
     max-width: 100%;
     max-width: 80%;
