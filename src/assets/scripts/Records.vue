@@ -140,9 +140,7 @@
             this.release = response.data.data;
             this.modal('release');
           }
-
-          console.log(this.release);
-
+          
           this.sharedState.setLoadingAction(false);
         })
         .catch((error) => {
