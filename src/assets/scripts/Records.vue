@@ -177,8 +177,7 @@
     background: lighten($col-background-dark, 10%);
     margin-bottom: $base-spacing-unit / 4;
     position: relative;
-    max-width: 300px;
-    max-height: 300px;
+    margin-bottom: $base-spacing-unit;
 
     &:before {
       content: '';
