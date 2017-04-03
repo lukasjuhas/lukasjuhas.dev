@@ -124,7 +124,6 @@ blockquote {
 }
 
 .overlay {
-  opacity: 0;
   position: absolute;
   top: 0;
   left: 0;
@@ -134,11 +133,20 @@ blockquote {
   background-image: linear-gradient(280deg, rgba(0,0,0,.3) 0%, $col-background-dark 100%);
   transition: opacity $animation-speed linear;
 
-  .gradient &,
   .error &,
   .warning &,
-  .success {
-    opacity: 1;
+  .success & {
+    background-image: linear-gradient(135deg, rgba(0,0,0,.3) 0%, $col-background-dark 100%);
+  }
+
+  .light & {
+    background-image: linear-gradient(280deg, rgba(255,255,255,.3) 0%, $col-background 100%);
+  }
+
+  .light.error &,
+  .light.warning &,
+  .light.success & {
+    background-image: linear-gradient(135deg, rgba(255,255,255,.3) 0%, $col-background 100%);
   }
 }
 
