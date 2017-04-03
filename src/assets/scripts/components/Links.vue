@@ -32,7 +32,6 @@
 
   .link {
     display: inline-block;
-    vertical-align: middle;
     margin: 0 ($base-spacing-unit / 2);
     transition: transform $animation-speed ease-in-out;
 

@@ -30,7 +30,7 @@
     display: block;
     transition: all $animation-speed $animation;
     background-color: $col-background-dark;
-    border-bottom: 1px solid lighten($col-background-dark, 10%);
+    border-bottom: 1px dotted lighten($col-background-dark, 10%);
     position: relative;
 
     .trip__title {
@@ -60,6 +60,7 @@
         background-position: center center;
         background-size: cover;
         display: block;
+        filter: blur(0px);
         transition: height $animation-speed-fast ease-in-out, filter $animation-speed-fast linear;
 
         &:before {
@@ -71,7 +72,7 @@
           bottom: 0;
           background: $col-background-dark;
           opacity: 0;
-          transition: opacity $animation-speed-fast linear;
+          transition: opacity $animation-speed linear;
         }
       }
 
@@ -85,11 +86,12 @@
       }
 
       .trip__date {
-        transition: height $animation-speed-fast linear, opacity $animation-speed-fast linear;
+        transition: height $animation-speed-fast linear, opacity $animation-speed linear;
         height: 0;
         margin: 0;
         overflow: hidden;
         opacity: 0;
+        font-size: 12px;
       }
 
       .trip__title--secondary {
@@ -98,7 +100,6 @@
 
       &:hover {
         padding: $base-spacing-unit 0;
-        transform: scale(1.02);
 
         .trip__date {
           height: 33px;
@@ -125,7 +126,7 @@
     }
 
     &:first-child {
-      border-top: 1px solid lighten($col-background-dark, 10%);
+      border-top: 1px dotted lighten($col-background-dark, 10%);
     }
   }
 
@@ -133,7 +134,16 @@
     padding: ($base-spacing-unit / 2) 0;
   }
 
+  .trip--borderless {
+    border: 0 none;
+
+    &:first-child {
+      border: 0 none;
+    }
+  }
+
   .trip__title {
     margin: 0;
   }
+
 </style>

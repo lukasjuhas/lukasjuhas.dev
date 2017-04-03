@@ -29,10 +29,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
-                        <h2>Check out latest trip:</h2>
+                        <h2>Check out latest trip or <router-link to="/trips" class="link">see them all</router-link></h2>
                         <transition name="fade">
                             <div v-if="item" class="trips">
-                                <trip-item :item="item"></trip-item>
+                                <trip-item class="trip--borderless" :item="item"></trip-item>
                             </div>
                         </transition>
                     </div>
@@ -43,11 +43,14 @@
             <section v-if="photos" class="section section--photo-feed">
                 <staggered-fade class="photo-feed">
                     <div v-for="(photo, index) in photos" :key="index" v-bind:data-index="index" class="photo-feed__panel">
-                        <a :href="photo.link" class="photo-feed__panel-content" target="_blank" rel="noopener">
-                            <img v-lazy="photo.thumb" :alt="photo.caption" :title="photo.caption">
-                        </a>
+                        <img v-lazy="photo.thumb" :alt="photo.caption" :title="photo.caption">
                     </div>
                 </staggered-fade>
+                <div class="row">
+                    <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12 align-text-center">
+                        <a href="https://instagram.com/lukasjuhas" class="see-more" target="_blank" rel="noopener">see more</a>
+                    </div>
+                </div>
             </section>
         </transition>
     </div>
@@ -166,10 +169,6 @@
     .trips {
       margin: 0;
     }
-
-    .trip {
-      border: 0 none;
-    }
   }
 
   .section--photo-feed {
@@ -193,8 +192,9 @@
     padding: $base-spacing-unit / 2;
   }
 
-  .photo-feed__panel-content {
-    //
+  .see-more {
+    margin-top: $base-spacing-unit;
+    display: inline-block;
   }
 
 </style>

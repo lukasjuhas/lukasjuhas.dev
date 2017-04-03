@@ -28,7 +28,7 @@ export default [
   {
     path: '/trips',
     component: Trips,
-    name: 'Every Month\'s Trips',
+    name: 'Trips',
     nav: true,
   },
   {
