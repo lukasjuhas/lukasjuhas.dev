@@ -2,7 +2,7 @@
     <div class="container">
         <transition name="fade">
             <div class="page">
-                <editor v-show="show" class="holiday-editor"></editor>
+                <editor v-show="show" class="trip-editor"></editor>
 
                 <h3>Photo manager</h3>
                 <div v-if="item && item.photos.length" class="photo-thumbs" id="dragula">
@@ -51,7 +51,7 @@
   import Editor from '../components/Editor.vue';
 
   export default {
-    name: 'manage-holiday',
+    name: 'manage-trip',
 
     props: {
       slug: {
@@ -418,7 +418,7 @@
 </script>
 
 <style lang="scss">
-  .holiday-editor {
+  .trip-editor {
     margin-bottom: $base-spacing-unit * 2;
   }
 

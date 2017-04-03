@@ -1,7 +1,7 @@
 <template>
     <div class="page">
         <section class="container">
-            <h1 class="page__title">Every Month's Holiday</h1>
+            <h1 class="page__title">"Every Month's Holiday"</h1>
             <div class="row">
                 <div class="col col--xs-12 col--sm-12 col--md-7 col--lg-7">
                     <p>It all started on my birthday in October 2014 when as a present I got weekend trip to Paris. Since then we travelled almost every month at least once.</p>
@@ -15,19 +15,19 @@
             </div>
         </section>
         <transition name="fade">
-            <section class="section section--holidays" v-if="items.length">
+            <section class="section section--trips" v-if="items.length">
                 <div class="container">
-                    <div class="holiday__separator">
+                    <div class="trip__separator">
                         <h4>Upcoming</h4>
                     </div>
-                    <staggered-fade class="holidays" tag="ul">
-                        <holiday-item v-for="item in upcoming" :item="item" :key="item.index" :data-index="item.index"></holiday-item>
+                    <staggered-fade class="trips" tag="ul">
+                        <trip-item v-for="item in upcoming" :item="item" :key="item.index" :data-index="item.index"></trip-item>
                     </staggered-fade>
-                    <div class="holiday__separator">
+                    <div class="trip__separator">
                         <h4>Past</h4>
                     </div>
-                    <staggered-fade class="holidays" tag="ul">
-                        <holiday-item v-for="item in past" :item="item" :key="item.index" :data-index="item.index"></holiday-item>
+                    <staggered-fade class="trips" tag="ul">
+                        <trip-item v-for="item in past" :item="item" :key="item.index" :data-index="item.index"></trip-item>
                     </staggered-fade>
                   </div>
             </section>
@@ -47,14 +47,14 @@
   import each from 'lodash/each';
   import StaggeredFade from './transitions/StaggeredFade.vue';
   import flash from './helpers/flash';
-  import HolidayItem from './components/HolidayItem.vue';
+  import TripItem from './components/TripItem.vue';
 
   export default {
-    name: 'holidays',
+    name: 'trips',
 
     components: {
       StaggeredFade,
-      HolidayItem,
+      TripItem,
     },
 
     data() {
@@ -151,11 +151,11 @@
 </script>
 
 <style lang="scss">
-  .section--holidays {
+  .section--trips {
     margin-top: $base-spacing-unit * 3;
   }
 
-  .holidays {
+  .trips {
     text-align: center;
     overflow: hidden;
     margin: $base-spacing-unit 0 ($base-spacing-unit * 3);

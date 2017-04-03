@@ -1,7 +1,7 @@
 import Home from './Home.vue';
 import Code from './Code.vue';
-import Holidays from './Holidays.vue';
-import Holiday from './Holiday.vue';
+import Trips from './Trips.vue';
+import Trip from './Trip.vue';
 import Despatches from './Despatches.vue';
 import Records from './Records.vue';
 import Login from './Login.vue';
@@ -10,8 +10,8 @@ import NotFound from './404.vue';
 import Manage from './Manage.vue';
 import ManageDespatch from './manage/EditDespatch.vue';
 import ManageDespatchNew from './manage/NewDespatch.vue';
-import ManageHoliday from './manage/EditHoliday.vue';
-import ManageHolidayNew from './manage/NewHoliday.vue';
+import ManageTrip from './manage/EditTrip.vue';
+import ManageTripNew from './manage/NewTrip.vue';
 
 export default [
   {
@@ -26,14 +26,14 @@ export default [
     nav: true,
   },
   {
-    path: '/holidays',
-    component: Holidays,
-    name: 'Every Month\'s Holidays',
+    path: '/trips',
+    component: Trips,
+    name: 'Every Month\'s Trips',
     nav: true,
   },
   {
-    path: '/holidays/:slug',
-    component: Holiday,
+    path: '/trips/:slug',
+    component: Trip,
     props: true,
   },
   {
@@ -67,15 +67,15 @@ export default [
     meta: { requiresAuth: true },
   },
   {
-    path: '/manage/holiday/new',
-    component: ManageHolidayNew,
-    name: 'New Holiday',
+    path: '/manage/trip/new',
+    component: ManageTripNew,
+    name: 'New Trip',
     meta: { requiresAuth: true },
   },
   {
-    path: '/manage/holiday/:slug',
-    component: ManageHoliday,
-    name: 'Edit Holiday',
+    path: '/manage/trip/:slug',
+    component: ManageTrip,
+    name: 'Edit Trip',
     props: true,
     meta: { requiresAuth: true },
   },

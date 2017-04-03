@@ -11,7 +11,7 @@
   import Editor from '../components/Editor.vue';
 
   export default {
-    name: 'manage-new-holiday',
+    name: 'manage-new-trip',
 
     components: {
       Editor,
@@ -46,7 +46,7 @@
             flash.showSuccess(response.data.message, true);
 
             setTimeout(() => {
-              window.location = helpers.url(`manage/holiday/${response.data.data.slug}`)
+              window.location = helpers.url(`manage/trip/${response.data.data.slug}`)
             }, 1000);
           }
 

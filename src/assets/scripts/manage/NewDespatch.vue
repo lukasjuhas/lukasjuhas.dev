@@ -8,7 +8,7 @@
   import Editor from '../components/Editor.vue';
 
   export default {
-    name: 'manage-new-holiday',
+    name: 'manage-new-trip',
 
     components: {
       Editor,

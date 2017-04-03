@@ -15,7 +15,7 @@
                     </div>
                     <div class="col col--xs-12 col--sm-10 col--md-7 col--lg-7">
                         <article class="large-content">
-                            <p>I'm Lukas Juhas and my main purpose on this planet is to enjoy life by&nbsp;<router-link to="/code">writing code</router-link>,&nbsp;<router-link to="/holidays">traveling</router-link>, making music and taking <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener">photographs</a>. Currently living and working in London as Full-stack Web Developer at <a href="https://benchmark.co.uk/" target="_blank" rel="noopener">Benchmark</a>.</p>
+                            <p>I'm Lukas Juhas and my main purpose on this planet is to enjoy life by&nbsp;<router-link to="/code">writing code</router-link>,&nbsp;<router-link to="/trips">traveling</router-link>, making music and taking <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener">photographs</a>. Currently living and working in London as Full-stack Web Developer at <a href="https://benchmark.co.uk/" target="_blank" rel="noopener">Benchmark</a>.</p>
 
                             <p>Say hello <a href="mailto:lukas@itsluk.as">lukas@itsluk.as</a>.</p>
 
@@ -31,8 +31,8 @@
                     <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
                         <h2>Check out latest trip:</h2>
                         <transition name="fade">
-                            <div v-if="item" class="holidays">
-                                <holiday-item :item="item"></holiday-item>
+                            <div v-if="item" class="trips">
+                                <trip-item :item="item"></trip-item>
                             </div>
                         </transition>
                     </div>
@@ -58,14 +58,14 @@
   import each from 'lodash/each';
   import flash from './helpers/flash';
   import StaggeredFade from './transitions/StaggeredFade.vue';
-  import HolidayItem from './components/HolidayItem.vue';
+  import TripItem from './components/TripItem.vue';
 
   export default {
     name: 'home',
 
     components: {
       StaggeredFade,
-      HolidayItem,
+      TripItem,
     },
 
     data() {
@@ -163,11 +163,11 @@
     padding: $base-spacing-unit 0;
     background-color: $col-background-dark;
 
-    .holidays {
+    .trips {
       margin: 0;
     }
 
-    .holiday {
+    .trip {
       border: 0 none;
     }
   }

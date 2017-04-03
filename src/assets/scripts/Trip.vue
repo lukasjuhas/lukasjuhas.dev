@@ -1,7 +1,7 @@
 <template>
     <div class="page">
         <transition name="fade">
-            <div class="holiday-container">
+            <div class="trip-container">
                 <div v-if="item" class="container">
                     <h1 class="page__title">{{ item.title }}</h1>
                     <div class="page__content page__content--serif">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="row">
                             <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12 align-text-center">
-                                <router-link to="/holidays" class="link link--all-holidays">All holidays</router-link>
+                                <router-link to="/trips" class="link link--all-trips">All trips</router-link>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
 
 
   export default {
-    name: 'holiday',
+    name: 'trip',
 
     components: {
       StaggeredFade,
@@ -146,7 +146,7 @@
     }
   }
 
-  .holiday-container {
+  .trip-container {
     width: $grid-max-width + 150; // grid + offsetX range for photo
     max-width: 100%;
     margin: 0 auto;
@@ -258,7 +258,7 @@
   }
 
   .link {
-    &.link--all-holidays {
+    &.link--all-trips {
       margin-top: $base-spacing-unit * 5;
       display: inline-block;
     }
