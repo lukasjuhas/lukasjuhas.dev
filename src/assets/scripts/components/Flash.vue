@@ -59,7 +59,7 @@
     }
 
     .flash__dismiss {
-      color: $col-text-dark;
+      color: $col-text-light;
       font-size: 32px;
       text-decoration: none;
       font-weight: normal;
