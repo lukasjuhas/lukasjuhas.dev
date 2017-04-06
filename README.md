@@ -1,16 +1,5 @@
 # itsluk.as
-My little pice of internet build on my [web-starter](https://github.com/lukasjuhas/web-starter).
-
-### My intentions of this project
-* Create personal website that would use my [api](https://github.com/lukasjuhas/api.itsluk.as) among others.
-* Write clean and neat code using best practices I learned so far.
-* Learn more about working with [Vue](https://vuejs.org).
-* Build it with my [web-starter](https://github.com/lukasjuhas/web-starter) in order to test it properly and tweak any potential problems.
-* Learn to write clean and readable tests in [Vue](https://vuejs.org).
-* Give Open Source community an example of a site build on [web-starter](https://github.com/lukasjuhas/web-starter). (gulp, rollup & vue)
-* Have my personal web creative space where I could experiment and keep improving it.
-* Build space to show my interests.
-* Bring something unique to the table.
+My little pice of internet build on my [web-starter](https://github.com/lukasjuhas/web-starter) using my [api](https://github.com/lukasjuhas/api.itsluk.as) among others.
 
 ## Server Configuration
 As I'm using vue-router with HTML5 history mode, site requires some server Configuration
@@ -69,3 +58,8 @@ or
 ```js
 gulp build --minor
 ```
+
+#### Screenshots
+Some screenshots of the "hidden" areas and features that are hidden behind the admin area.
+
+TBC.
