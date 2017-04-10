@@ -35,7 +35,7 @@
 <style lang="scss">
   .flash {
     line-height: 1.35em;
-    position: absolute;
+    position: fixed;
     width: auto;
     z-index: 500;
     top: $base-spacing-unit;

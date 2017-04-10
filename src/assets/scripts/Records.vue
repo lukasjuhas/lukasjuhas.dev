@@ -31,6 +31,9 @@
                             <div class="record__artwork">
                                 <img v-if="release.image" v-lazy="release.image" :alt="release.title">
                             </div>
+                            <a title="Open in Spotify" v-if="release.spotify" :href="release.spotify" target="_blank" rel="noopener" class="record__link_icon">
+                                <svg class="icon"><use xlink:href="#spotify-brand"></use></svg>
+                            </a>
                         </div>
                         <div class="col col--xs-12 col--sm-12 col--md-8 col--lg-8">
                             <div class="container">
@@ -70,6 +73,7 @@
         prevPage: null,
         showAllLoaded: false,
         release: null,
+        showCaption: false,
       }
     },
 
@@ -140,7 +144,7 @@
             this.release = response.data.data;
             this.modal('release');
           }
-          
+
           this.sharedState.setLoadingAction(false);
         })
         .catch((error) => {
@@ -220,5 +224,24 @@
     .modal-container {
       width: 70%;
     }
+  }
+
+  .record__link_icon {
+    display: inline-block;
+    margin-bottom: $base-spacing-unit;
+    width: 100%;
+
+    .icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: 40px;
+      height: 40px;
+      margin-right: $base-spacing-unit;
+    }
+  }
+
+  .record__link_caption {
+    display: inline-block;
+    vertical-align: middle;
   }
 </style>
