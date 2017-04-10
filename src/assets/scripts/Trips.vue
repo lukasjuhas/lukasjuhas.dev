@@ -4,7 +4,7 @@
             <h1 class="page__title">"Every Month's Holiday"</h1>
             <div class="row">
                 <div class="col col--xs-12 col--sm-12 col--md-7 col--lg-7">
-                    <p>It all started on my birthday in October 2014 when as a present I got weekend trip to Paris. Since then we travelled almost every month at least once.</p>
+                    <p>It all started on my birthday in October 2014 when as a present from my other half I got weekend trip to Paris. Since then we travelled almost every month at least once.</p>
 
                     <p>Although it's not as regular as before, we still would like to carry on with this and even catch up on missed months.</p>
 
