@@ -3,10 +3,10 @@ export default {
   debug: process.env.NODE_ENV === 'development',
 
   // Url
-  url: 'http://localhost:2525/#/',
+  url: process.env.NODE_ENV === 'development' ? 'http://localhost:2525/#/' : 'https://itsluk.as',
 
   // API base url used by axios
-  baseApiUrl: 'https://api.itsluk.dev',
+  baseApiUrl: 'https://api.itsluk.as',
 
   // Timeout on requests (by axios)
   // TODO: set this just for upload
