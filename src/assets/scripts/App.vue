@@ -6,11 +6,11 @@
             <logo ref="logo"></logo>
             <preloader></preloader>
             <flash></flash>
-            <transition name="fade">
-                <div class="content">
+            <div class="content">
+                <transition name="fade" mode="out-in">
                     <router-view></router-view>
-                </div>
-            </transition>
+                </transition>
+            </div>
             <transition name="fade">
                 <footer class="footer">
                     <div class="row">

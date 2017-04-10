@@ -66,6 +66,7 @@
       position: absolute;
       right: 0;
       top: 0;
+      padding: 0;
       vertical-align: top;
       line-height: .5;
 
