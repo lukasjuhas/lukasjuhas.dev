@@ -25,20 +25,22 @@
                 </div>
             </div>
         </section>
-        <section class="section section--latest-trip">
-            <div class="container">
-                <div class="row">
-                    <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
-                        <h2>Check out latest trip or <router-link to="/trips" class="link">see them all</router-link></h2>
-                        <transition name="fade">
-                            <div v-if="item" class="trips">
-                                <trip-item class="trip--borderless" :item="item"></trip-item>
-                            </div>
-                        </transition>
+        <transition name="fade">
+            <section v-if="showLatestTripSection" class="section section--latest-trip">
+                <div class="container">
+                    <div class="row">
+                        <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
+                            <h2>Check out latest trip or <router-link to="/trips" class="link">see them all</router-link></h2>
+                            <transition name="fade">
+                                <div v-if="item" class="trips">
+                                    <trip-item class="trip--borderless" :item="item"></trip-item>
+                                </div>
+                            </transition>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </transition>
         <transition name="fade">
             <section v-if="photos" class="section section--photo-feed">
                 <staggered-fade class="photo-feed">
@@ -77,6 +79,7 @@
         item: null,
         photos: null,
         showCaption: false,
+        showLatestTripSection: true,
       }
     },
 
@@ -100,6 +103,10 @@
             });
           }
 
+          if(response.data.error) {
+            this.showLatestTripSection = false;
+          }
+
           // set next and prev page
           this.nextPage = response.data.paginator.next_page;
           this.prevPage = response.data.paginator.prev_page;
@@ -110,6 +117,7 @@
           this.nextPage = null;
           this.prevPage = null;
 
+          this.showLatestTripSection = false;
           this.sharedState.setLoadingAction(false);
           flash.showError('Sorry, there was problem loading latest journey.');
         });

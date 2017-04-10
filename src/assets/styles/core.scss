@@ -11,6 +11,10 @@ html {
     background-color: $col-background;
   }
 
+  &.gradient {
+    background-color: $col-brand;
+  }
+
   &.error {
     background-color: $col-danger;
   }
@@ -21,10 +25,6 @@ html {
 
   &.success {
     background-color: $col-success;
-  }
-
-  &.gradient {
-    background-color: $col-brand;
   }
 }
 
