@@ -62,4 +62,23 @@ gulp build --minor
 #### Screenshots
 Some screenshots of the "hidden" areas and features that are hidden behind the admin area.
 
-TBC.
+![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/login.png "Login")
+Login screen.
+
+![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/logout-button.png "Logout Button")
+Logout button
+
+*Trip Manager:*
+
+![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/medium-editor.png "Medium Editor")
+Medium like editor for the content
+
+![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/photo-manager.gif "Photo Manager")
+Photo manager
+
+![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/photo-caption.gif "Photo Caption")
+Photo caption also includes medium like editor
+
+![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/photo-upload.png "Photo upload")
+Photo upload
+
