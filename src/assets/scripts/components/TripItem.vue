@@ -29,7 +29,6 @@
     width: 100%;
     display: block;
     transition: all $animation-speed $animation;
-    background-color: $col-background-dark;
     border-bottom: 1px dotted lighten($col-background-dark, 10%);
     position: relative;
 
