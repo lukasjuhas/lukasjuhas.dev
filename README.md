@@ -59,26 +59,27 @@ or
 gulp build --minor
 ```
 
-#### Screenshots
+### Screenshots
 Some screenshots of the "hidden" areas and features that are hidden behind the admin area.
 
-![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/login.png "Login")
-Login screen.
+#### Login / Logout
+**Login screen**.
+![Login](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/login.png "Login")
 
-![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/logout-button.png "Logout Button")
-Logout button
+**Logout button**
+![Logout Button](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/logout-button.png "Logout Button")
 
-*Trip Manager:*
+#### Trip Manager
 
-![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/medium-editor.png "Medium Editor")
-Medium like editor for the content
+**Medium like editor for the content**
+![Medium Editor](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/medium-editor.png "Medium Editor")
 
-![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/photo-manager.gif "Photo Manager")
-Photo manager
+**Photo manager**
+![Photo Manager](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/photo-manager.gif "Photo Manager")
 
-![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/photo-caption.gif "Photo Caption")
-Photo caption also includes medium like editor
+**Photo caption also includes medium like editor**
+![Photo Caption](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/photo-caption.gif "Photo Caption")
 
-![alt text](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/photo-upload.png "Photo upload")
-Photo upload
+**Photo upload**
+![Photo upload](https://github.com/lukasjuhas/itsluk.as/raw/master/docs/screenshots/upload-photos.png "Photo upload")
 
