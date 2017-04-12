@@ -58,7 +58,7 @@
        * check if user is authorised
        */
       authorised() {
-        return this.sharedState.state.token !== 'false' || '';
+        return this.sharedState.state.token !== false || '';
       }
     },
 
