@@ -16,7 +16,7 @@
         </transition>
         <modal ref="uploadModal" v-cloak>
             <h3 slot="header">Add Photos</h3>
-            <form slot="body" method="post" class="form" v-on:submit.prevent="upload"  enctype="multipart/form-data">
+            <form slot="body" method="post" class="form" v-on:submit.prevent="upload" enctype="multipart/form-data">
                 <div class="form__group">
                     <input v-on:change="onPhotoChange" v-model="photos" type="file" name="photo[]" accept="image/*" multiple>
                 </div>

@@ -10,11 +10,12 @@
 
                     <p>You could label this as my travel diary. I tried all kind of ways to store and represent these trips but then, if you can't find the right thing, do it yourself.</p>
 
-                    <p>Check out some of our trips below.</p>
+                    <p v-if="showTrips">Check out some of our trips below.</p>
+                    <h3 style="margin-top: 50px" v-if="!showTrips">TBC.</h3>
                 </div>
             </div>
         </section>
-        <transition name="fade">
+        <transition name="fade" v-if="showTrips">
             <section class="section section--trips" v-if="items.length">
                 <div class="container">
                     <div class="trip__separator">
@@ -32,7 +33,7 @@
                   </div>
             </section>
         </transition>
-        <transition name="fade">
+        <transition name="fade" v-if="showTrips">
             <section v-if="showAllLoaded" class="container align-text-center all-loaded">
                 <p><em>That's it!</em></p>
             </section>
@@ -64,6 +65,7 @@
         nextPage: null,
         prevPage: null,
         showAllLoaded: false,
+        showTrips: false,
       }
     },
 
