@@ -244,4 +244,11 @@
     display: inline-block;
     vertical-align: middle;
   }
+
+  .record-wrapper {
+    @include resp-max(525px) {
+      flex-basis: 50%;
+      max-width: 50%;
+    }
+  }
 </style>
