@@ -48,9 +48,6 @@
                         </div>
                     </div>
                 </div>
-                <div v-else class="container">
-                    <h3>Sorry! This trip is being updated. Check back soon.. 😉</h3>
-                </div>
             </div>
         </transition>
     </div>
@@ -92,7 +89,7 @@
     },
 
     created() {
-      // this.fetchData();
+      this.fetchData();
     },
 
     methods: {
