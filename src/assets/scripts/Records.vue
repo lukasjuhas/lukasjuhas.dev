@@ -2,6 +2,7 @@
     <div class="page">
         <div class="container">
             <h1 class="page__title">Records</h1>
+            <p>This is my record collection.</p>
             <transition name="fade">
                 <div v-if="items.length" class="record-feed">
                     <staggered-fade class="row">
