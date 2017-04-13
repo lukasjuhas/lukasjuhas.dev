@@ -36,7 +36,7 @@
                                             </div>
                                             <img class="photo__image" v-lazy="photo.url" :alt="photo.title" />
                                         </div>
-                                        <div class="photo__caption" :style="'max-width:' + photo.width + 'px; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + (photo.offsetX - baseSpacingUnit) + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + (photo.offsetY + baseSpacingUnit) + 'px)'" v-html="photo.caption || '<p>Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Etiam porta sem malesuada magna mollis euismod.</p>'"></div>
+                                        <div class="photo__caption" :style="'max-width:' + photo.width + 'px; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + (photo.offsetX - baseSpacingUnit) + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + (photo.offsetY + baseSpacingUnit) + 'px)'" v-html="photo.caption"></div>
                                     </div>
                                 </staggered-fade>
                             </div>
