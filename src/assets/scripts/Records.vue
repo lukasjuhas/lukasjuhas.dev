@@ -39,7 +39,14 @@
                         <div class="col col--xs-12 col--sm-12 col--md-8 col--lg-8">
                             <div class="container">
                                 <ol class="list">
-                                  <li v-for="track in release.tracklist">{{ track }}</li>
+                                  <li v-for="(track, index) in release.tracklist">
+                                      <span @click="trackPlaying('track' + index)" class="list__track_play_pause" v-if="track.preview" @click="toggleTrackStatus('track' + index)">
+                                          <svg v-if="trackPlaying('track' + index)" title="Pause preview" class="icon"><use xlink:href="#pause"></use></svg>
+                                          <svg v-else title="Play preview" class="icon"><use xlink:href="#play"></use></svg>
+                                      </span>
+                                      <audio v-if="track.preview" :ref="'track' + index" :src="track.preview" ref="player"></audio>
+                                      <span class="list__track_title">{{ track.title }}</span>
+                                  </li>
                                 </ol>
                             </div>
                         </div>
@@ -53,6 +60,7 @@
 <script>
   import store from './store';
   import throttle from 'lodash/throttle';
+  import includes from 'lodash/includes';
   import each from 'lodash/each';
   import StaggeredFade from './transitions/StaggeredFade.vue';
   import flash from './helpers/flash';
@@ -75,6 +83,7 @@
         showAllLoaded: false,
         release: null,
         showCaption: false,
+        tracksPlaying: [],
       }
     },
 
@@ -154,6 +163,41 @@
 
           flash.showError('Sorry, there are no details about this record.', true);
         });
+      },
+
+      toggleTrackStatus(ref) {
+        // clean up track currently plaing
+        this.tracksPlaying = [];
+
+        // pause any other tracks
+        each(this.$refs, (item, index) => {
+          if((typeof item[0] !== 'undefined') && (index !== ref)) {
+            item[0].pause();
+          }
+        });
+
+        // play or pause selected track.
+        if(typeof this.$refs[ref] !== 'undefined') {
+          this.$refs[ref][0].paused ? this.$refs[ref][0].play() : this.$refs[ref][0].pause();
+
+          if(!this.$refs[ref][0].paused) {
+            // when preview finished, remove "pause" icon
+            this.$refs[ref][0].addEventListener('ended', () => {
+              this.tracksPlaying = [];
+            });
+
+            // current tracks playing
+            this.tracksPlaying.push(ref);
+          }
+        }
+      },
+
+      trackPlaying(ref) {
+        if (includes(this.tracksPlaying, ref)) {
+          return true;
+        }
+
+        return false;
       },
 
       modal(ref) {
@@ -250,6 +294,25 @@
     @include resp-max(525px) {
       flex-basis: 50%;
       max-width: 50%;
+    }
+  }
+
+  .list__track_title {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .list__track_play_pause {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: $base-spacing-unit / 4;
+    cursor: pointer;
+
+    .icon {
+      width: 20px;
+      height: 20px;
     }
   }
 </style>
