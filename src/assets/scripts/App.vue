@@ -1,5 +1,5 @@
 <template>
-    <transition name="fade">
+    <transition name="slide-fade-bottom">
         <div id="app" class="main" v-if="show">
             <div class="overlay"></div>
             <navigation ref="navigation"></navigation>
@@ -199,7 +199,7 @@
   }
 
 
-  // sldie fade
+  // slide fade
   .slide-fade-enter-active {
     transition: all $animation-speed ease;
   }
@@ -210,6 +210,20 @@
 
   .slide-fade-enter, .slide-fade-leave-to {
     transform: translateX($base-spacing-unit);
+    opacity: 0;
+  }
+
+  // slide fade from bottom
+  .slide-fade-bottom-enter-active {
+    transition: all $animation-speed-slow ease-in-out;
+  }
+
+  .slide-fade-bottom-leave-active {
+    transition: all $animation-speed-slow cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+
+  .slide-fade-bottom-enter, .slide-fade-bottom-leave-to {
+    transform: translateY($base-spacing-unit);
     opacity: 0;
   }
 

@@ -198,6 +198,7 @@
   .photo-feed__panel {
     break-inside: avoid;
     padding: $base-spacing-unit / 2;
+    min-height: 200px; // to help lazyload
   }
 
   .see-more {
