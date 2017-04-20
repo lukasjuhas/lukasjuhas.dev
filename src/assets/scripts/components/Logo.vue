@@ -11,9 +11,9 @@
     data() {
       return {
         show: true,
-      }
+      };
     },
-  }
+  };
 </script>
 
 <style lang="scss">

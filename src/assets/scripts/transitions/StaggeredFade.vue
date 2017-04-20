@@ -21,7 +21,7 @@
         el.classList.add('staggered-fade-item');
       },
 
-      enter(el, done) {
+      enter(el) {
         const delay = el.dataset.index * 100;
 
         setTimeout(() => {
@@ -29,14 +29,14 @@
         }, delay);
       },
 
-      leave(el, done) {
+      leave(el) {
         const delay = el.dataset.index * 100;
 
         setTimeout(() => {
           el.classList.remove('staggered-fade-item--visible');
         }, delay);
-      }
-    }
+      },
+    },
   };
 </script>
 

@@ -1,4 +1,3 @@
-/* global window */
 /* eslint-disable no-new, no-param-reassign */
 import axios from 'axios/dist/axios';
 import Vue from 'vue';

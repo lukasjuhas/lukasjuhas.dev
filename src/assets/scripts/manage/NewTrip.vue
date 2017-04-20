@@ -20,7 +20,7 @@
     data() {
       return {
         sharedState: store,
-      }
+      };
     },
 
     mounted() {
@@ -39,21 +39,21 @@
         flash.hide();
         this.sharedState.setLoadingAction(true);
 
-        axios.post(`trips`, { title, content }).then((response) => {
-          if(response.data.error) {
+        axios.post('trips', { title, content }).then((response) => {
+          if (response.data.error) {
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
 
             setTimeout(() => {
-              window.location = helpers.url(`manage/trip/${response.data.data.slug}`)
+              window.location = helpers.url(`manage/trip/${response.data.data.slug}`);
             }, 1000);
           }
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error, status) => {
-          if(error.status === 404) {
+        .catch((error) => {
+          if (error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
 
@@ -61,6 +61,6 @@
           this.sharedState.setLoadingAction(false);
         });
       },
-    }
-  }
+    },
+  };
 </script>

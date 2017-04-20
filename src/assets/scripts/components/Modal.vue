@@ -30,7 +30,7 @@
     data() {
       return {
         toggle: false,
-      }
+      };
     },
 
     watch: {
@@ -40,18 +40,18 @@
         } else {
           document.body.classList.remove('modal-open');
         }
-      }
+      },
     },
 
     methods: {
       handleClick(event) {
-        if(event.target.className === 'modal-wrapper') {
+        if (event.target.className === 'modal-wrapper') {
           this.toggle = false;
         }
-      }
-    }
+      },
+    },
 
-  }
+  };
 </script>
 
 <style lang="scss">

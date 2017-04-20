@@ -32,7 +32,7 @@
     data() {
       return {
         items: this.fetchItems(),
-      }
+      };
     },
 
     methods: {
@@ -89,8 +89,8 @@
             description: 'List of interesting facts that mostly geeks will appreciate. (Used on this site for 404 page)',
           },
         ];
-      }
-    }
+      },
+    },
   };
 </script>
 

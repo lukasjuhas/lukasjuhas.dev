@@ -12,8 +12,10 @@
 </template>
 
 <script>
-  import store from './store';
+  /* eslint no-param-reassign: ["error", {
+    "props": true, "ignorePropertyModificationsFor": ["item"] }]*/
   import each from 'lodash/each';
+  import store from './store';
   import flash from './helpers/flash';
 
   export default {
@@ -23,7 +25,7 @@
       return {
         sharedState: store,
         items: [],
-      }
+      };
     },
 
     created() {
@@ -39,7 +41,7 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get(path).then((response) => {
-          if(response.data.data !== null) {
+          if (response.data.data !== null) {
             each(response.data.data, (item, index) => {
               item.index = index;
               this.items.push(item);
@@ -48,7 +50,7 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error) => {
+        .catch(() => {
           this.nextPage = null;
           this.prevPage = null;
 
@@ -56,8 +58,8 @@
           flash.showError('Sorry, there was problem loading trips. 😳');
         });
       },
-    }
-  }
+    },
+  };
 </script>
 
 <style lang="scss">

@@ -18,7 +18,7 @@
     data() {
       return {
         sharedState: store.state,
-      }
+      };
     },
   };
 </script>

@@ -45,7 +45,7 @@
         sharedState: store,
         show: false,
         year: new Date().getFullYear(),
-      }
+      };
     },
 
     mounted() {
@@ -59,7 +59,7 @@
        */
       authorised() {
         return this.sharedState.state.token !== false || '';
-      }
+      },
     },
 
     components: {
@@ -73,7 +73,7 @@
       /**
        * watch route changes
        */
-      '$route' (to, from) {
+      $route(to) {
         helpers.updateTitle(to.name);
         flash.hide();
 
@@ -84,11 +84,11 @@
         document.documentElement.classList.remove('gradient');
 
         // close nav
-        this.$refs['navigation'].open = false;
+        this.$refs.navigation.open = false;
 
         // handle logo and force show
         this.handleLogo(true);
-      }
+      },
     },
 
     methods: {
@@ -100,8 +100,8 @@
         // This is important when changing routes to "force" show on logo so if
         // the route is changed, logo appears instead of being hidden as it might
         // have been before changing the route.
-        if(forceShow) {
-          this.$refs['logo'].show = true;
+        if (forceShow) {
+          this.$refs.logo.show = true;
         }
 
         let lastScrollTop = 0;
@@ -113,9 +113,9 @@
 
             // offset 75px
             if ((st > 75) && st > lastScrollTop) {
-              this.$refs['logo'].show = false;
+              this.$refs.logo.show = false;
             } else {
-              this.$refs['logo'].show = true;
+              this.$refs.logo.show = true;
             }
 
             lastScrollTop = st;
@@ -133,8 +133,8 @@
             this.sharedState.state.router.go('/');
           }
         });
-      }
-    }
+      },
+    },
   };
 </script>
 

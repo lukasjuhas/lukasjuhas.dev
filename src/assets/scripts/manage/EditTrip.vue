@@ -57,8 +57,8 @@
       slug: {
         type: String,
         required: true,
-        default: null
-      }
+        default: null,
+      },
     },
 
     components: {
@@ -75,7 +75,7 @@
         item: null,
         photos: [],
         editingPhoto: null,
-      }
+      };
     },
 
     mounted() {
@@ -96,7 +96,7 @@
         axios.get(`trips/${this.slug}?all=1`).then((response) => {
           this.item = response.data.data;
 
-          if(this.item.title) {
+          if (this.item.title) {
             // remove placeholder
             const titleEl = document.getElementsByClassName('editor__title');
             if (titleEl[0]) {
@@ -105,7 +105,7 @@
             }
           }
 
-          if(this.item.content) {
+          if (this.item.content) {
             // remove placeholder
             const contentEl = document.getElementsByClassName('editor__content');
             if (contentEl[0]) {
@@ -114,7 +114,7 @@
             }
           }
 
-          if(this.item.photos) {
+          if (this.item.photos) {
             setTimeout(() => {
               this.dragula();
             }, 10);
@@ -126,9 +126,9 @@
 
           helpers.updateTitle(this.title);
         })
-        .catch((error, status) => {
+        .catch((error) => {
           this.sharedState.setLoadingAction(false);
-          if(error.status === 404) {
+          if (error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
         });
@@ -146,18 +146,18 @@
        * upload
        * @param object ele
        */
-      upload(ele) {
+      upload() {
         this.closeModal('uploadModal');
         this.sharedState.setLoadingAction(true);
 
         const formData = new FormData();
-        formData.append(`trip`, this.slug);
+        formData.append('trip', this.slug);
         each(this.files, (file, index) => {
           formData.append(`photo[${index}]`, file);
         });
 
-        axios.post(`photos`, formData).then((response) => {
-          if(response.data.error) {
+        axios.post('photos', formData).then((response) => {
+          if (response.data.error) {
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
@@ -166,10 +166,10 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error, status) => {
+        .catch((error) => {
           this.sharedState.setLoadingAction(false);
-          console.log(error, status);
-          if(error.status === 404) {
+          // console.log(error, status);
+          if (error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
 
@@ -191,7 +191,7 @@
         });
 
         axios.put(`trips/${this.slug}/order`, { photos }).then((response) => {
-          if(response.data.error) {
+          if (response.data.error) {
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
@@ -200,8 +200,8 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error, status) => {
-          if(error.status === 404) {
+        .catch((error) => {
+          if (error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
 
@@ -218,7 +218,7 @@
         this.sharedState.setLoadingAction(true);
 
         axios.put(`trips/${this.slug}`, { title, content }).then((response) => {
-          if(response.data.error) {
+          if (response.data.error) {
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
@@ -226,8 +226,8 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error, status) => {
-          if(error.status === 404) {
+        .catch((error) => {
+          if (error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
 
@@ -252,7 +252,7 @@
         });
 
         // on card dropped in to board
-        drake.on('drop', (el, target, source, sibling) => {
+        drake.on('drop', (el, target) => {
           this.showUpdateOrder = true;
           // target.classList.remove('cards--empty');
           // el.classList.add('saving');
@@ -267,7 +267,7 @@
        * @param mixed ev
        */
       handleClickPhoto(ev) {
-        if(ev.target.parentNode.dataset.id) {
+        if (ev.target.parentNode.dataset.id) {
           this.fetchPhoto(ev.target.parentNode.dataset.id);
         }
       },
@@ -284,7 +284,7 @@
           this.modal('editPhoto');
 
           setTimeout(() => {
-            if(this.editingPhoto.caption) {
+            if (this.editingPhoto.caption) {
               const editorPhotoContent = document.getElementById('editor-photo-content');
               if (editorPhotoContent && editorPhotoContent.firstElementChild) {
                 editorPhotoContent.firstElementChild.innerHTML = this.editingPhoto.caption;
@@ -295,9 +295,9 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error, status) => {
+        .catch((error) => {
           this.sharedState.setLoadingAction(false);
-          if(error.status === 404) {
+          if (error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
         });
@@ -318,7 +318,7 @@
         const id = this.editingPhoto.id;
 
         axios.put(`photos/${id}`, { title, content }).then((response) => {
-          if(response.data.error) {
+          if (response.data.error) {
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
@@ -326,8 +326,8 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error, status) => {
-          if(error.status === 404) {
+        .catch((error) => {
+          if (error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
 
@@ -346,7 +346,7 @@
         const id = this.editingPhoto.id;
 
         axios.delete(`photos/${id}`).then((response) => {
-          if(response.data.error) {
+          if (response.data.error) {
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
@@ -359,10 +359,10 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error, status) => {
+        .catch((error) => {
           this.sharedState.setLoadingAction(false);
-          console.log(error, status);
-          if(error.status === 404) {
+          // console.log(error, status);
+          if (error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
 
@@ -379,7 +379,7 @@
         this.sharedState.setLoadingAction(true);
 
         axios.put(`trips/${this.slug}/update-feature`, { photo: this.editingPhoto.url }).then((response) => {
-          if(response.data.error) {
+          if (response.data.error) {
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
@@ -387,10 +387,10 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error, status) => {
+        .catch((error) => {
           this.sharedState.setLoadingAction(false);
-          console.log(error, status);
-          if(error.status === 404) {
+          // console.log(error, status);
+          if (error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
 
@@ -413,8 +413,8 @@
       closeModal(ref) {
         this.$refs[ref].toggle = false;
       },
-    }
-  }
+    },
+  };
 </script>
 
 <style lang="scss">

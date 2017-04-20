@@ -4,6 +4,13 @@ module.exports = {
   parserOptions: {
     sourceType: 'module'
   },
+  globals: {
+    'window': true,
+    'document': true,
+    'axios': true,
+    'FormData': true,
+    'Form': true,
+  },
   extends: 'airbnb-base',
   // required to lint *.vue files
   plugins: [

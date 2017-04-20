@@ -16,10 +16,10 @@
       return {
         chosen: null,
         facts: [
-           "Elon Musk owns Wet Nellie, a custom-built Lotus Esprit submarine car from the James Bond film, The Spy Who Loved Me.",
-           "The font Comic Sans is based on Dave Gibbons’ lettering in the Watchmen comic books. (He calls the font “dreadful.”)",
+          'Elon Musk owns Wet Nellie, a custom-built Lotus Esprit submarine car from the James Bond film, The Spy Who Loved Me.',
+          'The font Comic Sans is based on Dave Gibbons’ lettering in the Watchmen comic books. (He calls the font “dreadful.”)',
         ],
-      }
+      };
     },
 
     mounted() {
@@ -30,9 +30,9 @@
 
     methods: {
       setRandomFact() {
-       this.chosen = this.facts[Math.floor(Math.random() * this.facts.length)];
-      }
-    }
+        this.chosen = this.facts[Math.floor(Math.random() * this.facts.length)];
+      },
+    },
   };
 </script>
 

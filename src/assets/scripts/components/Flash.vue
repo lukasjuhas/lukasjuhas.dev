@@ -20,15 +20,15 @@
     data() {
       return {
         sharedState: store,
-      }
+      };
     },
 
     methods: {
       hideFlash() {
         document.documentElement.classList.remove(this.sharedState.state.flash.status);
         this.sharedState.state.flash.show = false;
-      }
-    }
+      },
+    },
   };
 </script>
 

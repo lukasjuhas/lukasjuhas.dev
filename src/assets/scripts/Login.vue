@@ -28,6 +28,7 @@
 
 <script>
   import store from './store';
+
   export default {
     name: 'login',
 
@@ -37,17 +38,17 @@
         form: new Form({
           email: '',
           password: '',
-        })
-      }
+        }),
+      };
     },
 
     mounted() {
       document.documentElement.classList.add('light');
-      
-      if(this.sharedState.state.token) {
+
+      if (this.sharedState.state.token) {
         let $to = '/';
-        if(this.sharedState.state.router.history.current.query.redirect) {
-          $to = decodeURIComponent(this.sharedState.state.router.history.current.query.redirect)
+        if (this.sharedState.state.router.history.current.query.redirect) {
+          $to = decodeURIComponent(this.sharedState.state.router.history.current.query.redirect);
         }
 
         this.sharedState.state.router.push($to);
@@ -56,22 +57,22 @@
 
     methods: {
       onSubmit() {
-        this.form.post('/login').then(response => {
+        this.form.post('/login').then(() => {
           // redirect to url originally wanted to visit
           let $to = '/';
-          if(this.sharedState.state.router.history.current.query.redirect) {
-            $to = decodeURIComponent(this.sharedState.state.router.history.current.query.redirect)
+          if (this.sharedState.state.router.history.current.query.redirect) {
+            $to = decodeURIComponent(this.sharedState.state.router.history.current.query.redirect);
           }
 
           this.sharedState.state.router.go($to);
         })
-        .catch((error, status) => {
+        .catch(() => {
           // clear fields
           this.form.email = '';
           this.form.password = '';
         });
-      }
-    }
+      },
+    },
   };
 </script>
 

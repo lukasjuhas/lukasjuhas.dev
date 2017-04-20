@@ -19,8 +19,8 @@
       slug: {
         type: String,
         required: true,
-        default: null
-      }
+        default: null,
+      },
     },
 
     data() {
@@ -29,7 +29,7 @@
         show: false,
         title: null,
         content: null,
-      }
+      };
     },
 
     components: {
@@ -52,7 +52,7 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get(`despatches/${this.slug}`).then((response) => {
-          if(response.data.data.title) {
+          if (response.data.data.title) {
             this.title = response.data.data.title;
 
             // remove placeholder
@@ -63,7 +63,7 @@
             }
           }
 
-          if(response.data.data.content) {
+          if (response.data.data.content) {
             this.content = response.data.data.content;
 
             // remove placeholder
@@ -80,9 +80,9 @@
 
           helpers.updateTitle(this.title);
         })
-        .catch((error, status) => {
+        .catch((error) => {
           this.sharedState.setLoadingAction(false);
-          if(error.status === 404) {
+          if (error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
         });
@@ -96,7 +96,7 @@
         this.sharedState.setLoadingAction(true);
 
         axios.put(`despatchs/${this.slug}`, { title, content }).then((response) => {
-          if(response.data.error) {
+          if (response.data.error) {
             flash.showError(response.data.error.message);
           } else {
             flash.showSuccess(response.data.message, true);
@@ -104,15 +104,15 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error, status) => {
-          if(error.status === 404) {
+        .catch((error) => {
+          if (error.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
 
           flash.showError('There was an unexpected problem. Please try again.');
           this.sharedState.setLoadingAction(false);
         });
-      }
-    }
-  }
+      },
+    },
+  };
 </script>

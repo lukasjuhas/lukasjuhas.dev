@@ -58,10 +58,12 @@
 </template>
 
 <script>
-  import store from './store';
+  /* eslint no-param-reassign: ["error", {
+    "props": true, "ignorePropertyModificationsFor": ["item"] }]*/
   import throttle from 'lodash/throttle';
   import includes from 'lodash/includes';
   import each from 'lodash/each';
+  import store from './store';
   import StaggeredFade from './transitions/StaggeredFade.vue';
   import flash from './helpers/flash';
   import Modal from './components/Modal.vue';
@@ -84,7 +86,7 @@
         release: null,
         showCaption: false,
         tracksPlaying: [],
-      }
+      };
     },
 
     created() {
@@ -105,7 +107,7 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get(path).then((response) => {
-          if(response.data.data !== null) {
+          if (response.data.data !== null) {
             each(response.data.data, (item, index) => {
               item.index = index;
               this.items.push(item);
@@ -122,7 +124,7 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error) => {
+        .catch(() => {
           this.nextPage = null;
           this.prevPage = null;
 
@@ -134,7 +136,7 @@
 
       handleScroll() {
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-          if(this.nextPage !== null) {
+          if (this.nextPage !== null) {
             this.fetchData(this.nextPage);
           } else {
             setTimeout(() => {
@@ -150,15 +152,14 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get(`records/${releaseId}`).then((response) => {
-          if(response.data.data !== null) {
+          if (response.data.data !== null) {
             this.release = response.data.data;
             this.modal('release');
           }
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error) => {
-
+        .catch(() => {
           this.sharedState.setLoadingAction(false);
 
           flash.showError('Sorry, there are no details about this record.', true);
@@ -171,16 +172,16 @@
 
         // pause any other tracks
         each(this.$refs, (item, index) => {
-          if((typeof item[0] !== 'undefined') && (index !== ref)) {
+          if ((typeof item[0] !== 'undefined') && (index !== ref)) {
             item[0].pause();
           }
         });
 
         // play or pause selected track.
-        if(typeof this.$refs[ref] !== 'undefined') {
+        if (typeof this.$refs[ref] !== 'undefined') {
           this.$refs[ref][0].paused ? this.$refs[ref][0].play() : this.$refs[ref][0].pause();
 
-          if(!this.$refs[ref][0].paused) {
+          if (!this.$refs[ref][0].paused) {
             // when preview finished, remove "pause" icon
             this.$refs[ref][0].addEventListener('ended', () => {
               this.tracksPlaying = [];

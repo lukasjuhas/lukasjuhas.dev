@@ -54,6 +54,8 @@
 </template>
 
 <script>
+  /* eslint no-param-reassign: ["error", {
+    "props": true, "ignorePropertyModificationsFor": ["photo"] }]*/
   import each from 'lodash/each';
   import store from './store';
   import helpers from './helpers/helpers';
@@ -71,8 +73,8 @@
       slug: {
         type: String,
         required: true,
-        default: null
-      }
+        default: null,
+      },
     },
 
     data() {
@@ -81,7 +83,7 @@
         item: null,
         baseSpacingUnit: 26,
         photos: [],
-      }
+      };
     },
 
     mounted() {
@@ -100,7 +102,7 @@
           each(response.data.data.photos, (photo, index) => {
             photo.offsetX = this.random(10, 75);
             photo.offsetY = this.random(10, 50);
-            photo.parity = ( index & 1 ) ? 'odd' : 'even';
+            photo.parity = (index && 1) ? 'odd' : 'even';
 
             this.photos.push(photo);
           });
@@ -110,17 +112,20 @@
 
           helpers.updateTitle(this.item.title);
         })
-        .catch((error, status) => {
+        .catch((error) => {
           this.sharedState.setLoadingAction(false);
 
-          if(error.response.status === 404) {
+          if (error.response.status === 404) {
             this.sharedState.state.router.replace('/404');
           }
         });
       },
 
       random(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
+        let random = max - min;
+        random += 1;
+        random += min;
+        return Math.floor(Math.random() * random);
       },
     },
   };

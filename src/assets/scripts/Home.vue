@@ -59,8 +59,8 @@
 </template>
 
 <script>
-  import store from './store';
   import each from 'lodash/each';
+  import store from './store';
   import flash from './helpers/flash';
   import StaggeredFade from './transitions/StaggeredFade.vue';
   import TripItem from './components/TripItem.vue';
@@ -80,7 +80,7 @@
         photos: null,
         showCaption: false,
         showLatestTripSection: true,
-      }
+      };
     },
 
     mounted() {
@@ -97,13 +97,13 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get(path).then((response) => {
-          if(response.data.data !== null) {
+          if (response.data.data !== null) {
             each(response.data.data, (item) => {
               this.item = item;
             });
           }
 
-          if(response.data.error) {
+          if (response.data.error) {
             this.showLatestTripSection = false;
           }
 
@@ -113,7 +113,7 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error) => {
+        .catch(() => {
           this.nextPage = null;
           this.prevPage = null;
 
@@ -127,7 +127,7 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get('instagram').then((response) => {
-          if(response.data !== null) {
+          if (response.data !== null) {
             each(response.data, (photo) => {
               this.photos = photo;
             });
@@ -135,12 +135,12 @@
 
           this.sharedState.setLoadingAction(false);
         })
-        .catch((error) => {
+        .catch(() => {
           this.sharedState.setLoadingAction(false);
           flash.showError('Sorry, there was problem loading instagram photos.');
         });
       },
-    }
+    },
   };
 </script>
 

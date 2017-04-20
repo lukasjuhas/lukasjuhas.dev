@@ -1,4 +1,3 @@
-/* global window */
 /* eslint-disable no-unused-expressions, no-console */
 import config from './config';
 

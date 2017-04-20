@@ -41,6 +41,7 @@
 
 <script>
   import store from './store';
+
   export default {
     name: 'reset-password',
 
@@ -57,14 +58,14 @@
           email: '',
           password: '',
           repassword: '',
-        })
-      }
+        }),
+      };
     },
 
     mounted() {
       document.documentElement.classList.add('light');
-      
-      if(this.sharedState.state.router.history.current.query.token) {
+
+      if (this.sharedState.state.router.history.current.query.token) {
         this.token = this.sharedState.state.router.history.current.query.token;
         this.validatePasswordToken();
       }
@@ -72,27 +73,27 @@
 
     methods: {
       onSubmit() {
-        this.form.post('/reset-password').then(response => {
+        this.form.post('/reset-password').then(() => {
           this.showMessage = true;
         });
       },
 
       onSubmitPassword() {
-        this.passwordForm.post('/new-password').then(response => {
-          console.log('onSubmitPassword', response);
+        this.passwordForm.post('/new-password').then(() => {
+          // console.log('onSubmitPassword', response);
         });
       },
 
       validatePasswordToken() {
         axios.post('/validate-password-token', {
           token: this.token,
-        }).then(response => {
-          if(!response.data.error) {
+        }).then((response) => {
+          if (!response.data.error) {
             this.showPasswordForm = true;
           }
         });
-      }
-    }
+      },
+    },
   };
 </script>
 

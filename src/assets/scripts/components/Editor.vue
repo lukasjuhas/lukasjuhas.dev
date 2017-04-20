@@ -39,7 +39,7 @@
         type: String,
         required: false,
         default: 'saveEditor',
-      }
+      },
     },
 
     components: {
@@ -53,7 +53,7 @@
         showAddMedia: true,
         showHeader: true,
         parentSaveMethod: false,
-      }
+      };
     },
 
     mounted() {
@@ -67,7 +67,7 @@
         // init editor
         const elements = document.querySelectorAll('.editable');
 
-        if(elements[1].innerHTML !== null) {
+        if (elements[1].innerHTML !== null) {
           this.showAddMedia = false;
         }
 
@@ -82,7 +82,7 @@
         });
       },
 
-      sectionChange(event) {
+      sectionChange() {
         this.showSave = true;
         this.showAddMedia = false;
       },
@@ -91,17 +91,17 @@
         const title = this.editor.elements[0].innerHTML;
         const content = this.editor.elements[1].innerHTML;
 
-        if(!content && !title) {
+        if (!content && !title) {
           return false;
         }
 
-        if(!this.parentSaveMethod) {
+        if (!this.parentSaveMethod) {
           return false;
         }
 
         // if parent is modal, go to grand parent
         let parent;
-        if(this.$parent.$el.className === 'modal-mask') {
+        if (this.$parent.$el.className === 'modal-mask') {
           parent = this.$parent.$parent;
         } else {
           parent = this.$parent;
@@ -112,15 +112,16 @@
           parent[this.parentSaveMethod](title, content);
         } else {
           const errorMessage = 'You probably forgot to define (default) "saveEditor" method on your component or forgot to reference custom method via "saveMethod" prop.';
-          console.log(errorMessage);
           flash.showError(errorMessage);
         }
 
         this.showSave = false;
+
+        return true;
       },
 
       onKeypress(event) {
-        if(event.key === 'Enter') {
+        if (event.key === 'Enter') {
           // make sure it runs last so sectionChange won't hide it again
           setTimeout(() => {
             this.showAddMedia = true;
@@ -137,10 +138,11 @@
       },
 
       uploadImage() {
-        console.log('upload image');
-      }
-    }
-  }
+        // console.log('upload image');
+      },
+    },
+  };
+
 </script>
 
 <style lang="scss">
