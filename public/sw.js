@@ -1,18 +1,266 @@
-var CACHE_NAME = 'itsluk.as-v1';
-var urlsToCache = [
-  '/',
-  '/styles/core.min.css',
-  '/styles/app.min.css',
-  '/scripts/app.min.js'
-];
+/**
+ * Copyright 2016 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*/
+
+// DO NOT EDIT THIS GENERATED OUTPUT DIRECTLY!
+// This file should be overwritten as part of your build process.
+// If you need to extend the behavior of the generated service worker, the best approach is to write
+// additional code and include it using the importScripts option:
+//   https://github.com/GoogleChrome/sw-precache#importscripts-arraystring
+//
+// Alternatively, it's possible to make changes to the underlying template file and then use that as the
+// new base for generating output, via the templateFilePath option:
+//   https://github.com/GoogleChrome/sw-precache#templatefilepath-string
+//
+// If you go that route, make sure that whenever you update your sw-precache dependency, you reconcile any
+// changes made to this original template file with your modified copy.
+
+// This generated service worker JavaScript will precache your site's resources.
+// The code needs to be saved in a .js file at the top-level of your site, and registered
+// from your pages in order to be used. See
+// https://github.com/googlechrome/sw-precache/blob/master/demo/app/js/service-worker-registration.js
+// for an example of how you can register this script and handle various service worker events.
+
+/* eslint-env worker, serviceworker */
+/* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
+'use strict';
+
+var precacheConfig = [["/fonts/563883/1CBB0A5201A9F0539.css","9909b1c423103570bddd2a3e7d52e2fa"],["/fonts/563883/259EA71DFE06DBC3E.css","8d3ef8fde47d9b1bc412e504ffca0951"],["/fonts/563883/27F251357107ECB28.css","d9e06d5fd1e98c1b4280db65393dedca"],["/fonts/563883/3495ADA5282F31610.css","692f9e418b2c691471b52fec684edb20"],["/fonts/563883/3823E82A97D7E8BE4.css","e6f1017e991c2842640521029bd0adf5"],["/fonts/563883/424595201F04E407A.css","140b7b253d60cd344e9d7e01e45516e8"],["/fonts/563883/441FF1B12953F7B95.css","e6f1017e991c2842640521029bd0adf5"],["/fonts/563883/4D17E241C7929B70B.css","4b30d08862677baa4d4c2343a32eb694"],["/fonts/563883/53E80478C80EE37B6.css","2ab663ce4cfcde1de58044cdb704fe21"],["/fonts/563883/621028933DE77EABB.css","f587a0759d6cdbf0cd685b607ff1800b"],["/fonts/563883/694F013EF25C696F9.css","11c14c82b3a7e7f145c9e86758090365"],["/fonts/563883/6CDD6C44858199971.css","ca3381f0abea79c67125a1fc82c92516"],["/fonts/563883/6F42F28B5C7FE93BE.css","692f9e418b2c691471b52fec684edb20"],["/fonts/563883/7EC4B2185B970802E.css","441c6ad7fff48d72abd4bc00540bb458"],["/fonts/563883/7FF5AD8253AA4A7A4.css","e555a56841179a73c4532cf0c8d055ee"],["/fonts/563883/852C231628B12F443.css","757e200ed98082defff9336b350f921b"],["/fonts/563883/92D2DEA4CC19C7E3A.css","692f9e418b2c691471b52fec684edb20"],["/fonts/563883/939668BD3BF0DAF38.css","2172f15becdbd8aace70db420ba84da5"],["/fonts/563883/9A037F7FE777E37FA.css","140b7b253d60cd344e9d7e01e45516e8"],["/fonts/563883/9AC13255631909E72.css","062b4a8baa4c986e0ddd0ac99ac4b401"],["/fonts/563883/9BED89B6A6415F90E.css","9909b1c423103570bddd2a3e7d52e2fa"],["/fonts/563883/9D1E6DA8F9FF3068F.css","4d6e6f3fe0e8e81c3fa7574788beedeb"],["/fonts/563883/A25FFDC8AA5C1E7B7.css","5776d0cade758ebc7b56c06577b82011"],["/fonts/563883/A422C410C6459241E.css","2d0aaa93ee4bb2135185b8a02f588c73"],["/fonts/563883/A451DAFAFE5A01EF7.css","ca3381f0abea79c67125a1fc82c92516"],["/fonts/563883/AA32741BBD352665E.css","062b4a8baa4c986e0ddd0ac99ac4b401"],["/fonts/563883/ADB839DAE2814A56D.css","9513a1a690f1b49c77cab005770a52f9"],["/fonts/563883/B69D6BA01E5B13F0D.css","692f9e418b2c691471b52fec684edb20"],["/fonts/563883/BBA5F0202D28FEB81.css","aeace893247c7f92c360ca6dfa71633a"],["/fonts/563883/C14923A4E610DD2CD.css","1aa0629b10023cce03563035697c0ae2"],["/fonts/563883/C626747C57F312D41.css","5776d0cade758ebc7b56c06577b82011"],["/fonts/563883/D22203201F909D73B.css","e6f1017e991c2842640521029bd0adf5"],["/fonts/563883/DA8403289955B6629.css","9513a1a690f1b49c77cab005770a52f9"],["/fonts/563883/DB5342B1090205907.css","a1ddaed1e699c115e479cf845ffb23e7"],["/fonts/563883/DDC775B61EA5F2A74.css","12609c4ea099c21e702d00aae3597da9"],["/fonts/563883/E0126C1D709D9DE3F.css","e555a56841179a73c4532cf0c8d055ee"],["/fonts/563883/E3C4A1C9D538CF374.css","e6f1017e991c2842640521029bd0adf5"],["/fonts/563883/E40313887C1D61CF0.css","b2a3c475b661a8691d113e5db3d22654"],["/fonts/563883/F20D134973743614E.css","bd98a7714d20d3ff6ac23bc07c5462d5"],["/fonts/563883/F80671C3ED83FC04F.css","744be8a27433be0ee69141fe1d7b3caf"],["/images/avatar.jpg","24ea43d4de17bb81679772dcc339a7c0"],["/images/icon.png","e5b1eec4c3512871773a495e42506777"],["/images/logo-120.png","36ef584d1f5f14e3b9ef0a19b1e7c38c"],["/images/logo-144.png","2ec8e3e2f299bdb88e5c53aa79c6e3f1"],["/images/logo-152.png","a814c27b1fb0f2b344b908dceb67d797"],["/images/logo-192.png","1e7831c1b249d0147954e3a54f1a195e"],["/images/logo-384.png","7350bc334d47804a817d8c7aa20f45b1"],["/index.html","89f8defae6b42fe12c516f0855f69481"]];
+var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
+
+
+var ignoreUrlParametersMatching = [/^utm_/];
+
+
+
+var addDirectoryIndex = function (originalUrl, index) {
+    var url = new URL(originalUrl);
+    if (url.pathname.slice(-1) === '/') {
+      url.pathname += index;
+    }
+    return url.toString();
+  };
+
+var cleanResponse = function (originalResponse) {
+    // If this is not a redirected response, then we don't have to do anything.
+    if (!originalResponse.redirected) {
+      return Promise.resolve(originalResponse);
+    }
+
+    // Firefox 50 and below doesn't support the Response.body stream, so we may
+    // need to read the entire body to memory as a Blob.
+    var bodyPromise = 'body' in originalResponse ?
+      Promise.resolve(originalResponse.body) :
+      originalResponse.blob();
+
+    return bodyPromise.then(function(body) {
+      // new Response() is happy when passed either a stream or a Blob.
+      return new Response(body, {
+        headers: originalResponse.headers,
+        status: originalResponse.status,
+        statusText: originalResponse.statusText
+      });
+    });
+  };
+
+var createCacheKey = function (originalUrl, paramName, paramValue,
+                           dontCacheBustUrlsMatching) {
+    // Create a new URL object to avoid modifying originalUrl.
+    var url = new URL(originalUrl);
+
+    // If dontCacheBustUrlsMatching is not set, or if we don't have a match,
+    // then add in the extra cache-busting URL parameter.
+    if (!dontCacheBustUrlsMatching ||
+        !(url.pathname.match(dontCacheBustUrlsMatching))) {
+      url.search += (url.search ? '&' : '') +
+        encodeURIComponent(paramName) + '=' + encodeURIComponent(paramValue);
+    }
+
+    return url.toString();
+  };
+
+var isPathWhitelisted = function (whitelist, absoluteUrlString) {
+    // If the whitelist is empty, then consider all URLs to be whitelisted.
+    if (whitelist.length === 0) {
+      return true;
+    }
+
+    // Otherwise compare each path regex to the path of the URL passed in.
+    var path = (new URL(absoluteUrlString)).pathname;
+    return whitelist.some(function(whitelistedPathRegex) {
+      return path.match(whitelistedPathRegex);
+    });
+  };
+
+var stripIgnoredUrlParameters = function (originalUrl,
+    ignoreUrlParametersMatching) {
+    var url = new URL(originalUrl);
+
+    url.search = url.search.slice(1) // Exclude initial '?'
+      .split('&') // Split into an array of 'key=value' strings
+      .map(function(kv) {
+        return kv.split('='); // Split each 'key=value' string into a [key, value] array
+      })
+      .filter(function(kv) {
+        return ignoreUrlParametersMatching.every(function(ignoredRegex) {
+          return !ignoredRegex.test(kv[0]); // Return true iff the key doesn't match any of the regexes.
+        });
+      })
+      .map(function(kv) {
+        return kv.join('='); // Join each [key, value] array into a 'key=value' string
+      })
+      .join('&'); // Join the array of 'key=value' strings into a string with '&' in between each
+
+    return url.toString();
+  };
+
+
+var hashParamName = '_sw-precache';
+var urlsToCacheKeys = new Map(
+  precacheConfig.map(function(item) {
+    var relativeUrl = item[0];
+    var hash = item[1];
+    var absoluteUrl = new URL(relativeUrl, self.location);
+    var cacheKey = createCacheKey(absoluteUrl, hashParamName, hash, false);
+    return [absoluteUrl.toString(), cacheKey];
+  })
+);
+
+function setOfCachedUrls(cache) {
+  return cache.keys().then(function(requests) {
+    return requests.map(function(request) {
+      return request.url;
+    });
+  }).then(function(urls) {
+    return new Set(urls);
+  });
+}
 
 self.addEventListener('install', function(event) {
-  // Perform install steps
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(cacheName).then(function(cache) {
+      return setOfCachedUrls(cache).then(function(cachedUrls) {
+        return Promise.all(
+          Array.from(urlsToCacheKeys.values()).map(function(cacheKey) {
+            // If we don't have a key matching url in the cache already, add it.
+            if (!cachedUrls.has(cacheKey)) {
+              var request = new Request(cacheKey, {credentials: 'same-origin'});
+              return fetch(request).then(function(response) {
+                // Bail out of installation unless we get back a 200 OK for
+                // every request.
+                if (!response.ok) {
+                  throw new Error('Request for ' + cacheKey + ' returned a ' +
+                    'response with status ' + response.status);
+                }
+
+                return cleanResponse(response).then(function(responseToCache) {
+                  return cache.put(cacheKey, responseToCache);
+                });
+              });
+            }
+          })
+        );
+      });
+    }).then(function() {
+      
+      // Force the SW to transition from installing -> active state
+      return self.skipWaiting();
+      
+    })
   );
 });
+
+self.addEventListener('activate', function(event) {
+  var setOfExpectedUrls = new Set(urlsToCacheKeys.values());
+
+  event.waitUntil(
+    caches.open(cacheName).then(function(cache) {
+      return cache.keys().then(function(existingRequests) {
+        return Promise.all(
+          existingRequests.map(function(existingRequest) {
+            if (!setOfExpectedUrls.has(existingRequest.url)) {
+              return cache.delete(existingRequest);
+            }
+          })
+        );
+      });
+    }).then(function() {
+      
+      return self.clients.claim();
+      
+    })
+  );
+});
+
+
+self.addEventListener('fetch', function(event) {
+  if (event.request.method === 'GET') {
+    // Should we call event.respondWith() inside this fetch event handler?
+    // This needs to be determined synchronously, which will give other fetch
+    // handlers a chance to handle the request if need be.
+    var shouldRespond;
+
+    // First, remove all the ignored parameter and see if we have that URL
+    // in our cache. If so, great! shouldRespond will be true.
+    var url = stripIgnoredUrlParameters(event.request.url, ignoreUrlParametersMatching);
+    shouldRespond = urlsToCacheKeys.has(url);
+
+    // If shouldRespond is false, check again, this time with 'index.html'
+    // (or whatever the directoryIndex option is set to) at the end.
+    var directoryIndex = 'index.html';
+    if (!shouldRespond && directoryIndex) {
+      url = addDirectoryIndex(url, directoryIndex);
+      shouldRespond = urlsToCacheKeys.has(url);
+    }
+
+    // If shouldRespond is still false, check to see if this is a navigation
+    // request, and if so, whether the URL matches navigateFallbackWhitelist.
+    var navigateFallback = '';
+    if (!shouldRespond &&
+        navigateFallback &&
+        (event.request.mode === 'navigate') &&
+        isPathWhitelisted([], event.request.url)) {
+      url = new URL(navigateFallback, self.location).toString();
+      shouldRespond = urlsToCacheKeys.has(url);
+    }
+
+    // If shouldRespond was set to true at any point, then call
+    // event.respondWith(), using the appropriate cache key.
+    if (shouldRespond) {
+      event.respondWith(
+        caches.open(cacheName).then(function(cache) {
+          return cache.match(urlsToCacheKeys.get(url)).then(function(response) {
+            if (response) {
+              return response;
+            }
+            throw Error('The cached response that was expected is missing.');
+          });
+        }).catch(function(e) {
+          // Fall back to just fetch()ing the request if some unexpected error
+          // prevented the cached response from being valid.
+          console.warn('Couldn\'t serve response for "%s" from cache: %O', event.request.url, e);
+          return fetch(event.request);
+        })
+      );
+    }
+  }
+});
+
+
+
+
+
+
+

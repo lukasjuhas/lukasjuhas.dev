@@ -26,6 +26,8 @@ import bump from 'gulp-bump';
 import runSequence from 'run-sequence';
 import { argv } from 'yargs';
 import changeCase from 'change-case';
+import { join } from 'path';
+import swPrecache from 'sw-precache';
 
 let production = false;
 
@@ -37,7 +39,7 @@ const config = {
   public: './public',
 };
 
-const tasks = ['images', 'scripts', 'core-styles', 'styles', 'html', 'move'];
+const tasks = ['images', 'scripts', 'core-styles', 'styles', 'html', 'move', 'generate-service-worker'];
 
 gulp.task('scripts', ['clean-scripts'], () => {
   let env = 'development';
@@ -107,7 +109,6 @@ gulp.task('clean-static', () => {
   const staticFiles = [
     `${config.public}/*.html`,
     `${config.public}/manifest.json`,
-    `${config.public}/sw.js`,
   ];
 
   return gulp.src(staticFiles, {
@@ -228,7 +229,6 @@ gulp.task('move', ['clean-static'], () => {
   const staticFiles = [
     `${config.srcBase}/*.html`,
     `${config.srcBase}/manifest.json`,
-    `${config.srcBase}/sw.js`,
   ];
 
   gulp.src(staticFiles)
@@ -248,6 +248,13 @@ gulp.task('bump', () => {
   return gulp.src('./package.json')
     .pipe(bump({ type }))
     .pipe(gulp.dest('./'));
+});
+
+gulp.task('generate-service-worker', (callback) => {
+  swPrecache.write(join(config.public, 'sw.js'), {
+    staticFileGlobs: [config.public + '/**/*.{js,html,css,png,jpg,gif}'],
+    stripPrefix: config.public
+  }, callback);
 });
 
 gulp.task('watch', () => (
