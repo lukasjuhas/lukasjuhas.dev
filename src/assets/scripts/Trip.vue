@@ -102,7 +102,7 @@
           each(response.data.data.photos, (photo, index) => {
             photo.offsetX = this.random(10, 75);
             photo.offsetY = this.random(10, 50);
-            photo.parity = (index && 1) ? 'odd' : 'even';
+            photo.parity = (index % 2 === 0) ? 'even' : 'odd';
 
             this.photos.push(photo);
           });
