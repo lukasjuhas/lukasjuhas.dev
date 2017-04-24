@@ -41,6 +41,10 @@ const config = {
 
 const tasks = ['images', 'scripts', 'core-styles', 'styles', 'html', 'move', 'generate-service-worker'];
 
+const getPackageJson = () => {
+  return JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+}
+
 gulp.task('scripts', ['clean-scripts'], () => {
   let env = 'development';
   if (production) {
@@ -221,6 +225,10 @@ gulp.task('html', ['styles'], () => {
     .pipe(greplace(/<!-- svg-sprite -->/, () => {
       const style = fs.readFileSync(`${config.public}/images/sprite.svg`, 'utf8');
       return `<div style="display:none;">\n${style}\n</div>`;
+    }))
+    .pipe(greplace(/{version}/g, () => {
+      const pkg = getPackageJson();
+      return pkg.version;
     }))
     .pipe(gulp.dest(config.public));
 });

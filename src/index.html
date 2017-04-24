@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Merriweather:300,700">
 
         <link href="styles/core.min.css" media="all" rel="stylesheet" type="text/css">
-        <link href="styles/app.min.css" media="all" rel="stylesheet" type="text/css">
+        <link href="styles/app.min.css?v={version}" media="all" rel="stylesheet" type="text/css">
     </head>
     <body>
         <noscript>
@@ -36,7 +36,7 @@
         <div id="app"></div>
         <!-- svg-sprite -->
 
-        <script defer src="scripts/app.min.js"></script>
+        <script defer src="scripts/app.min.js?v={version}"></script>
         <script>
           if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js').then(function() {
