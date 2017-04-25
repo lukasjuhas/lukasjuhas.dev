@@ -135,7 +135,7 @@
     }
 
     @include resp-max($breakpoint-sm) {
-      font-size: 21px;
+      font-size: 28px;
     }
   }
 </style>
