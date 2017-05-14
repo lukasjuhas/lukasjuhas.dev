@@ -39,16 +39,14 @@
       fetchItems() {
         return [
           {
-            name: 'itsluk.as (tbc)',
-            github: false,
-            // github: 'https://github.com/lukasjuhas/itsluk.as',
+            name: 'itsluk.as',
+            github: 'https://github.com/lukasjuhas/itsluk.as',
             link: null,
             description: 'Source code of this site build on web starter and simple flexbox grid.',
           },
           {
-            name: 'api.itsluk.as (tbc)',
-            github: false,
-            // github: 'https://github.com/lukasjuhas/api.itsluk.as',
+            name: 'api.itsluk.as',
+            github: 'https://github.com/lukasjuhas/api.itsluk.as',
             link: null,
             description: 'API for this site build on Laravel Lumen.',
           },
