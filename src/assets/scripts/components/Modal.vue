@@ -109,6 +109,10 @@
     &.modal-container--large {
       width: 800px;
     }
+
+    @include resp-max($breakpoint-sm) {
+      max-width: 100%;
+    }
   }
 
   .modal-header {
@@ -117,6 +121,16 @@
     h3 {
       margin-top: 0;
       color: $col-brand;
+    }
+
+    @include resp-max($breakpoint-sm) {
+      h1 {
+        font-size: 22px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
     }
   }
 

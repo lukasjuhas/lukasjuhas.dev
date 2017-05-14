@@ -269,6 +269,10 @@
   .modal--release {
     .modal-container {
       width: 70%;
+
+      @include resp-max($breakpoint-sm) {
+        width: 100%;
+      }
     }
   }
 
@@ -299,8 +303,8 @@
   }
 
   .list__track_title {
-    display: inline-block;
-    vertical-align: middle;
+    // display: inline-block;
+    // vertical-align: middle;
   }
 
   .list__track_play_pause {
