@@ -13,7 +13,8 @@
                                     <p>{{ item.description }}</p>
                                 </div>
                                 <div class="code__foter">
-                                    <a v-if="item.github" v-bind:href="item.github" target="_blank" rel="noopener">View Code</a>
+                                    <a class="code__link" v-if="item.github" v-bind:href="item.github" target="_blank" rel="noopener">View Code</a>
+                                    <a class="code__link" v-if="item.link" v-bind:href="item.link" target="_blank" rel="noopener">Link</a>
                                 </div>
                             </div>
                         </div>
@@ -116,5 +117,10 @@
 
   .code__content {
     flex: 1 0 auto;
+  }
+
+  .code__link {
+    margin-right: $base-spacing-unit;
+    display: inline-block;
   }
 </style>
