@@ -41,13 +41,13 @@
           {
             name: 'itsluk.as',
             github: 'https://github.com/lukasjuhas/itsluk.as',
-            link: null,
+            link: 'https://itsluk.as',
             description: 'Source code of this site build on web starter and simple flexbox grid.',
           },
           {
             name: 'api.itsluk.as',
             github: 'https://github.com/lukasjuhas/api.itsluk.as',
-            link: null,
+            link: 'https://api.itsluk.as',
             description: 'API for this site build on Laravel Lumen.',
           },
           {
@@ -61,6 +61,12 @@
             github: 'https://github.com/lukasjuhas/simple-flexbox-grid',
             link: null,
             description: 'Simple Flexbox Grid based on simple grid from @benchmarkstudios which is simplified version of bootstrap\'s grid.',
+          },
+          {
+            name: 'Discogs ❤ Spotify',
+            github: 'https://github.com/lukasjuhas/discogs-loves-spotify',
+            link: 'https://discogslovesspotify.itsluk.as/',
+            description: 'Sync your Discogs collection with your Spotify library.',
           },
           {
             name: 'Maintenance Mode',

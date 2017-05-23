@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/images/avatar.jpg","24ea43d4de17bb81679772dcc339a7c0"],["/images/icon.png","e5b1eec4c3512871773a495e42506777"],["/images/logo-120.png","36ef584d1f5f14e3b9ef0a19b1e7c38c"],["/images/logo-144.png","2ec8e3e2f299bdb88e5c53aa79c6e3f1"],["/images/logo-152.png","a814c27b1fb0f2b344b908dceb67d797"],["/images/logo-192.png","1e7831c1b249d0147954e3a54f1a195e"],["/images/logo-384.png","7350bc334d47804a817d8c7aa20f45b1"],["/index.html","d5fac46b9ac5a3e6546d83b161f8fe15"]];
+var precacheConfig = [["/images/avatar.jpg","24ea43d4de17bb81679772dcc339a7c0"],["/images/icon.png","e5b1eec4c3512871773a495e42506777"],["/images/logo-120.png","36ef584d1f5f14e3b9ef0a19b1e7c38c"],["/images/logo-144.png","2ec8e3e2f299bdb88e5c53aa79c6e3f1"],["/images/logo-152.png","a814c27b1fb0f2b344b908dceb67d797"],["/images/logo-192.png","1e7831c1b249d0147954e3a54f1a195e"],["/images/logo-384.png","7350bc334d47804a817d8c7aa20f45b1"],["/index.html","e4acc74a4e8c35c46e4cf260c428795b"]];
 var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
 
 
