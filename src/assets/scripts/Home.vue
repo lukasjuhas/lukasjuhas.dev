@@ -5,7 +5,10 @@
                 <div class="row">
                     <div class="col col--xs-12 col--sm-2 col--md-2 col--lg-2">
                         <div class="avatar" v-on:mouseover="showCaption = true" v-on:mouseleave="showCaption = false">
-                            <img :src="'images/avatar.jpg'" alt="Lukas Juhas">
+                            <picture>
+                                <source srcset="images/avatar.webp" type="image/webp">
+                                <img src="'images/avatar.jpg'" alt="Lukas Juhas">
+                            </picture>
                         </div>
                         <transition name="slide-fade">
                             <div v-if="showCaption" class="avatar-caption">
