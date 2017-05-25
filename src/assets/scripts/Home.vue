@@ -32,9 +32,9 @@
                         <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
                             <h2>Check out latest trip or <router-link to="/trips" class="link">see them all</router-link></h2>
                             <transition name="fade">
-                                <div v-if="item" class="trips">
+                                <ul v-if="item" class="trips">
                                     <trip-item class="trip--borderless" :item="item"></trip-item>
-                                </div>
+                                </ul>
                             </transition>
                         </div>
                     </div>

@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/images/avatar.jpg","24ea43d4de17bb81679772dcc339a7c0"],["/images/icon.png","e5b1eec4c3512871773a495e42506777"],["/images/logo-120.png","36ef584d1f5f14e3b9ef0a19b1e7c38c"],["/images/logo-144.png","2ec8e3e2f299bdb88e5c53aa79c6e3f1"],["/images/logo-152.png","a814c27b1fb0f2b344b908dceb67d797"],["/images/logo-192.png","1e7831c1b249d0147954e3a54f1a195e"],["/images/logo-384.png","7350bc334d47804a817d8c7aa20f45b1"],["/index.html","3fd194cd11b81f6a1fb7524fd45e6825"]];
+var precacheConfig = [["/images/avatar.jpg","24ea43d4de17bb81679772dcc339a7c0"],["/images/icon-128x128.png","6d0ccbb07b79899c360ecfc63970ccd6"],["/images/icon-144x144.png","6d139ed43cbb3a2d86979745061e3bc6"],["/images/icon-152x152.png","75eb8d673332e856f68693d5922e8b92"],["/images/icon-192x192.png","87ea390ec8520f38090dd63474197414"],["/images/icon-384x384.png","574e1e9545bdcfc0e5a487cdce56ebde"],["/images/icon-512x512.png","39a1cce71f5e7dccc01167117eb17ca5"],["/images/icon-72x72.png","dfc7e2a28a52573bc2dd31f325c90d97"],["/images/icon-96x96.png","25b27d93957f7d4d169deb1f204165b0"],["/images/icon.png","e5b1eec4c3512871773a495e42506777"],["/images/logo-120.png","36ef584d1f5f14e3b9ef0a19b1e7c38c"],["/images/logo-144.png","2ec8e3e2f299bdb88e5c53aa79c6e3f1"],["/images/logo-152.png","a814c27b1fb0f2b344b908dceb67d797"],["/images/logo-192.png","1e7831c1b249d0147954e3a54f1a195e"],["/images/logo-384.png","7350bc334d47804a817d8c7aa20f45b1"],["/index.html","ad9205d8fb01128bada75b0230152131"]];
 var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
 
 
@@ -107,8 +107,6 @@ var isPathWhitelisted = function (whitelist, absoluteUrlString) {
 var stripIgnoredUrlParameters = function (originalUrl,
     ignoreUrlParametersMatching) {
     var url = new URL(originalUrl);
-    // Remove the hash; see https://github.com/GoogleChrome/sw-precache/issues/290
-    url.hash = '';
 
     url.search = url.search.slice(1) // Exclude initial '?'
       .split('&') // Split into an array of 'key=value' strings
@@ -214,8 +212,8 @@ self.addEventListener('fetch', function(event) {
     // handlers a chance to handle the request if need be.
     var shouldRespond;
 
-    // First, remove all the ignored parameters and hash fragment, and see if we
-    // have that URL in our cache. If so, great! shouldRespond will be true.
+    // First, remove all the ignored parameter and see if we have that URL
+    // in our cache. If so, great! shouldRespond will be true.
     var url = stripIgnoredUrlParameters(event.request.url, ignoreUrlParametersMatching);
     shouldRespond = urlsToCacheKeys.has(url);
 
