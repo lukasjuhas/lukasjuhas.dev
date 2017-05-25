@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <p><button @click="generatePreviewImages()" class="button">Generate Preview Images</button></p>
         <h4>Trips:</h4>
         <ul>
             <li v-for="item in this.items">
@@ -56,6 +57,24 @@
 
           this.sharedState.setLoadingAction(false);
           flash.showError('Sorry, there was problem loading trips. 😳');
+        });
+      },
+
+      generatePreviewImages() {
+        this.sharedState.setLoadingAction(true);
+
+        axios.post('photos/generatePreviews').then((response) => {
+          if (response.data.error) {
+            flash.showError(response.data.error.message);
+          } else {
+            flash.showSuccess(response.data.message, true);
+          }
+
+          this.sharedState.setLoadingAction(false);
+        })
+        .catch(() => {
+          this.sharedState.setLoadingAction(false);
+          flash.showError('There was an unexpected problem. Please try again.');
         });
       },
     },
