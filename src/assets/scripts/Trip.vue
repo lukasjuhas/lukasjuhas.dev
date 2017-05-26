@@ -34,9 +34,10 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <img class="photo__image" v-lazy="photo.url" :alt="photo.title" />
+                                            <img class="photo__image" :style="'width: ' + photo.width + 'px; height: ' + photo.height + 'px;'" v-lazy="photo.url" :alt="photo.title" />
+                                            <img class="photo__image-preview" :style="'width: ' + photo.width + 'px; height: ' + photo.height + 'px;'" :src="photo.preview" :alt="photo.title" />
                                         </div>
-                                        <div class="photo__caption" :style="'max-width:' + photo.width + 'px; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + (photo.offsetX - baseSpacingUnit) + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + (photo.offsetY + baseSpacingUnit) + 'px)'" v-html="photo.caption"></div>
+                                        <div class="photo__caption" :style="'max-width:' + photo.width + 'px; transform: translate(' + (photo.parity === 'even' ? '-' : '' ) + (photo.offsetX - baseSpacingUnit) + 'px, ' + (photo.parity === 'even' ? '-' : '' ) + photo.offsetY + 'px)'" v-html="photo.caption"></div>
                                     </div>
                                 </staggered-fade>
                             </div>
@@ -121,6 +122,13 @@
         });
       },
 
+      imageObject(photo) {
+        return {
+          src: photo.url,
+          loading: photo.preview,
+        };
+      },
+
       random(min, max) {
         let random = max - min;
         random += 1;
@@ -171,6 +179,19 @@
     display: flex;
   }
 
+  .photo__image-preview {
+    position: absolute;
+    filter: blur(20px);
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  .photo__image {
+    position: relative;
+    z-index: 5;
+  }
+
   .photo__caption {
     align-self: center;
     font-family: $serif-font-family;
@@ -212,6 +233,7 @@
     background: linear-gradient(135deg, $col-background-dark 0%, $col-brand 100%);
     z-index: 20;
     max-width: 100%;
+    overflow: hidden;
 
     &:hover {
       .photo__info {
