@@ -157,6 +157,10 @@
       transform: translate(0, 0) !important;
       display: inline-block;
     }
+
+    img {
+      height: auto !important;
+    }
   }
 
   .trip-container {
