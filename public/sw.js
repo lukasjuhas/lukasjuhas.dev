@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/images/avatar.jpg","24ea43d4de17bb81679772dcc339a7c0"],["/images/avatar.webp","01384bb33045d9c0838c89b058780590"],["/images/icons/icon-128x128.png","6d0ccbb07b79899c360ecfc63970ccd6"],["/images/icons/icon-144x144.png","6d139ed43cbb3a2d86979745061e3bc6"],["/images/icons/icon-152x152.png","75eb8d673332e856f68693d5922e8b92"],["/images/icons/icon-192x192.png","87ea390ec8520f38090dd63474197414"],["/images/icons/icon-384x384.png","574e1e9545bdcfc0e5a487cdce56ebde"],["/images/icons/icon-512x512.png","39a1cce71f5e7dccc01167117eb17ca5"],["/images/icons/icon-72x72.png","dfc7e2a28a52573bc2dd31f325c90d97"],["/images/icons/icon-96x96.png","25b27d93957f7d4d169deb1f204165b0"],["/images/icons/icon.png","e5b1eec4c3512871773a495e42506777"],["/index.html","724c5fbecebf6457aecea9da97e09105"],["/styles/app.min.css","7e52c98e345f4db473c7ad81eb423b9d"],["/styles/core.min.css","17b8c2481ab826728695cb6f6fe2e323"]];
+var precacheConfig = [["/images/avatar.jpg","24ea43d4de17bb81679772dcc339a7c0"],["/images/avatar.webp","79752892fafda16dbc4fa425b96cfc88"],["/images/icons/icon-128x128.png","6d0ccbb07b79899c360ecfc63970ccd6"],["/images/icons/icon-144x144.png","6d139ed43cbb3a2d86979745061e3bc6"],["/images/icons/icon-152x152.png","75eb8d673332e856f68693d5922e8b92"],["/images/icons/icon-192x192.png","87ea390ec8520f38090dd63474197414"],["/images/icons/icon-384x384.png","574e1e9545bdcfc0e5a487cdce56ebde"],["/images/icons/icon-512x512.png","39a1cce71f5e7dccc01167117eb17ca5"],["/images/icons/icon-72x72.png","dfc7e2a28a52573bc2dd31f325c90d97"],["/images/icons/icon-96x96.png","25b27d93957f7d4d169deb1f204165b0"],["/images/icons/icon.png","e5b1eec4c3512871773a495e42506777"],["/index.html","06f3c72e1862359866e3be9664321557"]];
 var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
 
 
@@ -107,6 +107,8 @@ var isPathWhitelisted = function (whitelist, absoluteUrlString) {
 var stripIgnoredUrlParameters = function (originalUrl,
     ignoreUrlParametersMatching) {
     var url = new URL(originalUrl);
+    // Remove the hash; see https://github.com/GoogleChrome/sw-precache/issues/290
+    url.hash = '';
 
     url.search = url.search.slice(1) // Exclude initial '?'
       .split('&') // Split into an array of 'key=value' strings
@@ -212,8 +214,8 @@ self.addEventListener('fetch', function(event) {
     // handlers a chance to handle the request if need be.
     var shouldRespond;
 
-    // First, remove all the ignored parameter and see if we have that URL
-    // in our cache. If so, great! shouldRespond will be true.
+    // First, remove all the ignored parameters and hash fragment, and see if we
+    // have that URL in our cache. If so, great! shouldRespond will be true.
     var url = stripIgnoredUrlParameters(event.request.url, ignoreUrlParametersMatching);
     shouldRespond = urlsToCacheKeys.has(url);
 

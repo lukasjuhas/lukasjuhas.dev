@@ -7,7 +7,7 @@
                         <div class="avatar" v-on:mouseover="showCaption = true" v-on:mouseleave="showCaption = false">
                             <picture>
                                 <source srcset="images/avatar.webp" type="image/webp">
-                                <img src="'images/avatar.jpg'" alt="Lukas Juhas">
+                                <img src="images/avatar.jpg" alt="Lukas Juhas">
                             </picture>
                         </div>
                         <transition name="slide-fade">
