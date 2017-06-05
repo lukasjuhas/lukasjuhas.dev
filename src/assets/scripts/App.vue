@@ -198,6 +198,15 @@
     opacity: 0
   }
 
+  // opacity
+  .fade-slow-enter-active, .fade-slow-leave-active {
+    transition: opacity $animation-speed-slow;
+  }
+
+  .fade-slow-enter, .fade-slow-leave-active {
+    opacity: 0
+  }
+
 
   // slide fade
   .slide-fade-enter-active {

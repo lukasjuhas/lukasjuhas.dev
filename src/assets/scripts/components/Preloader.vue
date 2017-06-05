@@ -1,5 +1,5 @@
 <template>
-    <transition name="fade">
+    <transition name="fade-slow">
         <div class="preloader" v-if="sharedState.loading">
             <span></span>
             <span></span>
@@ -24,51 +24,36 @@
 </script>
 
 <style lang="scss">
-  .preloader {
-    position: fixed;
-    z-index: 1000;
-    left: 96px;
-    top: 38px;
+  $white:#FFF;
+  $blue:#0091E5;
+  $red:#E42149;
+  $yellow:#FFF146;
 
-    span {
-      display: inline-block;
-      width: 3px;
-      height: 10px;
-      background-color: $col-background;
-
-      .light & {
-        background-color: $col-background-dark;
-      }
-
-      &:nth-child(1) {
-        animation: grow 1s ease-in-out infinite;
-      }
-      &:nth-child(2) {
-        animation: grow 1s ease-in-out 0.15s infinite;
-      }
-      &:nth-child(3) {
-        animation: grow 1s ease-in-out 0.30s infinite;
-      }
-      &:nth-child(4) {
-        animation: grow 1s ease-in-out 0.45s infinite;
-      }
-    }
+  @keyframes preloader {
+    from {left: 0}
+    to {left: -400%}
   }
 
-  @keyframes grow {
-    0%,
-    100% {
-      -webkit-transform: scaleY(1);
-      -ms-transform: scaleY(1);
-      -o-transform: scaleY(1);
-      transform: scaleY(1);
-    }
+  .preloader {
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    background: $col-background;
+    position: fixed;
+    overflow: hidden;
+    z-index: 1000;
 
-    50% {
-      -webkit-transform: scaleY(1.8);
-      -ms-transform: scaleY(1.8);
-      -o-transform: scaleY(1.8);
-      transform: scaleY(1.8);
+    &:before {
+      content: ' ';
+      background: linear-gradient( 45deg, $white, $blue, $red, $yellow, $white );
+      width: 500%;
+      height: 4px;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      animation: preloader $animate-preloader linear 0s infinite alternate;
     }
   }
 </style>
