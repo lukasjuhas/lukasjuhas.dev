@@ -6,7 +6,7 @@
             <transition name="fade">
                 <div v-if="items" class="code-feed">
                     <div class="row">
-                        <div v-for="item in items" class="col col--xs-12 col--sm-6 col--md-6 col--lg-6">
+                        <div v-for="(item, index) in items" :key="index" class="col col--xs-12 col--sm-6 col--md-6 col--lg-6">
                             <div class="code">
                                 <h3 class="code__title">{{ item.name }}</h3>
                                 <div class="code__content">

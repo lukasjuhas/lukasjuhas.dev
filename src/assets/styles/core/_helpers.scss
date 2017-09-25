@@ -1,8 +1,7 @@
 /**
  * Clearing and floating
  */
-.alignleft,
-.float-left {
+.alignleft {
   float: left;
 
   img & {
@@ -10,8 +9,7 @@
   }
 }
 
-.alignright,
-.float-right {
+.alignright {
   float: right;
 
   img & {
@@ -19,12 +17,11 @@
   }
 }
 
-.aligncenter,
-.float-center {
+.aligncenter {
   display: block;
   margin: {
-    left: auto;
     right: auto;
+    left: auto;
   }
 
   img & {
@@ -56,6 +53,7 @@
  */
 .visible-on-mobile {
   display: none !important;
+
   @include resp-max($breakpoint-sm) {
     display: block !important;
   }
@@ -63,6 +61,7 @@
 
 .visible-on-tablet {
   display: none !important;
+
   @include resp-max($breakpoint-md) {
     display: block !important;
   }

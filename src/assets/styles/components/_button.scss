@@ -3,23 +3,23 @@ button {
 }
 
 .button {
-  border-radius: $border-radius;
-  border: 0;
-  background-color: $col-neutral;
-  font-size: 16px;
   display: inline-block;
-  color: $col-brand;
   padding: ($base-spacing-unit / 2) ($base-spacing-unit);
-  line-height: 1;
-  cursor: pointer;
-  transition: all $animate $animation;
   overflow: hidden;
-  white-space: nowrap;
+  font-size: 16px;
+  line-height: 1;
+  color: $col-brand;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: $col-neutral;
+  border: 0;
+  border-radius: $border-radius;
+  transition: all $animate $animation;
 
   &.button--disabled,
   &:disabled {
-    opacity: .75;
+    opacity: 0.75;
 
     &.button--loading {
       opacity: 1;
@@ -51,8 +51,8 @@ button {
 }
 
 .button--link {
-  background-color: transparent;
   padding: 5px 0;
+  background-color: transparent;
 
   &.button--active,
   &:active,
@@ -69,62 +69,62 @@ button {
 }
 
 .button--primary {
-  background-color: $col-brand;
   color: $col-text-light;
+  background-color: $col-brand;
 
   &.button--active,
   &:active,
   &:hover {
-    background-color: $col-brand-darken;
     color: $col-text-light;
+    background-color: $col-brand-darken;
   }
 
   &.button--focus,
   &:focus {
-    background-color: $col-brand-darken;
     color: $col-text-light;
+    background-color: $col-brand-darken;
   }
 
 }
 
 .button--inverted {
+  padding: (($base-spacing-unit / 2) - 2) (($base-spacing-unit) - 2);
+  color: $col-brand;
   background-color: transparent;
   border: 2px solid $col-brand;
-  color: $col-brand;
-  padding: (($base-spacing-unit / 2) - 2) (($base-spacing-unit) - 2);
 
   &.button--active,
   &:active,
   &:hover {
+    color: $col-text-light;
     background-color: $col-brand-lighten;
     border: 2px solid $col-brand-lighten;
-    color: $col-text-light;
   }
 
   &.button--focus,
   &:focus {
+    color: $col-text-light;
     background-color: $col-brand-lightest;
     border: 2px solid $col-brand-lightest;
-    color: $col-text-light;
   }
 }
 
 .button--danger {
-  background-color: $col-danger;
   color: $col-text-light;
-  border-color: $col-danger;
+  background-color: $col-danger;
   border: 2px solid $col-danger;
+  border-color: $col-danger;
 
   &.button--active,
   &:active,
   &:hover {
+    color: $col-danger;
     background-color: transparent;
     border: 2px solid $col-danger;
-    color: $col-danger;
   }
 }
 
 .button--small {
-  font-size: 12px;
   padding: ($base-spacing-unit / 4) ($base-spacing-unit / 2);
+  font-size: 12px;
 }

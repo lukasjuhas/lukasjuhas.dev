@@ -39,7 +39,7 @@
                         <div class="col col--xs-12 col--sm-12 col--md-8 col--lg-8">
                             <div class="container">
                                 <ol class="list">
-                                  <li v-for="(track, index) in release.tracklist">
+                                  <li v-for="(track, index) in release.tracklist" :key="index">
                                       <span @click="trackPlaying('track' + index)" class="list__track_play_pause" v-if="track.preview" @click="toggleTrackStatus('track' + index)">
                                           <svg v-if="trackPlaying('track' + index)" title="Pause preview" class="icon"><use xlink:href="#pause"></use></svg>
                                           <svg v-else title="Play preview" class="icon"><use xlink:href="#play"></use></svg>
@@ -300,11 +300,6 @@
       flex-basis: 50%;
       max-width: 50%;
     }
-  }
-
-  .list__track_title {
-    // display: inline-block;
-    // vertical-align: middle;
   }
 
   .list__track_play_pause {

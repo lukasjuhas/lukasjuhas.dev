@@ -1,10 +1,10 @@
 /**
  * Colours
  */
-$col-brand: #85440F;
+$col-brand: #85440f;
 $col-text: #2c2c2c;
-$col-text-light: #FFF;
-$col-background: #FFF;
+$col-text-light: #ffffff;
+$col-background: #ffffff;
 $col-background-dark: #0e0e0e;
 $col-danger: #D9534F;
 $col-success: #2ab27b;
@@ -21,13 +21,13 @@ $col-brand-lighten: lighten($col-brand, 10%);
 $col-brand-darken: darken($col-brand, 10%);
 $col-brand-darkest: darken($col-brand, 15%);
 
-$col-overlay: rgba(0, 0, 0, .75);
+$col-overlay: rgba(0, 0, 0, 0.75);
 
 /**
  * Typography
  */
 $sans-serif-font-family: 'PT Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$serif-font-family: 'Merriweather', Palatino, Georgia, "Times New Roman", Times, serif;
+$serif-font-family: 'Merriweather', Palatino, Georgia, 'Times New Roman', Times, serif;
 $base-font-family: $sans-serif-font-family;
 $base-font-size: 16;
 $base-line-height: 1.6;

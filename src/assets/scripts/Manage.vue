@@ -3,7 +3,7 @@
         <p><button @click="generatePreviewImages()" class="button">Generate Preview Images</button></p>
         <h4>Trips:</h4>
         <ul>
-            <li v-for="item in this.items">
+            <li v-for="(item, index) in this.items" :key="index">
                 <router-link :to="'/manage/trip/' + item.slug">
                     {{ item.title }}
                 </router-link>

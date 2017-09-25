@@ -147,10 +147,6 @@
     font-weight: $font-weight-bold;
   }
 
-  .page__content {
-
-  }
-
   .page__content--serif {
     font-family: $serif-font-family;
     font-weight: $serif-font-weight;

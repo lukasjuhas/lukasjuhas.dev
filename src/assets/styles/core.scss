@@ -30,13 +30,13 @@ html {
 
 body {
   display: flex;
-  flex-direction: column;
   height: 100%;
   min-height: 100vh;
   font-family: $sans-serif-font-family;
   font-size: $base-font-size + px;
   line-height: $base-line-height;
   color: $col-text-light;
+  flex-direction: column;
 
   .light & {
     color: $col-text;
@@ -66,8 +66,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $sans-serif-font-family;
   margin-bottom: $base-spacing-unit;
+  font-family: $sans-serif-font-family;
   font-weight: $font-weight-bold;
 }
 
@@ -110,16 +110,16 @@ em {
 }
 
 img {
-  vertical-align: top;
   max-width: 100%;
+  vertical-align: top;
   height: auto;
 }
 
 blockquote {
+  padding: ($base-spacing-unit / 4) 0 ($base-spacing-unit / 4) $base-spacing-unit;
+  margin-bottom: $base-spacing-unit;
   font-style: italic;
   line-height: 1.8;
-  margin-bottom: $base-spacing-unit;
-  padding: ($base-spacing-unit / 4) 0 ($base-spacing-unit / 4) $base-spacing-unit;
   border-left: 3px solid $col-neutral;
 }
 
@@ -130,35 +130,35 @@ audio {
 .overlay {
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
   z-index: -1;
-  background-image: linear-gradient(280deg, rgba(0,0,0,.3) 0%, $col-background-dark 100%);
+  background-image: linear-gradient(280deg, rgba(0, 0, 0, 0.3) 0%, $col-background-dark 100%);
   transition: opacity $animation-speed linear;
 
   .error &,
   .warning &,
   .success & {
-    background-image: linear-gradient(135deg, rgba(0,0,0,.3) 0%, $col-background-dark 100%);
+    background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, $col-background-dark 100%);
   }
 
   .light & {
-    background-image: linear-gradient(280deg, rgba(255,255,255,.3) 0%, $col-background 100%);
+    background-image: linear-gradient(280deg, rgba(255, 255, 255, 0.3) 0%, $col-background 100%);
   }
 
   .light.error &,
   .light.warning &,
   .light.success & {
-    background-image: linear-gradient(135deg, rgba(255,255,255,.3) 0%, $col-background 100%);
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, $col-background 100%);
   }
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
   position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 .content {

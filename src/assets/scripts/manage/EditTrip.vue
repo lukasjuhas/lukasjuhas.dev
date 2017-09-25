@@ -6,7 +6,7 @@
 
                 <h3>Photo manager</h3>
                 <div v-if="item && item.photos.length" class="photo-thumbs" id="dragula">
-                    <div v-for="photo in item.photos" class="photo-thumb" :data-id="photo.id" @click="handleClickPhoto">
+                    <div v-for="(photo, index) in item.photos" :key="index" class="photo-thumb" :data-id="photo.id" @click="handleClickPhoto">
                         <img :src="photo.thumb" :alt="photo.title">
                     </div>
                 </div>
@@ -18,7 +18,7 @@
             <h3 slot="header">Add Photos</h3>
             <form slot="body" method="post" class="form" v-on:submit.prevent="upload" enctype="multipart/form-data">
                 <div class="form__group">
-                    <input v-on:change="onPhotoChange" v-model="photos" type="file" name="photo[]" accept="image/*" multiple>
+                    <input v-on:change="onPhotoChange" type="file" name="photo[]" accept="image/*" multiple>
                 </div>
                 <button type="submit" name="upload" class="button button--primary">Upload</button>
             </form>
