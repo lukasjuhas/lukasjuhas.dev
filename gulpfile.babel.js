@@ -8,6 +8,7 @@ import replace from 'rollup-plugin-replace';
 import vue from 'rollup-plugin-vue';
 import multiEntry from 'rollup-plugin-multi-entry';
 import uglify from 'rollup-plugin-uglify';
+import builtins from 'rollup-plugin-node-builtins';
 import { minify } from 'uglify-js';
 import path from 'path';
 import clean from 'gulp-clean';
@@ -46,16 +47,17 @@ const getPackageJson = () => {
   return JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 }
 
-gulp.task('scripts', ['clean-scripts'], () => {
+const roll = (entry, output) => {
   let env = 'development';
   if (production) {
     env = 'production';
   }
 
-  rollup({
-    entry: `${config.src}/scripts/app.js`,
+  return rollup({
+    entry: entry,
     plugins: [
       multiEntry(),
+      builtins(),
       vue({
         css(content, styles) {
           if (!fs.existsSync(config.tmp)) {
@@ -91,9 +93,13 @@ gulp.task('scripts', ['clean-scripts'], () => {
       format: 'iife',
       moduleName: 'ItsLukasBundle',
       sourceMap: !production,
-      dest: `${config.public}/scripts/app.min.js`,
+      dest: output,
     });
   }).catch(err => console.log(err.stack));
+}
+
+gulp.task('scripts', ['clean-scripts'], () => {
+  roll(`${config.src}/scripts/app.js`, `${config.public}/scripts/app.min.js`);
 });
 
 gulp.task('clean-styles', () => (
