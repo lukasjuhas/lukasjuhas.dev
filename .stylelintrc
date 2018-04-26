@@ -25,9 +25,7 @@
     "declaration-property-value-blacklist": {
       "/^border/": ["none"]
     },
-    "order": {
-      "properties-order": "never",
-    },
+    "order/properties-order": ["none"],
     "at-rule-blacklist": ["extend"],
     "max-nesting-depth": 3,
     "declaration-no-important": true,
@@ -60,7 +58,7 @@
     "plugin/no-unsupported-browser-features": [true,
       {
         "severity": "warning",
-        "browsers": ['> 5%', 'Last 2 versions']
+        "browsers": ['Last 2 versions']
       }
     ]
   }

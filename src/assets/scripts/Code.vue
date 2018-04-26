@@ -88,6 +88,12 @@
             description: 'Dotfiles & configs I use on a day-to-day basis.',
           },
           {
+            name: 'eslint-config-snap',
+            github: 'https://github.com/lukasjuhas/eslint-config-snap',
+            link: null,
+            description: 'Draft of Sn-ap eslint config.',
+          },
+          {
             name: 'Did You Know?',
             github: 'https://github.com/lukasjuhas/did-you-know',
             link: null,

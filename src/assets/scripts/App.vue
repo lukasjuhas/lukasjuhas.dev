@@ -18,7 +18,7 @@
                             <button v-if="authorised" type="button" name="button" class="button button--primary button--small" @click="logout">Logout</button>
                         </div>
                         <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6">
-                            <div class="copy">&copy; 2009 - {{ year }} Lukas Juhas. All Rights Reserved.</div>
+
                         </div>
                     </div>
                 </footer>
@@ -44,7 +44,6 @@
       return {
         sharedState: store,
         show: false,
-        year: new Date().getFullYear(),
       };
     },
 
@@ -171,16 +170,7 @@
       .col:first-of-type {
         margin-bottom: $base-spacing-unit;
       }
-
-      .copy {
-        text-align: center;
-      }
     }
-  }
-
-  .copy {
-    text-align: right;
-    opacity: .5;
   }
 
   /**
