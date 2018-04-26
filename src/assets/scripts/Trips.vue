@@ -43,9 +43,9 @@
 <script>
   /* eslint no-param-reassign: ["error", {
     "props": true, "ignorePropertyModificationsFor": ["item"] }]*/
-  import filter from 'lodash/filter';
-  import each from 'lodash/each';
-  import throttle from 'lodash/throttle';
+  // import filter from 'lodash/filter';
+  // import each from 'lodash/each';
+  // import throttle from 'lodash/throttle';
   import store from './store';
   import StaggeredFade from './transitions/StaggeredFade.vue';
   import flash from './helpers/flash';
@@ -72,7 +72,7 @@
     created() {
       this.fetchData();
 
-      window.addEventListener('scroll', throttle(() => {
+      window.addEventListener('scroll', _.throttle(() => {
         this.handleScroll();
       }, 300));
     },
@@ -86,7 +86,7 @@
        * Upcoming trips
        */
       upcoming() {
-        return filter(this.items, o => o.upcoming);
+        return _.filter(this.items, o => o.upcoming);
       },
 
       /**
@@ -94,7 +94,7 @@
        * @return [type]
        */
       past() {
-        return filter(this.items, o => !o.upcoming);
+        return _.filter(this.items, o => !o.upcoming);
       },
     },
 
@@ -108,7 +108,7 @@
 
         axios.get(path).then((response) => {
           if (response.data.data !== null) {
-            each(response.data.data, (item, index) => {
+            _.each(response.data.data, (item, index) => {
               item.index = index;
               this.items.push(item);
             });

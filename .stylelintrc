@@ -25,6 +25,9 @@
     "declaration-property-value-blacklist": {
       "/^border/": ["none"]
     },
+    "order": {
+      "properties-order": "never",
+    },
     "at-rule-blacklist": ["extend"],
     "max-nesting-depth": 3,
     "declaration-no-important": true,

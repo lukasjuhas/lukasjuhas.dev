@@ -60,9 +60,9 @@
 <script>
   /* eslint no-param-reassign: ["error", {
     "props": true, "ignorePropertyModificationsFor": ["item"] }]*/
-  import throttle from 'lodash/throttle';
-  import includes from 'lodash/includes';
-  import each from 'lodash/each';
+  // import throttle from 'lodash/throttle';
+  // import includes from 'lodash/includes';
+  // import each from 'lodash/each';
   import store from './store';
   import StaggeredFade from './transitions/StaggeredFade.vue';
   import flash from './helpers/flash';
@@ -92,7 +92,7 @@
     created() {
       this.fetchData();
 
-      window.addEventListener('scroll', throttle(() => {
+      window.addEventListener('scroll', _.throttle(() => {
         this.handleScroll();
       }, 300));
     },
@@ -108,7 +108,7 @@
 
         axios.get(path).then((response) => {
           if (response.data.data !== null) {
-            each(response.data.data, (item, index) => {
+            _.each(response.data.data, (item, index) => {
               item.index = index;
               this.items.push(item);
             });
@@ -171,7 +171,7 @@
         this.tracksPlaying = [];
 
         // pause any other tracks
-        each(this.$refs, (item, index) => {
+        _.each(this.$refs, (item, index) => {
           if ((typeof item[0] !== 'undefined') && (index !== ref)) {
             item[0].pause();
           }
@@ -194,7 +194,7 @@
       },
 
       trackPlaying(ref) {
-        if (includes(this.tracksPlaying, ref)) {
+        if (_.includes(this.tracksPlaying, ref)) {
           return true;
         }
 

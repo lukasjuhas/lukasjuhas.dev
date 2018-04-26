@@ -6,7 +6,7 @@ export default {
   url: process.env.NODE_ENV === 'development' ? 'http://localhost:2525/#/' : 'https://itsluk.as',
 
   // API base url used by axios
-  baseApiUrl: 'https://api.itsluk.as',
+  baseApiUrl: process.env.NODE_ENV === 'development' ? 'http://api.itsluk.as.test' : 'https://api.itsluk.as',
 
   // Timeout on requests (by axios)
   // TODO: set this just for upload

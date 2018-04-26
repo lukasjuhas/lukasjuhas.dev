@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import throttle from 'lodash/throttle';
+  import _ from 'lodash';
   import store from './store';
   import helpers from './helpers/helpers';
   import flash from './helpers/flash';
@@ -108,7 +108,7 @@
 
         // make sure this runs last
         setTimeout(() => {
-          window.addEventListener('scroll', throttle(() => {
+          window.addEventListener('scroll', _.throttle(() => {
             const st = window.pageYOffset || document.documentElement.scrollTop;
 
             // offset 75px
@@ -140,6 +140,7 @@
 
 <style lang="scss">
   @import './../src/assets/styles/config/variables';
+  @import './../src/assets/styles/config/mixins';
 
   .page__title {
     margin-bottom: $base-spacing-unit;

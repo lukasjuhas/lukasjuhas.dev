@@ -1,15 +1,17 @@
 import gulp from 'gulp';
 import { rollup } from 'rollup';
-import buble from 'rollup-plugin-buble';
+import babel from 'rollup-plugin-babel';
+// import buble from 'rollup-plugin-buble';
 import nodeResolve from 'rollup-plugin-node-resolve';
+import globals from 'rollup-plugin-node-globals';
 import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
 import replace from 'rollup-plugin-replace';
 import vue from 'rollup-plugin-vue';
-import multiEntry from 'rollup-plugin-multi-entry';
+import alias from 'rollup-plugin-alias';
 import uglify from 'rollup-plugin-uglify';
 import builtins from 'rollup-plugin-node-builtins';
-import { minify } from 'uglify-js';
+import { minify } from 'uglify-es';
 import path from 'path';
 import clean from 'gulp-clean';
 import sass from 'gulp-sass';
@@ -30,8 +32,11 @@ import { argv } from 'yargs';
 import changeCase from 'change-case';
 import { join } from 'path';
 import swPrecache from 'sw-precache';
+import size from 'gulp-size';
 
+const { log } = console;
 let production = false;
+let error = false;
 
 const reload = browserSync.reload;
 const config = {
@@ -43,22 +48,22 @@ const config = {
 
 const tasks = ['images', 'scripts', 'core-styles', 'styles', 'html', 'move', 'generate-service-worker'];
 
-const getPackageJson = () => {
-  return JSON.parse(fs.readFileSync('./package.json', 'utf8'));
-}
+const getPackageJson = () => JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
-const roll = (entry, output) => {
+const roll = (input, file, cb) => {
   let env = 'development';
   if (production) {
     env = 'production';
   }
 
   return rollup({
-    entry: entry,
+    input,
     plugins: [
-      multiEntry(),
-      builtins(),
+      alias({
+        vue: 'node_modules/vue/dist/vue.esm.js',
+      }),
       vue({
+        autoStyles: false,
         css(content, styles) {
           if (!fs.existsSync(config.tmp)) {
             fs.mkdirSync(config.tmp);
@@ -69,7 +74,6 @@ const roll = (entry, output) => {
           });
         },
       }),
-      buble(),
       nodeResolve({
         browser: true,
         main: true,
@@ -86,34 +90,57 @@ const roll = (entry, output) => {
         'process.env.NODE_ENV': JSON.stringify(env),
         'process.env.VUE_ENV': JSON.stringify('browser'),
       }),
+      babel({
+        presets: [
+          [
+            'env', {
+              modules: false,
+            },
+          ],
+        ],
+        plugins: [
+          'external-helpers',
+        ],
+        comments: false,
+        babelrc: false,
+        exclude: 'node_modules/**',
+      }),
       production ? uglify({}, minify) : '',
+      globals(),
+      builtins(),
     ],
   }).then((bundle) => {
     bundle.write({
       format: 'iife',
-      moduleName: 'ItsLukasBundle',
-      sourceMap: !production,
-      dest: output,
+      name: 'ItsLukasBundle',
+      sourcemap: !production,
+      file,
     });
-  }).catch(err => console.log(err.stack));
-}
 
-gulp.task('scripts', ['clean-scripts'], () => {
-  roll(`${config.src}/scripts/app.js`, `${config.public}/scripts/app.min.js`);
+    cb();
+  }).catch((err) => {
+    error = true;
+    log(' 🚨 ', err.stack);
+    cb();
+  });
+};
+
+gulp.task('scripts', (cb) => {
+  roll(`${config.src}/scripts/app.js`, `${config.public}/scripts/app.min.js`, () => {
+    gulp.src([`${config.public}/scripts/app.min.js`])
+      .pipe(size({
+        showFiles: true,
+        showTotal: false,
+      }))
+      .pipe(gulp.dest(`${config.public}/scripts`));
+    cb();
+  });
 });
 
-gulp.task('clean-styles', () => (
-  gulp.src(`${config.public}/styles`, {
+gulp.task('clean', () => (
+  gulp.src([`${config.public}/styles`, `${config.public}/scripts`], {
     read: false,
-  })
-  .pipe(clean())
-));
-
-gulp.task('clean-scripts', () => (
-  gulp.src(`${config.public}/scripts`, {
-    read: false,
-  })
-  .pipe(clean())
+  }).pipe(clean())
 ));
 
 gulp.task('clean-static', () => {
@@ -124,8 +151,7 @@ gulp.task('clean-static', () => {
 
   return gulp.src(staticFiles, {
     read: false,
-  })
-  .pipe(clean());
+  }).pipe(clean());
 });
 
 gulp.task('browser-sync', () => {
@@ -135,7 +161,7 @@ gulp.task('browser-sync', () => {
     },
     // proxy: 'http://webstarter.dev',
     files: [`${config.public}/**/*.*`],
-    browser: 'google chrome',
+    // browser: 'google chrome',
     port: 2525,
   });
 });
@@ -150,41 +176,45 @@ gulp.task('watch-files', tasks, () => {
 
 gulp.task('core-styles', () => (
   gulp.src([`${config.src}/styles/core.scss`])
-  .pipe(gulpif(!production, sourcemaps.init()))
-  .pipe(sass({
-    outputStyle: production ? 'compressed' : 'nested',
-  }).on('error', sass.logError))
-  .pipe(autoprefixer({
-    browsers: ['last 2 versions'],
-  }))
-  .pipe(rename({
-    suffix: '.min',
-  }))
-  .pipe(gulpif(!production, sourcemaps.write('.')))
-  .pipe(gulp.dest(`${config.public}/styles`))
+    .pipe(gulpif(!production, sourcemaps.init()))
+    .pipe(sass({
+      outputStyle: production ? 'compressed' : 'nested',
+    }).on('error', (err) => {
+      error = true;
+      log(' 🚨 ', err.stack);
+    }))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+    }))
+    .pipe(rename({
+      suffix: '.min',
+    }))
+    .pipe(gulpif(!production, sourcemaps.write('.')))
+    .pipe(gulp.dest(`${config.public}/styles`))
 ));
 
 gulp.task('styles', () => (
   gulp.src([`${config.src}/styles/app.scss`, `${config.tmp}/*.scss`])
-  .pipe(gulpif(!production, sourcemaps.init()))
-  .pipe(inject(gulp.src([`${config.tmp}/*.scss`], {read: false}), {
-    starttag: '/* inject:imports */',
-    endtag: '/* endinject */',
-    transform: function (filepath) {
-      return '@import "../../../' + filepath + '";';
-    }
-  }))
-  .pipe(sass({
-    outputStyle: production ? 'compressed' : 'nested',
-  }).on('error', sass.logError))
-  .pipe(autoprefixer({
-    browsers: ['last 2 versions'],
-  }))
-  .pipe(rename({
-    suffix: '.min',
-  }))
-  .pipe(gulpif(!production, sourcemaps.write('.')))
-  .pipe(gulp.dest(`${config.public}/styles`))
+    .pipe(gulpif(!production, sourcemaps.init()))
+    .pipe(inject(gulp.src([`${config.tmp}/*.scss`], { read: false }), {
+      starttag: '/* inject:imports */',
+      endtag: '/* endinject */',
+      transform: filepath => `@import "../../../${filepath}";`,
+    }))
+    .pipe(sass({
+      outputStyle: production ? 'compressed' : 'nested',
+    }).on('error', (err) => {
+      error = true;
+      log(' 🚨 ', err.stack);
+    }))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+    }))
+    .pipe(rename({
+      suffix: '.min',
+    }))
+    .pipe(gulpif(!production, sourcemaps.write('.')))
+    .pipe(gulp.dest(`${config.public}/styles`))
 ));
 
 gulp.task('images', () => {
@@ -194,12 +224,9 @@ gulp.task('images', () => {
       progressive: true,
     }))
     .pipe(gulp.dest(`${config.public}/images`))
-    .on('end', () => {
-        // generate webp
-        return gulp.src(`${config.public}/images/*`)
-          .pipe(webp())
-          .pipe(gulp.dest(`${config.public}/images`));
-    });
+    .on('end', () => gulp.src(`${config.public}/images/*`)
+      .pipe(webp())
+      .pipe(gulp.dest(`${config.public}/images`)));
 
   // handle svg
   gulp.src(`${config.src}/images/**/*.svg`)
@@ -216,15 +243,15 @@ gulp.task('images', () => {
     .pipe(svgSprite({
       svg: {
         xmlDeclaration: false,
-        doctypeDeclaration: false
+        doctypeDeclaration: false,
       },
       mode: {
         inline: true,
         symbol: {
           dest: '.',
-          sprite: 'sprite.svg'
-        }
-      }
+          sprite: 'sprite.svg',
+        },
+      },
     }))
     .pipe(gulp.dest(`${config.public}/images`));
 });
@@ -256,10 +283,7 @@ gulp.task('move', ['clean-static'], () => {
     .pipe(gulp.dest(config.public));
 });
 
-gulp.task('getversion', () => {
-  const version = JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
-  return version;
-});
+gulp.task('getversion', () => JSON.parse(fs.readFileSync('./package.json', 'utf8')).version);
 
 gulp.task('bump', () => {
   let type = 'patch';
@@ -271,22 +295,40 @@ gulp.task('bump', () => {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('generate-service-worker', (callback) => {
+gulp.task('generate-service-worker', (cb) => {
   swPrecache.write(join(config.public, 'sw.js'), {
-    staticFileGlobs: [config.public + '/**/*.{js,html,css,png,jpg,gif,webp}'],
-    stripPrefix: config.public
-  }, callback);
+    staticFileGlobs: [`${config.public}/**/*.{js,html,css,png,jpg,gif,webp}`],
+    stripPrefix: config.public,
+  }, cb);
 });
 
-gulp.task('watch', () => (
-  runSequence('clean-styles', 'clean-scripts', tasks, 'browser-sync', 'watch-files')
+gulp.task('watch', cb => (
+  runSequence('clean', () => {
+    runSequence(tasks, 'browser-sync', () => {
+      runSequence('watch-files', () => {
+        cb();
+        log(' 👀 ', 'Watching files for changes...');
+      });
+    });
+  })
 ));
 
-gulp.task('build', () => {
+gulp.task('build', (cb) => {
   production = true;
-  return runSequence('clean-styles', 'clean-scripts', 'bump', 'getversion', tasks);
+  return runSequence('clean', () => {
+    runSequence(tasks, () => {
+      if (!error) {
+        runSequence('bump', () => {
+          cb();
+          log(' 🚀 ', 'Build complete.');
+        });
+      }
+    });
+  });
 });
 
-gulp.task('default', () => (
-  runSequence('clean-styles', 'clean-scripts', tasks)
+gulp.task('default', cb => (
+  runSequence('clean', () => {
+    runSequence(tasks, () => cb());
+  })
 ));

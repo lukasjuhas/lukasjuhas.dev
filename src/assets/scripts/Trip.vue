@@ -57,7 +57,7 @@
 <script>
   /* eslint no-param-reassign: ["error", {
     "props": true, "ignorePropertyModificationsFor": ["photo"] }]*/
-  import each from 'lodash/each';
+  // import each from 'lodash/each';
   import store from './store';
   import helpers from './helpers/helpers';
   import StaggeredFade from './transitions/StaggeredFade.vue';
@@ -100,7 +100,7 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get(`trips/${this.slug}`).then((response) => {
-          each(response.data.data.photos, (photo, index) => {
+          _.each(response.data.data.photos, (photo, index) => {
             photo.offsetX = this.random(10, 75);
             photo.offsetY = this.random(10, 50);
             photo.parity = (index % 2 === 0) ? 'even' : 'odd';

@@ -93,13 +93,11 @@ export default class Form {
   */
   submit(requestType, url) {
     return new Promise((resolve, reject) => {
-      axios[requestType](url, this.data())
-      .then((response) => {
+      axios[requestType](url, this.data()).then((response) => {
         this.onSuccess(response.data);
 
         resolve(response.data);
-      })
-      .catch((error) => {
+      }).catch((error) => {
         this.onFail(error.response.data);
 
         reject(error.response.data);

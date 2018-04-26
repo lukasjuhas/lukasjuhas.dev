@@ -40,10 +40,10 @@
 </template>
 
 <script>
-  import each from 'lodash/each';
-  import findKey from 'lodash/findKey';
-  import omit from 'lodash/omit';
-  import dragula from 'dragula';
+  // import each from 'lodash/each';
+  // import findKey from 'lodash/findKey';
+  // import omit from 'lodash/omit';
+  // import dragula from 'dragula';
   import store from '../store';
   import helpers from '../helpers/helpers';
   import flash from '../helpers/flash';
@@ -116,7 +116,7 @@
 
           if (this.item.photos) {
             setTimeout(() => {
-              this.dragula();
+              // this.dragula();
             }, 10);
           }
 
@@ -152,7 +152,7 @@
 
         const formData = new FormData();
         formData.append('trip', this.slug);
-        each(this.files, (file, index) => {
+        _.each(this.files, (file, index) => {
           formData.append(`photo[${index}]`, file);
         });
 
@@ -186,7 +186,7 @@
 
         const photos = [];
         const photoThumbs = document.getElementsByClassName('photo-thumb');
-        each(photoThumbs, (photo, index) => {
+        _.each(photoThumbs, (photo, index) => {
           photos[photo.dataset.id] = index + 1;
         });
 
@@ -352,8 +352,8 @@
             flash.showSuccess(response.data.message, true);
 
             // might need to look at this as it's omiting all of them
-            const photoKey = findKey(this.item.photos, { id });
-            this.item.photos = omit(this.item.photos, photoKey);
+            const photoKey = _.findKey(this.item.photos, { id });
+            this.item.photos = _.omit(this.item.photos, photoKey);
             this.fetchTrip();
           }
 

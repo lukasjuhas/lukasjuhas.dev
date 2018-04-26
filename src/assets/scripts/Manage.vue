@@ -15,7 +15,7 @@
 <script>
   /* eslint no-param-reassign: ["error", {
     "props": true, "ignorePropertyModificationsFor": ["item"] }]*/
-  import each from 'lodash/each';
+  // import each from 'lodash/each';
   import store from './store';
   import flash from './helpers/flash';
 
@@ -43,7 +43,7 @@
 
         axios.get(path).then((response) => {
           if (response.data.data !== null) {
-            each(response.data.data, (item, index) => {
+            _.each(response.data.data, (item, index) => {
               item.index = index;
               this.items.push(item);
             });

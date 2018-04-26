@@ -73,8 +73,7 @@ store.state.router.beforeEach((to, from, next) => {
         } else {
           next();
         }
-      })
-      .catch((error) => {
+      }).catch((error) => {
         store.setLoadingAction(false);
         store.clearAuthTokenAction();
 

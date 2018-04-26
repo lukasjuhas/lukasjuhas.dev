@@ -146,8 +146,8 @@
 </script>
 
 <style lang="scss">
-  @import '../../../node_modules/medium-editor/src/sass/medium-editor';
-  @import '../../../node_modules/medium-editor/src/sass/themes/beagle';
+  @import '../node_modules/medium-editor/src/sass/medium-editor';
+  @import '../node_modules/medium-editor/src/sass/themes/beagle';
 
   .editor {
     position: relative;

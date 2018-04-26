@@ -62,7 +62,7 @@
 </template>
 
 <script>
-  import each from 'lodash/each';
+  // import each from 'lodash/each';
   import store from './store';
   import flash from './helpers/flash';
   import StaggeredFade from './transitions/StaggeredFade.vue';
@@ -100,8 +100,9 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get(path).then((response) => {
+          console.log(response);
           if (response.data.data !== null) {
-            each(response.data.data, (item) => {
+            _.each(response.data.data, (item) => {
               this.item = item;
             });
           }
@@ -131,7 +132,7 @@
 
         axios.get('instagram').then((response) => {
           if (response.data !== null) {
-            each(response.data, (photo) => {
+            _.each(response.data, (photo) => {
               this.photos = photo;
             });
           }
@@ -155,9 +156,9 @@
   .avatar {
     width: 100%;
     height: auto;
-    border-radius: 50%;
-    overflow: hidden;
     margin-bottom: $base-spacing-unit;
+    overflow: hidden;
+    border-radius: 50%;
 
     img {
       width: 100%;
@@ -167,8 +168,8 @@
   }
 
   .avatar-caption {
-    font-style: italic;
     font-size: 12px;
+    font-style: italic;
     text-align: center;
   }
 
