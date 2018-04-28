@@ -63,6 +63,7 @@
   // import throttle from 'lodash/throttle';
   // import includes from 'lodash/includes';
   // import each from 'lodash/each';
+  import _ from 'lodash';
   import store from './store';
   import StaggeredFade from './transitions/StaggeredFade.vue';
   import flash from './helpers/flash';
@@ -109,10 +110,14 @@
         axios.get(path).then((response) => {
           if (response.data.data !== null) {
             _.each(response.data.data, (item, index) => {
-              item.index = index;
               this.items.push(item);
             });
           }
+
+          _.each(this.items, (item, index) => {
+            item.index = index;
+            this.items[index] = item;
+          });
 
           // set next and prev page
           this.nextPage = response.data.paginator.next_page;
