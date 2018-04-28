@@ -46,6 +46,7 @@
   // import filter from 'lodash/filter';
   // import each from 'lodash/each';
   // import throttle from 'lodash/throttle';
+  import _ from 'lodash';
   import store from './store';
   import StaggeredFade from './transitions/StaggeredFade.vue';
   import flash from './helpers/flash';
