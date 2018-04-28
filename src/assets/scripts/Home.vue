@@ -98,7 +98,6 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get(path).then((response) => {
-          console.log(response);
           if (response.data.data !== null) {
             _.each(response.data.data, (item) => {
               this.item = item;
