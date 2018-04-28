@@ -27,22 +27,6 @@
             </div>
         </section>
         <transition name="fade">
-            <section v-if="showLatestTripSection" class="section section--latest-trip">
-                <div class="container">
-                    <div class="row">
-                        <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12">
-                            <h2>Check out latest trip or <router-link to="/trips" class="link">see them all</router-link></h2>
-                            <transition name="fade">
-                                <ul v-if="item" class="trips">
-                                    <trip-item class="trip--borderless" :item="item"></trip-item>
-                                </ul>
-                            </transition>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </transition>
-        <transition name="fade">
             <section v-if="photos" class="section section--photo-feed">
                 <staggered-fade class="photo-feed">
                     <div v-for="(photo, index) in photos" :key="index" v-bind:data-index="index" class="photo-feed__panel">

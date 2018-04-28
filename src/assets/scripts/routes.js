@@ -1,7 +1,5 @@
 import Home from './Home.vue';
 import Code from './Code.vue';
-import Trips from './Trips.vue';
-import Trip from './Trip.vue';
 import Despatches from './Despatches.vue';
 import Records from './Records.vue';
 import Login from './Login.vue';
@@ -24,17 +22,6 @@ export default [
     component: Code,
     name: 'Code',
     nav: true,
-  },
-  {
-    path: '/trips',
-    component: Trips,
-    name: 'Trips',
-    nav: true,
-  },
-  {
-    path: '/trips/:slug',
-    component: Trip,
-    props: true,
   },
   {
     path: '/despatches',
