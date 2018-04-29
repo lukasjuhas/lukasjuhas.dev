@@ -18,7 +18,7 @@
                     </div>
                     <div class="col col--xs-12 col--sm-10 col--md-7 col--lg-7">
                         <article class="large-content">
-                            <p>I'm Lukas Juhas and my main purpose on this planet is to enjoy life by&nbsp;<router-link to="/code">writing code</router-link>,&nbsp;<router-link to="/trips">traveling</router-link>, making music, collecting&nbsp;<router-link to="/records">records</router-link>&nbsp;and taking <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener">photographs</a>. Currently living and working in London as Full-stack Web Developer at <a href="https://www.sn-ap.com/" target="_blank" rel="noopener">Sn-ap</a>.</p>
+                            <p>I'm Lukas Juhas and my main purpose on this planet is to enjoy life by&nbsp;<router-link to="/code">writing code</router-link>, traveling and taking <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener">photographs</a>. Currently living and working in London as Full-stack Web Developer at <a href="https://www.sn-ap.com/" target="_blank" rel="noopener">Sn-ap</a>.</p>
 
                             <p>Say hello <a href="mailto:lukas@itsluk.as">lukas@itsluk.as</a>, <a href="https://twitter.com/itslukasjuhas" target="_blank" rel="noopener">@itslukasjuhas</a>.</p>
                         </article>
@@ -73,8 +73,8 @@
     },
 
     created() {
-      this.fetchData();
-      this.fetchPhotos();
+      // this.fetchData();
+      // this.fetchPhotos();
     },
 
     methods: {
