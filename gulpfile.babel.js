@@ -38,7 +38,7 @@ const { log } = console;
 let production = false;
 let error = false;
 
-const reload = browserSync.reload;
+const { reload } = browserSync;
 const config = {
   srcBase: './src',
   src: './src/assets',
@@ -63,7 +63,10 @@ const roll = (input, file, cb) => {
         vue: 'node_modules/vue/dist/vue.esm.js',
       }),
       vue({
-        autoStyles: false,
+        // autoStyles: false,
+        scss: {
+          data: '@import "./src/assets/styles/config/variables";@import "./src/assets/styles/config/mixins";',
+        },
         css(content, styles) {
           if (!fs.existsSync(config.tmp)) {
             fs.mkdirSync(config.tmp);

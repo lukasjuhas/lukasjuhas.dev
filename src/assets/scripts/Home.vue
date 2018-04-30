@@ -78,36 +78,6 @@
     },
 
     methods: {
-      fetchData(path = 'trips?limit=1&content=true') {
-        this.sharedState.setLoadingAction(true);
-
-        axios.get(path).then((response) => {
-          if (response.statusText === 'OK') {
-            each(response.data, (item) => {
-              this.item = item;
-            });
-          }
-
-          if (response.data.error) {
-            this.showLatestTripSection = false;
-          }
-
-          // set next and prev page
-          this.nextPage = response.data.paginator.next_page;
-          this.prevPage = response.data.paginator.prev_page;
-
-          this.sharedState.setLoadingAction(false);
-        })
-        .catch(() => {
-          this.nextPage = null;
-          this.prevPage = null;
-
-          this.showLatestTripSection = false;
-          this.sharedState.setLoadingAction(false);
-          flash.showError('Sorry, there was problem loading latest journey.');
-        });
-      },
-
       fetchPhotos() {
         this.sharedState.setLoadingAction(true);
 
@@ -120,10 +90,6 @@
 
           this.sharedState.setLoadingAction(false);
         });
-        // .catch((e) => {
-        //   this.sharedState.setLoadingAction(false);
-        //   flash.showError(e.response.data.message);
-        // });
       },
     },
   };
@@ -152,16 +118,6 @@
     font-size: 12px;
     font-style: italic;
     text-align: center;
-  }
-
-  .section--latest-trip {
-    min-height: 291px;
-    padding: $base-spacing-unit 0;
-    background-color: $col-background-dark;
-
-    .trips {
-      margin: 0;
-    }
   }
 
   .section--photo-feed {

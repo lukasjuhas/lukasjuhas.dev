@@ -17,12 +17,6 @@
 
     props: ['status', 'content', 'autohide'],
 
-    data() {
-      return {
-        sharedState: store,
-      };
-    },
-
     methods: {
       hideFlash() {
         document.documentElement.classList.remove(this.sharedState.state.flash.status);
@@ -32,7 +26,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .flash {
     line-height: 1.35em;
     position: fixed;
@@ -68,7 +62,7 @@
       top: 0;
       padding: 0;
       vertical-align: top;
-      line-height: .5;
+      line-height: 0.5;
 
       &:hover {
         text-decoration: none;

@@ -16,7 +16,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .logo {
     width: 50px;
     height: 50px;

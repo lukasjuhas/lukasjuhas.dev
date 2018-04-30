@@ -109,9 +109,6 @@
 </script>
 
 <style lang="scss">
-  @import './../src/assets/styles/config/variables';
-  @import './../src/assets/styles/config/mixins';
-
   .page__title {
     margin-bottom: $base-spacing-unit;
     font-size: 28px;
@@ -148,23 +145,26 @@
    * Vue Animations
    */
   // opacity
-  .fade-enter-active, .fade-leave-active {
+  .fade-enter-active,
+  .fade-leave-active {
     transition: opacity $animation-speed;
   }
 
-  .fade-enter, .fade-leave-active {
-    opacity: 0
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0;
   }
 
   // opacity
-  .fade-slow-enter-active, .fade-slow-leave-active {
+  .fade-slow-enter-active,
+  .fade-slow-leave-active {
     transition: opacity $animation-speed-slow;
   }
 
-  .fade-slow-enter, .fade-slow-leave-active {
-    opacity: 0
+  .fade-slow-enter,
+  .fade-slow-leave-active {
+    opacity: 0;
   }
-
 
   // slide fade
   .slide-fade-enter-active {
@@ -172,10 +172,11 @@
   }
 
   .slide-fade-leave-active {
-    transition: all $animation-speed cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all $animation-speed cubic-bezier(1, 0.5, 0.8, 1);
   }
 
-  .slide-fade-enter, .slide-fade-leave-to {
+  .slide-fade-enter,
+  .slide-fade-leave-to {
     transform: translateX($base-spacing-unit);
     opacity: 0;
   }
@@ -186,10 +187,11 @@
   }
 
   .slide-fade-bottom-leave-active {
-    transition: all $animation-speed-slow cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all $animation-speed-slow cubic-bezier(1, 0.5, 0.8, 1);
   }
 
-  .slide-fade-bottom-enter, .slide-fade-bottom-leave-to {
+  .slide-fade-bottom-enter,
+  .slide-fade-bottom-leave-to {
     transform: translateY($base-spacing-unit);
     opacity: 0;
   }
@@ -197,15 +199,15 @@
   /*
   * Lazy loading
   */
-  img{
+  img {
     transition: all $animation-speed $animation;
 
-    &[lazy=loading]{
+    &[lazy=loading] {
       opacity: 0;
       visibility: hidden;
     }
 
-    &[lazy=loaded]{
+    &[lazy=loaded] {
       opacity: 1;
       visibility: visible;
     }

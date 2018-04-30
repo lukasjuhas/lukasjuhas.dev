@@ -23,7 +23,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   $white:#FFF;
   $blue:#0091E5;
   $red:#E42149;

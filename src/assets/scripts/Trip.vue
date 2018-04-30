@@ -139,7 +139,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @mixin responsive-photo {
     display: block;
     margin-bottom: $base-spacing-unit;

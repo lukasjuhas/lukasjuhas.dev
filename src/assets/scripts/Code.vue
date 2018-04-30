@@ -105,7 +105,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .code-feed {
     .col {
       margin-bottom: $base-spacing-unit;

@@ -24,7 +24,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .links {
     list-style: none;
     margin: $base-spacing-unit 0;

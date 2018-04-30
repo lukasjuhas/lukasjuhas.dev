@@ -24,7 +24,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .trip {
     width: 100%;
     display: block;

@@ -7,8 +7,4 @@ export default {
 
   // API base url used by axios
   baseApiUrl: process.env.NODE_ENV === 'development' ? 'http://api.itsluk.as.test' : 'https://api.itsluk.as',
-
-  // Timeout on requests (by axios)
-  // TODO: set this just for upload
-  timeout: 300000, // 5mim
 };

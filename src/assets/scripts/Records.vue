@@ -217,7 +217,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .record {
     margin-bottom: $base-spacing-unit;
   }

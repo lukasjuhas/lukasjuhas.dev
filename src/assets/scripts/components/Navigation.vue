@@ -39,7 +39,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .hamburger {
     position: fixed;
     top: $base-spacing-unit;

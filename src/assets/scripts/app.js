@@ -12,7 +12,6 @@ import flash from './helpers/flash';
 
 window.axios = axios;
 window.axios.defaults.baseURL = config.baseApiUrl;
-window.axios.defaults.timeout = config.timeout;
 
 // Add a response interceptor
 axios.interceptors.response.use(
@@ -37,10 +36,6 @@ store.state.router = new VueRouter({
   mode: config.debug ? 'hash' : 'history',
   linkActiveClass: 'current',
   routes,
-});
-
-Vue.directive('focus', {
-  inserted: el => el.focus(),
 });
 
 new Vue({

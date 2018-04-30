@@ -152,7 +152,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .section--trips {
     margin-top: $base-spacing-unit * 3;
   }
