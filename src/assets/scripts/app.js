@@ -8,44 +8,25 @@ import routes from './routes';
 import config from './config';
 import store from './store';
 import Form from './utils/Form';
+import flash from './helpers/flash';
 
 window.axios = axios;
 window.axios.defaults.baseURL = config.baseApiUrl;
 window.axios.defaults.timeout = config.timeout;
-window.axios.defaults.headers.common = {
-  'X-Requested-With': 'XMLHttpRequest',
-};
-
-window.axios.interceptors.request.use((axiosConfig) => {
-  if (store.state.token) {
-    axiosConfig.headers.common.Authorization = `Bearer ${store.state.token}`;
-  }
-
-  return axiosConfig;
-}, (error) => {
-  // check if unauthorized error returned
-  if (error.response.status === 401) {
-    // go to login
-  }
-  return Promise.reject(error);
-});
 
 // Add a response interceptor
-axios.interceptors.response.use((response) => {
-  if (response.data.token) {
-    store.setAuthTokenAction(response.data.token);
-  }
+axios.interceptors.response.use(
+  response => response,
+  (error) => {
+    store.setLoadingAction(false);
 
-  // if (response.status === 500) {
-  //   if (response.data.message === 'Token has expired, but is still valid.') {
-  //     console.log('RETRY', response);
-  //   } else {
-  //     console.log('Whoops, an unknown error occured.');
-  //   }
-  // }
+    if (error.response.data.message) {
+      flash.showError(error.response.data.message);
+    }
 
-  return response;
-}, error => Promise.reject(error));
+    return Promise.reject(error);
+  },
+);
 
 window.Form = Form;
 
@@ -56,45 +37,6 @@ store.state.router = new VueRouter({
   mode: config.debug ? 'hash' : 'history',
   linkActiveClass: 'current',
   routes,
-});
-
-store.state.router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.state.token) {
-      axios.get('auth').then((response) => {
-        store.setLoadingAction(false);
-        if (response.data.error) {
-          store.clearAuthTokenAction();
-
-          next({
-            path: '/login',
-            query: { redirect: to.fullPath },
-          });
-        } else {
-          next();
-        }
-      }).catch((error) => {
-        store.setLoadingAction(false);
-        store.clearAuthTokenAction();
-
-        if (error.status === 404) {
-          store.state.router.replace('/404');
-        }
-
-        next({
-          path: '/login',
-          query: { redirect: to.fullPath },
-        });
-      });
-    } else {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath },
-      });
-    }
-  } else {
-    next();
-  }
 });
 
 Vue.directive('focus', {

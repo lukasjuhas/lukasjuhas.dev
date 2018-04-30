@@ -44,7 +44,7 @@
 </template>
 
 <script>
-  // import each from 'lodash/each';
+  import each from 'lodash/each';
   import store from './store';
   import flash from './helpers/flash';
   import StaggeredFade from './transitions/StaggeredFade.vue';
@@ -62,7 +62,7 @@
       return {
         sharedState: store,
         item: null,
-        photos: null,
+        photos: [],
         showCaption: false,
         showLatestTripSection: true,
       };
@@ -82,8 +82,8 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get(path).then((response) => {
-          if (response.data.data !== null) {
-            _.each(response.data.data, (item) => {
+          if (response.statusText === 'OK') {
+            each(response.data, (item) => {
               this.item = item;
             });
           }
@@ -112,19 +112,18 @@
         this.sharedState.setLoadingAction(true);
 
         axios.get('recent-photos').then((response) => {
-          if (response.data !== null) {
-            _.each(response.data, (photo) => {
-              this.photos = photo;
+          if (response.statusText === 'OK') {
+            each(response.data, (photo) => {
+              this.photos.push(photo);
             });
           }
 
           this.sharedState.setLoadingAction(false);
-        })
-        .catch(() => {
-          this.sharedState.setLoadingAction(false);
-          // @todo get error from api
-          flash.showError('Sorry, there was problem loading instagram photos.');
         });
+        // .catch((e) => {
+        //   this.sharedState.setLoadingAction(false);
+        //   flash.showError(e.response.data.message);
+        // });
       },
     },
   };

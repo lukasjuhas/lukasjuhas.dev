@@ -6,7 +6,6 @@ const store = {
   state: {
     loading: false,
     router: null,
-    token: window.localStorage.getItem('itslukas_token') || false,
     flash: {
       show: false,
       status: 'error',
@@ -21,20 +20,6 @@ const store = {
   clearLoadingAction() {
     this.debug && console.log('clearLoadingAction triggered');
     this.state.loading = false;
-  },
-  setAuthTokenAction(token) {
-    this.debug && console.log('setAuthTokenAction triggered');
-
-    if (token) {
-      // save token to local storage
-      window.localStorage.setItem('itslukas_token', token);
-    } else {
-      window.localStorage.setItem('itslukas_token', false);
-    }
-  },
-  clearAuthTokenAction() {
-    this.debug && console.log('clearAuthTokenAction triggered');
-    window.localStorage.setItem('itslukas_token', false);
   },
   setFlashAction(option, newValue) {
     this.debug && console.log(`setFlashAction ${option} triggered with`, newValue);

@@ -13,14 +13,6 @@
             </div>
             <transition name="fade">
                 <footer class="footer">
-                    <div class="row">
-                        <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6">
-                            <button v-if="authorised" type="button" name="button" class="button button--primary button--small" @click="logout">Logout</button>
-                        </div>
-                        <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6">
-
-                        </div>
-                    </div>
                 </footer>
             </transition>
         </div>
@@ -28,7 +20,7 @@
 </template>
 
 <script>
-  import _ from 'lodash';
+  import throttle from 'lodash/throttle';
   import store from './store';
   import helpers from './helpers/helpers';
   import flash from './helpers/flash';
@@ -50,15 +42,6 @@
     mounted() {
       this.show = true;
       this.handleLogo();
-    },
-
-    computed: {
-      /**
-       * check if user is authorised
-       */
-      authorised() {
-        return this.sharedState.state.token !== false || '';
-      },
     },
 
     components: {
@@ -107,7 +90,7 @@
 
         // make sure this runs last
         setTimeout(() => {
-          window.addEventListener('scroll', _.throttle(() => {
+          window.addEventListener('scroll', throttle(() => {
             const st = window.pageYOffset || document.documentElement.scrollTop;
 
             // offset 75px
@@ -120,18 +103,6 @@
             lastScrollTop = st;
           }, 300));
         }, 100);
-      },
-
-      /**
-       * handle logout
-       */
-      logout() {
-        axios.post('logout', { token: this.sharedState.state.token }).then((response) => {
-          if (!response.data.error) {
-            this.sharedState.clearAuthTokenAction();
-            this.sharedState.state.router.go('/');
-          }
-        });
       },
     },
   };
