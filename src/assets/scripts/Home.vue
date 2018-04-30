@@ -74,7 +74,7 @@
 
     created() {
       // this.fetchData();
-      // this.fetchPhotos();
+      this.fetchPhotos();
     },
 
     methods: {
@@ -111,7 +111,7 @@
       fetchPhotos() {
         this.sharedState.setLoadingAction(true);
 
-        axios.get('instagram').then((response) => {
+        axios.get('recent-photos').then((response) => {
           if (response.data !== null) {
             _.each(response.data, (photo) => {
               this.photos = photo;
@@ -122,6 +122,7 @@
         })
         .catch(() => {
           this.sharedState.setLoadingAction(false);
+          // @todo get error from api
           flash.showError('Sorry, there was problem loading instagram photos.');
         });
       },
