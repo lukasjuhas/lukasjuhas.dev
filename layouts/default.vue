@@ -1,8 +1,47 @@
 <template>
-  <div>
-    <nuxt/>
-  </div>
+  <transition name="slide-fade-bottom">
+    <div v-if="show" class="main">
+      <div class="overlay"></div>
+      <navigation ref="navigation"></navigation>
+      <logo ref="logo"></logo>
+      <preloader></preloader>
+      <div class="content">
+        <transition name="fade" mode="out-in">
+          <nuxt/>
+        </transition>
+      </div>
+      <transition name="fade">
+        <footer class="footer"></footer>
+      </transition>
+    </div>
+  </transition>
 </template>
+
+<script>
+import Logo from '~/components/Logo.vue';
+import Navigation from '~/components/Navigation.vue';
+import Preloader from '~/components/Preloader.vue';
+
+export default {
+  components: {
+    Logo,
+    Navigation,
+    Preloader,
+  },
+
+  data() {
+    return {
+      show: false,
+    };
+  },
+
+  mounted() {
+    this.show = true;
+    // this.handleLogo();
+  },
+};
+</script>
+
 
 <style>
 html {
@@ -24,32 +63,12 @@ html {
   margin: 0;
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Aleo', serif;
 }
 </style>
