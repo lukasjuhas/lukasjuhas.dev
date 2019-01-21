@@ -11,40 +11,34 @@
   </transition-group>
 </template>
 
-<script>
-export default {
-  name: 'StaggeredFade',
+<script lang="ts">
+import { Vue, Prop, Component } from 'nuxt-property-decorator';
 
-  props: {
-    tag: {
-      type: String,
-      required: false,
-      default: 'div',
-    },
-  },
+@Component({})
+export default class StaggeredFade extends Vue {
+  @Prop()
+  tag: string = 'div';
 
-  methods: {
-    beforeEnter(el) {
-      el.classList.add('staggered-fade-item');
-    },
+  public beforeEnter(el) {
+    el.classList.add('staggered-fade-item');
+  }
 
-    enter(el) {
-      const delay = el.dataset.index * 100;
+  public enter(el) {
+    const delay = el.dataset.index * 100;
 
-      setTimeout(() => {
-        el.classList.add('staggered-fade-item--visible');
-      }, delay);
-    },
+    setTimeout(() => {
+      el.classList.add('staggered-fade-item--visible');
+    }, delay);
+  }
 
-    leave(el) {
-      const delay = el.dataset.index * 100;
+  public leave(el) {
+    const delay = el.dataset.index * 100;
 
-      setTimeout(() => {
-        el.classList.remove('staggered-fade-item--visible');
-      }, delay);
-    },
-  },
-};
+    setTimeout(() => {
+      el.classList.remove('staggered-fade-item--visible');
+    }, delay);
+  }
+}
 </script>
 
 <style lang="scss">

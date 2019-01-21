@@ -9,6 +9,13 @@
   </transition>
 </template>
 
+<script lang="ts">
+import { Vue, Component } from 'nuxt-property-decorator';
+
+@Component({})
+export default class Preloader extends Vue {}
+</script>
+
 <style lang="scss" scoped>
 $white: #fff;
 $blue: #0091e5;
