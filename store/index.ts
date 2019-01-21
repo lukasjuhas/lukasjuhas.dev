@@ -1,11 +1,20 @@
-import Vuex from 'vuex';
+import { MutationTree, ActionTree } from 'vuex';
+import { RootState, Photo } from '~/types';
 
-const createStore = () =>
-  new Vuex.Store({
-    state: {
-      loading: false,
-    },
-    actions: {},
-  });
+export const state = (): RootState => ({
+  loading: false,
+  photos: [],
+});
 
-export default createStore;
+export const mutations: MutationTree<RootState> = {
+  setPhotos(state: RootState, photos: Photo[]): void {
+    state.photos = photos;
+  },
+};
+
+export const actions: ActionTree<RootState, RootState> = {
+  async nuxtServerInit({ commit }, { app }) {
+    const photos: Photo[] = await app.$axios.$get('recent-photos');
+    commit('setPhoto', photos);
+  },
+};

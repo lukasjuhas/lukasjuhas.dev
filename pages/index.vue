@@ -79,9 +79,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator';
+import { Component, Vue, State } from 'nuxt-property-decorator';
 import Logo from '~/components/Logo.vue';
 import StaggeredFade from '~/components/StaggeredFade.vue';
+import { Photo } from '~/types';
 
 @Component({
   components: {
@@ -92,5 +93,7 @@ import StaggeredFade from '~/components/StaggeredFade.vue';
 export default class extends Vue {
   // photos: <[]> = []
   showCaption: boolean = false;
+
+  @State people: Photo;
 }
 </script>

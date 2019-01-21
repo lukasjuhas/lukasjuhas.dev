@@ -1,5 +1,6 @@
-// import { Tag } from '~/types';
+import { Photo } from '~/types';
 
-// export interface RootState {
-//   people: Tag[];
-// }
+export interface RootState {
+  loading: boolean;
+  photos: Photo[];
+}
