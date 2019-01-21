@@ -78,21 +78,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator';
 import Logo from '~/components/Logo.vue';
 import StaggeredFade from '~/components/StaggeredFade.vue';
 
-export default {
+@Component({
   components: {
     Logo,
     StaggeredFade,
   },
-
-  data() {
-    return {
-      photos: [],
-      showCaption: false,
-    };
-  },
-};
+})
+export default class extends Vue {
+  // photos: <[]> = []
+  showCaption: boolean = false;
+}
 </script>
