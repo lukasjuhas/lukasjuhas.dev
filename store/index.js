@@ -1,4 +1,3 @@
-/* eslint-disable implicit-arrow-linebreak */
 import Vuex from 'vuex';
 
 const createStore = () =>
