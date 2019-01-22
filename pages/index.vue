@@ -4,7 +4,7 @@
       <logo/>
     </nuxt-link>
 
-    <section class="section">
+    <section class="section section--main">
       <div class="container">
         <div class="row">
           <div class="col col--xs-12 col--sm-2 col--md-2 col--lg-2">
@@ -53,16 +53,21 @@
     </section>
     <transition name="fade">
       <section v-if="photos" class="section section--photo-feed">
-        <staggered-fade class="photo-feed">
-          <div
-            v-for="(photo, index) in photos"
-            :key="index"
-            :data-index="index"
-            class="photo-feed__panel"
+        <!-- <staggered-fade class="photo-feed"> -->
+        <div
+          v-for="(photo, index) in photos"
+          :key="index"
+          :data-index="index"
+          class="photo-feed__panel"
+        >
+          <!-- {{ photo.images.standard_resolution.url }} -->
+          <img
+            :src="photo.images.standard_resolution.url"
+            :alt="photo.caption"
+            :title="photo.caption"
           >
-            <img v-lazy="photo.thumb" :alt="photo.caption" :title="photo.caption">
-          </div>
-        </staggered-fade>
+        </div>
+        <!-- </staggered-fade> -->
         <div v-if="photos.length" class="row">
           <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12 align-text-center">
             <a
@@ -79,7 +84,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, State } from 'nuxt-property-decorator';
+import { Component, Vue, State, Action } from 'nuxt-property-decorator';
 import Logo from '~/components/Logo.vue';
 import StaggeredFade from '~/components/StaggeredFade.vue';
 import { Photo } from '~/types';
@@ -91,9 +96,20 @@ import { Photo } from '~/types';
   },
 })
 export default class extends Vue {
-  // photos: <[]> = []
   showCaption: boolean = false;
 
-  @State people: Photo;
+  @State photos: Photo;
+  @Action('getPhotos') getPhotos: any;
+
+  mounted() {
+    this.getPhotos();
+  }
 }
 </script>
+
+<style lang="scss">
+
+.section--main {
+  min-height: 100vh;
+}
+</style>
