@@ -1,5 +1,6 @@
 import { MutationTree, ActionTree } from 'vuex';
 import { RootState, Photo } from '~/types';
+import axios from 'axios';
 
 export const state = (): RootState => ({
   loading: false,
@@ -13,8 +14,15 @@ export const mutations: MutationTree<RootState> = {
 };
 
 export const actions: ActionTree<RootState, RootState> = {
-  async nuxtServerInit({ commit }, { app }) {
-    const photos: Photo[] = await app.$axios.$get('recent-photos');
-    commit('setPhoto', photos);
+  // async nuxtServerInit({ commit }, { app }) {
+  // //
+  // },
+  async getPhotos({ commit }) {
+    await axios
+      .get(`https://api.instagram.com/v1/users/self/media/recent?access_token=${process.env.INSTAGRAM_ACCESS_TOKEN}`)
+      .then(response => {
+        console.log('photos', response.data.data);
+        commit('setPhotos', response.data.data);
+      });
   },
 };
