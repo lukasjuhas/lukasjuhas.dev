@@ -1,20 +1,14 @@
 <template>
-  <transition name="slide-fade-bottom">
-    <div v-if="show" class="main">
-      <div class="overlay"></div>
-      <navigation ref="navigation"></navigation>
-      <logo ref="logo"></logo>
-      <preloader></preloader>
-      <div class="content">
-        <transition name="fade" mode="out-in">
-          <nuxt/>
-        </transition>
-      </div>
-      <transition name="fade">
-        <footer class="footer"></footer>
-      </transition>
+  <div class="main">
+    <div class="overlay"></div>
+    <navigation ref="navigation"></navigation>
+    <logo ref="logo"></logo>
+    <preloader></preloader>
+    <div class="content">
+      <nuxt/>
     </div>
-  </transition>
+    <footer class="footer"></footer>
+  </div>
 </template>
 
 <script>
@@ -29,24 +23,24 @@ export default {
     Preloader,
   },
 
-  data() {
-    return {
-      show: false,
-    };
-  },
+  // data() {
+  //   return {
+  //     show: false,
+  //   };
+  // },
 
-  mounted() {
-    this.show = true;
-    // this.handleLogo();
-  },
+  // mounted() {
+  // this.show = true;
+  // this.handleLogo();
+  // },
 };
 </script>
 
 
 <style>
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

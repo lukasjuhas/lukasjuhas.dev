@@ -54,18 +54,15 @@
     <transition name="fade">
       <section v-if="photos" class="section section--photo-feed">
         <!-- <staggered-fade class="photo-feed"> -->
-        <div
-          v-for="(photo, index) in photos"
-          :key="index"
-          :data-index="index"
-          class="photo-feed__panel"
-        >
-          <!-- {{ photo.images.standard_resolution.url }} -->
-          <img
-            :src="photo.images.standard_resolution.url"
-            :alt="photo.caption"
-            :title="photo.caption"
-          >
+        <div class="container">
+          <div v-for="(photo, index) in photos" :key="index" :data-index="index" class="photo">
+            <!-- {{ photo.images.standard_resolution.url }} -->
+            <img
+              :src="photo.images.standard_resolution.url"
+              :alt="photo.caption"
+              :title="photo.caption"
+            >
+          </div>
         </div>
         <!-- </staggered-fade> -->
         <div v-if="photos.length" class="row">
@@ -95,7 +92,7 @@ import { Photo } from '~/types';
     StaggeredFade,
   },
 })
-export default class extends Vue {
+export default class Default extends Vue {
   showCaption: boolean = false;
 
   @State photos: Photo;
@@ -108,8 +105,21 @@ export default class extends Vue {
 </script>
 
 <style lang="scss">
-
 .section--main {
   min-height: 100vh;
+}
+
+.photo {
+  display: inline-block;
+  max-width: 50%;
+  height: auto;
+  font-size: 0;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: top;
+    font-size: $font-size-base;
+  }
 }
 </style>
