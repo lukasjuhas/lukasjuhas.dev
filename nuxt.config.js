@@ -27,9 +27,6 @@ export default {
     baseUrl: process.env.BASE_URL || `http://${host}:${port}`,
   },
 
-  /*
-   ** Headers of the page
-   */
   head: {
     title: pkg.name,
     meta: [
@@ -50,14 +47,8 @@ export default {
     ],
   },
 
-  /*
-   ** Customize the progress-bar color
-   */
   loading: { color: '#fff' },
 
-  /*
-   ** Global CSS
-   */
   css: [
     {
       src: 'simple-flexbox-grid',
@@ -65,31 +56,22 @@ export default {
     },
   ],
 
-  /*
-   ** Plugins to load before mounting the App
-   */
   plugins: [],
 
-  /*
-   ** Nuxt.js modules
-   */
   modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
-    '~/modules/typescript.js',
-    ['nuxt-sass-resources-loader', ['assets/styles/variables.scss']],
+    '@nuxtjs/style-resources',
   ],
-  /*
-   ** Axios module configuration
-   */
+
+  styleResources: {
+    scss: '@/assets/styles/_variables.scss',
+  },
+
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
-  /*
-   ** Build configuration
-   */
   build: {},
 
   workbox: {
