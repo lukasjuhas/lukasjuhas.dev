@@ -1,9 +1,5 @@
 <template>
   <div :class="theme">
-    <nuxt-link to="/">
-      <logo/>
-    </nuxt-link>
-
     <section class="section section--main">
       <span v-if="bg" class="gradient" :style="`background: linear-gradient(${bg} 0%, #fff 100%)`"/>
 
@@ -74,6 +70,7 @@
 </template>
 
 <script lang="ts">
+import throttle from 'lodash/throttle';
 import splashy from 'splashy';
 import tinycolor from 'tinycolor2';
 import { Component, Vue, State, Action } from 'nuxt-property-decorator';
@@ -87,15 +84,19 @@ import { Photo } from '~/types';
     StaggeredFade,
   },
 })
-export default class Default extends Vue {
+export default class Home extends Vue {
   theme: string = 'light';
   bg: string = '';
+  showLogo: boolean = true;
 
   @State photos: Photo;
   @State firstPhotoUrl;
+
   @Action('getPhotos') getPhotos: any;
 
   mounted() {
+    this.handleLogo();
+
     this.getPhotos().then(() => {
       splashy(this.firstPhotoUrl).then(palette => {
         this.bg = palette[0];
@@ -105,6 +106,27 @@ export default class Default extends Vue {
         }
       });
     });
+  }
+
+  handleLogo(forceShow = false) {
+    if (forceShow) {
+      this.showLogo = true;
+    }
+
+    let lastScrollTop = 0;
+    window.addEventListener(
+      'scroll',
+      throttle(() => {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        // offset 75px
+        if (st > 75 && st > lastScrollTop) {
+          this.showLogo = false;
+        } else {
+          this.showLogo = true;
+        }
+        lastScrollTop = st;
+      }, 300)
+    );
   }
 }
 </script>
@@ -122,7 +144,7 @@ export default class Default extends Vue {
 
 .section--main {
   min-height: 100vh;
-  padding: 90px 0;
+  padding: 90px 70px;
   position: relative;
   display: flex;
   align-items: center;

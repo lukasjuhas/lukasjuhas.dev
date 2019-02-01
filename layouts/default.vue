@@ -1,39 +1,92 @@
 <template>
   <div class="main">
-    <div class="overlay"></div>
-    <navigation ref="navigation"></navigation>
-    <logo ref="logo"></logo>
-    <preloader></preloader>
+    <nuxt-link to="/">
+      <logo :show="showLogo"/>
+    </nuxt-link>
     <div class="content">
       <nuxt/>
     </div>
     <footer class="footer"></footer>
   </div>
 </template>
-
-<script>
+<script lang="ts">
+import throttle from 'lodash/throttle';
+import { Component, Vue } from 'nuxt-property-decorator';
 import Logo from '~/components/Logo.vue';
-import Navigation from '~/components/Navigation.vue';
-import Preloader from '~/components/Preloader.vue';
 
-export default {
+@Component({
   components: {
     Logo,
-    Navigation,
-    Preloader,
   },
+})
+export default class Default extends Vue {
+  showLogo: boolean = true;
 
-  // data() {
-  //   return {
-  //     show: false,
-  //   };
-  // },
+  mounted() {
+    this.handleLogo();
+  }
 
-  // mounted() {
-  // this.show = true;
-  // this.handleLogo();
-  // },
-};
+  handleLogo(forceShow = false) {
+    if (forceShow) {
+      this.showLogo = true;
+    }
+
+    let lastScrollTop = 0;
+    window.addEventListener(
+      'scroll',
+      throttle(() => {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        // offset 75px
+        if (st > 75 && st > lastScrollTop) {
+          this.showLogo = false;
+        } else {
+          this.showLogo = true;
+        }
+        lastScrollTop = st;
+      }, 300)
+    );
+  }
+}
+</script>
+
+<script lang="ts">
+import throttle from 'lodash/throttle';
+import { Component, Vue } from 'nuxt-property-decorator';
+import Logo from '~/components/Logo.vue';
+
+@Component({
+  components: {
+    Logo,
+  },
+})
+export default class Default extends Vue {
+  showLogo: boolean = true;
+
+  mounted() {
+    this.handleLogo();
+  }
+
+  handleLogo(forceShow = false) {
+    if (forceShow) {
+      this.showLogo = true;
+    }
+
+    let lastScrollTop = 0;
+    window.addEventListener(
+      'scroll',
+      throttle(() => {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        // offset 75px
+        if (st > 75 && st > lastScrollTop) {
+          this.showLogo = false;
+        } else {
+          this.showLogo = true;
+        }
+        lastScrollTop = st;
+      }, 300)
+    );
+  }
+}
 </script>
 
 <style lang="scss">
