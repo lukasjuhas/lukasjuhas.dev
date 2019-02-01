@@ -70,24 +70,20 @@
 </template>
 
 <script lang="ts">
-import throttle from 'lodash/throttle';
 import splashy from 'splashy';
 import tinycolor from 'tinycolor2';
 import { Component, Vue, State, Action } from 'nuxt-property-decorator';
-import Logo from '~/components/Logo.vue';
 import StaggeredFade from '~/components/StaggeredFade.vue';
 import { Photo } from '~/types';
 
 @Component({
   components: {
-    Logo,
     StaggeredFade,
   },
 })
 export default class Home extends Vue {
   theme: string = 'light';
   bg: string = '';
-  showLogo: boolean = true;
 
   @State photos: Photo;
   @State firstPhotoUrl;
@@ -95,8 +91,6 @@ export default class Home extends Vue {
   @Action('getPhotos') getPhotos: any;
 
   mounted() {
-    this.handleLogo();
-
     this.getPhotos().then(() => {
       splashy(this.firstPhotoUrl).then(palette => {
         this.bg = palette[0];
@@ -106,27 +100,6 @@ export default class Home extends Vue {
         }
       });
     });
-  }
-
-  handleLogo(forceShow = false) {
-    if (forceShow) {
-      this.showLogo = true;
-    }
-
-    let lastScrollTop = 0;
-    window.addEventListener(
-      'scroll',
-      throttle(() => {
-        const st = window.pageYOffset || document.documentElement.scrollTop;
-        // offset 75px
-        if (st > 75 && st > lastScrollTop) {
-          this.showLogo = false;
-        } else {
-          this.showLogo = true;
-        }
-        lastScrollTop = st;
-      }, 300)
-    );
   }
 }
 </script>
