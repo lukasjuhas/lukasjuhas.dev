@@ -10,7 +10,8 @@
     "start": "nuxt-ts start",
     "lint": "prettier --no-semi --single-quote --write **/*.js **/*.vue !test/target/** !dist/**",
     "generate": "nuxt-ts generate",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
