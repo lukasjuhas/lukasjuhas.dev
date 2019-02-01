@@ -54,15 +54,13 @@
           </div>
         </div>
         <!-- </staggered-fade> -->
-        <div v-if="photos.length" class="row">
-          <div class="col col--xs-12 col--sm-12 col--md-12 col--lg-12 align-text-center">
-            <a
-              href="https://instagram.com/lukasjuhas"
-              class="see-more"
-              target="_blank"
-              rel="noopener"
-            >see more</a>
-          </div>
+        <div v-if="photos.length" class="photo-feed-footer">
+          <a
+            href="https://instagram.com/lukasjuhas"
+            class="see-more"
+            target="_blank"
+            rel="noopener"
+          >see more</a>
         </div>
       </section>
     </transition>
@@ -150,6 +148,11 @@ export default class Home extends Vue {
     vertical-align: top;
     font-size: $font-size-base;
   }
+}
+
+.photo-feed-footer {
+  text-align: center;
+  padding: $spacing-xl 0;
 }
 
 @keyframes fadein {

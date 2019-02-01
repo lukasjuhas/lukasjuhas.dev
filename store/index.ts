@@ -40,9 +40,10 @@ export const actions: ActionTree<RootState, RootState> = {
       .get(
         `https://api.instagram.com/v1/users/self/media/recent?access_token=${
           process.env.INSTAGRAM_ACCESS_TOKEN
-        }`
+        }&count=3` // update count when more posts with new grid are up.
       )
       .then(response => {
+        console.log(response.data.data);
         commit('setPhotos', response.data.data);
         commit('setFirstPhotoUrl', response.data.data[0].images.standard_resolution.url);
       });
