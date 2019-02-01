@@ -1,4 +1,4 @@
-import { MutationTree, ActionTree } from 'vuex';
+import { MutationTree, ActionTree, GetterTree } from 'vuex';
 import { RootState, Photo } from '~/types';
 import axios from 'axios';
 
@@ -6,7 +6,14 @@ export const state = (): RootState => ({
   loading: false,
   photos: [],
   firstPhotoUrl: '',
+  theme: 'light',
 });
+
+export const getters: GetterTree<RootState, RootState> = {
+  theme(state: RootState) {
+    return state.theme;
+  },
+};
 
 export const mutations: MutationTree<RootState> = {
   setPhotos(state: RootState, photos: Photo[]): void {
@@ -15,6 +22,12 @@ export const mutations: MutationTree<RootState> = {
 
   setFirstPhotoUrl(state: RootState, url): void {
     state.firstPhotoUrl = url;
+  },
+
+  setTheme(state: RootState, theme): void {
+    console.log(state.theme);
+    state.theme = theme;
+    console.log(state.theme);
   },
 };
 

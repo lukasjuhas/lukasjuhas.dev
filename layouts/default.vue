@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="main" :class="this.$store.getters.theme">
     <nuxt-link to="/">
       <logo :show="showLogo"/>
     </nuxt-link>

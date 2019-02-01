@@ -1,5 +1,5 @@
 <template>
-  <div :class="theme">
+  <div>
     <section class="section section--main">
       <span v-if="bg" class="gradient" :style="`background: linear-gradient(${bg} 0%, #fff 100%)`"/>
 
@@ -82,11 +82,11 @@ import { Photo } from '~/types';
   },
 })
 export default class Home extends Vue {
-  theme: string = 'light';
   bg: string = '';
 
   @State photos: Photo;
   @State firstPhotoUrl;
+  @State theme;
 
   @Action('getPhotos') getPhotos: any;
 
@@ -96,7 +96,7 @@ export default class Home extends Vue {
         this.bg = palette[0];
 
         if (tinycolor(this.bg).isDark()) {
-          this.theme = 'dark';
+          this.$store.commit('setTheme', 'dark');
         }
       });
     });
