@@ -18,7 +18,7 @@
                   href="https://instagram.com/lukasjuhas"
                   target="_blank"
                   rel="noopener"
-                >photographs</a>. Currently living and working in London as Tech Lead at
+                >photographs</a>. Currently living and working in London as a Tech Lead at
                 <a
                   href="https://getasnap.com/"
                   target="_blank"
