@@ -5,11 +5,16 @@ import axios from 'axios';
 export const state = (): RootState => ({
   loading: false,
   photos: [],
+  firstPhotoUrl: '',
 });
 
 export const mutations: MutationTree<RootState> = {
   setPhotos(state: RootState, photos: Photo[]): void {
     state.photos = photos;
+  },
+
+  setFirstPhotoUrl(state: RootState, url): void {
+    state.firstPhotoUrl = url;
   },
 };
 
@@ -25,8 +30,8 @@ export const actions: ActionTree<RootState, RootState> = {
         }`
       )
       .then(response => {
-        console.log('photos', response.data.data);
         commit('setPhotos', response.data.data);
+        commit('setFirstPhotoUrl', response.data.data[0].images.standard_resolution.url);
       });
   },
 };

@@ -3,6 +3,7 @@
     class="logo"
     clip-rule="evenodd"
     fill-rule="evenodd"
+    stroke-width="0"
     stroke-linejoin="round"
     stroke-miterlimit="1.41421"
     viewBox="0 0 287 287"
@@ -26,7 +27,6 @@ import { Vue, Component } from 'nuxt-property-decorator';
 export default class Logo extends Vue {}
 </script>
 
-
 <style lang="scss" scoped>
 .logo {
   width: 50px;
@@ -38,5 +38,9 @@ export default class Logo extends Vue {}
   transition: all $animation-speed $animation;
   opacity: 1;
   fill: $col-logo;
+
+  .dark & {
+    fill: $col-logo-light;
+  }
 }
 </style>

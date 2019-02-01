@@ -1,30 +1,23 @@
 <template>
-  <div>
+  <div :class="theme">
     <nuxt-link to="/">
       <logo/>
     </nuxt-link>
 
     <section class="section section--main">
+      <span v-if="bg" class="gradient" :style="`background: linear-gradient(${bg} 0%, #fff 100%)`"/>
+
       <div class="container">
         <div class="row">
-          <div class="col col--xs-12 col--sm-2 col--md-2 col--lg-2">
-            <div class="avatar" @mouseover="showCaption = true" @mouseleave="showCaption = false">
-              <picture>
-                <source srcset="images/avatar.webp" type="image/webp">
-                <img src="images/avatar.jpg" alt="Lukas Juhas">
-              </picture>
-            </div>
-            <transition name="slide-fade">
-              <div v-if="showCaption" class="avatar-caption">
-                <p>That's me in Venice</p>
-              </div>
-            </transition>
-          </div>
           <div class="col col--xs-12 col--sm-10 col--md-7 col--lg-7">
-            <article class="large-content">
+            <article class="content">
               <p>
                 I'm Lukas Juhas and my main purpose on this planet is to enjoy life by
-                <nuxt-link to="/code">writing code</nuxt-link>, traveling and taking
+                <a
+                  href="https://github.com/lukasjuhas"
+                  target="_blank"
+                  rel="noopener"
+                >writing code</a>, traveling and taking
                 <a
                   href="https://instagram.com/lukasjuhas"
                   target="_blank"
@@ -48,6 +41,7 @@
               </p>
             </article>
           </div>
+          <div class="col col--xs-12 col--sm-2 col--md-2 col--lg-2"></div>
         </div>
       </div>
     </section>
@@ -56,7 +50,6 @@
         <!-- <staggered-fade class="photo-feed"> -->
         <div class="container">
           <div v-for="(photo, index) in photos" :key="index" :data-index="index" class="photo">
-            <!-- {{ photo.images.standard_resolution.url }} -->
             <img
               :src="photo.images.standard_resolution.url"
               :alt="photo.caption"
@@ -81,6 +74,8 @@
 </template>
 
 <script lang="ts">
+import splashy from 'splashy';
+import tinycolor from 'tinycolor2';
 import { Component, Vue, State, Action } from 'nuxt-property-decorator';
 import Logo from '~/components/Logo.vue';
 import StaggeredFade from '~/components/StaggeredFade.vue';
@@ -93,25 +88,64 @@ import { Photo } from '~/types';
   },
 })
 export default class Default extends Vue {
-  showCaption: boolean = false;
+  theme: string = 'light';
+  bg: string = '';
 
   @State photos: Photo;
+  @State firstPhotoUrl;
   @Action('getPhotos') getPhotos: any;
 
   mounted() {
-    this.getPhotos();
+    this.getPhotos().then(() => {
+      splashy(this.firstPhotoUrl).then(palette => {
+        this.bg = palette[0];
+
+        if (tinycolor(this.bg).isDark()) {
+          this.theme = 'dark';
+        }
+      });
+    });
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  animation: fadein $animation-speed ease-in-out;
+}
+
 .section--main {
   min-height: 100vh;
+  padding: 90px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: all $animation-speed $animation;
+
+  .dark & {
+    color: $col-text-light;
+
+    a {
+      color: inherit;
+    }
+  }
+}
+
+.content {
+  font-size: $font-size-lg;
+  line-height: $line-height-lg;
+  margin-bottom: 100px;
 }
 
 .photo {
   display: inline-block;
-  max-width: 50%;
+  max-width: 33.33%;
   height: auto;
   font-size: 0;
 
@@ -120,6 +154,15 @@ export default class Default extends Vue {
     height: auto;
     vertical-align: top;
     font-size: $font-size-base;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>
