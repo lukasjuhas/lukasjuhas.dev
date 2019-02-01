@@ -25,9 +25,7 @@ export const mutations: MutationTree<RootState> = {
   },
 
   setTheme(state: RootState, theme): void {
-    console.log(state.theme);
     state.theme = theme;
-    console.log(state.theme);
   },
 };
 
@@ -43,7 +41,6 @@ export const actions: ActionTree<RootState, RootState> = {
         }&count=3` // update count when more posts with new grid are up.
       )
       .then(response => {
-        console.log(response.data.data);
         commit('setPhotos', response.data.data);
         commit('setFirstPhotoUrl', response.data.data[0].images.standard_resolution.url);
       });
