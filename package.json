@@ -11,6 +11,7 @@
     "lint": "prettier --no-semi --single-quote --write **/*.js **/*.vue !test/target/** !dist/**",
     "generate": "nuxt-ts generate",
     "precommit": "npm run lint",
+    "deploy": "git push heroku master",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
