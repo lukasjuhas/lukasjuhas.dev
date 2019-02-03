@@ -55,7 +55,7 @@ export default {
   modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/style-resources'],
 
   styleResources: {
-    scss: ['~/assets/styles/_variables.scss'],
+    scss: ['~/assets/styles/_mixins.scss', '~/assets/styles/_variables.scss'],
   },
 
   axios: {
