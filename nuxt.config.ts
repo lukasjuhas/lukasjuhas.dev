@@ -50,19 +50,15 @@ export default {
     },
   ],
 
-  plugins: [],
-
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/style-resources'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/style-resources', '@nuxtjs/google-analytics'],
 
   styleResources: {
     scss: ['~/assets/styles/_mixins.scss', '~/assets/styles/_variables.scss'],
   },
 
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
+  'google-analytics': {
+    id: 'UA-85525050-1'
   },
-
-  build: {},
 
   workbox: {
     runtimeCaching: [
