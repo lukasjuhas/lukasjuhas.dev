@@ -54,7 +54,7 @@
           </div>
         </div>
         <!-- </staggered-fade> -->
-        <div v-if="photos.length" class="photo-feed-footer">
+        <div class="photo-feed-footer">
           <a
             href="https://instagram.com/lukasjuhas"
             class="see-more"
@@ -128,12 +128,20 @@ export default class Home extends Vue {
       color: inherit;
     }
   }
+
+  @include resp-max($breakpoint-sm) {
+    padding: 90px 0;
+  }
 }
 
 .content {
   font-size: $font-size-lg;
   line-height: $line-height-lg;
   margin-bottom: 100px;
+
+  @include resp-max($breakpoint-sm) {
+    font-size: $font-size-base;
+  }
 }
 
 .photo {
@@ -147,6 +155,10 @@ export default class Home extends Vue {
     height: auto;
     vertical-align: top;
     font-size: $font-size-base;
+  }
+
+  @include resp-max($breakpoint-sm) {
+    max-width: 100%;
   }
 }
 
