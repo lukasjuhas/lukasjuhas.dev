@@ -54,7 +54,7 @@
           </div>
         </div>
         <!-- </staggered-fade> -->
-        <div v-if="photos.length" class="photo-feed-footer">
+        <div class="photo-feed-footer">
           <a
             href="https://instagram.com/lukasjuhas"
             class="see-more"
