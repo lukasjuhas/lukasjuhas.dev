@@ -48,8 +48,8 @@
           <div v-for="(photo, index) in photos" :key="index" :data-index="index" class="photo">
             <img
               :src="photo.images.standard_resolution.url"
-              :alt="photo.caption"
-              :title="photo.caption"
+              :alt="photo.caption.text"
+              :title="photo.caption.text"
             >
           </div>
         </div>
