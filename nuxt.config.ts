@@ -50,14 +50,20 @@ export default {
     },
   ],
 
-  modules: ['@nuxtjs/axios', '@nuxtjs/dotenv', '@nuxtjs/style-resources', '@nuxtjs/google-analytics'],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources',
+    '@nuxtjs/google-analytics',
+    '@nuxtjs/pwa',
+  ],
 
   styleResources: {
     scss: ['~/assets/styles/_mixins.scss', '~/assets/styles/_variables.scss'],
   },
 
   'google-analytics': {
-    id: 'UA-85525050-1'
+    id: 'UA-85525050-1',
   },
 
   workbox: {
