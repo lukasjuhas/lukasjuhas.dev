@@ -41,7 +41,11 @@ export default {
     ],
   },
 
-  loading: { color: '#fff' },
+  loading: { color: '#000' },
+
+  manifest: {
+    background_color: '#fff',
+  },
 
   css: [
     {
