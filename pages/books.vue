@@ -5,8 +5,7 @@
     </no-ssr>
 
     <transition name="fade">
-        <section v-if="books" class="section section--book-feed">
-
+      <section v-if="books" class="section section--book-feed">
         <div class="container">
           <div class="row">
             <div
