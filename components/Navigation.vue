@@ -27,11 +27,13 @@ export default class Navigation extends Vue {
 .nav {
   position: fixed;
   z-index: 100;
-  top: $spacing-base;
-  right: $spacing-base;
+  top: $spacing-lg;
+  right: $spacing-lg;
   transition: all $animation-speed $animation;
   opacity: 0;
   fill: $col-logo;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
 
   &.visible {
     opacity: 1;
@@ -39,6 +41,10 @@ export default class Navigation extends Vue {
 
   .dark & {
     fill: $col-logo-light;
+  }
+
+  a {
+    text-decoration: none;
   }
 }
 
