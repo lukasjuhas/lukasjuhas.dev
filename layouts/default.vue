@@ -1,92 +1,23 @@
 <template>
   <div class="main" :class="this.$store.getters.theme">
-    <nuxt-link to="/">
-      <logo :show="showLogo"/>
-    </nuxt-link>
+    <app-header />
     <div class="content">
       <nuxt/>
     </div>
     <footer class="footer"></footer>
   </div>
 </template>
+
 <script lang="ts">
-import throttle from 'lodash/throttle';
 import { Component, Vue } from 'nuxt-property-decorator';
-import Logo from '~/components/Logo.vue';
+import AppHeader from '~/components/Header.vue';
 
 @Component({
   components: {
-    Logo,
+    AppHeader,
   },
 })
-export default class Default extends Vue {
-  showLogo: boolean = true;
-
-  mounted() {
-    this.handleLogo();
-  }
-
-  handleLogo(forceShow = false) {
-    if (forceShow) {
-      this.showLogo = true;
-    }
-
-    let lastScrollTop = 0;
-    window.addEventListener(
-      'scroll',
-      throttle(() => {
-        const st = window.pageYOffset || document.documentElement.scrollTop;
-        // offset 75px
-        if (st > 75 && st > lastScrollTop) {
-          this.showLogo = false;
-        } else {
-          this.showLogo = true;
-        }
-        lastScrollTop = st;
-      }, 300)
-    );
-  }
-}
-</script>
-
-<script lang="ts">
-import throttle from 'lodash/throttle';
-import { Component, Vue } from 'nuxt-property-decorator';
-import Logo from '~/components/Logo.vue';
-
-@Component({
-  components: {
-    Logo,
-  },
-})
-export default class Default extends Vue {
-  showLogo: boolean = true;
-
-  mounted() {
-    this.handleLogo();
-  }
-
-  handleLogo(forceShow = false) {
-    if (forceShow) {
-      this.showLogo = true;
-    }
-
-    let lastScrollTop = 0;
-    window.addEventListener(
-      'scroll',
-      throttle(() => {
-        const st = window.pageYOffset || document.documentElement.scrollTop;
-        // offset 75px
-        if (st > 75 && st > lastScrollTop) {
-          this.showLogo = false;
-        } else {
-          this.showLogo = true;
-        }
-        lastScrollTop = st;
-      }, 300)
-    );
-  }
-}
+export default class Default extends Vue {}
 </script>
 
 <style lang="scss">
