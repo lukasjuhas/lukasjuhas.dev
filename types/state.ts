@@ -7,5 +7,6 @@ export interface RootState {
   theme: string;
   bg: string;
   books: Book[];
+  currentBooks: Book[];
   firstBookImageUrl: string;
 }

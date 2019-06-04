@@ -10,6 +10,7 @@ export const state = (): RootState => ({
   theme: 'light',
   bg: '',
   books: [],
+  currentBooks: [],
   firstBookImageUrl: '',
 });
 
@@ -33,7 +34,6 @@ export const mutations: MutationTree<RootState> = {
   },
 
   setBg(state: RootState, bg): void {
-    console.log('setting bg', bg);
     state.bg = bg;
   },
 
@@ -41,9 +41,9 @@ export const mutations: MutationTree<RootState> = {
     state.books = books;
   },
 
-  setFirstBookImageUrl(state: RootState, url): void {
-    state.firstBookImageUrl = url;
-  }
+  setCurrentBooks(state: RootState, books: Book[]): void {
+    state.currentBooks = books;
+  },
 };
 
 export const actions: ActionTree<RootState, RootState> = {
@@ -65,7 +65,7 @@ export const actions: ActionTree<RootState, RootState> = {
     // https://www.goodreads.com/topic/show/17893514-cors-access-control-allow-origin
     await axios
       .get(
-        `http://cors-anywhere.herokuapp.com/https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}&shelf=favourites&&sort=position`
+        `http://cors-anywhere.herokuapp.com/https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}&shelf=favourites&sort=position`
       , {
         headers: {
           origin: process.env.baseUrl,
@@ -75,7 +75,24 @@ export const actions: ActionTree<RootState, RootState> = {
       .then(response => {
         const json = parser.parse(response.data);
         commit('setBooks', json.GoodreadsResponse.books.book);
-        commit('setFirstBookImageUrl', json.GoodreadsResponse.books.book[0].image_url);
+      })
+  },
+
+  async getCurrentBooks({ commit }) {
+    // ¯\_(ツ)_/¯
+    // https://www.goodreads.com/topic/show/17893514-cors-access-control-allow-origin
+    await axios
+      .get(
+        `http://cors-anywhere.herokuapp.com/https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}&shelf=currently-reading&sort=position`
+      , {
+        headers: {
+          origin: process.env.baseUrl,
+        }
+      })
+      // .get(`https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}`)
+      .then(response => {
+        const json = parser.parse(response.data);
+        commit('setCurrentBooks', json.GoodreadsResponse.books.book);
       })
   }
 };
