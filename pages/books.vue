@@ -10,20 +10,32 @@
               v-for="(book, index) in books"
               :key="index"
               :data-index="index"
-              class="col col--xs-6 col--sm-3 col--md-2 col--lg-2"
+              class="book-col col col--xs-6 col--sm-4 col--md-3 col--lg-3"
             >
-              <div class="book">
-                <a :href="book.link">
-                  <img :src="book.image_url" :alt="book.title" class="book-cover" />
-                </a>
-                <a :href="book.link">
-                  <h4 class="book-title">{{ book.title }}</h4>
-                  <h6>
-                    <span v-for="(author, index) in book.authors" :key="index">
-                      {{ author.name }}
-                    </span>
-                  </h6>
-                </a>
+              <div class="row book">
+                <div class="left col col--xs-6 col--sm-4 col--md-4 col--lg-4">
+                  <a
+                    :href="book.link"
+                    target="_blank"
+                    ref="noopener"
+                  >
+                    <img :src="book.image_url" :alt="book.title" class="book-cover" />
+                  </a>
+                </div>
+                <div class="right col col--xs-6 col--sm-8 col--md-8 col--lg-8">
+                  <a
+                    :href="book.link"
+                    target="_blank"
+                    ref="noopener"
+                  >
+                    <h2 class="book-title">{{ book.title }}</h2>
+                    <h3 class="book-author">
+                      <span v-for="(author, index) in book.authors" :key="index">
+                        {{ author.name }}
+                      </span>
+                    </h3>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -61,14 +73,45 @@ export default class Books extends Vue {
 
 .book {
   margin-bottom: $spacing-base;
-  text-align: center;
+
+  a {
+    text-decoration: none;
+  }
+
+  .left {
+    flex: 0 0 118px;
+  }
+
+  @include resp-max($breakpoint-sm) {
+    .col {
+      max-width: initial;
+    }
+
+    .right {
+      flex: 1 0 0;
+    }
+  }
 }
 
 .book-title {
   margin: 0;
+  font-size: $font-size-sm;
+}
+
+.book-author {
+  font-size: $font-size-xs;
+  color: lighten($col-text, 50);
 }
 
 .book-cover {
-  margin-bottom: $spacing-sm;
+  max-width: 100%;
+  height: auto;
+}
+
+@include resp-max($breakpoint-xs) {
+  .book-col {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 }
 </style>
