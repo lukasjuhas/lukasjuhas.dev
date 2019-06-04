@@ -1,7 +1,11 @@
 <template>
   <div>
     <section class="section section--main">
-      <span v-if="bg" class="gradient" :style="`background: linear-gradient(${bg} 0%, #fff 100%)`"/>
+      <span
+        v-if="bg"
+        class="gradient"
+        :style="`background: linear-gradient(${bg} 0%, #fff 100%)`"
+      />
 
       <div class="container">
         <div class="row">
@@ -9,31 +13,21 @@
             <article class="content">
               <p>
                 I'm Lukas Juhas and my main purpose on this planet is to enjoy life by
-                <a
-                  href="https://github.com/lukasjuhas"
-                  target="_blank"
-                  rel="noopener"
-                >writing code</a>, traveling and taking
-                <a
-                  href="https://instagram.com/lukasjuhas"
-                  target="_blank"
-                  rel="noopener"
-                >photographs</a>. Currently living and working in London as a Tech Lead at
-                <a
-                  href="https://getasnap.com/"
-                  target="_blank"
-                  rel="noopener"
-                >Snap</a>.
+                <a href="https://github.com/lukasjuhas" target="_blank" rel="noopener"
+                  >writing code</a
+                >, traveling and taking
+                <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener"
+                  >photographs</a
+                >. Currently living and working in London as a Tech Lead at
+                <a href="https://getasnap.com/" target="_blank" rel="noopener">Snap</a>.
               </p>
 
               <p>
                 Say hello
                 <a href="mailto:lukas@itsluk.as">lukas@itsluk.as</a>,
-                <a
-                  href="https://twitter.com/itslukasjuhas"
-                  target="_blank"
-                  rel="noopener"
-                >@itslukasjuhas</a>.
+                <a href="https://twitter.com/itslukasjuhas" target="_blank" rel="noopener"
+                  >@itslukasjuhas</a
+                >.
               </p>
             </article>
           </div>
@@ -50,17 +44,14 @@
               :src="photo.images.standard_resolution.url"
               :alt="photo.caption.text"
               :title="photo.caption.text"
-            >
+            />
           </div>
         </div>
         <!-- </staggered-fade> -->
         <div class="photo-feed-footer">
-          <a
-            href="https://instagram.com/lukasjuhas"
-            class="see-more"
-            target="_blank"
-            rel="noopener"
-          >see more</a>
+          <a href="https://instagram.com/lukasjuhas" class="see-more" target="_blank" rel="noopener"
+            >see more</a
+          >
         </div>
       </section>
     </transition>
@@ -68,11 +59,11 @@
 </template>
 
 <script lang="ts">
-import splashy from 'splashy';
-import tinycolor from 'tinycolor2';
-import { Component, Vue, State, Action } from 'nuxt-property-decorator';
-import StaggeredFade from '~/components/StaggeredFade.vue';
-import { Photo } from '~/types';
+import splashy from 'splashy'
+import tinycolor from 'tinycolor2'
+import { Component, Vue, State, Action } from 'nuxt-property-decorator'
+import StaggeredFade from '~/components/StaggeredFade.vue'
+import { Photo } from '~/types'
 
 @Component({
   components: {
@@ -80,24 +71,23 @@ import { Photo } from '~/types';
   },
 })
 export default class Home extends Vue {
-  bg: string = '';
+  @State photos: Photo
+  @State firstPhotoUrl
+  @State theme
+  @State bg
 
-  @State photos: Photo;
-  @State firstPhotoUrl;
-  @State theme;
-
-  @Action('getPhotos') getPhotos: any;
+  @Action('getPhotos') getPhotos: any
 
   mounted() {
     this.getPhotos().then(() => {
       splashy(this.firstPhotoUrl).then(palette => {
-        this.bg = palette[0];
+        this.$store.commit('setBg', palette[0]);
 
         if (tinycolor(this.bg).isDark()) {
-          this.$store.commit('setTheme', 'dark');
+          this.$store.commit('setTheme', 'dark')
         }
-      });
-    });
+      })
+    })
   }
 }
 </script>

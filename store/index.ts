@@ -1,12 +1,16 @@
 import { MutationTree, ActionTree, GetterTree } from 'vuex';
-import { RootState, Photo } from '~/types';
+import { RootState, Photo, Book } from '~/types';
 import axios from 'axios';
+import parser from 'fast-xml-parser';
 
 export const state = (): RootState => ({
   loading: false,
   photos: [],
   firstPhotoUrl: '',
   theme: 'light',
+  bg: '',
+  books: [],
+  firstBookImageUrl: '',
 });
 
 export const getters: GetterTree<RootState, RootState> = {
@@ -27,12 +31,22 @@ export const mutations: MutationTree<RootState> = {
   setTheme(state: RootState, theme): void {
     state.theme = theme;
   },
+
+  setBg(state: RootState, bg): void {
+    console.log('setting bg', bg);
+    state.bg = bg;
+  },
+
+  setBooks(state: RootState, books: Book[]): void {
+    state.books = books;
+  },
+
+  setFirstBookImageUrl(state: RootState, url): void {
+    state.firstBookImageUrl = url;
+  }
 };
 
 export const actions: ActionTree<RootState, RootState> = {
-  // async nuxtServerInit({ commit }, { app }) {
-  // //
-  // },
   async getPhotos({ commit }) {
     await axios
       .get(
@@ -45,4 +59,14 @@ export const actions: ActionTree<RootState, RootState> = {
         commit('setFirstPhotoUrl', response.data.data[0].images.standard_resolution.url);
       });
   },
+
+  async getBooks({ commit }) {
+    await axios
+      .get(`https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}`)
+      .then(response => {
+        const json = parser.parse(response.data);
+        commit('setBooks', json.GoodreadsResponse.books.book);
+        commit('setFirstBookImageUrl', json.GoodreadsResponse.books.book[0].image_url);
+      })
+  }
 };
