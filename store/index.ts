@@ -61,8 +61,17 @@ export const actions: ActionTree<RootState, RootState> = {
   },
 
   async getBooks({ commit }) {
+    // ¯\_(ツ)_/¯
+    // https://www.goodreads.com/topic/show/17893514-cors-access-control-allow-origin
     await axios
-      .get(`https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}`)
+      .get(
+        `http://cors-anywhere.herokuapp.com/https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}`
+      , {
+        headers: {
+          origin: process.env.baseUrl,
+        }
+      })
+      // .get(`https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}`)
       .then(response => {
         const json = parser.parse(response.data);
         commit('setBooks', json.GoodreadsResponse.books.book);
