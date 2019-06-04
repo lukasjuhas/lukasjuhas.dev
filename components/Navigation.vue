@@ -43,6 +43,14 @@ export default class Navigation extends Vue {
   a {
     text-decoration: none;
   }
+
+  .dark & {
+    color: $col-logo-light;
+
+    a {
+      color: inherit;
+    }
+  }
 }
 
 .nav-list {
