@@ -23,7 +23,7 @@ export default {
   },
 
   head: {
-    title: 'Lukas Juhas - Geek, Traveller, Photographer',
+    title: pkg.author,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
