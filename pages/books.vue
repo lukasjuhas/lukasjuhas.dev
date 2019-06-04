@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <no-ssr>
       <span v-if="bg" class="gradient" :style="`background: linear-gradient(${bg} 0%, #fff 100%)`"/>
     </no-ssr>
@@ -13,7 +13,7 @@
               v-for="(book, index) in books"
               :key="index"
               :data-index="index"
-              class="col col--xs-12 col--sm-2 col--md-2 col--lg-2"
+              class="col col--xs-6 col--sm-3 col--md-2 col--lg-2"
             >
               <a class="book" :href="book.link">
                 <img :src="book.image_url" :alt="book.title" />
@@ -61,6 +61,10 @@ export default class Books extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.page {
+  padding: (50 + $spacing-xl) 0 $spacing-xl;
+}
+
 .gradient {
   position: absolute;
   top: 0;
