@@ -1,8 +1,10 @@
 <template>
   <div class="page">
     <transition name="fade">
-      <section v-if="books" class="section section--book-feed">
+      <section v-if="books">
         <div class="container">
+          <h1>All time favourites</h1>
+
           <div class="row">
             <div
               v-for="(book, index) in books"
@@ -15,7 +17,7 @@
                   <img :src="book.image_url" :alt="book.title" class="book-cover" />
                 </a>
                 <a :href="book.link">
-                  <h4>{{ book.title }}</h4>
+                  <h4 class="book-title">{{ book.title }}</h4>
                   <h6>
                     <span v-for="(author, index) in book.authors" :key="index">
                       {{ author.name }}
@@ -61,6 +63,10 @@ export default class Books extends Vue {
 .book {
   margin-bottom: $spacing-base;
   text-align: center;
+}
+
+.book-title {
+  margin: 0;
 }
 
 .book-cover {

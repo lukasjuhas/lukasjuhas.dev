@@ -48,6 +48,7 @@ h4,
 h5,
 h6 {
   font-family: 'Aleo', serif;
+  margin-bottom: $spacing-base;
 }
 
 a {
