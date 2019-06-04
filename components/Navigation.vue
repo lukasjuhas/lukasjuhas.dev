@@ -1,8 +1,5 @@
 <template>
-  <nav
-    :class="{'visible': show}"
-    class="nav"
-  >
+  <nav :class="{ visible: show }" class="nav">
     <ul class="nav-list">
       <li>
         <nuxt-link to="/books">
@@ -14,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator';
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component({})
 export default class Navigation extends Vue {
   @Prop({ default: true })
-  show: boolean;
+  show: boolean
 }
 </script>
 
@@ -54,4 +51,3 @@ export default class Navigation extends Vue {
   padding: 0;
 }
 </style>
-

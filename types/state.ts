@@ -1,8 +1,11 @@
-import { Photo } from '~/types';
+import { Photo, Book } from '~/types';
 
 export interface RootState {
   loading: boolean;
   photos: Photo[];
   firstPhotoUrl: string;
   theme: string;
+  bg: string;
+  books: Book[];
+  firstBookImageUrl: string;
 }

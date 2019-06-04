@@ -1,6 +1,6 @@
 <template>
   <svg
-    :class="{'visible': show}"
+    :class="{ visible: show }"
     class="logo"
     clip-rule="evenodd"
     fill-rule="evenodd"
@@ -22,12 +22,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator';
+import { Vue, Component, Prop } from 'nuxt-property-decorator'
 
 @Component({})
 export default class Logo extends Vue {
   @Prop({ default: true })
-  show: boolean;
+  show: boolean
 }
 </script>
 
