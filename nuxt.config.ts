@@ -53,6 +53,7 @@ export default {
       src: 'simple-flexbox-grid',
       lang: 'css',
     },
+    '~/assets/styles/global.scss',
   ],
 
   modules: [
