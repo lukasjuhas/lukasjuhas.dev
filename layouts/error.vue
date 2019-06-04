@@ -22,11 +22,11 @@ export default class Error extends Vue {
   @Prop({ type: Object, required: true }) error!: Error
 
   get statusCode(): number {
-    return (this.error && this.error.statusCode) || 500;
+    return (this.error && this.error.statusCode) || 500
   }
 
   get message(): string {
-    return this.error.message || '¯\_(ツ)_/¯';
+    return this.error.message || '¯\_(ツ)_/¯'
   }
 }
 </script>

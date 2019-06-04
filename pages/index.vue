@@ -72,7 +72,7 @@ import { Photo } from '~/types'
   },
 })
 export default class Home extends Vue {
-  fadeOut: boolean = false;
+  fadeOut: boolean = false
 
   @State photos: Photo
   @State firstPhotoUrl
@@ -84,7 +84,7 @@ export default class Home extends Vue {
   mounted() {
     this.getPhotos().then(() => {
       splashy(this.firstPhotoUrl).then(palette => {
-        this.$store.commit('setBg', palette[0]);
+        this.$store.commit('setBg', palette[0])
 
         if (tinycolor(this.bg).isDark()) {
           this.$store.commit('setTheme', 'dark')
@@ -94,11 +94,11 @@ export default class Home extends Vue {
   }
 
   beforeRouteLeave(to, from, next) {
-    this.fadeOut = true;
+    this.fadeOut = true
 
     setTimeout(() => {
-      next();
-    }, 200); // room for css animation
+      next()
+    }, 200) // room for css animation
   }
 }
 </script>

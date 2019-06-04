@@ -40,7 +40,6 @@ import { Component, Vue, State, Action } from 'nuxt-property-decorator'
 import { Book } from '~/types'
 
 @Component({})
-
 export default class Books extends Vue {
   bg: string = ''
 
@@ -50,7 +49,7 @@ export default class Books extends Vue {
   @Action('getBooks') getBooks: any
 
   async asyncData({ store }) {
-    await store.dispatch('getBooks');
+    await store.dispatch('getBooks')
   }
 }
 </script>
