@@ -65,7 +65,7 @@ export const actions: ActionTree<RootState, RootState> = {
     // https://www.goodreads.com/topic/show/17893514-cors-access-control-allow-origin
     await axios
       .get(
-        `http://cors-anywhere.herokuapp.com/https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}&shelf=favourites`
+        `http://cors-anywhere.herokuapp.com/https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}&shelf=favourites&&sort=position`
       , {
         headers: {
           origin: process.env.baseUrl,
