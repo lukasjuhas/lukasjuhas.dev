@@ -5,6 +5,7 @@
         v-if="bg"
         class="gradient"
         :style="`background: linear-gradient(${bg} 0%, #fff 100%)`"
+        :class="{ 'gradient-out': fadeOut }"
       />
 
       <div class="container">
@@ -71,6 +72,8 @@ import { Photo } from '~/types'
   },
 })
 export default class Home extends Vue {
+  fadeOut: boolean = false;
+
   @State photos: Photo
   @State firstPhotoUrl
   @State theme
@@ -89,6 +92,14 @@ export default class Home extends Vue {
       })
     })
   }
+
+  beforeRouteLeave(to, from, next) {
+    this.fadeOut = true;
+
+    setTimeout(() => {
+      next();
+    }, 200); // room for css animation
+  }
 }
 </script>
 
@@ -101,6 +112,11 @@ export default class Home extends Vue {
   bottom: 0;
   z-index: -1;
   animation: fadein $animation-speed ease-in-out;
+
+  &.gradient-out {
+    animation: fadeout $animation-speed ease-in-out;
+    opacity: 0;
+  }
 }
 
 .section--main {
@@ -163,6 +179,15 @@ export default class Home extends Vue {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 </style>
