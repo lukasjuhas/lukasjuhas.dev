@@ -24,6 +24,7 @@ export default class Default extends Vue {}
 html {
   font-family: $sans-serif-font-family;
   font-size: $font-size-base;
+  font-weight: $font-weight-base;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
