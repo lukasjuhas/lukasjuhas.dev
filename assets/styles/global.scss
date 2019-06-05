@@ -40,3 +40,17 @@ a {
 p {
   margin-bottom: $spacing-base;
 }
+
+[v-cloak] {
+  display: none;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity $animation-speed;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
