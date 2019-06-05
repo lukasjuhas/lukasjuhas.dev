@@ -1,5 +1,5 @@
 <template>
-  <div class="main" :class="this.$store.getters.theme">
+  <div class="main" :class="[$store.getters.theme, $nuxt.$route.name]">
     <app-header />
     <div class="content">
       <nuxt />

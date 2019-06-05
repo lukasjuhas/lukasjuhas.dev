@@ -44,7 +44,7 @@ export default class Navigation extends Vue {
     text-decoration: none;
   }
 
-  .dark & {
+  .dark.index & {
     color: $col-logo-light;
 
     a {

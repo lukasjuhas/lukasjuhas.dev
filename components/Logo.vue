@@ -47,7 +47,7 @@ export default class Logo extends Vue {
     opacity: 1;
   }
 
-  .dark & {
+  .dark.index & {
     fill: $col-logo-light;
   }
 }

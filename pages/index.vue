@@ -96,9 +96,15 @@ export default class Home extends Vue {
   beforeRouteLeave(to, from, next) {
     this.fadeOut = true
 
+    // if it's not index page, just default the theme to light
+    if (to.name !== 'index') {
+      this.$store.commit('setTheme', 'light');
+    }
+
+    // room for css animation
     setTimeout(() => {
       next()
-    }, 200) // room for css animation
+    }, 50)
   }
 }
 </script>
