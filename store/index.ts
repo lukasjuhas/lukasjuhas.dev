@@ -71,7 +71,6 @@ export const actions: ActionTree<RootState, RootState> = {
           origin: process.env.baseUrl,
         }
       })
-      // .get(`https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}`)
       .then(response => {
         const json = parser.parse(response.data);
         commit('setBooks', json.GoodreadsResponse.books.book);
@@ -89,7 +88,6 @@ export const actions: ActionTree<RootState, RootState> = {
           origin: process.env.baseUrl,
         }
       })
-      // .get(`https://www.goodreads.com/review/list/90882699.xml?key=${process.env.GOODREADS_API_KEY}`)
       .then(response => {
         const json = parser.parse(response.data);
         commit('setCurrentBooks', json.GoodreadsResponse.books.book);
