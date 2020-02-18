@@ -1,12 +1,7 @@
 <template>
   <div class="page">
     <transition name="fade">
-      <section v-if="!currentBooks.length && !books.length" class="section">
-        <div class="container">
-          Aye, there was a problem getting the books... perhaps try again in a bit!
-        </div>
-      </section>
-      <section v-if="currentBooks.length" class="section">
+      <section v-if="currentBooks" class="section">
         <div class="container">
           <h1>Currently Reading</h1>
 
@@ -48,7 +43,7 @@
       </section>
     </transition>
     <transition name="fade">
-      <section v-if="books.length" class="section">
+      <section v-if="books" class="section">
         <div class="container">
           <h1>All-time Favourites</h1>
 
