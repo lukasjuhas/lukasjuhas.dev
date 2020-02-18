@@ -56,6 +56,8 @@ export default {
     '~/assets/styles/global.scss',
   ],
 
+  buildModules: ['@nuxt/typescript-build'],
+
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',

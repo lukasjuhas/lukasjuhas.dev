@@ -12,18 +12,18 @@
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component } from 'nuxt-property-decorator'
+import { Vue, Prop, Component } from 'vue-property-decorator'
 
 @Component({})
 export default class StaggeredFade extends Vue {
   @Prop()
   tag: string = 'div'
 
-  public beforeEnter(el) {
+  public beforeEnter(el: any) {
     el.classList.add('staggered-fade-item')
   }
 
-  public enter(el) {
+  public enter(el: any) {
     const delay = el.dataset.index * 100
 
     setTimeout(() => {
@@ -31,7 +31,7 @@ export default class StaggeredFade extends Vue {
     }, delay)
   }
 
-  public leave(el) {
+  public leave(el: any) {
     const delay = el.dataset.index * 100
 
     setTimeout(() => {
