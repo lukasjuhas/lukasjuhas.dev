@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'nuxt-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component({})
 export default class Navigation extends Vue {
-  @Prop({ default: true })
-  show: boolean
+  @Prop({ default: true, required: false })
+  show!: boolean
 }
 </script>
 

@@ -90,23 +90,35 @@
 <script lang="ts">
 import splashy from 'splashy'
 import tinycolor from 'tinycolor2'
-import { Component, Vue, State, Action } from 'nuxt-property-decorator'
-import { Book } from '~/types'
+import { Component, Vue } from 'vue-property-decorator'
+import {
+  State,
+  Action,
+} from 'vuex-class'
+import { Book, RootState } from '~/types'
 
 @Component({})
 export default class Books extends Vue {
   bg: string = ''
 
-  @State books: Book
-  @State currentBooks: Book
-  @State firstBookImageUrl
+  get currentBooks() {
+      return (this.$store.state as RootState).currentBooks
+  }
+
+  get books() {
+      return (this.$store.state as RootState).books
+  }
+
+  get firstBookImageUrl() {
+      return (this.$store.state as RootState).firstBookImageUrl
+  }
 
   @Action('getBooks') getBooks: any
   @Action('getCurrentBooks') getCurrentBooks: any
 
-  async asyncData({ store }) {
-    await store.dispatch('getBooks')
-    await store.dispatch('getCurrentBooks')
+  async asyncData(context: any) {
+    await context.store.dispatch('getBooks')
+    await context.store.dispatch('getCurrentBooks')
   }
 }
 </script>

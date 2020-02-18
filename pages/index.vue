@@ -63,9 +63,13 @@
 <script lang="ts">
 import splashy from 'splashy'
 import tinycolor from 'tinycolor2'
-import { Component, Vue, State, Action } from 'nuxt-property-decorator'
+import { Component, Vue } from 'vue-property-decorator';
+import {
+  State,
+  Action,
+} from 'vuex-class'
 import StaggeredFade from '~/components/StaggeredFade.vue'
-import { Photo } from '~/types'
+import { Photo, RootState } from '~/types'
 
 @Component({
   components: {
@@ -75,16 +79,30 @@ import { Photo } from '~/types'
 export default class Home extends Vue {
   fadeOut: boolean = false
 
-  @State photos: Photo
-  @State firstPhotoUrl
-  @State theme
-  @State bg
+  // @State photos: Photo
+  // @State firstPhotoUrl: string
+  // @State theme: string
+  get photos() {
+      return (this.$store.state as RootState).photos
+  }
+
+  get firstPhotoUrl() {
+      return (this.$store.state as RootState).firstPhotoUrl
+  }
+
+  get theme() {
+      return (this.$store.state as RootState).theme
+  }
+
+  get bg() {
+      return (this.$store.state as RootState).bg
+  }
 
   @Action('getPhotos') getPhotos: any
 
   mounted() {
     this.getPhotos().then(() => {
-      splashy(this.firstPhotoUrl).then(palette => {
+      splashy(this.firstPhotoUrl).then((palette: any) => {
         this.$store.commit('setBg', palette[0])
 
         if (tinycolor(this.bg).isDark()) {
@@ -94,7 +112,7 @@ export default class Home extends Vue {
     })
   }
 
-  beforeRouteLeave(to, from, next) {
+  beforeRouteLeave(to: any, from: any, next: any) {
     this.fadeOut = true
 
     // if it's not index page, just default the theme to light
