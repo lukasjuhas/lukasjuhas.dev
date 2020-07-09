@@ -18,7 +18,6 @@ const host =
 export default {
   env: {
     baseUrl: process.env.BASE_URL || `http://${host}:${port}`,
-    INSTAGRAM_ACCESS_TOKEN: process.env.INSTAGRAM_ACCESS_TOKEN,
     GOODREADS_API_KEY: process.env.GOODREADS_API_KEY || 'krvm3xRqFvtk0fJpqaA',
   },
 
