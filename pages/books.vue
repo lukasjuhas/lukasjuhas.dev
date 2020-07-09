@@ -82,6 +82,11 @@
             </div>
           </div>
         </div>
+        <div class="books-footer">
+          <a href="https://www.goodreads.com/user/show/90882699-lukas-juhas" class="see-more" target="_blank" rel="noopener"
+            >see more</a
+          >
+        </div>
       </section>
     </transition>
   </div>
@@ -97,35 +102,35 @@ import {
 } from 'vuex-class'
 import { Book, RootState } from '~/types'
 
-@Component({})
-export default class Books extends Vue {
-  bg: string = ''
-
-  get currentBooks() {
-      return (this.$store.state as RootState).currentBooks
-  }
-
-  get books() {
-      return (this.$store.state as RootState).books
-  }
-
-  get firstBookImageUrl() {
-      return (this.$store.state as RootState).firstBookImageUrl
-  }
-
-  @Action('getBooks') getBooks: any
-  @Action('getCurrentBooks') getCurrentBooks: any
-
+@Component({
   async asyncData(context: any) {
     await context.store.dispatch('getBooks')
     await context.store.dispatch('getCurrentBooks')
   }
+})
+export default class Books extends Vue {
+  bg: string = ''
+
+  get currentBooks() {
+      return (this.$store.getters as RootState).currentBooks
+  }
+
+  get books() {
+      return (this.$store.getters as RootState).books
+  }
+
+  get firstBookImageUrl() {
+      return (this.$store.getters as RootState).firstBookImageUrl
+  }
+
+  @Action('getBooks') getBooks: any
+  @Action('getCurrentBooks') getCurrentBooks: any
 }
 </script>
 
 <style lang="scss" scoped>
 .page {
-  padding: (50 + $spacing-xl) 0 $spacing-xl;
+  padding: (110 + $spacing-xl) 0 $spacing-xl;
 }
 
 .section {
@@ -167,6 +172,11 @@ export default class Books extends Vue {
 .book-cover {
   max-width: 100%;
   height: auto;
+}
+
+.books-footer {
+  text-align: center;
+  padding: $spacing-xl 0;
 }
 
 @include resp-max($breakpoint-xs) {

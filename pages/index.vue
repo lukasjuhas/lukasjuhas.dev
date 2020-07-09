@@ -42,7 +42,6 @@
     </section>
     <transition name="fade">
       <section v-if="photos" class="section section--photo-feed">
-        <!-- <staggered-fade class="photo-feed"> -->
         <div class="container">
           <div v-for="(photo, index) in photos" :key="index" :data-index="index" class="photo">
             <img
@@ -52,7 +51,7 @@
             />
           </div>
         </div>
-        <!-- </staggered-fade> -->
+
         <div class="photo-feed-footer">
           <a href="https://instagram.com/lukasjuhas" class="see-more" target="_blank" rel="noopener"
             >see more</a
