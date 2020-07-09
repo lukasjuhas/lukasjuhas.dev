@@ -16,7 +16,7 @@
                 I'm Lukas Juhas and my main purpose on this planet is to enjoy life by
                 <a href="https://github.com/lukasjuhas" target="_blank" rel="noopener"
                   >writing code</a
-                >, traveling and taking
+                >, travelling and taking
                 <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener"
                   >photographs</a
                 >.
@@ -24,7 +24,7 @@
               <p>
                 Currently living and working in London as a Tech Lead at
                 <a href="https://getasnap.com/" target="_blank" rel="noopener">Snap</a>,
-                on a mission to solve on-demand intercity travel and I'm founder of <a href="https://pilgrim.ist/" target="_blank" rel="noopener">Pilgrimist</a>, a community driven platform for travelers.
+                on a mission to solve on-demand intercity travel and I'm the founder of <a href="https://pilgrim.ist/" target="_blank" rel="noopener">Pilgrimist</a>, a community-driven platform for travellers.
               </p>
 
               <p>
