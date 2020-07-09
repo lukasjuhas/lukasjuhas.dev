@@ -19,9 +19,12 @@
                 >, traveling and taking
                 <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener"
                   >photographs</a
-                >. Currently living and working in London as a Tech Lead at
+                >.
+              </p>
+              <p>
+                Currently living and working in London as a Tech Lead at
                 <a href="https://getasnap.com/" target="_blank" rel="noopener">Snap</a>,
-                on a mission to solve on-demand intercity travel.
+                on a mission to solve on-demand intercity travel and I'm founder of <a href="https://pilgrim.ist/" target="_blank" rel="noopener">Pilgrimist</a>, a community driven platform for travelers.
               </p>
 
               <p>
