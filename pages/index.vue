@@ -78,6 +78,17 @@ import { Photo, RootState } from '~/types'
   components: {
     StaggeredFade,
   },
+
+  async mounted(this: Home) {
+    await this.getPhotos();
+
+    const palette = await splashy(this.firstPhotoUrl);
+    this.$store.commit('setBg', palette[0]);
+
+    if (tinycolor(this.bg).isDark()) {
+      this.$store.commit('setTheme', 'dark');
+    }
+  }
 })
 export default class Home extends Vue {
   fadeOut: boolean = false
@@ -86,34 +97,22 @@ export default class Home extends Vue {
   // @State firstPhotoUrl: string
   // @State theme: string
   get photos() {
-      return (this.$store.state as RootState).photos
+      return (this.$store.getters as RootState).photos
   }
 
   get firstPhotoUrl() {
-      return (this.$store.state as RootState).firstPhotoUrl
+      return (this.$store.getters as RootState).firstPhotoUrl
   }
 
   get theme() {
-      return (this.$store.state as RootState).theme
+      return (this.$store.getters as RootState).theme
   }
 
   get bg() {
-      return (this.$store.state as RootState).bg
+    return (this.$store.getters as RootState).bg
   }
 
   @Action('getPhotos') getPhotos: any
-
-  mounted() {
-    this.getPhotos().then(() => {
-      splashy(this.firstPhotoUrl).then((palette: any) => {
-        this.$store.commit('setBg', palette[0]);
-
-        if (tinycolor(this.bg).isDark()) {
-          this.$store.commit('setTheme', 'dark');
-        }
-      })
-    })
-  }
 
   beforeRouteLeave(to: any, from: any, next: any) {
     this.fadeOut = true

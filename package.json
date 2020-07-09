@@ -39,7 +39,8 @@
     "vuex-class": "^0.3.2"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "^0.5.7",
+    "@nuxt/types": "^2.13.3",
+    "@nuxt/typescript-build": "^2.0.0",
     "@nuxt/typescript-runtime": "^0.3.9",
     "@types/node": "^13.7.1",
     "minimist": "^1.2.3",
