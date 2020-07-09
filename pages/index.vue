@@ -43,9 +43,9 @@
         <div class="container">
           <div v-for="(photo, index) in photos" :key="index" :data-index="index" class="photo">
             <img
-              :src="photo.images.standard_resolution.url"
-              :alt="photo.caption.text"
-              :title="photo.caption.text"
+              :src="photo.media_url"
+              :alt="photo.caption"
+              :title="photo.caption"
             />
           </div>
         </div>
@@ -103,10 +103,10 @@ export default class Home extends Vue {
   mounted() {
     this.getPhotos().then(() => {
       splashy(this.firstPhotoUrl).then((palette: any) => {
-        this.$store.commit('setBg', palette[0])
+        this.$store.commit('setBg', palette[0]);
 
         if (tinycolor(this.bg).isDark()) {
-          this.$store.commit('setTheme', 'dark')
+          this.$store.commit('setTheme', 'dark');
         }
       })
     })

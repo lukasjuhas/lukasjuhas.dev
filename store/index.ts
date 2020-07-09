@@ -48,16 +48,20 @@ export const mutations: MutationTree<RootState> = {
 
 export const actions: ActionTree<RootState, RootState> = {
   async getPhotos({ commit }) {
-    await axios
-      .get(
-        `https://api.instagram.com/v1/users/self/media/recent?access_token=${
-          process.env.INSTAGRAM_ACCESS_TOKEN
-        }&count=18`
-      )
-      .then(response => {
-        commit('setPhotos', response.data.data);
-        commit('setFirstPhotoUrl', response.data.data[0].images.standard_resolution.url);
-      });
+    await axios.get('https://itslukas-insta-token-agent.herokuapp.com/token.json').then(response => {
+      axios
+        .get(
+          `https://graph.instagram.com/17841401548274180/media?fields=media_url,caption&access_token=${
+            response.data.token
+          }`
+        )
+        .then(response => {
+          commit('setPhotos', response.data.data);
+          commit('setFirstPhotoUrl', response.data.data[0].media_url);
+
+          return Promise.resolve();
+        });
+    });
   },
 
   async getBooks({ commit }) {
