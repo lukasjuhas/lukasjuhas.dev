@@ -56,8 +56,10 @@ export const actions: ActionTree<RootState, RootState> = {
           }`
         )
         .then(response => {
-          commit('setPhotos', response.data.data);
-          commit('setFirstPhotoUrl', response.data.data[0].media_url);
+          // first 18 only
+          const photos = response.data.data.slice(0, 18);
+          commit('setPhotos', photos);
+          commit('setFirstPhotoUrl', photos[0].media_url);
 
           return Promise.resolve();
         });
