@@ -29,6 +29,7 @@
       "@nuxt/types",
       "@types/minimist",
       "@types/tinycolor2",
+      "@types/throttle-debounce"
     ]
   },
   "exclude": [
