@@ -11,6 +11,7 @@
 </template>
 
 <script lang="ts">
+// CURRNET UNUSED COMPONENT
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component({})

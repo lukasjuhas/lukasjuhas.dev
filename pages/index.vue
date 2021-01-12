@@ -18,9 +18,7 @@
                 enjoy life by
                 <a href="https://github.com/lukasjuhas" target="_blank" rel="noopener"
                   >writing code</a
-                >, travelling,
-                <nuxt-link to="/books"
-                  >learning</nuxt-link> and taking
+                >, travelling and taking
                 <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener"
                   >photographs</a
                 >.
@@ -32,7 +30,7 @@
                 <a href="https://www.worksome.com" target="_blank" rel="noopener">Worksome</a>.
                 Previously Technical Lead at
                 <a href="https://getasnap.com" target="_blank" rel="noopener">Snap</a>.
-                I'm creator of
+                I'm the creator of
                 <a href="https://pilgrim.ist" target="_blank" rel="noopener">Pilgrimist</a>,
                 a community-driven platform for travellers.
               </p>
