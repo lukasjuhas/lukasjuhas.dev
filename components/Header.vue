@@ -4,7 +4,7 @@
       <logo :show="show" />
     </nuxt-link>
 
-    <navigation :show="show" />
+    <!-- <navigation :show="show" /> -->
   </header>
 </template>
 

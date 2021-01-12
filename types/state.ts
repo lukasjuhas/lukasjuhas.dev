@@ -1,4 +1,4 @@
-import { Photo, Book } from '~/types';
+import { Photo } from '~/types';
 
 export interface RootState {
   loading: boolean;
@@ -6,7 +6,4 @@ export interface RootState {
   firstPhotoUrl: string;
   theme: string;
   bg: string;
-  books: Book[];
-  currentBooks: Book[];
-  firstBookImageUrl: string;
 }
