@@ -22,12 +22,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
 export default class Logo extends Vue {
   @Prop({ default: true, required: false })
-  show!: boolean;
+  show!: boolean
 }
 </script>
 

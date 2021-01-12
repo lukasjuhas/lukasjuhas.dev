@@ -14,8 +14,8 @@
             <article class="content">
               <p>
                 I'm Lukas Juhas, and I'm a citizen of the world. Born and grew up in Slovakia,
-                became an adult in the United Kingdom. My primary purpose on this planet is to
-                enjoy life by
+                became an adult in the United Kingdom. My primary purpose on this planet is to enjoy
+                life by
                 <a href="https://github.com/lukasjuhas" target="_blank" rel="noopener"
                   >writing code</a
                 >, travelling and taking
@@ -25,14 +25,14 @@
               </p>
 
               <p>
-                Currently living and working in <strike>London</strike> Copenhagen as
-                Senior Software Engineer at
+                Currently living and working in <strike>London</strike> Copenhagen as Senior
+                Software Engineer at
                 <a href="https://www.worksome.com" target="_blank" rel="noopener">Worksome</a>.
                 Previously Technical Lead at
-                <a href="https://getasnap.com" target="_blank" rel="noopener">Snap</a>.
-                I'm the creator of
-                <a href="https://pilgrim.ist" target="_blank" rel="noopener">Pilgrimist</a>,
-                a community-driven platform for travellers.
+                <a href="https://getasnap.com" target="_blank" rel="noopener">Snap</a>. I'm the
+                creator of
+                <a href="https://pilgrim.ist" target="_blank" rel="noopener">Pilgrimist</a>, a
+                community-driven platform for travellers.
               </p>
 
               <p>
@@ -53,11 +53,7 @@
         <div class="container">
           <div class="photo-feed">
             <div v-for="(photo, index) in photos" :key="index" :data-index="index" class="photo">
-              <img
-                :src="photo.media_url"
-                :alt="photo.caption"
-                :title="photo.caption"
-              />
+              <img :src="photo.media_url" :alt="photo.caption" :title="photo.caption" />
             </div>
           </div>
         </div>
@@ -75,11 +71,8 @@
 <script lang="ts">
 import splashy from 'splashy'
 import tinycolor from 'tinycolor2'
-import { Component, Vue } from 'vue-property-decorator';
-import {
-  State,
-  Action,
-} from 'vuex-class'
+import { Component, Vue } from 'vue-property-decorator'
+import { State, Action } from 'vuex-class'
 import StaggeredFade from '~/components/StaggeredFade.vue'
 import { Photo, RootState } from '~/types'
 
@@ -89,15 +82,15 @@ import { Photo, RootState } from '~/types'
   },
 
   async mounted(this: Home) {
-    await this.getPhotos();
+    await this.getPhotos()
 
-    const palette = await splashy(this.firstPhotoUrl);
-    this.$store.commit('setBg', palette[0]);
+    const palette = await splashy(this.firstPhotoUrl)
+    this.$store.commit('setBg', palette[0])
 
     if (tinycolor(this.bg).isDark()) {
-      this.$store.commit('setTheme', 'dark');
+      this.$store.commit('setTheme', 'dark')
     }
-  }
+  },
 })
 export default class Home extends Vue {
   fadeOut: boolean = false
@@ -106,15 +99,15 @@ export default class Home extends Vue {
   // @State firstPhotoUrl: string
   // @State theme: string
   get photos() {
-      return (this.$store.getters as RootState).photos
+    return (this.$store.getters as RootState).photos
   }
 
   get firstPhotoUrl() {
-      return (this.$store.getters as RootState).firstPhotoUrl
+    return (this.$store.getters as RootState).firstPhotoUrl
   }
 
   get theme() {
-      return (this.$store.getters as RootState).theme
+    return (this.$store.getters as RootState).theme
   }
 
   get bg() {
@@ -128,7 +121,7 @@ export default class Home extends Vue {
 
     // if it's not index page, just default the theme to light
     if (to.name !== 'index') {
-      this.$store.commit('setTheme', 'light');
+      this.$store.commit('setTheme', 'light')
     }
 
     // room for css animation

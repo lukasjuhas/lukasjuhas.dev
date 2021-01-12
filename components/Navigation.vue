@@ -2,9 +2,7 @@
   <nav :class="{ visible: show }" class="nav">
     <ul class="nav-list">
       <li>
-        <nuxt-link to="/books">
-          Books
-        </nuxt-link>
+        <nuxt-link to="/books"> Books </nuxt-link>
       </li>
     </ul>
   </nav>
