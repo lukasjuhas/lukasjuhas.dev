@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import throttle from 'lodash/throttle'
+import { throttle } from 'throttle-debounce';
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import Logo from '~/components/Logo.vue'
 import Navigation from '~/components/Navigation.vue'
@@ -35,7 +35,7 @@ export default class AppHeader extends Vue {
     let lastScrollTop = 0
     window.addEventListener(
       'scroll',
-      throttle(() => {
+      throttle(300, () => {
         const st = window.pageYOffset || document.documentElement.scrollTop
         // offset 75px
         if (st > 75 && st > lastScrollTop) {
@@ -44,7 +44,7 @@ export default class AppHeader extends Vue {
           this.show = true
         }
         lastScrollTop = st
-      }, 300)
+      })
     )
   }
 }
