@@ -32,7 +32,6 @@ export default class Navigation extends Vue {
   font-size: $font-size-base;
   font-weight: $font-weight-bold;
   text-transform: uppercase;
-  font-style: italic;
 
   &.visible {
     opacity: 1;

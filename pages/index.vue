@@ -13,18 +13,28 @@
           <div class="col col--xs-12 col--sm-10 col--md-7 col--lg-7">
             <article class="content">
               <p>
-                I'm Lukas Juhas and my main purpose on this planet is to enjoy life by
+                I'm Lukas Juhas, and I'm a citizen of the world. Born and grew up in Slovakia,
+                became an adult in the United Kingdom. My primary purpose on this planet is to
+                enjoy life by
                 <a href="https://github.com/lukasjuhas" target="_blank" rel="noopener"
                   >writing code</a
-                >, travelling and taking
+                >, travelling,
+                <nuxt-link to="/books"
+                  >learning</nuxt-link> and taking
                 <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener"
                   >photographs</a
                 >.
               </p>
+
               <p>
-                Currently living and working in London as a Tech Lead at
-                <a href="https://getasnap.com/" target="_blank" rel="noopener">Snap</a>,
-                on a mission to solve on-demand intercity travel and I'm the founder of <a href="https://pilgrim.ist/" target="_blank" rel="noopener">Pilgrimist</a>, a community-driven platform for travellers.
+                Currently living and working in <strike>London</strike> Copenhagen as
+                Senior Software Engineer at
+                <a href="https://www.worksome.com" target="_blank" rel="noopener">Worksome</a>.
+                Previously Technical Lead at
+                <a href="https://getasnap.com" target="_blank" rel="noopener">Snap</a>.
+                I'm creator of
+                <a href="https://pilgrim.ist" target="_blank" rel="noopener">Pilgrimist</a>,
+                a community-driven platform for travellers.
               </p>
 
               <p>
