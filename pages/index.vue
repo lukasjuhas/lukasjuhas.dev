@@ -18,7 +18,13 @@
                 life by
                 <a href="https://github.com/lukasjuhas" target="_blank" rel="noopener"
                   >writing code</a
-                >, travelling and taking
+                >,
+                <a
+                  href="https://www.goodreads.com/user/show/90882699-lukas-juhas"
+                  target="_blank"
+                  rel="noopener"
+                  >reading</a
+                >, travelling, and taking
                 <a href="https://instagram.com/lukasjuhas" target="_blank" rel="noopener"
                   >photographs</a
                 >.

@@ -22,7 +22,7 @@ export default {
   },
 
   head: {
-    title: pkg.author,
+    title: 'Lukas Juhas - Citizen of the world',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
