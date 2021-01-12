@@ -43,12 +43,14 @@
     <transition name="fade">
       <section v-if="photos" class="section section--photo-feed">
         <div class="container">
-          <div v-for="(photo, index) in photos" :key="index" :data-index="index" class="photo">
-            <img
-              :src="photo.media_url"
-              :alt="photo.caption"
-              :title="photo.caption"
-            />
+          <div class="photo-feed">
+            <div v-for="(photo, index) in photos" :key="index" :data-index="index" class="photo">
+              <img
+                :src="photo.media_url"
+                :alt="photo.caption"
+                :title="photo.caption"
+              />
+            </div>
           </div>
         </div>
 
@@ -174,6 +176,12 @@ export default class Home extends Vue {
   @include resp-max($breakpoint-sm) {
     font-size: $font-size-base;
   }
+}
+
+.photo-feed {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .photo {
