@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { throttle } from 'throttle-debounce';
+import { throttle } from 'throttle-debounce'
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import Logo from '~/components/Logo.vue'
 import Navigation from '~/components/Navigation.vue'

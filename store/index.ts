@@ -1,7 +1,6 @@
 import { MutationTree, ActionTree, GetterTree } from 'vuex';
 import { RootState, Photo } from '~/types';
 import axios from 'axios';
-import parser from 'fast-xml-parser';
 
 export const state = (): RootState => ({
   loading: false,
