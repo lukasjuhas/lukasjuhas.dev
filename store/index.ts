@@ -73,11 +73,11 @@ export const mutations: MutationTree<RootState> = {
 export const actions: ActionTree<RootState, RootState> = {
   async getPhotos({ commit }) {
     try {
-      const tokenResponse = await axios.get('https://itslukas-insta-token-agent.herokuapp.com/token.json');
+      const tokenResponse = await axios.get('https://ig.instant-tokens.com/users/11ae0c52-8c0d-47c7-b146-dec0e2c3aeda/instagram/17841401548274180/token?userSecret=yqd5y2bpyqgas8q2spba6k');
       const response = await axios
       .get(
         `https://graph.instagram.com/17841401548274180/media?fields=media_url,caption&access_token=${
-          tokenResponse.data.token
+          tokenResponse.data.Token
         }`
       )
 
