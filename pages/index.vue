@@ -31,7 +31,7 @@
               </p>
 
               <p>
-                Currently living and working in <strike>London</strike> Copenhagen as Senior
+                Currently living and working between London and Copenhagen as Senior
                 Software Engineer at
                 <a href="https://www.worksome.com" target="_blank" rel="noopener">Worksome</a>.
                 Previously Technical Lead at
