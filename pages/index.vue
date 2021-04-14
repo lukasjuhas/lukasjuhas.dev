@@ -55,7 +55,7 @@
       </div>
     </section>
     <transition name="fade">
-      <section v-if="photos" class="section section--photo-feed">
+      <section v-if="photos.length" class="section section--photo-feed">
         <div class="container">
           <div class="photo-feed">
             <div v-for="(photo, index) in photos" :key="index" :data-index="index" class="photo">
@@ -78,7 +78,6 @@
 import splashy from 'splashy'
 import tinycolor from 'tinycolor2'
 import { Component, Vue } from 'vue-property-decorator'
-import { State, Action } from 'vuex-class'
 import StaggeredFade from '~/components/StaggeredFade.vue'
 import { Photo, RootState } from '~/types'
 
@@ -88,12 +87,15 @@ import { Photo, RootState } from '~/types'
   },
 
   async mounted(this: Home) {
-    await this.getPhotos()
+    await this.$store.dispatch('getPhotos');
 
     const palette = await splashy(this.firstPhotoUrl)
-    this.$store.commit('setBg', palette[0])
+    if (palette.length) {
+      this.$store.commit('setBg', palette[0])
+    }
 
-    if (tinycolor(this.bg).isDark()) {
+
+    if (this.bg && tinycolor(this.bg).isDark()) {
       this.$store.commit('setTheme', 'dark')
     }
   },
@@ -101,9 +103,6 @@ import { Photo, RootState } from '~/types'
 export default class Home extends Vue {
   fadeOut: boolean = false
 
-  // @State photos: Photo
-  // @State firstPhotoUrl: string
-  // @State theme: string
   get photos() {
     return (this.$store.getters as RootState).photos
   }
@@ -119,8 +118,6 @@ export default class Home extends Vue {
   get bg() {
     return (this.$store.getters as RootState).bg
   }
-
-  @Action('getPhotos') getPhotos: any
 
   beforeRouteLeave(to: any, from: any, next: any) {
     this.fadeOut = true

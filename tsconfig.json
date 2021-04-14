@@ -13,6 +13,7 @@
     "sourceMap": true,
     "strict": true,
     "experimentalDecorators": true,
+    "importHelpers": true,
     "resolveJsonModule": true,
     "noEmit": true,
     "baseUrl": ".",
