@@ -43,7 +43,7 @@
 
               <p>
                 Say hello
-                <a href="mailto:lukas@itsluk.as">lukas@itsluk.as</a>,
+                <a href="mailto:lukasjuhas@pm.me">lukasjuhas@pm.me</a>,
                 <a href="https://twitter.com/itslukasjuhas" target="_blank" rel="noopener"
                   >@itslukasjuhas</a
                 >.

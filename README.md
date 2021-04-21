@@ -1,6 +1,6 @@
-# itsluk.as
+# lukasjuhas.com
 
-> My little piece of internet
+> My little piece of the internet.
 
 ## Build Setup
 
