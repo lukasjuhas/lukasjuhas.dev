@@ -2,15 +2,6 @@ import eslintPlugin from 'vite-plugin-eslint'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  target: 'static',
-  routes: {
-    '/': { prerendered: true },
-  },
-  nitro: {
-    prerender: {
-      routes: ['/'],
-    },
-  },
   vite: {
     plugins: [eslintPlugin()],
   },
