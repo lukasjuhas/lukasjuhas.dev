@@ -1,6 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts"],
   tailwindcss: {
     jit: true,
     // add '~tailwind.config` alias
@@ -9,19 +9,29 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Lukas Juhas - Citizen of the world',
+      title: "Lukas Juhas - Citizen of the world",
       meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'description', name: 'description', content: 'My little piece of the internet.' },
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          hid: "description",
+          name: "description",
+          content: "My little piece of the internet.",
+        },
       ],
       link: [
         {
-          rel: 'icon',
-          type: 'image/x-icon',
-          href: '/favicon.ico',
+          rel: "icon",
+          type: "image/x-icon",
+          href: "/favicon.ico",
         },
       ],
+    },
+  },
+
+  googleFonts: {
+    families: {
+      Quicksand: [400],
     },
   },
 });
