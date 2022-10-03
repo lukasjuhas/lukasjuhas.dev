@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Gradient />
+    <PageGradient />
 
     <div class="relative z-10">
       <AppHeader />
