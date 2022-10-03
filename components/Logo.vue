@@ -1,7 +1,6 @@
 <template>
   <svg
-    :class="{ visible: show }"
-    class="logo"
+    class="w-14 h-14"
     clip-rule="evenodd"
     fill-rule="evenodd"
     stroke-linejoin="round"
@@ -20,35 +19,3 @@
     />
   </svg>
 </template>
-
-<script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
-
-@Component
-export default class Logo extends Vue {
-  @Prop({ default: true, required: false })
-  show!: boolean
-}
-</script>
-
-<style lang="scss" scoped>
-.logo {
-  width: 60px;
-  height: 60px;
-  position: fixed;
-  z-index: 100;
-  top: $spacing-base;
-  left: $spacing-base;
-  transition: all $animation-speed $animation;
-  opacity: 0;
-  fill: $col-logo;
-
-  &.visible {
-    opacity: 1;
-  }
-
-  .dark.index & {
-    fill: $col-logo-light;
-  }
-}
-</style>
