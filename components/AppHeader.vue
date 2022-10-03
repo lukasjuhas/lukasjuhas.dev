@@ -1,5 +1,5 @@
 <template>
   <header class="p-4">
-    <Logo />
+    <AppLogo />
   </header>
 </template>

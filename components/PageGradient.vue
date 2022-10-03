@@ -11,7 +11,13 @@
       preserveAspectRatio="none"
       class="page__gradient-svg"
     >
-      <rect x="0" y="0" height="100%" width="100%" fill="url(#9)"></rect>
+      <rect
+        x="0"
+        y="0"
+        height="100%"
+        width="100%"
+        fill="url(#9)"
+      />
       <linearGradient
         id="9"
         x1="0"
@@ -26,25 +32,25 @@
           offset="0"
           :stop-color="current[0]"
           data-v-5757e3cc=""
-        ></stop>
+        />
         <stop
           class="transition-all duration-4000"
           offset="0.3333333333333333"
           :stop-color="current[1]"
           data-v-5757e3cc=""
-        ></stop>
+        />
         <stop
           class="transition-all duration-4000"
           offset="0.6666666666666666"
           :stop-color="current[2]"
           data-v-5757e3cc=""
-        ></stop>
+        />
         <stop
           class="transition-all duration-4000"
           offset="1"
           :stop-color="current[3]"
           data-v-5757e3cc=""
-        ></stop>
+        />
       </linearGradient>
     </svg>
   </div>
