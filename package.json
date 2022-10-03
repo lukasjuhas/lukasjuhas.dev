@@ -8,7 +8,8 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.ts,.vue",
+    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts,.vue .",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },

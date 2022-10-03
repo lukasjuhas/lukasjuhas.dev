@@ -11,11 +11,11 @@ module.exports = {
   theme: {
     extend: {
       transitionDuration: {
-        '4000': '4000ms'
+        4000: '4000ms',
       },
       fontFamily: {
-        'sans': ['Quicksand', ...defaultTheme.fontFamily.sans],
+        sans: ['Quicksand', ...defaultTheme.fontFamily.sans],
       },
-    }
-  }
+    },
+  },
 }
