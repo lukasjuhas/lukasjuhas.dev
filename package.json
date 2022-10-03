@@ -5,6 +5,7 @@
   "author": "Lukas Juhas",
   "private": true,
   "scripts": {
+    "analyze": "npx nuxi analyze",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
