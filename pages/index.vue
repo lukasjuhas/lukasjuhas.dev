@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex items-center">
     <TextBlock>
       <TextBlockItem>
         I'm Lukas Juhas, and I'm a citizen of the world. Born and raised in
