@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
+
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # All history
+
+      - name: Install dependencies
+        run: npm install
+
+      - uses: actions/cache@v3
+        id: cache-build
+        with:
+          path: |
+            ./*
+            /home/runner/.cache
+          key: ${{ github.sha }}
+
+  lint:
+    name: Lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
+    needs: setup
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: |
+            ./*
+            /home/runner/.cache
+          key: ${{ github.sha }}
+      - run: npm run lint
+
+  can-build:
+    name: Can make a build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
+    needs: setup
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/cache@v3
+        id: restore-build
+        with:
+          path: |
+            ./*
+            /home/runner/.cache
+          key: ${{ github.sha }}
+
+      - run: npm run build
