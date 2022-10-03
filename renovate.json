@@ -1,0 +1,14 @@
+{
+  "extends": ["config:base"],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
+  "semanticCommits": "enabled",
+  "branchConcurrentLimit": 10,
+  "packageRules": [
+    {
+      "extends": "monorepo:vue",
+      "groupName": "vue monorepo"
+    }
+  ]
+}
