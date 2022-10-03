@@ -1,18 +1,12 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  darkMode: "class",
-  variants: {
-    backgroundColor: [
-      "dark",
-      "dark-hover",
-      "dark-group-hover",
-      "dark-even",
-      "dark-odd",
-    ],
-    borderColor: ["dark", "dark-focus", "dark-focus-within"],
-    textColor: ["dark", "dark-hover", "dark-active"],
-  },
+  content: [
+    './layouts/**/*.{js,jsx,ts,tsx,vue}',
+    './pages/**/*.{js,jsx,ts,tsx,vue}',
+    './components/**/*.{js,jsx,ts,tsx,vue}',
+    './public/**/*.{js,jsx,ts,tsx,vue}',
+  ],
   theme: {
     extend: {
       transitionDuration: {
