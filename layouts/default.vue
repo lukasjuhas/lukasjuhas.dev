@@ -3,7 +3,11 @@
     <Gradient />
 
     <div class="relative z-10">
-      <slot />
+      <AppHeader />
+
+      <div class="p-4">
+        <slot />
+      </div>
     </div>
   </div>
 </template>

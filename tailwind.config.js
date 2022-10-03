@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   darkMode: "class",
   variants: {
@@ -15,7 +17,10 @@ module.exports = {
     extend: {
       transitionDuration: {
         '4000': '4000ms'
-      }
+      },
+      fontFamily: {
+        'sans': ['Quicksand', ...defaultTheme.fontFamily.sans],
+      },
     }
   }
 }
