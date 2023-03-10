@@ -15,7 +15,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@nuxtjs/google-fonts": "3.0.0-1",
+    "@nuxtjs/google-fonts": "3.0.0",
     "@nuxtjs/tailwindcss": "6.4.1",
     "@typescript-eslint/eslint-plugin": "5.54.1",
     "@typescript-eslint/parser": "5.54.1",
