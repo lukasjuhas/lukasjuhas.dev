@@ -31,16 +31,17 @@
       <TextBlockItem>
         Currently living and working in
         <LineThrough>London</LineThrough>&nbsp;<LineThrough>
-          Copenhagen
-        </LineThrough>
-        New York as Technical Lead at
-        <TextBlockLink
-          href="https://www.worksome.com"
+          Copenhagen</LineThrough
+        >
+        New York as Full Stack Engineer at
+        <TextBlockLink href="https://tidal.com/" target="_blank" rel="noopener">
+          TIDAL</TextBlockLink
+        >, (<TextBlockLink
+          href="https://block.xyz/"
           target="_blank"
           rel="noopener"
-        >
-          Worksome</TextBlockLink
-        >. I'm the creator of
+          >Block, Inc</TextBlockLink
+        >). I'm the creator of
         <TextBlockLink
           href="https://pilgrim.ist"
           target="_blank"
