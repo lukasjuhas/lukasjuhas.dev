@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@nuxtjs/google-fonts": "3.0.2",
-    "@nuxtjs/tailwindcss": "6.8.1",
+    "@nuxtjs/tailwindcss": "6.9.0",
     "@typescript-eslint/eslint-plugin": "6.9.1",
     "@typescript-eslint/parser": "6.9.1",
     "eslint": "8.52.0",
