@@ -26,7 +26,7 @@
     "eslint-plugin-vue": "9.19.2",
     "nuxt": "3.9.0",
     "nuxt-purgecss": "2.0.0",
-    "sass": "1.69.5",
+    "sass": "1.69.6",
     "vite-plugin-eslint": "1.8.1",
     "vue-gtag-next": "1.14.0"
   }
