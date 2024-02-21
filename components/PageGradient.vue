@@ -11,13 +11,7 @@
       preserveAspectRatio="none"
       class="page__gradient-svg"
     >
-      <rect
-        x="0"
-        y="0"
-        height="100%"
-        width="100%"
-        fill="url(#9)"
-      />
+      <rect x="0" y="0" height="100%" width="100%" fill="url(#9)" />
       <linearGradient
         id="9"
         x1="0"
@@ -58,22 +52,24 @@
 
 <script setup>
 const palette = [
-  ["#ffcab4", "#d2baa7", "#94a394", "#5f9084"],
-  ["#5f9084", "#94a394", "#d2baa7", "#ffcab4"],
-  ["#63B3CB", "#C5D3AC", "#DECD95", "#F6C47A"],
-  ["#F6C47A", "#DECD95", "#C5D3AC", "#63B3CB"],
+  ['#ffcab4', '#d2baa7', '#94a394', '#5f9084'],
+  ['#5f9084', '#94a394', '#d2baa7', '#ffcab4'],
+  ['#63B3CB', '#C5D3AC', '#DECD95', '#F6C47A'],
+  ['#F6C47A', '#DECD95', '#C5D3AC', '#63B3CB'],
 ]
 
 let current = ref(palette[0])
 
-let i = 0
-setInterval(() => {
-  current.value = palette[i]
+onMounted(() => {
+  let i = 0
+  setInterval(() => {
+    current.value = palette[i]
 
-  if (i === palette.length - 1) {
-    i = 0
-  } else {
-    i += 1
-  }
-}, 5000)
+    if (i === palette.length - 1) {
+      i = 0
+    } else {
+      i += 1
+    }
+  }, 5000)
+})
 </script>
