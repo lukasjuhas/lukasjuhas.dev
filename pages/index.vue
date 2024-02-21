@@ -39,7 +39,7 @@
         >
         (<TextBlockLink href="https://block.xyz/" target="_blank" rel="noopener"
           >Block, Inc</TextBlockLink
-        >), working on tools to financially empower the artists.
+        >), working on tools to financially empower artists.
       </TextBlockItem>
 
       <TextBlockItem>
