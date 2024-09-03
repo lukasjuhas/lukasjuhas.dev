@@ -6,7 +6,12 @@ export default defineNuxtConfig({
     plugins: [eslintPlugin()],
   },
 
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', 'nuxt-purgecss'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-fonts',
+    'nuxt-purgecss',
+    '@nuxt/eslint',
+  ],
 
   tailwindcss: {
     // add '~tailwind.config` alias
