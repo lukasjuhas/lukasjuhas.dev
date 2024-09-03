@@ -5,7 +5,9 @@ export default defineNuxtConfig({
   vite: {
     plugins: [eslintPlugin()],
   },
+
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', 'nuxt-purgecss'],
+
   tailwindcss: {
     // add '~tailwind.config` alias
     exposeConfig: true,
@@ -84,4 +86,6 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  compatibilityDate: '2024-09-03',
 })
