@@ -18,14 +18,7 @@
           rel="noopener"
         >
           reading</TextBlockLink
-        >, travelling, and making
-        <TextBlockLink
-          href="https://lukasjuhas.com"
-          target="_blank"
-          rel="noopener"
-        >
-          pictures</TextBlockLink
-        >.
+        >, travelling, and making pictures.
       </TextBlockItem>
 
       <TextBlockItem>
