@@ -24,7 +24,7 @@
     "eslint-plugin-nuxt": "4.0.0",
     "eslint-plugin-prettier": "5.2.3",
     "eslint-plugin-vue": "9.32.0",
-    "nuxt": "^3.13.0",
+    "nuxt": "^3.15.3",
     "nuxt-purgecss": "2.0.0",
     "sass": "1.83.4",
     "vite-plugin-eslint": "1.8.1",
