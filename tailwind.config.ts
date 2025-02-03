@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      transitionDuration: {
+        4000: "4000ms",
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -15,4 +18,4 @@ export default {
     },
   },
   plugins: [],
-} satisfies Config;
+} satisfies Config
