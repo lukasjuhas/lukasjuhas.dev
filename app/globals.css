@@ -3,19 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffcab4;
-  --foreground: #fff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ffcab4;
-  }
+  --background: #fff;
+  --foreground: #15141A;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Lucida Console, Monaco5, monospace;
 }
